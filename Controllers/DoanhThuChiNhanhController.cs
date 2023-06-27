@@ -31,7 +31,7 @@ namespace web4.Controllers
             connectSQL();
             Acc.Ma_DvCs_1 = Request.Cookies["MA_DVCS"].Value;
             //string query = "exec usp_Vth_BC_BHCNTK_CN @_ngay_Ct1 = '" + Acc.From_date + "',@_Ngay_Ct2 ='"+ Acc.To_date+"',@_Ma_Dvcs='"+ Acc.Ma_DvCs_1+"'";
-            string Pname = "[usp_BKHoaDonBanHang_SAP]";
+            string Pname = "[usp_BaoCaoDoanhThuCN_SAP]";
             using (SqlCommand cmd = new SqlCommand(Pname, con))
             {
                 cmd.CommandTimeout = 950;

@@ -24,6 +24,10 @@
             display: none;
         
         }
+        .contentList{
+            display:none;
+        }
+       
     </style>
 </head>
 <body>
@@ -81,13 +85,13 @@
             </div>
         </nav>
 
-        <div class="home-content">
+        @*<div class="home-content">
             <ul class="home-baocao" id="myUL">
                 <li><a href="/BangKeHoaDon/bangkehoadon"> &emsp;1. Bảng Kê Chứng Từ</a></li>
                 <li><a href="/BCDoanhThuTDV/BCDoanhThuTDV">&emsp;2. Doanh Thu TDV</a></li>
 
             </ul>
-        </div>
+        </div>*@
 
     <div class="home-content">
 
@@ -101,10 +105,10 @@
             <li><a href="#">  &emsp; Chưa Thiết Lập</a></li>
         </ul>
 
-        <h3 id="toggleList" style=" height: 22px; font-size: 50px; cursor: pointer;">
+        <h3 id="toggleList1" style=" height: 22px; font-size: 50px; cursor: pointer;">
             Báo Cáo Nghiệp Vụ
         </h3><br /><br />
-        <ul class="home-baocao" id="contentList">
+        <ul class="home-baocao" id="contentList1">
 
             <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Fill"> &emsp;1. Bảng kê Hóa đơn bán hàng</a></li>
             <li><a href="#"> &emsp; Chưa Thiết Lập</a></li>
@@ -130,49 +134,29 @@
         });
     </script>
     <script>
-        let sidebar = document.querySelector(".sidebar");
-        let sidebarBtn = document.querySelector(".sidebarBtn");
-        sidebarBtn.onclick = function () {
-            sidebar.classList.toggle("active");
-            if (sidebar.classList.contains("active")) {
-                sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
-            } else
-                sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
-        }
+
 
         function logout() {
             window.location.href = "/home/login"
         }
-        document.getElementById("admin_name").innerHTML = localStorage.getItem("textvalues");
+
+       
 
 
+    
+            // JavaScript để xử lý sự kiện click và điều khiển hiển thị của danh sách và bài viết
+            const toggleList1 = document.getElementById("toggleList1");
+            const contentList1 = document.getElementById("contentList1");
+            const toggleArticle = document.getElementById("toggleArticle");
+            const article = document.querySelector("article");
 
-        $("#leftside-navigation .sub-menu > a").click(function (e) {
-            $("#leftside-navigation ul ul").slideUp(), $(this).next().is(":visible") || $(this).next().slideDown(),
-                e.stopPropagation()
-        })
-        function ChangPassword() {
-            window.location.href = "/home/doimatkhau"
-        }
+            toggleList.addEventListener("click", function () {
+                contentList.classList.toggle("collapsed1");
+            });
 
-
-
-        function myFunction() {
-            var input, filter, ul, li, a, i, txtValue;
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            ul = document.getElementById("myUL");
-            li = ul.getElementsByTagName("li");
-            for (i = 0; i < li.length; i++) {
-                a = li[i].getElementsByTagName("a")[0];
-                txtValue = a.textContent || a.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    li[i].style.display = "";
-                } else {
-                    li[i].style.display = "none";
-                }
-            }
-        }
+            toggleArticle.addEventListener("click", function () {
+                article.classList.toggle("collapsed1);
+            });
     </script>
 
 </body>

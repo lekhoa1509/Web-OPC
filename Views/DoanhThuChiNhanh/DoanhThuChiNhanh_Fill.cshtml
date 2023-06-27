@@ -1,23 +1,10 @@
 ﻿@using System.Data;
-@using System.Web.Helpers;
-@using System.Web.Razor;
-@using System.Globalization;
-
-@{
-    ViewBag.Title = "OPC Bao Cao | OPCPHARMA";
-
-}
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
-    <meta charset="UTF-8">
-    <title> OPC Bao Cao | OPCPHARMA </title>
-    <link rel="stylesheet" href="~/Styles/mainbaocao.css">
+<html lang="en">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
-    <!-- Boxicons CDN Link -->
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+
+
     <style>
         a:hover {
             background-color: lightskyblue;
@@ -52,6 +39,7 @@
             align-items: center;
             margin-left: auto;
             margin-right: auto;
+            height: 50px;
         }
 
         table {
@@ -289,7 +277,6 @@
             position: fixed;
             height: 100%;
             width: 200px;
-            background: lightblue;
             transition: all 0.5s ease;
         }
 
@@ -310,8 +297,34 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0/js/bootstrap-select.min.js"></script>
     <script type="text/javascript" src="Scripts/table2excel.js"></script>
+
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>OPC </title>
+    <meta content="" name="description">
+    <meta content="Author" name="MJ Maraz">
+    <link href="~/assets/images/favicon.png" rel="icon">
+    <link href="~/assets/images/favicon.png" rel="apple-touch-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- ========================================================= -->
+
+
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assets/css/datatables.min.css">
+    <link rel="stylesheet" href="~/assets/css/style.css">
+
+
+
+
+
+
 </head>
+<!-- =============== Design & Develop By = MJ MARAZ   ====================== -->
+
 <body>
+
     <div class="sidebar">
         <div class="logo-details">
 
@@ -321,12 +334,13 @@
                 <form action="DoanhThuChiNhanh" method="post">
                     <div id="locBC">
                         <a>Từ Ngày</a><br /><br />
-                        <input class="tu_ngay" placeholder="Từ Ngày" id="tu_ngay" name="From_date" type="date" format="YYYY-MM-DD" />
+                        <input class="tu_ngay" placeholder="Từ Ngày" id="tu_ngay" name="From_date" type="date" format="YYYY-MM-DD" value="tu_ngay" />
                         <script>$("#tu_ngay").datetimepicker({ timepicker: false, format: 'Y-m-d' });</script><br /><br />
                         <a>Đến Ngày</a><br /><br />
-                        <input class="den_ngay" id="den_ngay" placeholder=" Đến Ngày" name="To_date" type="DATE" format="YYYY-MM-DD" /><br /><br />
+                        <input class="den_ngay" id="den_ngay" placeholder=" Đến Ngày" name="To_date" type="DATE" format="YYYY-MM-DD" value="den_ngay" /><br /><br />
                         <script>$("#den_ngay").datetimepicker({ timepicker: false, format: 'Y-m-d' });</script>
                     </div>
+
                     <div>
                         <button class="submit" type="submit"> Chạy Báo Cáo </button>
                     </div>
@@ -334,15 +348,53 @@
             </li>
         </ul>
     </div>
-    <section class="home-section">
 
-        <h3>
-            Bảng Kê Chứng Từ
-        </h3>
+    <header class="header_part">
+        <img src="~/assets/images/logo.png" alt="" class="img-fluid">
+        <h4>Báo Cáo Doanh Thu Chi Nhánh</h4>
+    </header>
+    <!-- =======  Data-Table  = Start  ========================== -->
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="data_table">
+                    <table id="example" class="table table-striped table-bordered">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Tên Đơn Vị</th>
 
-      
-    </section>
+                                <th>Doanh Thu OPC</th>
+                                <th>Doanh Thu Cồn</th>
+                                <th>Doanh Thu Sủi</th>
+                                <th>Doanh Thu Phiến</th>
+                                <th>Doanh Thu 25</th>
+                                <th>Doanh Thu Combo</th>
+                                <th>Doanh Thu Khác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           
 
-   
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- =======  Data-Table  = End  ===================== -->
+    <!-- ============ Java Script Files  ================== -->
+
+
+    <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/js/jquery-3.6.0.min.js"></script>
+    <script src="~/assets/js/datatables.min.js"></script>
+    <script src="~/assets/js/pdfmake.min.js"></script>
+    <script src="~/assets/js/vfs_fonts.js"></script>
+    <script src="~/assets/js/custom.js"></script>
+
+
+
+
 </body>
+
 </html>
