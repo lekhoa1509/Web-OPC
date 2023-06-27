@@ -152,6 +152,8 @@
     <Compile Include="Controllers\BaoCaoDoanhThu_THSPController.cs" />
     <Compile Include="Controllers\BaoCaoTienVeTDVController.cs" />
     <Compile Include="Controllers\BCDoanhThuTDVController.cs" />
+    <Compile Include="Controllers\DoanhThuChiNhanhController.cs" />
+    <Compile Include="Controllers\EmptyRPController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\BaoCaoTienVeCNController.cs" />
     <Compile Include="Controllers\TestAPIController.cs" />
@@ -172,6 +174,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\css\bootstrap.min.css" />
+    <Content Include="assets\css\datatables.min.css" />
+    <Content Include="assets\css\style.css" />
+    <Content Include="assets\images\favicon.png" />
+    <Content Include="assets\images\logo.png" />
+    <Content Include="assets\js\bootstrap.bundle.min.js" />
+    <Content Include="assets\js\custom.js" />
+    <Content Include="assets\js\datatables.min.js" />
+    <Content Include="assets\js\jquery-3.6.0.min.js" />
+    <Content Include="assets\js\pdfmake.min.js" />
+    <Content Include="assets\js\vfs_fonts.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -272,6 +285,9 @@
     <Content Include="Views\Home\MainBaoCao.cshtml" />
     <Content Include="Views\BCDoanhThuTDV\BCDoanhThuTDV.cshtml" />
     <Content Include="Views\TestAPI\TestAPI.cshtml" />
+    <Content Include="Views\DoanhThuChiNhanh\DoanhThuChiNhanh.cshtml" />
+    <Content Include="Views\DoanhThuChiNhanh\DoanhThuChiNhanh_Fill.cshtml" />
+    <Content Include="Views\BangKeHoaDon\bangkehoadon_Fill.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

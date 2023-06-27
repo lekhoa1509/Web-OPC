@@ -20,6 +20,10 @@
         a {
             text-decoration: none;
         }
+        .collapsed {
+            display: none;
+        
+        }
     </style>
 </head>
 <body>
@@ -84,8 +88,47 @@
 
             </ul>
         </div>
-    </section>
 
+    <div class="home-content">
+
+        <h3 id="toggleList" style=" height: 22px; font-size: 50px; cursor: pointer;">
+            Báo Cáo Quản Trị
+        </h3><br /><br />
+        <ul class="home-baocao" id="contentList">
+
+            <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Fill"> &emsp;1. Doanh Thu Chi Nhánh</a></li>
+            <li><a href="#"> &emsp; Chưa Thiết Lập</a></li>
+            <li><a href="#">  &emsp; Chưa Thiết Lập</a></li>
+        </ul>
+
+        <h3 id="toggleList" style=" height: 22px; font-size: 50px; cursor: pointer;">
+            Báo Cáo Nghiệp Vụ
+        </h3><br /><br />
+        <ul class="home-baocao" id="contentList">
+
+            <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Fill"> &emsp;1. Bảng kê Hóa đơn bán hàng</a></li>
+            <li><a href="#"> &emsp; Chưa Thiết Lập</a></li>
+            <li><a href="#">  &emsp; Chưa Thiết Lập</a></li>
+        </ul>
+
+    </div>
+    </section>
+  
+    <script>
+        // JavaScript để xử lý sự kiện click và điều khiển hiển thị của danh sách và bài viết
+        const toggleList = document.getElementById("toggleList");
+        const contentList = document.getElementById("contentList");
+        const toggleArticle = document.getElementById("toggleArticle");
+        const article = document.querySelector("article");
+
+        toggleList.addEventListener("click", function () {
+            contentList.classList.toggle("collapsed");
+        });
+
+        toggleArticle.addEventListener("click", function () {
+            article.classList.toggle("collapsed");
+        });
+    </script>
     <script>
         let sidebar = document.querySelector(".sidebar");
         let sidebarBtn = document.querySelector(".sidebarBtn");
@@ -114,22 +157,22 @@
 
 
 
-            function myFunction() {
-        var input, filter, ul, li, a, i, txtValue;
+        function myFunction() {
+            var input, filter, ul, li, a, i, txtValue;
             input = document.getElementById("myInput");
             filter = input.value.toUpperCase();
             ul = document.getElementById("myUL");
             li = ul.getElementsByTagName("li");
             for (i = 0; i < li.length; i++) {
                 a = li[i].getElementsByTagName("a")[0];
-            txtValue = a.textContent || a.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                li[i].style.display = "";
-            } else {
-                li[i].style.display = "none";
+                txtValue = a.textContent || a.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
             }
         }
-}
     </script>
 
 </body>
