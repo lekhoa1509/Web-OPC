@@ -150,14 +150,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BangKeHoaDonController.cs" />
     <Compile Include="Controllers\BaoCaoBanHangCNController.cs" />
-    <Compile Include="Controllers\BaoCaoDoanhThu_THSPController.cs" />
+    <Compile Include="Controllers\BaoCaoBanHangTDVController.cs" />
     <Compile Include="Controllers\BaoCaoTienVeTDVController.cs" />
-    <Compile Include="Controllers\BCDoanhThuTDVController.cs" />
     <Compile Include="Controllers\DoanhThuChiNhanhController.cs" />
-    <Compile Include="Controllers\EmptyRPController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\BaoCaoTienVeCNController.cs" />
-    <Compile Include="Controllers\TestAPIController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -276,21 +272,16 @@
     <Content Include="Views\Home\BCCN_main.cshtml" />
     <Content Include="Views\Home\BaoCaoDoanhThu_TDV.cshtml" />
     <Content Include="Views\Home\BCDT_TDV.cshtml" />
-    <Content Include="Views\BaoCaoTienVeCN\BaoCaoTienVeCN.cshtml" />
-    <Content Include="Views\BaoCaoTienVeCN\BCTVCN_Fill.cshtml" />
-    <Content Include="Views\BaoCaoTienVeTDV\BaoCaoTienVeTDV.cshtml" />
-    <Content Include="Views\BaoCaoTienVeTDV\BCTVTDV_Fill.cshtml" />
-    <Content Include="Views\BaoCaoDoanhThu_THSP\BaoCaoDoanhThu_THSP.cshtml" />
-    <Content Include="Views\BaoCaoDoanhThu_THSP\BCDT_SPFill.cshtml" />
     <Content Include="Views\BangKeHoaDon\bangkehoadon.cshtml" />
     <Content Include="Views\Home\MainBaoCao.cshtml" />
-    <Content Include="Views\BCDoanhThuTDV\BCDoanhThuTDV.cshtml" />
     <Content Include="Views\TestAPI\TestAPI.cshtml" />
     <Content Include="Views\DoanhThuChiNhanh\DoanhThuChiNhanh.cshtml" />
     <Content Include="Views\DoanhThuChiNhanh\DoanhThuChiNhanh_Fill.cshtml" />
     <Content Include="Views\BangKeHoaDon\bangkehoadon_Fill.cshtml" />
     <Content Include="Views\BaoCaoBanHangCN\BaoCaoBanHangCN.cshtml" />
     <Content Include="Views\BaoCaoBanHangCN\BaoCaoBanHangCN_Fill.cshtml" />
+    <Content Include="Views\BaoCaoBanHangTDV\BaoCaoBanHangTDV.cshtml" />
+    <Content Include="Views\BaoCaoBanHangTDV\BaoCaoBanHangTDV_Fill.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
