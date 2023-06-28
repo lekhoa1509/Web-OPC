@@ -149,6 +149,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BangKeHoaDonController.cs" />
+    <Compile Include="Controllers\BaoCaoBanHangCNController.cs" />
     <Compile Include="Controllers\BaoCaoDoanhThu_THSPController.cs" />
     <Compile Include="Controllers\BaoCaoTienVeTDVController.cs" />
     <Compile Include="Controllers\BCDoanhThuTDVController.cs" />
@@ -288,6 +289,8 @@
     <Content Include="Views\DoanhThuChiNhanh\DoanhThuChiNhanh.cshtml" />
     <Content Include="Views\DoanhThuChiNhanh\DoanhThuChiNhanh_Fill.cshtml" />
     <Content Include="Views\BangKeHoaDon\bangkehoadon_Fill.cshtml" />
+    <Content Include="Views\BaoCaoBanHangCN\BaoCaoBanHangCN.cshtml" />
+    <Content Include="Views\BaoCaoBanHangCN\BaoCaoBanHangCN_Fill.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
