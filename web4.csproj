@@ -282,6 +282,8 @@
     <Content Include="Views\BaoCaoBanHangCN\BaoCaoBanHangCN_Fill.cshtml" />
     <Content Include="Views\BaoCaoBanHangTDV\BaoCaoBanHangTDV.cshtml" />
     <Content Include="Views\BaoCaoBanHangTDV\BaoCaoBanHangTDV_Fill.cshtml" />
+    <Content Include="Views\BaoCaoBanHangTDV\BaoCaoBanHangTDV_Nt.cshtml" />
+    <Content Include="Views\BaoCaoBanHangTDV\BaoCaoBanHangTDV_Nt_Fill.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
