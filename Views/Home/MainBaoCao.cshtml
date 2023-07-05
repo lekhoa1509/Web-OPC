@@ -31,6 +31,7 @@
     </style>
 </head>
 <body>
+   
     <div class="sidebar">
         <div class="logo-details">
             <a href="/Home/About"><img src="~/Images/opc.png"></a>
@@ -62,7 +63,7 @@
 
 
             <li onclick="logout()" class="log_out">
-                <a href="#">
+                <a href="/Home/Login">
                     <i onclick="logout()" class='bx bx-log-out'></i>
                     <span onclick="logout()" class="links_name">Log out</span>
                 </a>
@@ -86,36 +87,52 @@
         </nav>
 
         @*<div class="home-content">
-            <ul class="home-baocao" id="myUL">
-                <li><a href="/BangKeHoaDon/bangkehoadon"> &emsp;1. Bảng Kê Chứng Từ</a></li>
-                <li><a href="/BCDoanhThuTDV/BCDoanhThuTDV">&emsp;2. Doanh Thu TDV</a></li>
+                <ul class="home-baocao" id="myUL">
+                    <li><a href="/BangKeHoaDon/bangkehoadon"> &emsp;1. Bảng Kê Chứng Từ</a></li>
+                    <li><a href="/BCDoanhThuTDV/BCDoanhThuTDV">&emsp;2. Doanh Thu TDV</a></li>
 
-            </ul>
-        </div>*@
-
+                </ul>
+            </div>*@
+        
     <div class="home-content">
-
-        <h3 id="toggleList" style=" height: 22px; font-size: 50px; cursor: pointer;">
-            Báo Cáo Quản Trị
-        </h3><br /><br />
-        <ul class="home-baocao" id="contentList">
-
-            <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Fill"> &emsp;1. Doanh Thu Chi Nhánh</a></li>
-         
-        </ul>
-
-        <h3 id="toggleList1" style=" height: 22px; font-size: 50px; cursor: pointer;">
-            Báo Cáo Nghiệp Vụ
-        </h3><br /><br />
-                   <ul class="home-baocao" id="contentList1">
-                       <li><a href="/bangkehoadon/bangkehoadon_Fill"> &emsp;1. Bảng kê chứng từ SO</a></li>
-                       <li><a href="/BaoCaobanHangCN/BaoCaoBanHangCN_Fill"> &emsp;2. Báo Cáo Bán Hàng Chi Nhánh</a></li>
-                       <li><a href="/BaoCaoBanHangTDV/BaoCaoBanHangTDV_Fill">&emsp;3. Báo Cáo bán hàng TDV</a></li>
-                   </ul>
-
+        @*phân quyền user*@
+        @if (ViewBag.Username == "admin")
+        {
+            <h3 id="toggleList" style="height: 22px; font-size: 50px; cursor: pointer;">
+                Báo Cáo Quản Trị
+            </h3><br /><br />
+            <ul class="home-baocao" id="contentList">
+                <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Fill">&emsp;1. Doanh Thu Chi Nhánh</a></li>
+            </ul>
+            <h3 id="toggleList1" style="height: 22px; font-size: 50px; cursor: pointer;">
+                Báo Cáo Nghiệp Vụ
+            </h3><br /><br />
+            <ul class="home-baocao" id="contentList1">
+                <li><a href="/bangkehoadon/bangkehoadon_Fill">&emsp;1. Bảng kê chứng từ SO</a></li>
+                <li><a href="/BaoCaobanHangCN/BaoCaoBanHangCN_Fill">&emsp;2. Báo Cáo Bán Hàng Chi Nhánh</a></li>
+                <li><a href="/BaoCaoBanHangTDV/BaoCaoBanHangTDV_Fill">&emsp;3. Báo Cáo bán hàng TDV</a></li>
+                <li><a href="/BaoCaoTienVeCN/BaoCaoTienVeCN_Fill">&emsp;4. Báo Cáo Tiền Về Chi Nhánh</a></li>
+                <li><a href="/BaoCaoTienVeCN/BaoCaoTienVeTDV_Fill">&emsp;5. Báo Cáo Tiền Về TDV</a></li>
+                <li><a href="/BaoCaoDoanhThuGamHangTheoDoiTuong/BaoCaoDoanhThuGamHangTheoDoiTuong_Fill">&emsp;6. Báo Cáo Doanh Thu Gam Hàng Theo Đối Tượng</a></li>
+            </ul>
+        }
+        else
+        {
+            <h3 id="toggleList1" style="height: 22px; font-size: 50px; cursor: pointer;">
+                Báo Cáo Nghiệp Vụ
+            </h3><br /><br />
+            <ul class="home-baocao" id="contentList1">
+                <li><a href="/bangkehoadon/bangkehoadon_Fill">&emsp;1. Bảng kê chứng từ SO</a></li>
+                <li><a href="/BaoCaobanHangCN/BaoCaoBanHangCN_Fill">&emsp;2. Báo Cáo Bán Hàng Chi Nhánh</a></li>
+                <li><a href="/BaoCaoBanHangTDV/BaoCaoBanHangTDV_Fill">&emsp;3. Báo Cáo bán hàng TDV</a></li>
+                <li><a href="/BaoCaoTienVeCN/BaoCaoTienVeCN_Fill">&emsp;4. Báo Cáo Tiền Về Chi Nhánh</a></li>
+                <li><a href="/BaoCaoTienVeCN/BaoCaoTienVeTDV_Fill">&emsp;5. Báo Cáo Tiền Về TDV</a></li>
+                <li><a href="/BaoCaoDoanhThuGamHangTheoDoiTuong/BaoCaoDoanhThuGamHangTheoDoiTuong_Fill">&emsp;6. Báo Cáo Doanh Thu Gam Hàng Theo Đối Tượng</a></li>
+            </ul>
+        }
     </div>
     </section>
-  
+
     <script>
         // JavaScript để xử lý sự kiện click và điều khiển hiển thị của danh sách và bài viết
         const toggleList = document.getElementById("toggleList");
@@ -138,24 +155,38 @@
             window.location.href = "/home/login"
         }
 
-       
 
 
-    
-            // JavaScript để xử lý sự kiện click và điều khiển hiển thị của danh sách và bài viết
-            const toggleList1 = document.getElementById("toggleList1");
-            const contentList1 = document.getElementById("contentList1");
-            const toggleArticle = document.getElementById("toggleArticle");
-            const article = document.querySelector("article");
 
-            toggleList.addEventListener("click", function () {
-                contentList.classList.toggle("collapsed1");
-            });
 
-            toggleArticle.addEventListener("click", function () {
-                article.classList.toggle("collapsed1);
-            });
+        // JavaScript để xử lý sự kiện click và điều khiển hiển thị của danh sách và bài viết
+        const toggleList1 = document.getElementById("toggleList1");
+        const contentList1 = document.getElementById("contentList1");
+        const toggleArticle = document.getElementById("toggleArticle");
+        const article = document.querySelector("article");
+
+        toggleList.addEventListener("click", function () {
+            contentList.classList.toggle("collapsed1");
+        });
+
+        toggleArticle.addEventListener("click", function () {
+            article.classList.toggle("collapsed1);
+                        });
     </script>
+
+    <script>
+        window.onload = function () {
+            var username = localStorage.getItem("username");
+            if (username) {
+                var nameInput = document.getElementById("Name");
+                if (nameInput) {
+                    nameInput.value = username;
+                }
+                localStorage.removeItem("username");
+            }
+        };
+    </script>
+
 
 </body>
 </html>

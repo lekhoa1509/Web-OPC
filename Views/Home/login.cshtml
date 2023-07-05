@@ -46,7 +46,7 @@
                     <div class="select-btn">
                         <select name="Ma_DvCs">
                             <option value="OPC_B1">Công Ty Cổ Phần Dược Phẩm OPC</option>
-                            <option value="OPC_B2">Văn Phòng Nhà Máy</option>
+                            <option value=" ">Văn Phòng Công Ty</option>
                             <option value="OPC_TP">CN Hồ Chí Minh</option>
                             <option value="OPC_CT">CN Cần Thơ</option>
                             <option value="OPC_TG">CN Tiền Giang</option>
@@ -76,11 +76,12 @@
 }
 <script>
     function saveName() {
-        var Name = document.getElementById("Name").values;
-        localStorage.setItem("textvalues", Name);
-        return false;
+        var nameInput = document.getElementById("Name");
+        var nameValue = nameInput.value;
+        localStorage.setItem("username", nameValue);
+        return true; // Cho phép form submit
     }
-
 </script>
+
 
 

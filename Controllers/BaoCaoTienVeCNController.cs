@@ -1,20 +1,22 @@
-﻿using System;
+﻿using DevExpress.Office.Import.OpenXml;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
-using web4.Models;
 using System.Web.Mvc;
+using web4.Models;
 
 namespace web4.Controllers
 {
-    public class BaoCaoBanHangTDVController : Controller
+    public class BaoCaoTienVeCNController : Controller
     {
+
         SqlConnection con = new SqlConnection();
         SqlCommand sqlc = new SqlCommand();
         SqlDataReader dt;
-        // GET: BangKeHoaDon
+        // GET: BaoCaoTienVeCN
         public ActionResult Index()
         {
             return View();
@@ -23,14 +25,15 @@ namespace web4.Controllers
         {
             con.ConnectionString = "Data source= " + "118.69.109.109" + ";database=" + "SAP_OPC" + ";uid=sa;password=Hai@thong";
         }
-        public ActionResult BaoCaoBanHangTDV(Account Acc)
+
+        public ActionResult BaoCaoTienVeCN(Account Acc)
         {
             DataSet ds = new DataSet();
             connectSQL();
             // Acc.Ma_DvCs_1 = Request.Cookies["MA_DVCS"].Value;
             //Acc.UserName = Request.Cookies["UserName"].Value;
             //string query = "exec usp_Vth_BC_BHCNTK_CN @_ngay_Ct1 = '" + Acc.From_date + "',@_Ngay_Ct2 ='"+ Acc.To_date+"',@_Ma_Dvcs='"+ Acc.Ma_DvCs_1+"'";
-            string Pname = "[usp_BaoCaoBanHangTDV_SAP]";
+            string Pname = "[usp_BaoCaoTienVeCN_SAP]";
             Acc.UserName = Response.Cookies["UserName"].Value;
 
             using (SqlCommand cmd = new SqlCommand(Pname, con))
@@ -53,22 +56,21 @@ namespace web4.Controllers
 
 
             return View(ds);
-
         }
-        public ActionResult BaoCaoBanHangTDV_Fill(Account Acc)
+        public ActionResult BaoCaoTienVeCN_Fill()
         {
             return View();
         }
-        public ActionResult BaoCaoBanHangTDV_Nt(Account Acc)
+
+
+        public ActionResult BaoCaoTienVeTDV(Account Acc)
         {
-
-
             DataSet ds = new DataSet();
             connectSQL();
             // Acc.Ma_DvCs_1 = Request.Cookies["MA_DVCS"].Value;
             //Acc.UserName = Request.Cookies["UserName"].Value;
             //string query = "exec usp_Vth_BC_BHCNTK_CN @_ngay_Ct1 = '" + Acc.From_date + "',@_Ngay_Ct2 ='"+ Acc.To_date+"',@_Ma_Dvcs='"+ Acc.Ma_DvCs_1+"'";
-            string Pname = "[usp_BaoCaoBanHangTDVNT_SAP]";
+            string Pname = "[usp_BaoCaoTienVeTDV_SAP]";
             Acc.UserName = Response.Cookies["UserName"].Value;
 
             using (SqlCommand cmd = new SqlCommand(Pname, con))
@@ -92,7 +94,7 @@ namespace web4.Controllers
 
             return View(ds);
         }
-        public ActionResult BaoCaoBanHangTDV_Nt_Fill(Account Acc)
+        public ActionResult BaoCaoTienVeTDV_Fill()
         {
             return View();
         }

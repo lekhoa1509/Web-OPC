@@ -10,7 +10,9 @@ using System.Dynamic;
 using web4.Models;
 using System.Data.Odbc;
 using System.Configuration;
-
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Mvc;
 
 namespace web4.Controllers
 {
@@ -74,6 +76,9 @@ namespace web4.Controllers
         }
         public ActionResult Index()
         {
+
+           
+        
             return View();
         }
         public ActionResult baocaocongno(Account Acc)
@@ -221,11 +226,12 @@ namespace web4.Controllers
         }
         public ActionResult MainBaoCao()
         {
-
+            var username = Request.Cookies["UserName"].Value;
+            ViewBag.Username = username;
 
             return View();
         }
-
+        
 
     }
 }

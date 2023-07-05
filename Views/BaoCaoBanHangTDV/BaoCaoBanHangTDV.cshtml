@@ -425,52 +425,54 @@
                         </thead>
 
                         <tbody>
+
+                            
                             @foreach (DataRow row2 in Model.Tables[0].Rows)
                             {
 
-                            <tr>
-                                <!--doanh thu OTC-->
-                                <td>@row2["ma_TDV"]</td>
-                                <td>@row2["Ten_TDV"]</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPCL_OPC_OTC"]))</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPPT_OPC_OTC"]))</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OPC_OTC"]))</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Con_OTC"]))</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Sui_OTC"]))</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_TW25_OTC"]))</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Phien_OTC"]))</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ComBo_OTC"]))</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Thuc_Hien_OTC"]))</td>
-                                <!--doanh thu ETC-->
-                                
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OPC_ETC"]))</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Con_ETC"]))</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Sui_ETC"]))</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_TW25_ETC"]))</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Phien_ETC"]))</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Thuc_Hien_ETC"]))</td>
-                                <!--Khoán  OTC-->
-                                <td class="num">0</td>
-                                <td class="num">0</td>
-                                <td class="num">0</td>
-                                <td class="num">0</td>
-                                <td class="num">0</td>
-                                <td class="num">0</td>
+                                <tr>
+                                    <!--doanh thu OTC-->
+                                    <td>@row2["ma_TDV"]</td>
+                                    <td>@row2["Ten_TDV"]</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPCL_OPC_OTC"]))</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPPT_OPC_OTC"]))</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OPC_OTC"]))</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Con_OTC"]))</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Sui_OTC"]))</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_TW25_OTC"]))</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Phien_OTC"]))</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ComBo_OTC"]))</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Thuc_Hien_OTC"]))</td>
+                                    <!--doanh thu ETC-->
 
-                                <!--Khoán  ETC-->
-                                <td class="num">0</td>
-                                <td class="num">0</td>
-                                <td class="num">0</td>
-                                <td class="num">0</td>
-                                <td class="num">0</td>
-                                <td class="num">0</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OPC_ETC"]))</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Con_ETC"]))</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Sui_ETC"]))</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_TW25_ETC"]))</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Phien_ETC"]))</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Thuc_Hien_ETC"]))</td>
+                                    <!--Khoán  OTC-->
+                                    <td class="num">0</td>
+                                    <td class="num">0</td>
+                                    <td class="num">0</td>
+                                    <td class="num">0</td>
+                                    <td class="num">0</td>
+                                    <td class="num">0</td>
 
-                                <!--Doanh Thu Khác-->
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Khac"]))</td>
-                                <!--Tổng Thực Hiện-->
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Thuc_Hien"]))</td>
+                                    <!--Khoán  ETC-->
+                                    <td class="num">0</td>
+                                    <td class="num">0</td>
+                                    <td class="num">0</td>
+                                    <td class="num">0</td>
+                                    <td class="num">0</td>
+                                    <td class="num">0</td>
 
-                            </tr>
+                                    <!--Doanh Thu Khác-->
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Khac"]))</td>
+                                    <!--Tổng Thực Hiện-->
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Thuc_Hien"]))</td>
+
+                                </tr>
                             }
 
                         </tbody>
