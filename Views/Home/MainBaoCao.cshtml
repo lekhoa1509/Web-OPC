@@ -96,14 +96,14 @@
         
     <div class="home-content">
         @*phân quyền user*@
-        @if (ViewBag.Username == "admin")
-        {
+       
             <h3 id="toggleList" style="height: 22px; font-size: 50px; cursor: pointer;">
                 Báo Cáo Quản Trị
             </h3><br /><br />
-            <ul class="home-baocao" id="contentList">
-                <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Fill">&emsp;1. Doanh Thu Chi Nhánh</a></li>
-            </ul>
+                       <ul class="home-baocao" id="contentList">
+                           <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Fill">&emsp;1. Doanh Thu Chi Nhánh</a></li>
+                           <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanhTinhLuong_Fill">&emsp;2. Doanh Thu Chi Nhánh Tính Lương</a></li>
+                       </ul>
             <h3 id="toggleList1" style="height: 22px; font-size: 50px; cursor: pointer;">
                 Báo Cáo Nghiệp Vụ
             </h3><br /><br />
@@ -115,21 +115,9 @@
                 <li><a href="/BaoCaoTienVeCN/BaoCaoTienVeTDV_Fill">&emsp;5. Báo Cáo Tiền Về TDV</a></li>
                 <li><a href="/BaoCaoDoanhThuGamHangTheoDoiTuong/BaoCaoDoanhThuGamHangTheoDoiTuong_Fill">&emsp;6. Báo Cáo Doanh Thu Gam Hàng Theo Đối Tượng</a></li>
             </ul>
-        }
-        else
-        {
-            <h3 id="toggleList1" style="height: 22px; font-size: 50px; cursor: pointer;">
-                Báo Cáo Nghiệp Vụ
-            </h3><br /><br />
-            <ul class="home-baocao" id="contentList1">
-                <li><a href="/bangkehoadon/bangkehoadon_Fill">&emsp;1. Bảng kê chứng từ SO</a></li>
-                <li><a href="/BaoCaobanHangCN/BaoCaoBanHangCN_Fill">&emsp;2. Báo Cáo Bán Hàng Chi Nhánh</a></li>
-                <li><a href="/BaoCaoBanHangTDV/BaoCaoBanHangTDV_Fill">&emsp;3. Báo Cáo bán hàng TDV</a></li>
-                <li><a href="/BaoCaoTienVeCN/BaoCaoTienVeCN_Fill">&emsp;4. Báo Cáo Tiền Về Chi Nhánh</a></li>
-                <li><a href="/BaoCaoTienVeCN/BaoCaoTienVeTDV_Fill">&emsp;5. Báo Cáo Tiền Về TDV</a></li>
-                <li><a href="/BaoCaoDoanhThuGamHangTheoDoiTuong/BaoCaoDoanhThuGamHangTheoDoiTuong_Fill">&emsp;6. Báo Cáo Doanh Thu Gam Hàng Theo Đối Tượng</a></li>
-            </ul>
-        }
+        
+       
+            
     </div>
     </section>
 

@@ -327,6 +327,8 @@
     <Content Include="Views\BaoCaoTienVeCN\BaoCaoTienVeTDV_Fill.cshtml" />
     <Content Include="Views\BaoCaoDoanhThuGamHangTheoDoiTuong\BaoCaoDoanhThuGamHangTheoDoiTuong.cshtml" />
     <Content Include="Views\BaoCaoDoanhThuGamHangTheoDoiTuong\BaoCaoDoanhThuGamHangTheoDoiTuong_Fill.cshtml" />
+    <Content Include="Views\DoanhThuChiNhanh\DoanhThuChiNhanhTinhLuong.cshtml" />
+    <Content Include="Views\DoanhThuChiNhanh\DoanhThuChiNhanhTinhLuong_Fill.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
