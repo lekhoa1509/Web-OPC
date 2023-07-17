@@ -1,11 +1,11 @@
 ﻿@{
-    ViewBag.Title = "OPC Bao Cao | OPCPHARMA";
+    ViewBag.Title = "OPC DANH MUC | OPCPHARMA";
 }
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <title> OPC Bao Cao | OPCPHARMA </title>
+    <title> OPC DANH MUC | OPCPHARMA </title>
     <link rel="stylesheet" href="~/Styles/mainbaocao.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
@@ -20,18 +20,18 @@
         a {
             text-decoration: none;
         }
+
         .collapsed {
             display: none;
-        
         }
-        .contentList{
-            display:none;
+
+        .contentList {
+            display: none;
         }
-       
     </style>
 </head>
 <body>
-   
+
     <div class="sidebar">
         <div class="logo-details">
             <a href="/Home/About"><img src="~/Images/opc.png"></a>
@@ -93,31 +93,29 @@
 
                 </ul>
             </div>*@
-        
+
     <div class="home-content">
         @*phân quyền user*@
-       
-            <h3 id="toggleList" style="height: 22px; font-size: 50px; cursor: pointer;">
-                Báo Cáo Quản Trị
-            </h3><br /><br />
-                       <ul class="home-baocao" id="contentList">
-                           <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Fill">&emsp;1. Doanh Thu Chi Nhánh</a></li>
-                           <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanhTinhLuong_Fill">&emsp;2. Doanh Thu Chi Nhánh Tính Lương</a></li>
-                       </ul>
-            <h3 id="toggleList1" style="height: 22px; font-size: 50px; cursor: pointer;">
-                Báo Cáo Nghiệp Vụ
-            </h3><br /><br />
-            <ul class="home-baocao" id="contentList1">
-                <li><a href="/bangkehoadon/bangkehoadon_Fill">&emsp;1. Bảng kê chứng từ SO</a></li>
-                <li><a href="/BaoCaobanHangCN/BaoCaoBanHangCN_Fill">&emsp;2. Báo Cáo Bán Hàng Chi Nhánh</a></li>
-                <li><a href="/BaoCaoBanHangTDV/BaoCaoBanHangTDV_Fill">&emsp;3. Báo Cáo bán hàng TDV</a></li>
-                <li><a href="/BaoCaoTienVeCN/BaoCaoTienVeCN_Fill">&emsp;4. Báo Cáo Tiền Về Chi Nhánh</a></li>
-                <li><a href="/BaoCaoTienVeCN/BaoCaoTienVeTDV_Fill">&emsp;5. Báo Cáo Tiền Về TDV</a></li>
-                <li><a href="/BaoCaoDoanhThuGamHangTheoDoiTuong/BaoCaoDoanhThuGamHangTheoDoiTuong_Fill">&emsp;6. Báo Cáo Doanh Thu Gam Hàng Theo Đối Tượng</a></li>
-            </ul>
-        
-       
+
+        @if (ViewBag.UserName == "admin" || ViewBag.UserName == "OPCMAR001")
+        {
             
+            <ul class="home-baocao" id="contentList1">
+                <li><a href="/DanhMuc/ViewDanhMucKH_Fill">&emsp;1. Danh Mục Khách Hàng</a></li>
+            </ul>
+        }
+        else { 
+
+        <ul class="home-baocao" id="contentList1">
+            <li><a href="/DanhMuc/ViewDanhMucKH">&emsp;1. Danh Mục Khách Hàng</a></li>
+        </ul>
+        }
+
+
+
+
+
+
     </div>
     </section>
 

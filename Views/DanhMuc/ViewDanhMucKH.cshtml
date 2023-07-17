@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Bao Cao Doanh Thu CN Tinh Luong";
+    ViewBag.Title = "Danh Mục Khách Hàng";
 }
 @using System.Data;
 <!DOCTYPE html>
@@ -340,16 +340,8 @@
         </div>
         <ul class="nav-links" style="display: flex; justify-content: center;">
             <li>
-                <form action="DoanhThuChiNhanhTinhLuong" method="post">
-                    <div id="locBC">
-                        <a>Từ Ngày</a><br /><br />
-                        <input class="tu_ngay" placeholder="Từ Ngày" id="tu_ngay" name="From_date" type="date" format="YYYY-MM-DD" value="tu_ngay" />
-                        <script>$("#tu_ngay").datetimepicker({ timepicker: false, format: 'Y-m-d' });</script><br /><br />
-                        <a>Đến Ngày</a><br /><br />
-                        <input class="den_ngay" id="den_ngay" placeholder=" Đến Ngày" name="To_date" type="DATE" format="YYYY-MM-DD" value="den_ngay" /><br /><br />
-                        <script>$("#den_ngay").datetimepicker({ timepicker: false, format: 'Y-m-d' });</script>
-                    </div>
-
+                <form action="DoanhThuChiNhanh" method="post">
+                   
                     <div>
                         <button class="submit" type="submit"> Chạy Báo Cáo </button>
                     </div>
@@ -362,7 +354,7 @@
         <a href="/Home/About">
             <img src="~/assets/images/logo.png" alt="" class="img-fluid">
         </a>
-        <h4>Báo Cáo Doanh Thu Chi Nhánh</h4>
+        <h4>Danh Mục Đối Tượng</h4>
     </header>
     <!-- =======  Data-Table  = Start  ========================== -->
     <div class="container">
@@ -372,28 +364,80 @@
                     <table id="example" class="table table-striped table-bordered">
                         <thead class="table-dark">
                             <tr>
-                                <th>Tên Đơn Vị</th>
-                                <th>Doanh Thu SP Chủ Lực OTC</th>
-                                <th>Doanh Thu SP Chủ Lực ETC</th>
-                                <th>Doanh Thu SP Phát Triển OTC</th>
-                                <th>Doanh Thu SP Phát Triển ETC</th>
-                                <th>Doanh Thu OTC OPC</th>
-                                <th>Doanh Thu ETC OPC</th>
-                                <th>Doanh Thu OTC Cồn</th>
-                                <th>Doanh Thu ETC Cồn</th>
-                                <th>Doanh Thu OTC Sủi</th>
-                                <th>Doanh Thu ETC Sủi</th>
-                                <th>Doanh Thu OTC Phiến</th>
-                                <th>Doanh Thu ETC Phiến</th>
-                                <th>Doanh Thu OTC 25</th>
-                                <th>Doanh Thu ETC 25</th>
-                                <th>Doanh Thu Combo</th>
+                                <th>Chi Nhánh</th>
+
+                                <th>Mã Đối Tượng</th>
+                                <th>Tên Đối Tượng</th>
+                                <th>Email</th>
+                                <th>Địa Chỉ</th>
+                                <th>Tỉnh TP</th>
+                                <th>Mã TDV</th>
+                                <th>Mã Loại KH OPC</th>
+                                <th>Mã LKH Ct OPC</th>
+                                <th>Tên LKH OPC</th>
+                                <th>MST</th>
+                                <th>Chiết Khấu</th>
+                                <th>CK OPC</th>
+                                <th>CK 25</th>
+                                <th>CK Cồn</th>
+                                <th>CK Sủi</th>
+                                <th>Mã HMTT</th>
+
+                                <th>Hạn TTCK</th>
+                                <th>Tỷ Lệ</th>
+                                <th>Hạn TTCK 1%</th>
+                                <th>Tỷ Lệ 1%</th>
+                                <th>Hạn TT</th>
+                                <th>Hạn Mức Nợ</th>
+                                <th>Mã Đại Diện</th>
+                                <th>Người Đại Diện</th>
+                                <th>Mã CSKH</th>
+                                <th>Tên CSKH</th>
+                                <th>Giới Tính CSKH</th>
+                                <th>Sinh Nhật CSKH</th>
+                                <th>SĐT CSKH</th>
                                 <th>Doanh Thu Khác</th>
-                                <th>Tổng Thực Hiện</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
-                         
+                            @foreach (DataRow row2 in Model.Tables[0].Rows)
+                            {
+                            <tr>
+                                <td>@row2["Cong_Ty"]</td>
+                                <td>@row2["Ma_Dt"]</td>
+                                <td>@row2["Ten_Dt"]</td>
+                                <td>@row2["Email"]</td>
+                                <td>@row2["Dia_Chi"]</td>
+                                <td>@row2["Tinh_TP"]</td>
+                                <td>@row2["Ma_TDV"]</td>
+                                <td>@row2["Ma_LKH_SAP"]</td>
+                                <td>@row2["Ma_LKH_OPC"]</td>
+                                <td>@row2["Ma_LKH_Ct_OPC"]</td>
+                                <td>@row2["Ten_LKH_OPC"]</td>
+                                <td>@row2["MST"]</td>
+                                <td>@row2["Chiet_Khau"]</td>
+                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["CK_OPC"]))</td>
+                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["CK_25"]))</td>
+                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["CK_Con"]))</td>
+                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["CK_Sui"]))</td>
+                                <td class="">@row2["Ma_Htt"]</td>
+                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Han_Tt_CkTt"]))</td>
+                                <td class="">@row2["Ty_le"]%</td>
+                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Han_Tt_CkTt1"]))</td>
+                                <td class="">@row2["Ty_Le1"]%</td>
+                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Han_Tt"]))</td>
+                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Han_Muc_No"]))</td>
+                                <td>@row2["Ma_Dai_Dien"]</td>
+                                <td>@row2["Nguoi_Dai_Dien"]</td>
+                                <td>@row2["Ma_CSKH"]</td>
+                                <td>@row2["Ten_CSKH"]</td>
+                                <td>@row2["GT_CSKH"]</td>
+                                <td>@row2["SN_CSKH"]</td>
+                                <td>@row2["SDT_CSKH"]</td>
+                                <td>@row2["Ho_Kinh_Doanh"]</td>
+                            </tr>
+                            }
                         </tbody>
                     </table>
                 </div>
