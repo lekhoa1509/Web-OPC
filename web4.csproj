@@ -187,7 +187,6 @@
     <Compile Include="Controllers\BaoCaoBanHangTDVController.cs" />
     <Compile Include="Controllers\BaoCaoDoanhThuGamHangTheoDoiTuongController.cs" />
     <Compile Include="Controllers\BaoCaoTienVeCNController.cs" />
-    <Compile Include="Controllers\DanhMucController.cs" />
     <Compile Include="Controllers\DoanhThuChiNhanhController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -330,9 +329,6 @@
     <Content Include="Views\BaoCaoDoanhThuGamHangTheoDoiTuong\BaoCaoDoanhThuGamHangTheoDoiTuong_Fill.cshtml" />
     <Content Include="Views\DoanhThuChiNhanh\DoanhThuChiNhanhTinhLuong.cshtml" />
     <Content Include="Views\DoanhThuChiNhanh\DoanhThuChiNhanhTinhLuong_Fill.cshtml" />
-    <Content Include="Views\DanhMuc\DanhMuc.cshtml" />
-    <Content Include="Views\DanhMuc\ViewDanhMucKH.cshtml" />
-    <Content Include="Views\DanhMuc\ViewDanhMucKH_Fill.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

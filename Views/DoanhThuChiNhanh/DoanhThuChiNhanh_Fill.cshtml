@@ -8,7 +8,6 @@
 <head>
 
 
-
     <style>
         a:hover {
             background-color: lightskyblue;
@@ -278,10 +277,8 @@
             }
 
         .sidebar {
-            position: relative;
-            top: 0;
-            left: 0;
-            height: 50px;
+            position: fixed;
+            height: 100%;
             width: 200px;
             transition: all 0.5s ease;
         }
@@ -295,10 +292,6 @@
 
         .container {
             text-align: center;
-        }
-
-        .data_table {
-            width: max-content;
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -376,20 +369,10 @@
                                 <th>Tên Đơn Vị</th>
 
                                 <th>Doanh Thu OPC</th>
-                                <th>Khoán OPC</th>
-                                <th>Tỷ Lệ OPC</th>
                                 <th>Doanh Thu Cồn</th>
-                                <th>Khoán Cồn</th>
-                                <th>Tỷ Lệ Cồn</th>
                                 <th>Doanh Thu Sủi</th>
-                                <th>Khoán Sủi</th>
-                                <th>Tỷ Lệ Sủi</th>
                                 <th>Doanh Thu Phiến</th>
-                                <th>Khoán Phiến</th>
-                                <th>Tỷ Lệ Phiến</th>
                                 <th>Doanh Thu 25</th>
-                                <th>Khoán 25</th>
-                                <th>Tỷ Lệ 25</th>
                                 <th>Doanh Thu Combo</th>
                                 <th>Doanh Thu Khác</th>
                                 <th>Tổng Thực Hiện</th>
