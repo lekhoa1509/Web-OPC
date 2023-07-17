@@ -277,8 +277,10 @@
             }
 
         .sidebar {
-            position: fixed;
-            height: 100%;
+            position: relative;
+            top: 0;
+            left: 0;
+            height: 50px;
             width: 200px;
             transition: all 0.5s ease;
         }
@@ -292,6 +294,10 @@
 
         .container {
             text-align: center;
+        }
+
+        .data_table {
+            width: max-content;
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
