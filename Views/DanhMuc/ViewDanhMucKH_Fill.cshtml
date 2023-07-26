@@ -306,7 +306,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0/js/bootstrap-select.min.js"></script>
     <script type="text/javascript" src="Scripts/table2excel.js"></script>
-
+    <link rel="stylesheet" href="~/Styles/loader.css">
 
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -323,7 +323,7 @@
     <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/assets/css/datatables.min.css">
     <link rel="stylesheet" href="~/assets/css/style.css">
-
+    <link rel="stylesheet" href="~/Styles/loader.css">
 
 
 
@@ -333,7 +333,7 @@
 <!-- =============== Design & Develop By = MJ MARAZ   ====================== -->
 
 <body>
-
+    <div class="loader"></div>
     <div class="sidebar">
         <div class="logo-details">
 
@@ -417,9 +417,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                          
-
-
                         </tbody>
                     </table>
                 </div>
@@ -436,7 +433,22 @@
     <script src="~/assets/js/pdfmake.min.js"></script>
     <script src="~/assets/js/vfs_fonts.js"></script>
     <script src="~/assets/js/custom.js"></script>
+    <script>
+        function showLoader() {
+            const loader = document.querySelector(".loader");
+            loader.classList.remove("loader-hidden");
+        }
 
+        // Function to hide the loader
+        function hideLoader() {
+            const loader = document.querySelector(".loader");
+            loader.classList.add("loader-hidden");
+        }
+        window.addEventListener("load", () => {
+            // Hide the loader after the page is loaded
+            hideLoader();
+        });s
+    </script>
 
 
 

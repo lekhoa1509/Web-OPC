@@ -4,6 +4,302 @@
 <html lang="en">
 
 <head>
+    <style>
+        a:hover {
+            background-color: lightskyblue;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .container table {
+            justify-content: center;
+            align-items: center;
+            height: 50vh;
+            zoom: 90%;
+            text-align: center;
+        }
+
+        .container canvas {
+            justify-content: center;
+            align-items: center;
+            height: min-content;
+            zoom: normal;
+        }
+
+        h3 {
+            text-align: center;
+            color: blue;
+        }
+
+        table, td, th {
+            border: 1px solid black;
+            align-items: center;
+            margin-left: auto;
+            margin-right: auto;
+            height: 50px;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        .num {
+            text-align: center;
+            width: 100px;
+        }
+
+        .ten {
+            text-align: left;
+        }
+
+        button {
+            background-color: #2297f6;
+            border: none;
+            outline: none;
+            padding: 5px;
+            font-size: 30px;
+            color: #ffffff;
+            cursor: pointer;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        p {
+            color: #ffffff;
+        }
+
+
+
+        canvas {
+            width: 200px;
+            height: 100px;
+            text-align: center;
+        }
+
+        .tu_ngay {
+            height: 35px;
+            border-radius: 5px;
+            border: 1px solid #dcdcdc;
+            padding: 0px 10px;
+            outline: none;
+            Format: 'd-m-y';
+        }
+
+        .den_ngay {
+            height: 35px;
+            border-radius: 5px;
+            border: 1px solid #dcdcdc;
+            padding: 0px 10px;
+            outline: none;
+            Format: 'd-m-y';
+        }
+
+
+
+        div#chart {
+            text-align: center;
+            display: flex;
+            justify-content:;
+            width: 50%;
+            height: 300px;
+        }
+
+        .submit {
+            /*height: 50px;
+        width: 100px;*/
+            background-color: silver;
+            border: none;
+            color: cadetblue;
+            border-radius: 7px;
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 20px;
+            justify-content: center;
+            align-items: center;
+            transition: all 1s ease-in-out;
+        }
+
+            .submit:hover {
+                background-color: darkcyan;
+                color: #ffffff;
+                transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+            }
+
+        .form .locBC {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            width: 500px;
+            height: 400px;
+            float: left;
+        }
+
+        .form table {
+            justify-content: center;
+            align-items: center;
+            height: 50vh;
+            zoom: 90%;
+            text-align: center;
+        }
+
+        .expandable {
+            cursor: pointer;
+        }
+
+        .percent {
+            width: 20%;
+            text-align: right;
+            text-align: center;
+            background-color: #eee;
+            background: linear-gradient(to right, #3399dd, #3399dd);
+            background-size: 1% 100%;
+            background-repeat: no-repeat;
+        }
+
+
+
+        #data {
+            width: 100%;
+            height: 150px;
+            background: white;
+            float: inline-start;
+        }
+
+        .dropdown-check-list {
+            display: inline-block;
+        }
+
+            .dropdown-check-list .anchor {
+                position: relative;
+                cursor: pointer;
+                display: inline-block;
+                padding: 5px 50px 5px 10px;
+                border: 1px solid #ccc;
+            }
+
+                .dropdown-check-list .anchor:after {
+                    position: absolute;
+                    content: "";
+                    border-left: 2px solid black;
+                    border-top: 2px solid black;
+                    padding: 5px;
+                    right: 10px;
+                    top: 20%;
+                    -moz-transform: rotate(-135deg);
+                    -ms-transform: rotate(-135deg);
+                    -o-transform: rotate(-135deg);
+                    -webkit-transform: rotate(-135deg);
+                    transform: rotate(-135deg);
+                }
+
+                .dropdown-check-list .anchor:active:after {
+                    right: 8px;
+                    top: 21%;
+                }
+
+            .dropdown-check-list ul.items {
+                padding: 2px;
+                display: none;
+                margin: 0;
+                border: 1px solid #ccc;
+                border-top: none;
+            }
+
+                .dropdown-check-list ul.items li {
+                    list-style: none;
+                }
+
+            .dropdown-check-list.visible .anchor {
+                color: #0094ff;
+            }
+
+            .dropdown-check-list.visible .items {
+                display: block;
+            }
+
+        .custom-combobox-container {
+            position: relative;
+            width: 100%;
+            outline: none;
+            border: none;
+        }
+
+        .custom-combobox {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            border: 1px solid rgb(199, 199, 199);
+            padding: 10px;
+        }
+
+            .custom-combobox input[type="text"] {
+                width: 95%;
+                border: none;
+                outline: none;
+                background: none;
+            }
+
+        .options-container {
+            position: absolute;
+            width: 100%;
+            z-index: 100;
+            border: 1px solid rgb(204, 204, 204);
+            border-top: none;
+            display: none;
+            height: 150px;
+            overflow-y: scroll;
+        }
+
+            .options-container label {
+                display: block;
+                cursor: pointer;
+                padding: 5px;
+                margin-top: 5px;
+                user-select: none;
+            }
+
+                .options-container label:hover {
+                    background: rgb(255, 255, 255);
+                }
+
+            .options-container::-webkit-scrollbar {
+                width: 8px;
+            }
+
+            .options-container::-webkit-scrollbar-thumb {
+                background-color: white;
+            }
+
+        .sidebar {
+            position: relative;
+            top: 0;
+            left: 0;
+            height: 50px;
+            width: 200px;
+            transition: all 0.5s ease;
+        }
+
+        .myInput {
+            text-align: center;
+            height: auto;
+            width: 1000px;
+            padding: 10px;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .data_table {
+            width: max-content;
+        }
+        h5 {
+            text-align: center; 
+            font-size: 15px;
+        }
+    </style>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>OPC</title>
@@ -19,6 +315,7 @@
     <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/assets/css/datatables.min.css">
     <link rel="stylesheet" href="~/assets/css/style.css">
+    <link rel="stylesheet" href="~/Styles/loader.css">
 
 
 
@@ -29,12 +326,45 @@
 <!-- =============== Design & Develop By = MJ MARAZ   ====================== -->
 
 <body>
+    <div class="loader"></div>
+    <div class="sidebar">
+        <div class="logo-details">
+
+        </div>
+        <ul class="nav-links" style="display: flex; justify-content: center;">
+            <li>
+                <form id="dateForm" action="bangkehoadon" method="post" onsubmit="handleFormSubmit(event)">
+                    <!-- Các phần còn lại, giữ nguyên -->
+                    <div class="container form">
+                        <div class="locBC">
+                            <div>
+                                <a>Từ Ngày</a><br /><br />
+                                <!-- Cập nhật kiểu đầu vào thành "date" -->
+                                <input class="tu_ngay" placeholder="Từ Ngày" id="tu_ngay" name="From_date" type="date" value="@Request.QueryString["From_date"]" /><br /><br />
+                                <a>Đến Ngày</a><br /><br />
+                                <!-- Cập nhật kiểu đầu vào thành "date" -->
+                                <input class="den_ngay" id="den_ngay" placeholder=" Đến Ngày" name="To_date" type="date" value="@Request.QueryString["To_date"]" /><br /><br />
+                            </div>
+                            <div>
+                                <!-- Thêm nút "Chạy Báo Cáo" -->
+                                <button class="submit" type="submit"> Chạy Báo Cáo </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </li>
+        </ul>
+    </div>
     <header class="header_part">
-        <img src="~/assets/images/logo.png" alt="" class="img-fluid">
+        <a href="/Home/About">
+            <img src="~/assets/images/logo.png" alt="" class="img-fluid">
+        </a>
         <h4>Báo Cáo Bảng Kê Chứng Từ</h4>
+        <h5 style="color: white">Từ @Request.QueryString["From_date"] đến @Request.QueryString["To_date"]</h5>
     </header>
     <!-- =======  Data-Table  = Start  ========================== -->
     <div class="container">
+       
         <div class="row">
             <div class="col-12">
                 <div class="data_table">
@@ -93,7 +423,58 @@
     <script src="~/assets/js/pdfmake.min.js"></script>
     <script src="~/assets/js/vfs_fonts.js"></script>
     <script src="~/assets/js/custom.js"></script>
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault();
 
+            // Lấy các giá trị ngày đã chọn từ trường nhập liệu
+            const fromDate = document.getElementById('tu_ngay').value;
+            const toDate = document.getElementById('den_ngay').value;
+
+            // Tạo URL mới với các tham số truy vấn
+            const form = event.target;
+            const actionUrl = `${form.action}?From_date=${fromDate}&To_date=${toDate}`;
+
+            // Chuyển hướng tới URL mới với các giá trị ngày đã chọn làm các tham số truy vấn
+            window.location.href = actionUrl;
+        }
+        function showLoader() {
+            const loader = document.querySelector(".loader");
+            loader.classList.remove("loader-hidden");
+        }
+
+        // Function to hide the loader
+        function hideLoader() {
+            const loader = document.querySelector(".loader");
+            loader.classList.add("loader-hidden");
+        }
+
+        // Add an event listener to the form submission
+        document.getElementById("dateForm").addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            // Show the loader when the form is submitted
+            showLoader();
+
+            // Lấy các giá trị ngày đã chọn từ trường nhập liệu
+            const fromDate = document.getElementById('tu_ngay').value;
+            const toDate = document.getElementById('den_ngay').value;
+
+            // Tạo URL mới với các tham số truy vấn
+            const form = event.target;
+            const actionUrl = `${form.action}?From_date=${fromDate}&To_date=${toDate}`;
+
+            // Chuyển hướng tới URL mới với các giá trị ngày đã chọn làm các tham số truy vấn
+            window.location.href = actionUrl;
+        });
+
+        // Add event listener for window load event
+        window.addEventListener("load", () => {
+            // Hide the loader after the page is loaded
+            hideLoader();
+        });
+
+    </script>
 
 
 

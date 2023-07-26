@@ -284,7 +284,10 @@
             width: 200px;
             transition: all 0.5s ease;
         }
-
+        h5 {
+            text-align: center;
+            font-size: 15px;
+        }
         .myInput {
             text-align: center;
             height: auto;
@@ -323,7 +326,7 @@
     <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/assets/css/datatables.min.css">
     <link rel="stylesheet" href="~/assets/css/style.css">
-
+    <link rel="stylesheet" href="~/Styles/loader.css">
 
 
 
@@ -333,25 +336,30 @@
 <!-- =============== Design & Develop By = MJ MARAZ   ====================== -->
 
 <body>
-
+    <div class="loader"></div>
     <div class="sidebar">
         <div class="logo-details">
 
         </div>
         <ul class="nav-links" style="display: flex; justify-content: center;">
             <li>
-                <form action="DoanhThuChiNhanhTinhLuong" method="post">
-                    <div id="locBC">
-                        <a>Từ Ngày</a><br /><br />
-                        <input class="tu_ngay" placeholder="Từ Ngày" id="tu_ngay" name="From_date" type="date" format="YYYY-MM-DD" value="tu_ngay" />
-                        <script>$("#tu_ngay").datetimepicker({ timepicker: false, format: 'Y-m-d' });</script><br /><br />
-                        <a>Đến Ngày</a><br /><br />
-                        <input class="den_ngay" id="den_ngay" placeholder=" Đến Ngày" name="To_date" type="DATE" format="YYYY-MM-DD" value="den_ngay" /><br /><br />
-                        <script>$("#den_ngay").datetimepicker({ timepicker: false, format: 'Y-m-d' });</script>
-                    </div>
-
-                    <div>
-                        <button class="submit" type="submit"> Chạy Báo Cáo </button>
+                <form id="dateForm" action="DoanhThuChiNhanhTinhLuong" method="post" onsubmit="handleFormSubmit(event)">
+                    <!-- Các phần còn lại, giữ nguyên -->
+                    <div class="container form">
+                        <div class="locBC">
+                            <div>
+                                <a>Từ Ngày</a><br /><br />
+                                <!-- Cập nhật kiểu đầu vào thành "date" -->
+                                <input class="tu_ngay" placeholder="Từ Ngày" id="tu_ngay" name="From_date" type="date" value="@Request.QueryString["From_date"]" /><br /><br />
+                                <a>Đến Ngày</a><br /><br />
+                                <!-- Cập nhật kiểu đầu vào thành "date" -->
+                                <input class="den_ngay" id="den_ngay" placeholder=" Đến Ngày" name="To_date" type="date" value="@Request.QueryString["To_date"]" /><br /><br />
+                            </div>
+                            <div>
+                                <!-- Thêm nút "Chạy Báo Cáo" -->
+                                <button class="submit" type="submit"> Chạy Báo Cáo </button>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </li>
@@ -363,9 +371,11 @@
             <img src="~/assets/images/logo.png" alt="" class="img-fluid">
         </a>
         <h4>Báo Cáo Doanh Thu Chi Nhánh</h4>
+        <h5 style="color: white">Từ @Request.QueryString["From_date"] đến @Request.QueryString["To_date"]</h5>
     </header>
     <!-- =======  Data-Table  = Start  ========================== -->
     <div class="container">
+      
         <div class="row">
             <div class="col-12">
                 <div class="data_table">
@@ -395,28 +405,28 @@
                         <tbody>
                             @foreach (DataRow row2 in Model.Tables[0].Rows)
                             {
-                            <tr>
-                                <td>@row2["ten_DvCs"]</td>
+                                <tr>
+                                    <td>@row2["ten_DvCs"]</td>
 
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPCL_OTC_OPC"]))</td>
-                                @*<td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPCL_ETC_OPC"]))</td>*@
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPPT_OTC_OPC"]))</td>
-                               @* <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPPT_ETC_OPC"]))</td>*@
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OTC_OPC"]))</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ETC_OPC"]))</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OTC_Con"]))</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ETC_Con"]))</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OTC_Sui"]))</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ETC_Sui"]))</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OTC_Phien"]))</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ETC_Phien"]))</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OTC_TW25"]))</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ETC_TW25"]))</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ComBo"]))</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Khac"]))</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Thuc_Hien"]))</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPCL_OTC_OPC"]))</td>
+                                    @*<td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPCL_ETC_OPC"]))</td>*@
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPPT_OTC_OPC"]))</td>
+                                    @* <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPPT_ETC_OPC"]))</td>*@
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OTC_OPC"]))</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ETC_OPC"]))</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OTC_Con"]))</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ETC_Con"]))</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OTC_Sui"]))</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ETC_Sui"]))</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OTC_Phien"]))</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ETC_Phien"]))</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OTC_TW25"]))</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ETC_TW25"]))</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ComBo"]))</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Khac"]))</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Thuc_Hien"]))</td>
 
-                            </tr>
+                                </tr>
                             }
 
 
@@ -436,7 +446,58 @@
     <script src="~/assets/js/pdfmake.min.js"></script>
     <script src="~/assets/js/vfs_fonts.js"></script>
     <script src="~/assets/js/custom.js"></script>
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault();
 
+            // Lấy các giá trị ngày đã chọn từ trường nhập liệu
+            const fromDate = document.getElementById('tu_ngay').value;
+            const toDate = document.getElementById('den_ngay').value;
+
+            // Tạo URL mới với các tham số truy vấn
+            const form = event.target;
+            const actionUrl = `${form.action}?From_date=${fromDate}&To_date=${toDate}`;
+
+            // Chuyển hướng tới URL mới với các giá trị ngày đã chọn làm các tham số truy vấn
+            window.location.href = actionUrl;
+        }
+        function showLoader() {
+            const loader = document.querySelector(".loader");
+            loader.classList.remove("loader-hidden");
+        }
+
+        // Function to hide the loader
+        function hideLoader() {
+            const loader = document.querySelector(".loader");
+            loader.classList.add("loader-hidden");
+        }
+
+        // Add an event listener to the form submission
+        document.getElementById("dateForm").addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            // Show the loader when the form is submitted
+            showLoader();
+
+            // Lấy các giá trị ngày đã chọn từ trường nhập liệu
+            const fromDate = document.getElementById('tu_ngay').value;
+            const toDate = document.getElementById('den_ngay').value;
+
+            // Tạo URL mới với các tham số truy vấn
+            const form = event.target;
+            const actionUrl = `${form.action}?From_date=${fromDate}&To_date=${toDate}`;
+
+            // Chuyển hướng tới URL mới với các giá trị ngày đã chọn làm các tham số truy vấn
+            window.location.href = actionUrl;
+        });
+
+        // Add event listener for window load event
+        window.addEventListener("load", () => {
+            // Hide the loader after the page is loaded
+            hideLoader();
+        });
+
+    </script>
 
 
 

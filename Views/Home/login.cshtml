@@ -8,20 +8,30 @@
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    @*<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>*@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="~/Styles/login.css">
+    <style>
+        .container {
+            margin-left: 30px;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /*padding: 0 2rem;*/
+        }
+    </style>
 </head>
 <body>
 
-    <img class="wave" src="~/Images/wave.png">
+    <img class="wave" src="~/Images/image_background.jpg">
     <div class="container">
-        <div class="img">
-            <img src="~/Images/bg.svg">
-        </div>
+
         <div class="login-content">
             <form action="Verify" method="post" class="signin-form">
-                <img src="~/Images/avatar.svg">
-                <h2 class="title">OPC</h2>
+
+                <h2 class="title">LOGIN</h2>
                 <div class="input-div one">
                     <div class="i">
                         <i class="fas fa-user"></i>
@@ -33,7 +43,7 @@
                     </div>
 
                 </div>
-                <h1 id="wrong_pass" style=""></h1>
+
                 <div class="input-div pass">
                     <div class="i">
                         <i class="fas fa-lock"></i>
@@ -61,6 +71,7 @@
                 </div>
                 <a href="#">Forgot Password?</a>
                 <input type="submit" class="btn" value="Login" onclick="saveName()">
+                <h4 id="wrong_pass" style="color:red"></h4>
             </form>
         </div>
     </div>
@@ -68,12 +79,18 @@
 </html>
 @if (ViewBag.Message != null)
 {
-    <script type="text/javascript">
+<script>
+        @*document.getElementById("wrong_pass").innerHTML = "@ViewBag.Message";*@
+          var message = "@ViewBag.Message";
 
-        document.getElementById("wrong_pass").innerHTML = "Sai Mat Khau"
-
-    </script>
+    // Kiểm tra xem ViewBag.Message có khác rỗng hay không
+    if (message.trim() !== "") {
+        // Gọi hàm hiển thị thông báo lỗi
+        displayAlert(message);
+    }
+</script>
 }
+
 <script>
     function saveName() {
         var nameInput = document.getElementById("Name");
@@ -81,7 +98,18 @@
         localStorage.setItem("username", nameValue);
         return true; // Cho phép form submit
     }
+    function displayAlert(message) {
+        Swal.fire({
+            title: 'Error!',
+            text: message,
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
+        return false;
+    }
+
 </script>
+
 
 
 

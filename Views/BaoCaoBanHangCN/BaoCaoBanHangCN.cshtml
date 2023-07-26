@@ -299,6 +299,11 @@
         .data_table {
             width: max-content;
         }
+
+        h5 {
+            text-align: center;
+            font-size: 15px;
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -323,7 +328,7 @@
     <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/assets/css/datatables.min.css">
     <link rel="stylesheet" href="~/assets/css/style.css">
-
+    <link rel="stylesheet" href="~/Styles/loader.css">
 
 
 
@@ -333,20 +338,20 @@
 <!-- =============== Design & Develop By = MJ MARAZ   ====================== -->
 
 <body>
-
+    <div class="loader"></div>
     <div class="sidebar">
         <div class="logo-details">
 
         </div>
         <ul class="nav-links" style="display: flex; justify-content: center;">
             <li>
-                <form action="BaoCaoBanHangCN" method="post">
+                <form id="dateForm" action="BaoCaoBanHangCN" method="post" onsubmit="handleFormSubmit(event)">
                     <div id="locBC">
                         <a>Từ Ngày</a><br /><br />
-                        <input class="tu_ngay" placeholder="Từ Ngày" id="tu_ngay" name="From_date" type="date" format="YYYY-MM-DD" value="tu_ngay" />
+                        <input class="tu_ngay" placeholder="Từ Ngày" id="tu_ngay" name="From_date" type="date" format="YYYY-MM-DD" value="@Request.QueryString["From_date"]" />
                         <script>$("#tu_ngay").datetimepicker({ timepicker: false, format: 'Y-m-d' });</script><br /><br />
                         <a>Đến Ngày</a><br /><br />
-                        <input class="den_ngay" id="den_ngay" placeholder=" Đến Ngày" name="To_date" type="DATE" format="YYYY-MM-DD" value="den_ngay" /><br /><br />
+                        <input class="den_ngay" id="den_ngay" placeholder=" Đến Ngày" name="To_date" type="DATE" format="YYYY-MM-DD" value="@Request.QueryString["To_date"]" /><br /><br />
                         <script>$("#den_ngay").datetimepicker({ timepicker: false, format: 'Y-m-d' });</script>
                     </div>
 
@@ -363,9 +368,12 @@
             <img src="~/assets/images/logo.png" alt="" class="img-fluid">
         </a>
         <h4>Báo Cáo Bán Hàng Chi Nhánh</h4>
+        <h5 style="color:white">Từ @Request.QueryString["From_date"] đến @Request.QueryString["To_date"]</h5>
     </header>
     <!-- =======  Data-Table  = Start  ========================== -->
+
     <div class="container">
+      
         <div class="row">
             <div class="col-12">
                 <div class="data_table">
@@ -480,7 +488,57 @@
     <script src="~/assets/js/pdfmake.min.js"></script>
     <script src="~/assets/js/vfs_fonts.js"></script>
     <script src="~/assets/js/custom.js"></script>
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault();
 
+            // Lấy các giá trị ngày đã chọn từ trường nhập liệu
+            const fromDate = document.getElementById('tu_ngay').value;
+            const toDate = document.getElementById('den_ngay').value;
+
+            // Tạo URL mới với các tham số truy vấn
+            const form = event.target;
+            const actionUrl = `${form.action}?From_date=${fromDate}&To_date=${toDate}`;
+
+            // Chuyển hướng tới URL mới với các giá trị ngày đã chọn làm các tham số truy vấn
+            window.location.href = actionUrl;
+        }
+        function showLoader() {
+            const loader = document.querySelector(".loader");
+            loader.classList.remove("loader-hidden");
+        }
+
+        // Function to hide the loader
+        function hideLoader() {
+            const loader = document.querySelector(".loader");
+            loader.classList.add("loader-hidden");
+        }
+
+        // Add an event listener to the form submission
+        document.getElementById("dateForm").addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            // Show the loader when the form is submitted
+            showLoader();
+
+            // Lấy các giá trị ngày đã chọn từ trường nhập liệu
+            const fromDate = document.getElementById('tu_ngay').value;
+            const toDate = document.getElementById('den_ngay').value;
+
+            // Tạo URL mới với các tham số truy vấn
+            const form = event.target;
+            const actionUrl = `${form.action}?From_date=${fromDate}&To_date=${toDate}`;
+
+            // Chuyển hướng tới URL mới với các giá trị ngày đã chọn làm các tham số truy vấn
+            window.location.href = actionUrl;
+        });
+
+        // Add event listener for window load event
+        window.addEventListener("load", () => {
+            // Hide the loader after the page is loaded
+            hideLoader();
+        });
+    </script>
 
 
 

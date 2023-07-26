@@ -1,5 +1,7 @@
 ﻿@{
     ViewBag.Title = "Bao Cao Doanh Thu CN";
+    Layout = null;
+
 }
 @using System.Data;
 <!DOCTYPE html>
@@ -7,11 +9,8 @@
 
 <head>
 
-
     <style>
-        a:hover {
-            background-color: lightskyblue;
-        }
+
 
         a {
             text-decoration: none;
@@ -98,6 +97,7 @@
             padding: 0px 10px;
             outline: none;
             Format: 'd-m-y';
+        
         }
 
 
@@ -105,7 +105,7 @@
         div#chart {
             text-align: center;
             display: flex;
-            justify-content:;
+            /* justify-content:;*/
             width: 50%;
             height: 300px;
         }
@@ -285,6 +285,12 @@
             transition: all 0.5s ease;
         }
 
+        h5 {
+            text-align: center;
+            font-size: 15px;
+            color: aliceblue;
+        }
+
         .myInput {
             text-align: center;
             height: auto;
@@ -299,6 +305,52 @@
         .data_table {
             width: max-content;
         }
+
+        .bieu_do {
+            padding: 10px;
+        /*    margin: 10%;*/
+            text-align: center;
+            width: 200px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+      /*      margin: 20px;*/
+            height: 55px;
+            text-align: center;
+            border: none;
+            background-size: 300% 100%;
+            border-radius: 10px;
+            moz-transition: all .4s ease-in-out;
+            -o-transition: all .4s ease-in-out;
+            -webkit-transition: all .4s ease-in-out;
+            transition: all .4s ease-in-out;
+        }
+
+            .bieu_do:hover {
+                background-position: 100% 0;
+                moz-transition: all .4s ease-in-out;
+                -o-transition: all .4s ease-in-out;
+                -webkit-transition: all .4s ease-in-out;
+                transition: all .4s ease-in-out;
+            }
+
+            .bieu_do:focus {
+                outline: none;
+            }   
+
+        .bieu_do {
+            background-image: linear-gradient(to right, #f5ce62, #e43603, #fa7199, #e85a19);
+            box-shadow: 0 4px 15px 0 rgba(229, 66, 10, 0.75);
+        }
+
+        .chart {
+            margin: 40px 0px 0px 0px;
+        }
+        .box-chart{
+            margin-left: 500px;
+        }
+        
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -323,8 +375,19 @@
     <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/assets/css/datatables.min.css">
     <link rel="stylesheet" href="~/assets/css/style.css">
+    <link rel="stylesheet" href="~/Styles/loader.css">
+    @*<style>
+            .box-chart {
 
-
+                margin-left: 300px;
+              /*  width: 100%;
+                height: 25vh;*/
+                display: flex;
+                justify-content: center;
+               /* align-items: center;*/
+                /*padding: 0 2rem;*/
+            }
+        </style>*@
 
 
 
@@ -334,24 +397,36 @@
 
 <body>
 
+    <div class="loader"></div>
     <div class="sidebar">
         <div class="logo-details">
 
         </div>
         <ul class="nav-links" style="display: flex; justify-content: center;">
             <li>
-                <form action="DoanhThuChiNhanh" method="post">
-                    <div id="locBC">
-                        <a>Từ Ngày</a><br /><br />
-                        <input class="tu_ngay" placeholder="Từ Ngày" id="tu_ngay" name="From_date" type="date" format="YYYY-MM-DD" value="tu_ngay" />
-                        <script>$("#tu_ngay").datetimepicker({ timepicker: false, format: 'Y-m-d' });</script><br /><br />
-                        <a>Đến Ngày</a><br /><br />
-                        <input class="den_ngay" id="den_ngay" placeholder=" Đến Ngày" name="To_date" type="DATE" format="YYYY-MM-DD" value="den_ngay" /><br /><br />
-                        <script>$("#den_ngay").datetimepicker({ timepicker: false, format: 'Y-m-d' });</script>
-                    </div>
+                <form id="dateForm" action="DoanhThuChiNhanh" method="post" onsubmit="handleFormSubmit(event)">
+                    @*Các phần còn lại, giữ nguyên*@
+                    <div class="container form">
+                        <div class="locBC">
+                            <div>
+                                <a>Từ Ngày</a><br /><br />
+                                @*Cập nhật kiểu đầu vào thành "date"*@
+                                <input class="tu_ngay" placeholder="Từ Ngày" id="tu_ngay" name="From_date" type="date" value="@Request.QueryString["From_date"]" /><br /><br />
+                                <a>Đến Ngày</a><br /><br />
+                                @*Cập nhật kiểu đầu vào thành "date"*@
+                                <input class="den_ngay" id="den_ngay" placeholder=" Đến Ngày" name="To_date" type="date" value="@Request.QueryString["To_date"]" /><br /><br />
+                            </div>
+                            <div>
+                                @*Thêm nút "Chạy Báo Cáo"*@
+                                <button class="submit" type="submit"> Chạy Báo Cáo </button>
+                            </div>
+                            <div class="chart">
+                                <a id="viewChartBtn">
 
-                    <div>
-                        <button class="submit" type="submit"> Chạy Báo Cáo </button>
+                                    <span class="bieu_do"> Xem Biểu Đồ</span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </li>
@@ -360,12 +435,18 @@
 
     <header class="header_part">
         <a href="/Home/About">
-            <img src="~/assets/images/logo.png" alt="" class="img-fluid"></a>
-            <h4>Báo Cáo Doanh Thu Chi Nhánh</h4>
+            <img src="~/assets/images/logo.png" alt="" class="img-fluid">
+        </a>
+        <h4>Báo Cáo Doanh Thu Chi Nhánh</h4>
+        <h5 style="color: white">Từ @Request.QueryString["From_date"] đến @Request.QueryString["To_date"]</h5>
     </header>
     <!-- =======  Data-Table  = Start  ========================== -->
+
+        
     <div class="container">
+
         <div class="row">
+           <div id="chartContainer" class="box-chart"style="width:80%;height:25vh"></div>
             <div class="col-12">
                 <div class="data_table">
                     <table id="example" class="table table-striped table-bordered">
@@ -444,10 +525,150 @@
     <script src="~/assets/js/pdfmake.min.js"></script>
     <script src="~/assets/js/vfs_fonts.js"></script>
     <script src="~/assets/js/custom.js"></script>
+    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+    @*@{
+        // Create a list of Chart objects
+        List<Chart> dataPoints = new List<Chart>();
+        dataPoints.Add("Tỷ lệ OPC", 10));
+        dataPoints.Add(new Chart("Tỷ lệ Cồn", 30));
+        dataPoints.Add(new Chart("Tỷ lệ Sủi", 80));
+        dataPoints.Add(new Chart("Tỷ lệ Phiến", 39));
+        dataPoints.Add(new Chart("Tỷ lệ 25", 30));
+
+        // Serialize the list to JSON and store it in ViewBag
+        ViewBag.ChartData = Newtonsoft.Json.JsonConvert.SerializeObject(dataPoints);
+    }*@
+<script>
+     var chartData = [
+        @foreach (DataRow row2 in Model.Tables[0].Rows)
+        {
+            <text>  { label: "Tỷ lệ OPC", y: @row2["Tyle_OPC"] },
+                { label: "Tỷ lệ Cồn", y: @row2["Tyle_Con"] },
+                { label: "Tỷ lệ Sủi", y: @row2["Tyle_Sui"] },
+                { label: "Tỷ lệ Phiến", y: @row2["Tyle_Phien"] },
+                { label: "Tỷ lệ 25", y: @row2["Tyle_25"] },
+
+        </text>
+
+            // Tương tự, bạn có thể lấy các giá trị khác và gán vào mảng chartData tại đây
+        }
+    ];
+   
+        // Add an event listener to the "Xem Biểu Đồ" button
+        document.getElementById("viewChartBtn").addEventListener("click", function () {
+            // Fetch the data for the chart, you can use an AJAX call here to fetch data from the server
+            // For example, you can use jQuery AJAX like this:
+            // $.ajax({
+            //   url: "URL_TO_FETCH_CHART_DATA",
+            //   method: "GET",
+            //   success: function (data) {
+            //     // Create the chart using the fetched data
+            //     createChart(data);
+            //   },
+            //   error: function (error) {
+            //     console.error("Error fetching chart data: ", error);
+            //   },
+            // });
+
+            // For demonstration purposes, let's assume you have static data
+            //const chartData = [
+            //    { label: "Tỷ lệ OPC",y:10 },
+            //    { label: "Tỷ lệ Cồn", y: 30 },
+            //    { label: "Tỷ lệ Sủi", y: 80 },
+            //    { label: "Tỷ lệ Phiến", y: 39 },
+            //    { label: "Tỷ lệ 25", y: 30 },
+            //    // Add more data as needed
+            //];
+
+            // Create the chart using the fetched data
+            createChart(chartData);
+            //document.getElementById("box-chart").style.width = "100%";
+            //document.getElementById("box-chart").style.height = "300px";
+            document.getElementById("box-chart").style.display = "flex";
+            //document.getElementById("chartContainer").style.height = "300px";
+            //document.getElementById("chartContainer").style.width = "100%";
+         
+        });
+
+        // Function to create the chart
+    function createChart(data) {
 
 
+        var chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            theme: "light1s",
+            title: {
+                text: "Báo Cáo Doanh Thu"
+            },
+            axisY: {
+                title: "% Tỷ Lệ",
+                maximum: 100,
+            },
+            data: [{
+                type: "column",
+                dataPoints: data // Use the parsed data directly
+            }]
+        });
+
+        chart.render();
+    }
+</script>
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault();
+
+            // Lấy các giá trị ngày đã chọn từ trường nhập liệu
+            const fromDate = document.getElementById('tu_ngay').value;
+            const toDate = document.getElementById('den_ngay').value;
+
+            // Tạo URL mới với các tham số truy vấn
+            const form = event.target;
+            const actionUrl = `${form.action}?From_date=${fromDate}&To_date=${toDate}`;
+
+            // Chuyển hướng tới URL mới với các giá trị ngày đã chọn làm các tham số truy vấn
+            window.location.href = actionUrl;
+        }
+        function showLoader() {
+            const loader = document.querySelector(".loader");
+            loader.classList.remove("loader-hidden");
+        }
+
+        //// Function to hide the loader
+        function hideLoader() {
+            const loader = document.querySelector(".loader");
+            loader.classList.add("loader-hidden");
+            chart();
+        }
+
+        //// Add an event listener to the form submission
+        document.getElementById("dateForm").addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            // Show the loader when the form is submitted
+            showLoader();
+
+            // Lấy các giá trị ngày đã chọn từ trường nhập liệu
+            const fromDate = document.getElementById('tu_ngay').value;
+            const toDate = document.getElementById('den_ngay').value;
+
+            // Tạo URL mới với các tham số truy vấn
+            const form = event.target;
+            const actionUrl = `${form.action}?From_date=${fromDate}&To_date=${toDate}`;
+
+            // Chuyển hướng tới URL mới với các giá trị ngày đã chọn làm các tham số truy vấn
+            window.location.href = actionUrl;
+        });
+
+        //// Add event listener for window load event
+        window.addEventListener("load", () => {
+            // Hide the loader after the page is loaded
+
+            hideLoader();
+        });
+
+    </script>
 
 
 </body>
 
-</html>
+</html> 

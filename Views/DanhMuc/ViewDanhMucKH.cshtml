@@ -323,7 +323,7 @@
     <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/assets/css/datatables.min.css">
     <link rel="stylesheet" href="~/assets/css/style.css">
-
+    <link rel="stylesheet" href="~/Styles/loader.css">
 
 
 
@@ -333,14 +333,14 @@
 <!-- =============== Design & Develop By = MJ MARAZ   ====================== -->
 
 <body>
-
+    <div class="loader"></div>
     <div class="sidebar">
         <div class="logo-details">
 
         </div>
         <ul class="nav-links" style="display: flex; justify-content: center;">
             <li>
-                
+
             </li>
         </ul>
     </div>
@@ -390,46 +390,46 @@
                                 <th>Giới Tính CSKH</th>
                                 <th>Sinh Nhật CSKH</th>
                                 <th>SĐT CSKH</th>
-                                <th>Hộ Kinh Doanh</th> 
+                                <th>Hộ Kinh Doanh</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (DataRow row2 in Model.Tables[0].Rows)
                             {
-                            <tr>
-                                <td>@row2["Cong_Ty"]</td>
-                                <td>@row2["Ma_Dt"]</td>
-                                <td>@row2["Ten_Dt"]</td>
-                                <td>@row2["Email"]</td>
-                                <td>@row2["Dia_Chi"]</td>
-                                <td>@row2["Tinh_TP"]</td>
-                                <td>@row2["Ma_TDV"]</td>
-                                <td>@row2["Ma_LKH_SAP"]</td>
-                                <td>@row2["Ma_LKH_OPC"]</td>
-                                <td>@row2["Ma_LKH_Ct_OPC"]</td>
-                                <td>@row2["Ten_LKH_OPC"]</td>
-                                <td>@row2["MST"]</td>
-                                <td>@row2["Chiet_Khau"]</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["CK_OPC"]))</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["CK_25"]))</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["CK_Con"]))</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["CK_Sui"]))</td>
-                                <td class="">@row2["Ma_Htt"]</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Han_Tt_CkTt"]))</td>
-                                <td class="">@row2["Ty_le"]%</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Han_Tt_CkTt1"]))</td>
-                                <td class="">@row2["Ty_Le1"]%</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Han_Tt"]))</td>
-                                <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Han_Muc_No"]))</td>
-                                <td>@row2["Ma_Dai_Dien"]</td>
-                                <td>@row2["Nguoi_Dai_Dien"]</td>
-                                <td>@row2["Ma_CSKH"]</td>
-                                <td>@row2["Ten_CSKH"]</td>
-                                <td>@row2["GT_CSKH"]</td>
-                                <td>@row2["SN_CSKH"]</td>
-                                <td>@row2["SDT_CSKH"]</td>
-                                <td>@row2["Ho_Kinh_Doanh"]</td>
-                            </tr>
+                                <tr>
+                                    <td>@row2["Cong_Ty"]</td>
+                                    <td>@row2["Ma_Dt"]</td>
+                                    <td>@row2["Ten_Dt"]</td>
+                                    <td>@row2["Email"]</td>
+                                    <td>@row2["Dia_Chi"]</td>
+                                    <td>@row2["Tinh_TP"]</td>
+                                    <td>@row2["Ma_TDV"]</td>
+                                    <td>@row2["Ma_LKH_SAP"]</td>
+                                    <td>@row2["Ma_LKH_OPC"]</td>
+                                    <td>@row2["Ma_LKH_Ct_OPC"]</td>
+                                    <td>@row2["Ten_LKH_OPC"]</td>
+                                    <td>@row2["MST"]</td>
+                                    <td>@row2["Chiet_Khau"]</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["CK_OPC"]))</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["CK_25"]))</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["CK_Con"]))</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["CK_Sui"]))</td>
+                                    <td class="">@row2["Ma_Htt"]</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Han_Tt_CkTt"]))</td>
+                                    <td class="">@row2["Ty_le"]%</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Han_Tt_CkTt1"]))</td>
+                                    <td class="">@row2["Ty_Le1"]%</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Han_Tt"]))</td>
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Han_Muc_No"]))</td>
+                                    <td>@row2["Ma_Dai_Dien"]</td>
+                                    <td>@row2["Nguoi_Dai_Dien"]</td>
+                                    <td>@row2["Ma_CSKH"]</td>
+                                    <td>@row2["Ten_CSKH"]</td>
+                                    <td>@row2["GT_CSKH"]</td>
+                                    <td>@row2["SN_CSKH"]</td>
+                                    <td>@row2["SDT_CSKH"]</td>
+                                    <td>@row2["Ho_Kinh_Doanh"]</td>
+                                </tr>
                             }
                         </tbody>
                     </table>
@@ -447,7 +447,57 @@
     <script src="~/assets/js/pdfmake.min.js"></script>
     <script src="~/assets/js/vfs_fonts.js"></script>
     <script src="~/assets/js/custom.js"></script>
+    <script>
+        //function handleFormSubmit(event) {
+        //    event.preventDefault();
 
+        //    // Lấy các giá trị ngày đã chọn từ trường nhập liệu
+        //    const fromDate = document.getElementById('tu_ngay').value;
+        //    const toDate = document.getElementById('den_ngay').value;
+
+        //    // Tạo URL mới với các tham số truy vấn
+        //    const form = event.target;
+        //    const actionUrl = `${form.action}?From_date=${fromDate}&To_date=${toDate}`;
+
+        //    // Chuyển hướng tới URL mới với các giá trị ngày đã chọn làm các tham số truy vấn
+        //    window.location.href = actionUrl;
+        //}
+        function showLoader() {
+            const loader = document.querySelector(".loader");
+            loader.classList.remove("loader-hidden");
+        }
+
+        // Function to hide the loader
+        function hideLoader() {
+            const loader = document.querySelector(".loader");
+            loader.classList.add("loader-hidden");
+        }
+
+        // Add an event listener to the form submission
+        //document.getElementById("dateForm").addEventListener("submit", (event) => {
+        //    event.preventDefault();
+
+        //    // Show the loader when the form is submitted
+        //    showLoader();
+
+        //    // Lấy các giá trị ngày đã chọn từ trường nhập liệu
+        //    const fromDate = document.getElementById('tu_ngay').value;
+        //    const toDate = document.getElementById('den_ngay').value;
+
+        //    // Tạo URL mới với các tham số truy vấn
+        //    const form = event.target;
+        //    const actionUrl = `${form.action}?From_date=${fromDate}&To_date=${toDate}`;
+
+        //    // Chuyển hướng tới URL mới với các giá trị ngày đã chọn làm các tham số truy vấn
+        //    window.location.href = actionUrl;
+        //});
+
+        // Add event listener for window load event
+        window.addEventListener("load", () => {
+            // Hide the loader after the page is loaded
+            hideLoader();
+        });
+    </script>
 
 
 

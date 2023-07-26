@@ -12,7 +12,7 @@
     position: fixed;
     height: 100%;
     width: 240px;
-    background: #0A2558;
+    background: #38d39f;
     transition: all 0.5s ease;
 }
 
@@ -24,7 +24,7 @@
         height: 80px;
         display: flex;
         align-items: center;
-        lo
+       
     }
 
         .sidebar .logo-details i {
@@ -67,11 +67,11 @@
         }
 
         .sidebar .nav-links li a.active {
-            background: #081D45;
+            background: #38d39f;
         }
 
         .sidebar .nav-links li a:hover {
-            background: #081D45;
+            background: #bce8d9;
         }
 
         .sidebar .nav-links li i {
@@ -340,7 +340,7 @@ nav .profile-details i {
     .sales-boxes .sales-details li a {
         font-size: 18px;
         color: #333;
-        font-size: 400;
+        font-size: 400px;
         text-decoration: none;
     }
 
@@ -491,7 +491,7 @@ nav .profile-details i {
         width: 0;
     }
 
-        .sidebar.active {
+        .sidebar.e {
             width: 60px;
         }
 
@@ -522,24 +522,11 @@ nav .profile-details i {
     font-weight: 400;
     white-space: nowrap;
 }
-
-.home-content .home-baocao {
+.home-baocao li a {
     list-style-type: none;
 }
 
-    .home-content .home-baocao li a {
-        font-size: 35px;
-        text-align: start;
-        list-style-type: none;
-       
-    }
 
 .home-content .home-baocao li a :hover {
             color: forestgreen;
         }
-.a:hover{
-    background-color: deepskyblue;
-}
-a {
-    text-decoration: none;
-}

@@ -7,31 +7,126 @@
     <meta charset="UTF-8">
     <title> OPC Bao Cao | OPCPHARMA </title>
     <link rel="stylesheet" href="~/Styles/mainbaocao.css">
-
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">*@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        a:hover {
-            background-color: lightskyblue;
-        }
+        /*   a:hover {
+            background-color: #bce8d9;
+        }*/
+
 
         a {
+            font-size: 30px;
             text-decoration: none;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            background-size: 300% 100%;
+            -o-transition: all .4s ease-in-out;
+            -webkit-transition: all .4s ease-in-out;
+            transition: all .4s ease-in-out;
         }
+
         .collapsed {
             display: none;
-        
         }
-        .contentList{
-            display:none;
+
+        .contentList {
+            display: none;
         }
-       
+
+        home-content .box1 .box-topic .a {
+            font-size: 40px;
+            font-weight: 300;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            background-size: 300% 100%;
+            -o-transition: all .4s ease-in-out;
+            -webkit-transition: all .4s ease-in-out;
+            transition: all .4s ease-in-out;
+        }
+
+        home-content .box2 .box-topic .a {
+            font-size: 40px;
+            font-weight: 300;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            background-size: 300% 100%;
+            -o-transition: all .4s ease-in-out;
+            -webkit-transition: all .4s ease-in-out;
+            transition: all .4s ease-in-out;
+        }
+
+        .box-container {
+            display: flex; /* Dùng flexbox để các hộp nằm cùng một hàng */
+            justify-content: space-around; /* Canh hai hộp cách xa nhau */
+            width: 100%;
+            color: white;
+        }
+
+        .box1 {
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .box1-a {
+            font-size: 40px;
+            background-image: linear-gradient(to right, #0ba360, #3cba92, #30dd8a, #2bb673);
+            box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
+            background-size: 300% 100%;
+            border: none;
+            border-radius: 10px;
+            moz-transition: all .4s ease-in-out;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            color: white;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+        }
+
+            .box1-a:hover {
+                background-position: 100% 0;
+                moz-transition: all .4s ease-in-out;    
+                -o-transition: all .4s ease-in-out;
+                -webkit-transition: all .4s ease-in-out;
+                transition: all .4s ease-in-out;
+            }
+
+        .box2 {
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .box2-a {
+            font-size: 40px;
+            background-image: linear-gradient(to right, #0ba360, #3cba92, #30dd8a, #2bb673);
+            box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
+            background-size: 300% 100%;
+            border: none;
+            border-radius: 10px;
+            moz-transition: all .4s ease-in-out;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            color: white;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+        }
+
+            .box2-a:hover {
+                background-position: 100% 0;
+                moz-transition: all .4s ease-in-out;
+                -o-transition: all .4s ease-in-out;
+                -webkit-transition: all .4s ease-in-out;
+                transition: all .4s ease-in-out;
+            }
     </style>
 </head>
-<body>
-   
+<body>               
     <div class="sidebar">
         <div class="logo-details">
             <a href="/Home/About"><img src="~/Images/opc.png"></a>
@@ -96,29 +191,46 @@
         
     <div class="home-content">
         @*phân quyền user*@
-       
-            <h3 id="toggleList" style="height: 22px; font-size: 50px; cursor: pointer;">
-                Báo Cáo Quản Trị
-            </h3><br /><br />
-                       <ul class="home-baocao" id="contentList">
-                           <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Fill">&emsp;1. Doanh Thu Chi Nhánh</a></li>
-                           <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanhTinhLuong_Fill">&emsp;2. Doanh Thu Chi Nhánh Tính Lương</a></li>
-                       </ul>
-            <h3 id="toggleList1" style="height: 22px; font-size: 50px; cursor: pointer;">
-                Báo Cáo Nghiệp Vụ
-            </h3><br /><br />
-            <ul class="home-baocao" id="contentList1">
-                <li><a href="/bangkehoadon/bangkehoadon_Fill">&emsp;1. Bảng kê chứng từ SO</a></li>
-                <li><a href="/BaoCaobanHangCN/BaoCaoBanHangCN_Fill">&emsp;2. Báo Cáo Bán Hàng Chi Nhánh</a></li>
-                <li><a href="/BaoCaoBanHangTDV/BaoCaoBanHangTDV_Fill">&emsp;3. Báo Cáo bán hàng TDV</a></li>
-                <li><a href="/BaoCaoTienVeCN/BaoCaoTienVeCN_Fill">&emsp;4. Báo Cáo Tiền Về Chi Nhánh</a></li>
-                <li><a href="/BaoCaoTienVeCN/BaoCaoTienVeTDV_Fill">&emsp;5. Báo Cáo Tiền Về TDV</a></li>
-                <li><a href="/BaoCaoDoanhThuGamHangTheoDoiTuong/BaoCaoDoanhThuGamHangTheoDoiTuong_Fill">&emsp;6. Báo Cáo Doanh Thu Gam Hàng Theo Đối Tượng</a></li>
-            </ul>
-        
-       
-            
-    </div>
+
+        <h3 id="toggleList" style="height: 22px; font-size: 50px; cursor: pointer;font-family:Century;margin-left:10px">
+            Báo Cáo Quản Trị
+        </h3><br /><br />
+  
+                   <div class="box-container">
+                       <div class="box1">
+                       
+                           <a class="box1-a" href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Fill">1. Doanh Thu Chi Nhánh</a>
+                       </div>
+                       <div class="box1">
+                           <a  class ="box1-a"href="/DoanhThuChiNhanh/DoanhThuChiNhanhTinhLuong_Fill">2. Doanh Thu Chi Nhánh Tính Lương</a>
+                       </div>
+                   </div>
+
+   
+        <h3 id="toggleList1" style="height: 22px; font-size: 50px; cursor: pointer;font-family:Century;margin-left:10px">
+            Báo Cáo Nghiệp Vụ
+        </h3><br /><br />
+        @*<div class="box-container">
+            <div class="box1">
+                <a href="/bangkehoadon/bangkehoadon_Fill">&emsp;1. Bảng kê chứng từ SO</a>
+            </div>
+            <div class="box2">
+                <a href="/BaoCaobanHangCN/BaoCaoBanHangCN_Fill">&emsp;2. Báo Cáo Bán Hàng Chi Nhánh</a>
+            </div>
+        </div>*@
+        <ul class="home-baocao" id="contentList1">
+
+            <li style="list-style-type:none"><a href="/bangkehoadon/bangkehoadon_Fill">&emsp;1. Bảng kê chứng từ SO</a></li>
+            <li style="list-style-type:none"><a href="/BaoCaobanHangCN/BaoCaoBanHangCN_Fill">&emsp;2. Báo Cáo Bán Hàng Chi Nhánh</a></li>
+            <li style="list-style-type:none"><a href="/BaoCaoBanHangTDV/BaoCaoBanHangTDV_Fill">&emsp;3. Báo Cáo bán hàng TDV</a></li>
+            <li style="list-style-type:none"><a href="/BaoCaoTienVeCN/BaoCaoTienVeCN_Fill">&emsp;4. Báo Cáo Tiền Về Chi Nhánh</a></li>
+            <li style="list-style-type:none"><a href="/BaoCaoTienVeCN/BaoCaoTienVeTDV_Fill">&emsp;5. Báo Cáo Tiền Về TDV</a></li>
+            <li style="list-style-type:none"><a href="/BaoCaoDoanhThuGamHangTheoDoiTuong/BaoCaoDoanhThuGamHangTheoDoiTuong_Fill">&emsp;6. Báo Cáo Doanh Thu Gam Hàng Theo Đối Tượng</a></li>
+        </ul>
+
+
+
+         </div>
     </section>
 
     <script>
@@ -158,7 +270,7 @@
         });
 
         toggleArticle.addEventListener("click", function () {
-            article.classList.toggle("collapsed1);
+            article.classList.toggle("collapsed1");
                         });
     </script>
 
