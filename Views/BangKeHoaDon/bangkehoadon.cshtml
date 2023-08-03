@@ -299,6 +299,17 @@
             text-align: center; 
             font-size: 15px;
         }
+        .text-loading {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            font-size: 13px;
+            color: black;
+            z-index: 1;
+            background-color: rgba(255, 255, 255, 0.9); /* Background color for the span */
+            padding: 5px 10px;
+            display: none; /* Hide the span element initially */
+        }
     </style>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -326,7 +337,8 @@
 <!-- =============== Design & Develop By = MJ MARAZ   ====================== -->
 
 <body>
-    <div class="loader"></div>
+    <div class="loader" style="z-index:1"></div>
+    <span id="spanText" class="text-loading">[usp_BKSaleOrder_SAP]</span>
     <div class="sidebar">
         <div class="logo-details">
 
@@ -337,6 +349,7 @@
                     <!-- Các phần còn lại, giữ nguyên -->
                     <div class="container form">
                         <div class="locBC">
+
                             <div>
                                 <a>Từ Ngày</a><br /><br />
                                 <!-- Cập nhật kiểu đầu vào thành "date" -->
@@ -347,7 +360,7 @@
                             </div>
                             <div>
                                 <!-- Thêm nút "Chạy Báo Cáo" -->
-                                <button class="submit" type="submit"> Chạy Báo Cáo </button>
+                                <button class="submit" type="submit" onclick="runReport()"> Chạy Báo Cáo </button>
                             </div>
                         </div>
                     </div>
@@ -364,7 +377,7 @@
     </header>
     <!-- =======  Data-Table  = Start  ========================== -->
     <div class="container">
-       
+
         <div class="row">
             <div class="col-12">
                 <div class="data_table">
@@ -378,6 +391,7 @@
                                 <th>Mã Vt</th>
                                 <th>Tên Vật Tư</th>
                                 <th>mã KM</th>
+                                <th>Discount</th>
                                 <th>Loại vật Tư</th>
                                 <th>Số Lượng</th>
                                 <th>Tiền (-VAT)</th>
@@ -395,8 +409,9 @@
                                     <td>@row2["ma_dt"]</td>
                                     <td>@row2["ten_dt"]</td>
                                     <td>@row2["ma_vt"]</td>
-                                    <td>@row2["ten_vt"]</td>
+                                    <td>@row2["ten_vt"]</td>        
                                     <td>@row2["Ma_Km"]</td>
+                                    <td>@row2["Discount"]</td>
                                     <td>@row2["Loai_Vt"]</td>
                                     <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["so_luong"]))</td>
                                     <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tien"]))</td>
@@ -423,6 +438,13 @@
     <script src="~/assets/js/pdfmake.min.js"></script>
     <script src="~/assets/js/vfs_fonts.js"></script>
     <script src="~/assets/js/custom.js"></script>
+    <script>
+        function runReport() {
+            // Hiển thị thẻ span có id là "spanText"
+            const spanElement = document.getElementById("spanText");
+            spanElement.style.display = "block";
+        }
+    </script>
     <script>
         function handleFormSubmit(event) {
             event.preventDefault();

@@ -7,7 +7,9 @@
   width: 100vw;
   height: 100vh;
   display: flex;
+  text-align: center;
   justify-content: center;
+  margin-top: 10px;
   align-items: center;
   background-color: #f7f9fb;
   transition: opacity 0.75s, visibility 0.75s;

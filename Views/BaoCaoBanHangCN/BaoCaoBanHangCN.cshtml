@@ -304,6 +304,17 @@
             text-align: center;
             font-size: 15px;
         }
+        .text-loading {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            font-size: 13px;
+            color: black;
+            z-index: 1;
+            background-color: rgba(255, 255, 255, 0.9); /* Background color for the span */
+            padding: 5px 10px;
+            display: none; /* Hide the span element initially */
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -338,7 +349,8 @@
 <!-- =============== Design & Develop By = MJ MARAZ   ====================== -->
 
 <body>
-    <div class="loader"></div>
+    <div class="loader" style="z-index:1"></div>
+    <span id="spanText" class="text-loading">[usp_BaoCaoBanHang_LoaiKH_SAP]</span>
     <div class="sidebar">
         <div class="logo-details">
 
@@ -347,6 +359,7 @@
             <li>
                 <form id="dateForm" action="BaoCaoBanHangCN" method="post" onsubmit="handleFormSubmit(event)">
                     <div id="locBC">
+
                         <a>Từ Ngày</a><br /><br />
                         <input class="tu_ngay" placeholder="Từ Ngày" id="tu_ngay" name="From_date" type="date" format="YYYY-MM-DD" value="@Request.QueryString["From_date"]" />
                         <script>$("#tu_ngay").datetimepicker({ timepicker: false, format: 'Y-m-d' });</script><br /><br />
@@ -356,7 +369,7 @@
                     </div>
 
                     <div>
-                        <button class="submit" type="submit"> Chạy Báo Cáo </button>
+                        <button class="submit" type="submit" onclick="runReport()"> Chạy Báo Cáo </button>
                     </div>
                 </form>
             </li>
@@ -373,7 +386,7 @@
     <!-- =======  Data-Table  = Start  ========================== -->
 
     <div class="container">
-      
+
         <div class="row">
             <div class="col-12">
                 <div class="data_table">
@@ -385,6 +398,7 @@
                                 <th colspan="7">Thực Hiện ETC</th>
                                 <th colspan="6">Khoán OTC</th>
                                 <th colspan="6">Khoán ETC</th>
+                                <th rowspan="1"></th>
                                 <th rowspan="1"></th>
                                 <th rowspan="1"></th>
                             </tr>
@@ -420,6 +434,7 @@
                                 <th>Khoán 25</th>
                                 <th>Khoán Phiến</th>
                                 <th>Tổng Khoán</th>
+                                <th>Doanh Thu Nội Bộ</th>
                                 <th>Doanh Thu Khác</th>
                                 <th>Tổng Doanh Thu</th>
                             </tr>
@@ -445,7 +460,9 @@
                                     <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Sui_ETC"]))</td>
                                     <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Con_ETC"]))</td>
                                     <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_TW25_ETC"]))</td>
+
                                     <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Phien_ETC"]))</td>
+
                                     <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ComBo_ETC"]))</td>
                                     <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Doanh_Thu_ETC"]))</td>
                                     <!--Khoán  OTC-->
@@ -465,6 +482,7 @@
                                     <td class="num">0</td>
 
                                     <!--Doanh Thu Khác-->
+                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_KH_NoiBo"]))</td>
                                     <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Khac"]))</td>
                                     <!--Tổng Thực Hiện-->
                                     <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Thuc_Hien"]))</td>
@@ -488,6 +506,13 @@
     <script src="~/assets/js/pdfmake.min.js"></script>
     <script src="~/assets/js/vfs_fonts.js"></script>
     <script src="~/assets/js/custom.js"></script>
+    <script>
+        function runReport() {
+            // Hiển thị thẻ span có id là "spanText"
+            const spanElement = document.getElementById("spanText");
+            spanElement.style.display = "block";
+        }
+    </script>
     <script>
         function handleFormSubmit(event) {
             event.preventDefault();

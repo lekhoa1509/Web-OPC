@@ -10,10 +10,12 @@
 
 
     <style>
-     /*   a:hover {
+        a:hover {
             background-color: lightskyblue;
-        }*/
-
+        }
+     *{
+         font-family:"Times New Roman";
+     }
         a {
             text-decoration: none;
         }
@@ -106,14 +108,14 @@
         div#chart {
             text-align: center;
             display: flex;
-           /* justify-content:;*/
+            justify-content:;
             width: 50%;
             height: 300px;
         }
 
         .submit {
-            /*height: 50px;
-        width: 100px;*/
+            height: 50px;
+        width: 100px;
             background-color: silver;
             border: none;
             color: cadetblue;
@@ -325,7 +327,7 @@
                 moz-transition: all .4s ease-in-out;
                 -o-transition: all .4s ease-in-out;
                 -webkit-transition: all .4s ease-in-out;
-                transition: all .4s ease-in-out;
+                transition: all .4s ease-in-out;    
             }
             .bieu_do:focus{
                 outline:none;
@@ -338,6 +340,17 @@
         .chart {
             margin: 20px 0px 0px 0px;
            
+        }
+        .text-loading {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            font-size: 13px;
+            color: black;
+            z-index: 1;
+            background-color: rgba(255, 255, 255, 0.9);  Background color for the span 
+            padding: 5px 10px;
+            display: none;  Hide the span element initially 
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -364,16 +377,12 @@
     <link rel="stylesheet" href="~/assets/css/datatables.min.css">
     <link rel="stylesheet" href="~/assets/css/style.css">
     <link rel="stylesheet" href="~/Styles/loader.css">
-
-
-
-
-
 </head>
 <!-- =============== Design & Develop By = MJ MARAZ   ====================== -->
 
 <body>
-    <div class="loader"></div>
+    <div class="loader" style="z-index:1"></div>
+
     <div class="sidebar">
         <div class="logo-details">
 
@@ -384,6 +393,7 @@
                     <!-- Các phần còn lại, giữ nguyên -->
                     <div class="container form">
                         <div class="locBC">
+                            <span id="spanText" class="text-loading">[usp_BaoCaoDoanhThuCN_SAP]</span>
                             <div>
                                 <a>Từ Ngày</a><br /><br />
                                 <!-- Cập nhật kiểu đầu vào thành "date" -->
@@ -394,15 +404,8 @@
                             </div>
                             <div>
                                 <!-- Thêm nút "Chạy Báo Cáo" -->
-                                <button class="submit" type="submit"> Chạy Báo Cáo </button>
+                                <button class="submit" type="submit" onclick="runReport()"> Chạy Báo Cáo </button>
                             </div>
-                            @*<div class="chart">
-                                <a href="/Chart/Chart">
-
-                                    <span class="bieu_do"> Xem Biểu Đồ</span>
-                                </a>
-                            </div>*@
-
                         </div>
 
                     </div>
@@ -430,7 +433,6 @@
                         <thead class="table-dark">
                             <tr>
                                 <th>Tên Đơn Vị</th>
-
                                 <th>Doanh Thu OPC</th>
                                 <th>Khoán OPC</th>
                                 <th>Tỷ Lệ OPC</th>
@@ -446,6 +448,7 @@
                                 <th>Doanh Thu 25</th>
                                 <th>Khoán 25</th>
                                 <th>Tỷ Lệ 25</th>
+
                                 <th>Doanh Thu Combo</th>
                                 <th>Doanh Thu Khác</th>
                                 <th>Tổng Thực Hiện</th>
@@ -468,6 +471,40 @@
     <script src="~/assets/js/pdfmake.min.js"></script>
     <script src="~/assets/js/vfs_fonts.js"></script>
     <script src="~/assets/js/custom.js"></script>
+
+    <script>
+        // Set the "Từ Ngày" input to the first day of the current month
+        function setFirstDayOfCurrentMonth() {
+            const currentDate = new Date();
+            const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+            const formattedDate = formatDate(firstDayOfMonth);
+
+            document.getElementById("tu_ngay").value = formattedDate;
+        }
+        function setCurrentDate() {
+            const currentDate = new Date();
+            const formattedToDate = formatDate(currentDate);
+            document.getElementById("den_ngay").value = formattedToDate;
+        }
+        // Format the date as "yyyy-mm-dd" for input type="date"
+        function formatDate(date) {
+            const year = date.getFullYear();
+            const month = (date.getMonth() + 1).toString().padStart(2, "0");
+            const day = date.getDate().toString().padStart(2, "0");
+            return `${year}-${month}-${day}`;
+        }
+
+        // Call the function to set the "Từ Ngày" input on page load
+        setFirstDayOfCurrentMonth();
+        setCurrentDate();
+    </script>
+    <script>
+        function runReport() {
+            // Hiển thị thẻ span có id là "spanText"
+            const spanElement = document.getElementById("spanText");
+            spanElement.style.display = "block";
+        }
+    </script>
     <script>
 
         function handleFormSubmit(event) {

@@ -14,10 +14,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        a:hover {
-            background-color: lightskyblue;
-        }
-
+     
         a {
             text-decoration: none;
         }
@@ -29,10 +26,88 @@
         .contentList {
             display: none;
         }
+        .box-container {
+            margin-left: 20px;
+            margin-top: 20px;
+            width: 350px;
+            height: 150px;
+            background-color: white;
+            border-left: 10px solid #5879c2;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+        }
+        .box-row-1{
+            margin-bottom:30px;
+            text-align: center;
+            font-size: 20px;
+        }
+        .box-row-2 {
+            margin-left:80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 150px;
+            height: 50px;
+        }
+
+        .button {
+            border: none;
+            align-items: center;
+            cursor: pointer;
+            text-transform: uppercase;
+            outline: none;
+            overflow: hidden;
+            border-radius: 10px;
+            position: relative;
+            color: white;
+            font-weight: 700;
+            font-size: 15px;
+            background-color: #353536;
+            padding: 17px 60px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.20);
+        }
+
+            .button span {
+                position: relative;
+                z-index: 1;
+            }
+
+            .button:after {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 300%;
+                width: 150%;
+              
+                background: #5879c2;
+                -webkit-transition: all .5s ease-in-out;
+                transition: all .5s ease-in-out;
+                -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+                transform: translateX(-98%) translateY(-25%) rotate(45deg);
+            }
+
+            .button:hover:after {
+                -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+                transform: translateX(-9%) translateY(-25%) rotate(45deg);
+            }
+        .text-loading {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            font-size: 13px;
+            color: black;
+            z-index: 300;
+            background-color: rgba(255, 255, 255, 0.9); /* Background color for the span */
+            padding: 5px 10px;
+            display: none; /* Hide the span element initially */
+        }
     </style>
 </head>
 <body>
-    <div class="loader"></div>
+    <div class="loader" style="z-index:199"></div>
+    <span id="spanText" class="text-loading">[usp_LookupKH_SAP]</span>
     <div class="sidebar">
         <div class="logo-details">
             <a href="/Home/About"><img src="~/Images/opc.png"></a>
@@ -40,7 +115,8 @@
             <span class="logo_name">OPC</span>
         </div>
         <ul class="nav-links">
-            <li>
+            <li>mn
+
                 <a href="/Home/About" class="active">
                     <i class='bx bx-grid-alt'></i>
                     <span class="links_name">Dashboard</span>
@@ -99,21 +175,55 @@
             @*phân quyền user*@
             @if (ViewBag.UserName == "admin" || ViewBag.UserName == "OPCMAR001")
             {
-                <ul class="home-baocao" id="contentList1">
-                    <!-- Add an onclick event to call the showLoader function -->
-                    <li  style="list-style-type:none;font-size:30px"><a href="/DanhMuc/ViewDanhMucKH_Fill" onclick="showLoader()">&emsp;1. Danh Mục Khách Hàng</a></li>
-                </ul>
+                <div class="box-container">
+                    <div class="box-row-1">
+                        <h3>Danh Mục Khách Hàng</h3>
+
+
+                    </div>
+                    <div class="box-row-2">
+                        <a class="button" href="/DanhMuc/ViewDanhMucKH_Fill" onclick="runReport()"><span>Xem</span></a>
+                    </div>
+                </div>
             }
             else
             {
-                <ul class="home-baocao" id="contentList1">
-                    <!-- Add an onclick event to call the showLoader function -->
-                    <li style="list-style-type:none;font-size:30px"><a href="/DanhMuc/ViewDanhMucKH" onclick="showLoader()">&emsp;1. Danh Mục Khách Hàng</a></li>
-                </ul>
+                <div class="box-container">
+                    <div class="box-row-1">
+                        <h3>Danh Mục Khách Hàng</h3>
+                    </div>
+                    <div class="box-row-2">
+                        <a class="button" href="/DanhMuc/ViewDanhMucKH" onclick="runReport()"><span>Xem</span></a>
+                    </div>
+                </div>
             }
         </div>
-    </section>
 
+    </section>
+    <script>
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".sidebarBtn");
+        sidebarBtn.onclick = function () {
+            sidebar.classList.toggle("active");
+            if (sidebar.classList.contains("active")) {
+                sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+            } else
+                sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+        }
+
+        function logout() {
+            window.location.href = "/home/login"
+        }
+        document.getElementById("TOP1").innerHTML = Response.innerHTML.g;
+
+        $("#leftside-navigation .sub-menu > a").click(function (e) {
+            $("#leftside-navigation ul ul").slideUp(), $(this).next().is(":visible") || $(this).next().slideDown(),
+                e.stopPropagation()
+        })
+        function ChangPassword() {
+            window.location.href = "/home/DoiMatKhau"
+        }
+    </script>
     <script>
         // JavaScript để xử lý sự kiện click và điều khiển hiển thị của danh sách và bài viết
         const toggleList = document.getElementById("toggleList");
@@ -152,7 +262,7 @@
 
         toggleArticle.addEventListener("click", function () {
             article.classList.toggle("collapsed1");
-                                        });
+        });
     </script>
 
     <script>
@@ -165,13 +275,14 @@
                 }
                 localStorage.removeItem("username");
             }
+            showLoader();
         };
     </script>
 
 
 
     <script>
-   
+
         function showLoader() {
             const loader = document.querySelector(".loader");
             loader.classList.remove("loader-hidden");
@@ -183,13 +294,21 @@
             loader.classList.add("loader-hidden");
         }
 
-     
+
+
         window.addEventListener("load", () => {
             // Hide the loader after the page is loaded
             hideLoader();
         });
     </script>
-
+    <script>
+        function runReport() {
+            // Hiển thị thẻ span có id là "spanText"
+            showLoader();
+            const spanElement = document.getElementById("spanText");
+            spanElement.style.display = "block";
+        }
+    </script>
 
 </body>
 </html>

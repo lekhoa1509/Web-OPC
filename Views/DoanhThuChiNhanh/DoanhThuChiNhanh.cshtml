@@ -25,6 +25,8 @@
         }
 
         .container canvas {
+            width: 100%;
+            height: 100%;
             justify-content: center;
             align-items: center;
             height: min-content;
@@ -97,7 +99,6 @@
             padding: 0px 10px;
             outline: none;
             Format: 'd-m-y';
-        
         }
 
 
@@ -308,14 +309,14 @@
 
         .bieu_do {
             padding: 10px;
-        /*    margin: 10%;*/
+            /*    margin: 10%;*/
             text-align: center;
             width: 200px;
             font-size: 16px;
             font-weight: 600;
             color: #fff;
             cursor: pointer;
-      /*      margin: 20px;*/
+            /*      margin: 20px;*/
             height: 55px;
             text-align: center;
             border: none;
@@ -337,7 +338,7 @@
 
             .bieu_do:focus {
                 outline: none;
-            }   
+            }
 
         .bieu_do {
             background-image: linear-gradient(to right, #f5ce62, #e43603, #fa7199, #e85a19);
@@ -347,11 +348,26 @@
         .chart {
             margin: 40px 0px 0px 0px;
         }
-        .box-chart{
+
+        .box-chart {
             margin-left: 500px;
+            width: 100px;
+            height: 25vh;
         }
-        
+
+        .text-loading {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            font-size: 13px;
+            color: black;
+            z-index: 1;
+            background-color: rgba(255, 255, 255, 0.9); /* Background color for the span */
+            padding: 5px 10px;
+            display: none; /* Hide the span element initially */
+        }
     </style>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -376,18 +392,7 @@
     <link rel="stylesheet" href="~/assets/css/datatables.min.css">
     <link rel="stylesheet" href="~/assets/css/style.css">
     <link rel="stylesheet" href="~/Styles/loader.css">
-    @*<style>
-            .box-chart {
 
-                margin-left: 300px;
-              /*  width: 100%;
-                height: 25vh;*/
-                display: flex;
-                justify-content: center;
-               /* align-items: center;*/
-                /*padding: 0 2rem;*/
-            }
-        </style>*@
 
 
 
@@ -397,7 +402,8 @@
 
 <body>
 
-    <div class="loader"></div>
+    <div class="loader" style="z-index:1"></div>
+
     <div class="sidebar">
         <div class="logo-details">
 
@@ -405,9 +411,10 @@
         <ul class="nav-links" style="display: flex; justify-content: center;">
             <li>
                 <form id="dateForm" action="DoanhThuChiNhanh" method="post" onsubmit="handleFormSubmit(event)">
-                    @*Các phần còn lại, giữ nguyên*@
+
                     <div class="container form">
                         <div class="locBC">
+                            <span id="spanText" class="text-loading">[usp_BaoCaoDoanhThuCN_SAP]</span>
                             <div>
                                 <a>Từ Ngày</a><br /><br />
                                 @*Cập nhật kiểu đầu vào thành "date"*@
@@ -418,14 +425,14 @@
                             </div>
                             <div>
                                 @*Thêm nút "Chạy Báo Cáo"*@
-                                <button class="submit" type="submit"> Chạy Báo Cáo </button>
+                                <button class="submit" type="submit" onclick="runReport()"> Chạy Báo Cáo </button>
                             </div>
-                            <div class="chart">
-                                <a id="viewChartBtn">
+                            @*<div class="chart">
+                                    <a id="viewChartBtn">
 
-                                    <span class="bieu_do"> Xem Biểu Đồ</span>
-                                </a>
-                            </div>
+                                        <span class="bieu_do"> Xem Biểu Đồ</span>
+                                    </a>
+                                </div>*@
                         </div>
                     </div>
                 </form>
@@ -442,18 +449,17 @@
     </header>
     <!-- =======  Data-Table  = Start  ========================== -->
 
-        
-    <div class="container">
 
+    <div class="container">
+    
         <div class="row">
-           <div id="chartContainer" class="box-chart"style="width:80%;height:25vh"></div>
+            <div id="chartContainer" class="box-chart"></div>
             <div class="col-12">
                 <div class="data_table">
                     <table id="example" class="table table-striped table-bordered">
                         <thead class="table-dark">
                             <tr>
                                 <th>Tên Đơn Vị</th>
-
                                 <th>Doanh Thu OPC</th>
                                 <th>Khoán OPC</th>
                                 <th>Tỷ Lệ OPC</th>
@@ -526,143 +532,194 @@
     <script src="~/assets/js/vfs_fonts.js"></script>
     <script src="~/assets/js/custom.js"></script>
     <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
-    @*@{
-        // Create a list of Chart objects
-        List<Chart> dataPoints = new List<Chart>();
-        dataPoints.Add("Tỷ lệ OPC", 10));
-        dataPoints.Add(new Chart("Tỷ lệ Cồn", 30));
-        dataPoints.Add(new Chart("Tỷ lệ Sủi", 80));
-        dataPoints.Add(new Chart("Tỷ lệ Phiến", 39));
-        dataPoints.Add(new Chart("Tỷ lệ 25", 30));
+    @{
+        int opc = 0;
+        int con = 0;
+        int phien = 0;
+        int tyle25 = 0;
+        int sui = 0;
+        string tenDvCs = "";
+        var subtitles = new List<string>();
+        foreach (DataRow row2 in Model.Tables[0].Rows)
+        {
+            opc = Convert.ToInt32(row2["Tyle_OPC"]);
+            con = Convert.ToInt32(row2["Tyle_Con"]);
+            phien = Convert.ToInt32(row2["Tyle_Phien"]);
+            tyle25 = Convert.ToInt32(row2["Tyle_25"]);
+            sui = Convert.ToInt32(row2["Tyle_Sui"]);
+             tenDvCs = row2["ten_DvCs"].ToString();
+            subtitles.Add(tenDvCs);
+        }
+    }
 
-        // Serialize the list to JSON and store it in ViewBag
-        ViewBag.ChartData = Newtonsoft.Json.JsonConvert.SerializeObject(dataPoints);
-    }*@
-<script>
-     var chartData = [
+    <script>
+        function runReport() {
+            // Hiển thị thẻ span có id là "spanText"
+            const spanElement = document.getElementById("spanText");
+            spanElement.style.display = "block";
+        }
+    </script>
+    <script>
+        @*var chartData = [
         @foreach (DataRow row2 in Model.Tables[0].Rows)
         {
-            <text>  { label: "Tỷ lệ OPC", y: @row2["Tyle_OPC"] },
-                { label: "Tỷ lệ Cồn", y: @row2["Tyle_Con"] },
-                { label: "Tỷ lệ Sủi", y: @row2["Tyle_Sui"] },
-                { label: "Tỷ lệ Phiến", y: @row2["Tyle_Phien"] },
-                { label: "Tỷ lệ 25", y: @row2["Tyle_25"] },
+            @: { label: "Tỷ lệ OPC", y: @row2["Tyle_OPC"], indexLabel: "@row2["Tyle_OPC"]%", showInLegend: true,name: "Tỷ lệ OPC"},
+            @: { label: "Tỷ lệ Cồn", y: @row2["Tyle_Con"], indexLabel: "@row2["Tyle_Con"]%", showInLegend: true, name:"Tỷ lệ Cồn"},
+            @: { label: "Tỷ lệ Sủi", y: @row2["Tyle_Sui"], indexLabel: "@row2["Tyle_Sui"]%", showInLegend: true, name:"Tỷ lệ Sủi"},
+            @: { label: "Tỷ lệ Phiến", y: @row2["Tyle_Phien"], indexLabel: "@row2["Tyle_Phien"]%", showInLegend: true, name:"Tỷ lệ Phiến" },
+            @: { label: "Tỷ lệ 25", y: @row2["Tyle_25"], indexLabel: "@row2["Tyle_25"]%", showInLegend: true, name:"Tỷ lệ 25"},
 
-        </text>
-
-            // Tương tự, bạn có thể lấy các giá trị khác và gán vào mảng chartData tại đây
         }
-    ];
-   
-        // Add an event listener to the "Xem Biểu Đồ" button
-        document.getElementById("viewChartBtn").addEventListener("click", function () {
-            // Fetch the data for the chart, you can use an AJAX call here to fetch data from the server
-            // For example, you can use jQuery AJAX like this:
-            // $.ajax({
-            //   url: "URL_TO_FETCH_CHART_DATA",
-            //   method: "GET",
-            //   success: function (data) {
-            //     // Create the chart using the fetched data
-            //     createChart(data);
-            //   },
-            //   error: function (error) {
-            //     console.error("Error fetching chart data: ", error);
-            //   },
-            // });
+    ];*@
+    var chartData = [
+    {
+        type: "column",
+        name: "Tỷ lệ OPC",
+        showInLegend: true,
+        dataPoints: [
+            @foreach (DataRow row2 in Model.Tables[0].Rows)
+            {
+                @: { y: @row2["Tyle_OPC"], indexLabel: "@row2["Tyle_OPC"]%" },
 
-            // For demonstration purposes, let's assume you have static data
-            //const chartData = [
-            //    { label: "Tỷ lệ OPC",y:10 },
-            //    { label: "Tỷ lệ Cồn", y: 30 },
-            //    { label: "Tỷ lệ Sủi", y: 80 },
-            //    { label: "Tỷ lệ Phiến", y: 39 },
-            //    { label: "Tỷ lệ 25", y: 30 },
-            //    // Add more data as needed
-            //];
+            }
 
-            // Create the chart using the fetched data
-            createChart(chartData);
-            //document.getElementById("box-chart").style.width = "100%";
-            //document.getElementById("box-chart").style.height = "300px";
-            document.getElementById("box-chart").style.display = "flex";
-            //document.getElementById("chartContainer").style.height = "300px";
-            //document.getElementById("chartContainer").style.width = "100%";
-         
-        });
+        ]
+    },
+    {
+        type: "column",
+        name: "Tỷ lệ Cồn",
+        showInLegend: true,
+        dataPoints: [
+            @foreach (DataRow row2 in Model.Tables[0].Rows)
+            {
+                @: { y: @row2["Tyle_Con"], indexLabel: "@row2["Tyle_Con"]%" },
 
-        // Function to create the chart
-    function createChart(data) {
+            }
+        ]
+    },
+    {
+        type: "column",
+        name: "Tỷ lệ Sủi",
+        showInLegend: true,
+        dataPoints: [
+            @foreach (DataRow row2 in Model.Tables[0].Rows)
+            {
+                @: { y: @row2["Tyle_Sui"], indexLabel: "@row2["Tyle_Sui"]%" },
 
+            }
+        ]
+    },
+    {
+        type: "column",
+        name: "Tỷ lệ Phiến",
+        showInLegend: true,
 
-        var chart = new CanvasJS.Chart("chartContainer", {
-            animationEnabled: true,
-            theme: "light1s",
-            title: {
-                text: "Báo Cáo Doanh Thu"
-            },
-            axisY: {
-                title: "% Tỷ Lệ",
-                maximum: 100,
-            },
-            data: [{
-                type: "column",
-                dataPoints: data // Use the parsed data directly
-            }]
-        });
+        dataPoints: [
+            @foreach (DataRow row2 in Model.Tables[0].Rows)
+            {
+                @: { y: @row2["Tyle_Phien"], indexLabel: "@row2["Tyle_Phien"]%" },
 
-        chart.render();
+            }
+        ]
+    },
+    {
+        type: "column",
+        name: "Tỷ lệ 25",
+        showInLegend: true,
+
+        dataPoints: [
+            @foreach (DataRow row2 in Model.Tables[0].Rows)
+            {
+                @: { y: @row2["Tyle_25"], indexLabel: "@row2["Tyle_25"]%" },
+
+            }
+        ]
     }
-</script>
+];
+            // Add an event listener to the "Xem Biểu Đồ" button
+            document.getElementById("viewChartBtn").addEventListener("click", function () {
+
+                createChart(chartData);
+
+                document.getElementById("box-chart").style.display = "flex";
+
+            });
+
+            // Function to create the chart
+        function createChart(data) {
+            @*@{  foreach (DataRow row2 in Model.Tables[0].Rows)
+                {
+                    opc = Convert.ToInt32(row2["Tyle_OPC"]);
+                    con = Convert.ToInt32(row2["Tyle_Con"]);
+                    phien = Convert.ToInt32(row2["Tyle_Phien"]);
+                    tyle25 = Convert.ToInt32(row2["Tyle_25"]);
+                    sui = Convert.ToInt32(row2["Tyle_Sui"]);
+                    tenDvCs = row2["ten_DvCs"].ToString();
+                    subtitles.Add(tenDvCs);
+                } }*@
+
+
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                exportEnabled: true,
+                theme: "light1",
+                title: {
+                    text: "Báo Cáo Doanh Thu"
+                },
+                @*subtitles: [{
+                    text:"@tenDvCs",
+                }],*@
+                axisY: {
+                    title: "% Tỷ Lệ",
+                    maximum: 100,
+                },
+
+                axisX: {
+
+                    labelFormatter: function () {
+                        // Use the axisXLabels array to set the labels
+                        return"";
+                    }
+
+                },
+
+                data: data,
+                dataPointWidth: 60,
+             /*   interval: 4,*/
+            });
+
+            chart.render();
+        }
+    </script>
     <script>
         function handleFormSubmit(event) {
             event.preventDefault();
-
-            // Lấy các giá trị ngày đã chọn từ trường nhập liệu
             const fromDate = document.getElementById('tu_ngay').value;
             const toDate = document.getElementById('den_ngay').value;
-
-            // Tạo URL mới với các tham số truy vấn
             const form = event.target;
             const actionUrl = `${form.action}?From_date=${fromDate}&To_date=${toDate}`;
-
-            // Chuyển hướng tới URL mới với các giá trị ngày đã chọn làm các tham số truy vấn
             window.location.href = actionUrl;
         }
         function showLoader() {
             const loader = document.querySelector(".loader");
             loader.classList.remove("loader-hidden");
         }
-
-        //// Function to hide the loader
         function hideLoader() {
             const loader = document.querySelector(".loader");
             loader.classList.add("loader-hidden");
-            chart();
+            createChart(chartData);
         }
-
-        //// Add an event listener to the form submission
         document.getElementById("dateForm").addEventListener("submit", (event) => {
             event.preventDefault();
-
-            // Show the loader when the form is submitted
             showLoader();
-
-            // Lấy các giá trị ngày đã chọn từ trường nhập liệu
             const fromDate = document.getElementById('tu_ngay').value;
             const toDate = document.getElementById('den_ngay').value;
-
-            // Tạo URL mới với các tham số truy vấn
             const form = event.target;
             const actionUrl = `${form.action}?From_date=${fromDate}&To_date=${toDate}`;
-
-            // Chuyển hướng tới URL mới với các giá trị ngày đã chọn làm các tham số truy vấn
             window.location.href = actionUrl;
         });
 
-        //// Add event listener for window load event
         window.addEventListener("load", () => {
-            // Hide the loader after the page is loaded
-
             hideLoader();
         });
 

@@ -302,6 +302,17 @@
         .data_table {
             width: max-content;
         }
+        .text-loading {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            font-size: 13px;
+            color: black;
+            z-index: 3;
+            background-color: rgba(255, 255, 255, 0.9); /* Background color for the span */
+            padding: 5px 10px;
+            display: none; /* Hide the span element initially */
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -336,7 +347,7 @@
 <!-- =============== Design & Develop By = MJ MARAZ   ====================== -->
 
 <body>
-    <div class="loader"></div>
+    <div class="loader" style="z-index:3"></div>
     <div class="sidebar">
         <div class="logo-details">
 
@@ -347,6 +358,7 @@
                     <!-- Các phần còn lại, giữ nguyên -->
                     <div class="container form">
                         <div class="locBC">
+                            <span id="spanText" class="text-loading">[usp_BaoCaoDoanhThuCN_HCNS_SAP]</span>
                             <div>
                                 <a>Từ Ngày</a><br /><br />
                                 <!-- Cập nhật kiểu đầu vào thành "date" -->
@@ -357,7 +369,7 @@
                             </div>
                             <div>
                                 <!-- Thêm nút "Chạy Báo Cáo" -->
-                                <button class="submit" type="submit"> Chạy Báo Cáo </button>
+                                <button class="submit" type="submit" onclick="runReport()"> Chạy Báo Cáo </button>
                             </div>
                         </div>
                     </div>
@@ -375,7 +387,7 @@
     </header>
     <!-- =======  Data-Table  = Start  ========================== -->
     <div class="container">
-      
+
         <div class="row">
             <div class="col-12">
                 <div class="data_table">
@@ -446,6 +458,13 @@
     <script src="~/assets/js/pdfmake.min.js"></script>
     <script src="~/assets/js/vfs_fonts.js"></script>
     <script src="~/assets/js/custom.js"></script>
+    <script>
+        function runReport() {
+            // Hiển thị thẻ span có id là "spanText"
+            const spanElement = document.getElementById("spanText");
+            spanElement.style.display = "block";
+        }
+    </script>
     <script>
         function handleFormSubmit(event) {
             event.preventDefault();

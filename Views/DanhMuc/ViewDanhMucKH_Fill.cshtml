@@ -299,6 +299,18 @@
         .data_table {
             width: max-content;
         }
+
+        .text-loading {
+            position: fixed;
+            bottom: 10px;
+            color: black;
+            left: 10px;
+            font-size: 13px;
+            z-index: 2;
+            background-color: rgba(255, 255, 255, 0.9); /* Background color for the span */
+            padding: 5px 10px;
+            display: none; /* Hide the span element initially */
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -333,7 +345,8 @@
 <!-- =============== Design & Develop By = MJ MARAZ   ====================== -->
 
 <body>
-    <div class="loader"></div>
+    <div class="loader" style="z-index:199"></div>
+    <span id="spanText" class="text-loading">[usp_LookupKH_SAP]</span>
     <div class="sidebar">
         <div class="logo-details">
 
@@ -342,6 +355,7 @@
             <li>
                 <form action="ViewDanhMucKH" method="post">
                     <div id="locBC">
+
                         <div class="select-btn">
                             <select name="Ma_DvCs">
                                 <option value="OPC_B1_01">Công Ty Cổ Phần Dược Phẩm OPC</option>
@@ -359,7 +373,7 @@
                     </div>
 
                     <div>
-                        <button class="submit" type="submit"> Chạy Báo Cáo </button>
+                        <button class="submit" type="submit" onclick="showLoader()"> Chạy Báo Cáo </button>
                     </div>
                 </form>
             </li>
@@ -433,6 +447,7 @@
     <script src="~/assets/js/pdfmake.min.js"></script>
     <script src="~/assets/js/vfs_fonts.js"></script>
     <script src="~/assets/js/custom.js"></script>
+
     <script>
         function showLoader() {
             const loader = document.querySelector(".loader");
@@ -447,7 +462,7 @@
         window.addEventListener("load", () => {
             // Hide the loader after the page is loaded
             hideLoader();
-        });s
+        }); s
     </script>
 
 
