@@ -21,4 +21,15 @@ namespace ASPNET_MVC_ChartsDemo.Models
         [DataMember(Name = "y")]
         public Nullable<double> Y = null;
     }
+    public class StudentMarkDetails
+    {
+        public int id { get; set; }
+        public string name { get; set; }
+        public int Physics { get; set; }
+        public int Chemistry { get; set; }
+        public int Biology { get; set; }
+        public int Mathematics { get; set; }
+
+
+    }
 }

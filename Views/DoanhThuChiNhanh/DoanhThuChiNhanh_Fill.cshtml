@@ -387,32 +387,26 @@
         <div class="logo-details">
 
         </div>
-        <ul class="nav-links" style="display: flex; justify-content: center;">
+        <ul class="nav-links" style="justify-content: center; min-width:200px;  max-width: 800px; width:100%;">
             <li>
                 <form id="dateForm" action="DoanhThuChiNhanh" method="post" onsubmit="handleFormSubmit(event)">
-                    <!-- Các phần còn lại, giữ nguyên -->
-                    <div class="container form">
-                        <div class="locBC">
-                            <span id="spanText" class="text-loading">[usp_BaoCaoDoanhThuCN_SAP]</span>
-                            <div>
-                                <a>Từ Ngày</a><br /><br />
-                                <!-- Cập nhật kiểu đầu vào thành "date" -->
-                                <input class="tu_ngay" placeholder="Từ Ngày" id="tu_ngay" name="From_date" type="date" /><br /><br />
-                                <a>Đến Ngày</a><br /><br />
-                                <!-- Cập nhật kiểu đầu vào thành "date" -->
-                                <input class="den_ngay" id="den_ngay" placeholder=" Đến Ngày" name="To_date" type="date" /><br /><br />
-                            </div>
-                            <div>
-                                <!-- Thêm nút "Chạy Báo Cáo" -->
-                                <button class="submit" type="submit" onclick="runReport()"> Chạy Báo Cáo </button>
-                            </div>
-                        </div>
+                    <div id="locBC">
+                        <span id="spanText" class="text-loading">[usp_BaoCaoBanHangTDV_SAP]</span>
+                        <a>Từ Ngày</a><br /><br />
+                        <input class="tu_ngay" placeholder="Từ Ngày" id="tu_ngay" name="From_date" type="date" format="YYYY-MM-DD" value="@Request.QueryString["From_date"]" />
+                        <script>$("#tu_ngay").datetimepicker({ timepicker: false, format: 'Y-m-d' });</script><br /><br />
+                        <a>Đến Ngày</a><br /><br />
+                        <input class="den_ngay" id="den_ngay" placeholder=" Đến Ngày" name="To_date" type="DATE" format="YYYY-MM-DD" value="@Request.QueryString["To_date"]" /><br /><br />
+                        <script>$("#den_ngay").datetimepicker({ timepicker: false, format: 'Y-m-d' });</script>
+                    </div>
 
+                    <div>
+                        <button class="submit" type="submit" onclick="runReport()"> Chạy Báo Cáo </button>
                     </div>
                 </form>
-
             </li>
         </ul>
+    </div>
     </div>
 
     <header class="header_part">
