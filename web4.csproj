@@ -233,12 +233,35 @@
     <Compile Include="Controllers\DanhMucController.cs" />
     <Compile Include="Controllers\DoanhThuChiNhanhController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MauInChungTuController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\StudentMarkDetails.cs" />
     <Compile Include="Models\Chart.cs" />
     <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\MauInChungTu.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MauInChungTu.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MauInChungTu.cs" />
+    <Compile Include="Models\MauInChungTu.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MauInChungTu.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MauInChungTu1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MauInChungTu.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_MauInPhieuNhapDetail.cs">
+      <DependentUpon>MauInChungTu.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_MauInPhieuNhapXuong.cs">
+      <DependentUpon>MauInChungTu.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -257,12 +280,29 @@
     <Content Include="assets\css\style.css" />
     <Content Include="assets\images\favicon.png" />
     <Content Include="assets\images\logo.png" />
+    <Content Include="assets\js\ai.0.22.9-build00167.js" />
+    <Content Include="assets\js\ai.0.22.9-build00167.min.js" />
     <Content Include="assets\js\bootstrap.bundle.min.js" />
+    <Content Include="assets\js\bootstrap.js" />
+    <Content Include="assets\js\bootstrap.min.js" />
     <Content Include="assets\js\custom.js" />
     <Content Include="assets\js\datatables.min.js" />
+    <Content Include="assets\js\JavaScriptfor.js" />
+    <None Include="assets\js\jquery-1.10.2.intellisense.js" />
+    <Content Include="assets\js\jquery-1.10.2.js" />
+    <Content Include="assets\js\jquery-1.10.2.min.js" />
     <Content Include="assets\js\jquery-3.6.0.min.js" />
+    <None Include="assets\js\jquery.validate-vsdoc.js" />
+    <Content Include="assets\js\jquery.validate.js" />
+    <Content Include="assets\js\jquery.validate.min.js" />
+    <Content Include="assets\js\jquery.validate.unobtrusive.js" />
+    <Content Include="assets\js\jquery.validate.unobtrusive.min.js" />
+    <Content Include="assets\js\modernizr-2.6.2.js" />
     <Content Include="assets\js\pdfmake.min.js" />
+    <Content Include="assets\js\respond.js" />
+    <Content Include="assets\js\respond.min.js" />
     <Content Include="assets\js\vfs_fonts.js" />
+    <None Include="assets\js\_references.js" />
     <Content Include="assets\php\authication.php" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -640,6 +680,16 @@
     <Content Include="Images\Images2.jpg" />
     <Content Include="Images\opc.png" />
     <Content Include="Images\wave.png" />
+    <Content Include="Models\MauInChungTu.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MauInChungTu.edmx</DependentUpon>
+      <LastGenOutput>MauInChungTu.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\MauInChungTu.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MauInChungTu.edmx</DependentUpon>
+      <LastGenOutput>MauInChungTu1.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\ej\web\office-365\icons\ejicons.woff" />
@@ -684,6 +734,14 @@
     <Content Include="Content\ej\mobile\images\ejmmobilefonts.woff" />
     <Content Include="Content\ej\mobile\images\ejmmobilefonts.ttf" />
     <Content Include="Content\ej\mobile\images\ejmmobilefonts.eot" />
+    <EntityDeploy Include="Models\MauInChungTu.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MauInChungTu.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\MauInChungTu.edmx.diagram">
+      <DependentUpon>MauInChungTu.edmx</DependentUpon>
+    </Content>
+    <Content Include="assets\js\jquery-1.10.2.min.map" />
     <None Include="Properties\PublishProfiles\khoa.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -914,6 +972,8 @@
     <Content Include="Views\Chart\Chart.cshtml" />
     <Content Include="Views\DanhMuc\ViewDanhMucKHCN.cshtml" />
     <Content Include="Views\DanhMuc\ViewDanhMucKH_FillCN.cshtml" />
+    <Content Include="Views\MauInChungTu\MauInNLCB.cshtml" />
+    <Content Include="Views\MauInChungTu\Index.cshtml" />
     <Content Include="Views\DoanhThuChiNhanh\DoanhThuChiNhanh_Admin_Fill.cshtml" />
     <Content Include="Views\DoanhThuChiNhanh\DoanhThuChiNhanh_Admin.cshtml" />
   </ItemGroup>

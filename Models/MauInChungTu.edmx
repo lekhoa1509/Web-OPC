@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SAP_OPCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_MauInPhieuNhapDetail">
+          <Key>
+            <PropertyRef Name="Stt" />
+          </Key>
+          <Property Name="Stt" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Stt1" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Ma_Vt" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ten_Vt" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="so_lo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="so_luong" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Dvt" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ghi_chu" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="So_Ct" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_MauInPhieuNhapXuong">
+          <Key>
+            <PropertyRef Name="Stt" />
+          </Key>
+          <Property Name="Stt" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="So_Ct" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ngay_Ct" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Kho_Nhap" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tbl_MauInPhieuNhapDetail_tbl_MauInPhieuNhapXuong">
+          <End Role="tbl_MauInPhieuNhapXuong" Type="Self.tbl_MauInPhieuNhapXuong" Multiplicity="1" />
+          <End Role="tbl_MauInPhieuNhapDetail" Type="Self.tbl_MauInPhieuNhapDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_MauInPhieuNhapXuong">
+              <PropertyRef Name="Stt" />
+            </Principal>
+            <Dependent Role="tbl_MauInPhieuNhapDetail">
+              <PropertyRef Name="Stt1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SAP_OPCModelStoreContainer">
+          <EntitySet Name="tbl_MauInPhieuNhapDetail" EntityType="Self.tbl_MauInPhieuNhapDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_MauInPhieuNhapXuong" EntityType="Self.tbl_MauInPhieuNhapXuong" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tbl_MauInPhieuNhapDetail_tbl_MauInPhieuNhapXuong" Association="Self.FK_tbl_MauInPhieuNhapDetail_tbl_MauInPhieuNhapXuong">
+            <End Role="tbl_MauInPhieuNhapXuong" EntitySet="tbl_MauInPhieuNhapXuong" />
+            <End Role="tbl_MauInPhieuNhapDetail" EntitySet="tbl_MauInPhieuNhapDetail" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SAP_OPCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_MauInPhieuNhapDetail">
+          <Key>
+            <PropertyRef Name="Stt" />
+          </Key>
+          <Property Name="Stt" Type="Guid" Nullable="false" />
+          <Property Name="Stt1" Type="Guid" Nullable="false" />
+          <Property Name="Ma_Vt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ten_Vt" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="so_lo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="so_luong" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Dvt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ghi_chu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="So_Ct" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tbl_MauInPhieuNhapXuong" Relationship="Self.FK_tbl_MauInPhieuNhapDetail_tbl_MauInPhieuNhapXuong" FromRole="tbl_MauInPhieuNhapDetail" ToRole="tbl_MauInPhieuNhapXuong" />
+        </EntityType>
+        <EntityType Name="tbl_MauInPhieuNhapXuong">
+          <Key>
+            <PropertyRef Name="Stt" />
+          </Key>
+          <Property Name="Stt" Type="Guid" Nullable="false" />
+          <Property Name="So_Ct" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ngay_Ct" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Kho_Nhap" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tbl_MauInPhieuNhapDetail" Relationship="Self.FK_tbl_MauInPhieuNhapDetail_tbl_MauInPhieuNhapXuong" FromRole="tbl_MauInPhieuNhapXuong" ToRole="tbl_MauInPhieuNhapDetail" />
+        </EntityType>
+        <Association Name="FK_tbl_MauInPhieuNhapDetail_tbl_MauInPhieuNhapXuong">
+          <End Role="tbl_MauInPhieuNhapXuong" Type="Self.tbl_MauInPhieuNhapXuong" Multiplicity="1" />
+          <End Role="tbl_MauInPhieuNhapDetail" Type="Self.tbl_MauInPhieuNhapDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_MauInPhieuNhapXuong">
+              <PropertyRef Name="Stt" />
+            </Principal>
+            <Dependent Role="tbl_MauInPhieuNhapDetail">
+              <PropertyRef Name="Stt1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SAP_OPCEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_MauInPhieuNhapDetail" EntityType="Self.tbl_MauInPhieuNhapDetail" />
+          <EntitySet Name="tbl_MauInPhieuNhapXuong" EntityType="Self.tbl_MauInPhieuNhapXuong" />
+          <AssociationSet Name="FK_tbl_MauInPhieuNhapDetail_tbl_MauInPhieuNhapXuong" Association="Self.FK_tbl_MauInPhieuNhapDetail_tbl_MauInPhieuNhapXuong">
+            <End Role="tbl_MauInPhieuNhapXuong" EntitySet="tbl_MauInPhieuNhapXuong" />
+            <End Role="tbl_MauInPhieuNhapDetail" EntitySet="tbl_MauInPhieuNhapDetail" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SAP_OPCModelStoreContainer" CdmEntityContainer="SAP_OPCEntities">
+          <EntitySetMapping Name="tbl_MauInPhieuNhapDetail">
+            <EntityTypeMapping TypeName="SAP_OPCModel.tbl_MauInPhieuNhapDetail">
+              <MappingFragment StoreEntitySet="tbl_MauInPhieuNhapDetail">
+                <ScalarProperty Name="Stt" ColumnName="Stt" />
+                <ScalarProperty Name="Stt1" ColumnName="Stt1" />
+                <ScalarProperty Name="Ma_Vt" ColumnName="Ma_Vt" />
+                <ScalarProperty Name="Ten_Vt" ColumnName="Ten_Vt" />
+                <ScalarProperty Name="so_lo" ColumnName="so_lo" />
+                <ScalarProperty Name="so_luong" ColumnName="so_luong" />
+                <ScalarProperty Name="Dvt" ColumnName="Dvt" />
+                <ScalarProperty Name="ghi_chu" ColumnName="ghi_chu" />
+                <ScalarProperty Name="So_Ct" ColumnName="So_Ct" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_MauInPhieuNhapXuong">
+            <EntityTypeMapping TypeName="SAP_OPCModel.tbl_MauInPhieuNhapXuong">
+              <MappingFragment StoreEntitySet="tbl_MauInPhieuNhapXuong">
+                <ScalarProperty Name="Stt" ColumnName="Stt" />
+                <ScalarProperty Name="So_Ct" ColumnName="So_Ct" />
+                <ScalarProperty Name="Ngay_Ct" ColumnName="Ngay_Ct" />
+                <ScalarProperty Name="Kho_Nhap" ColumnName="Kho_Nhap" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

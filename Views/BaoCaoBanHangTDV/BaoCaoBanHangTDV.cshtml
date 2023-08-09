@@ -302,10 +302,12 @@
         .data_table {
             width: max-content;
         }
+
         h5 {
             text-align: center;
             font-size: 15px;
         }
+
         .text-loading {
             position: fixed;
             bottom: 10px;
@@ -323,6 +325,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0/js/bootstrap-select.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
     <script type="text/javascript" src="Scripts/table2excel.js"></script>
 
 
@@ -566,6 +570,16 @@
         window.addEventListener("load", () => {
             // Hide the loader after the page is loaded
             hideLoader();
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("thead tr").sortable({
+                axis: "x",
+                containment: "parent",
+                tolerance: "pointer",
+                cursor: "move"
+            }).disableSelection();
         });
     </script>
 
