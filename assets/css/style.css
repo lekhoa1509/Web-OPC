@@ -231,7 +231,7 @@ p {
 /* ==== Data table  = End  ===== */
 @media (max-width:1920px){
     .data_table {
-        margin-left: 200px;
+        margin-left: 150px;
     }
     .box-chart {
         width: 100%;
@@ -242,57 +242,71 @@ p {
     button.submit {
         width: 150px;
     }
-    
-}
-@media (max-width: 1200px) {
-    .data_table {
-        margin-left: 150px;
-    }
-    .button-nt {
-        margin-left: 150px;
-    }
-    button.submit {
-        width: 150px;
-    }
-}
-
-@media (max-width: 900px){
-    .data_table {
-        margin-left: 200px;
-    }
-    .button-nt {
-        margin-left: 200px;
-    }
-    button.submit {
-        width: 150px;
-    }
-}
-
-@media (max-width: 600px){
-    .data_table {
-        margin-left: 200px;
-    }
-
-    button.submit {
-        width: 150px;
-    }
-    @media (max-width: 414px) {
+    @media (max-width: 1200px) {
         .data_table {
-            margin-left: 200px;
-        }
-        h4{
-            font-size: 20px;
-        }
-        h5{
-            font-size: 15px;
+            margin-left: 150px;
         }
 
-     
+        .button-nt {
+            margin-left: 150px;
+        }
+
         button.submit {
             width: 150px;
         }
+
+        @media (max-width: 900px) {
+            .data_table {
+                margin-left: 150px;
+            }
+
+            .button-nt {
+                margin-left: 200px;
+            }
+
+            button.submit {
+                width: 150px;
+            }
+            @media (max-width: 760px){
+                .data_table{
+                    margin-left:50px;
+                }
+            }
+            @media (max-width: 600px) {
+                .data_table {
+                    margin-left: 150px;
+                }
+
+                button.submit {
+                    width: 150px;
+                }
+
+                @media (max-width: 414px) {
+                    .data_table {
+                        margin-left: 150px;
+                    }
+
+                    h4 {
+                        font-size: 20px;
+                    }
+
+                    h5 {
+                        font-size: 15px;
+                    }
+
+
+                    button.submit {
+                        width: 150px;
+                    }
+                }
+            }
+        }
     }
 }
+
+
+
+
 
 
 

@@ -237,6 +237,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\StudentMarkDetails.cs" />
     <Compile Include="Models\Chart.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\MauInChungTu.Context.cs">
@@ -973,6 +974,8 @@
     <Content Include="Views\DanhMuc\ViewDanhMucKH_FillCN.cshtml" />
     <Content Include="Views\MauInChungTu\MauInNLCB.cshtml" />
     <Content Include="Views\MauInChungTu\Index.cshtml" />
+    <Content Include="Views\DoanhThuChiNhanh\DoanhThuChiNhanh_Admin_Fill.cshtml" />
+    <Content Include="Views\DoanhThuChiNhanh\DoanhThuChiNhanh_Admin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
