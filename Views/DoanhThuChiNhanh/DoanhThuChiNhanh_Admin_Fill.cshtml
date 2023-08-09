@@ -115,7 +115,7 @@
 
         .submit {
             height: 50px;
-        width: 100px;
+  
             background-color: silver;
             border: none;
             color: cadetblue;
@@ -350,7 +350,7 @@
             z-index: 1;
             background-color: rgba(255, 255, 255, 0.9);  Background color for the span 
             padding: 5px 10px;
-            display: none;  Hide the span element initially 
+            display: none;  
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -387,11 +387,11 @@
         <div class="logo-details">
 
         </div>
-        <ul class="nav-links" style="justify-content: center; min-width:200px;  max-width: 800px; width:100%;">
+        <ul class="nav-links" style="justify-content: center;display:flex">
             <li>
                 <form id="dateForm" action="DoanhThuChiNhanh_Admin" method="post" onsubmit="handleFormSubmit(event)">
                     <div id="locBC">
-                        <span id="spanText" class="text-loading">[usp_BaoCaoBanHangTDV_SAP]</span>
+                        <span id="spanText" class="text-loading">[usp_BaoCaoDoanhThuCN_SAP]</span>
                         <a>Từ Ngày</a><br /><br />
                         <input class="tu_ngay" placeholder="Từ Ngày" id="tu_ngay" name="From_date" type="date" format="YYYY-MM-DD" value="@Request.QueryString["From_date"]" />
                         <script>$("#tu_ngay").datetimepicker({ timepicker: false, format: 'Y-m-d' });</script><br /><br />
@@ -412,7 +412,7 @@
         <a href="/Home/About">
             <img src="~/assets/images/logo.png" alt="" class="img-fluid">
         </a>
-        <h4>Báo Cáo Doanh Thu Chi Nhánh Admin</h4>
+        <h4>Báo Cáo Doanh Thu Chi Nhánh</h4>
     </header>
     <!-- =======  Data-Table  = Start  ========================== -->
 

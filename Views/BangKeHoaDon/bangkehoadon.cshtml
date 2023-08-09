@@ -310,6 +310,68 @@
             padding: 5px 10px;
             display: none; /* Hide the span element initially */
         }
+        .custom-checkbox {
+            margin-top: 10px;
+            display: inline-block;
+            position: relative;
+            padding-left: 30px;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+            .custom-checkbox input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+            }
+
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            border: 2px solid black;
+            background-color: #ffffff;
+        }
+
+        .custom-checkbox:hover input ~ .checkmark {
+            background-color: #ccc;
+        }
+
+        .custom-checkbox input:checked ~ .checkmark {
+            background-color: #2196F3;
+        }
+
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        .custom-checkbox input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        .custom-checkbox .checkmark:after {
+            left: 9px;
+            top: 5px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            transform: rotate(45deg);
+        }
+
+        .checkContainer {
+            height: 300px;
+            overflow: auto;
+        }
+
+            .checkContainer::-webkit-scrollbar {
+                width: 0.2em;
+                background-color: transparent;
+            }
     </style>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -343,27 +405,96 @@
         <div class="logo-details">
 
         </div>
-        <ul class="nav-links" style="display: flex; justify-content: center;">
+        <ul class="nav-links" style="justify-content: center; display:flex;margin-left:10px">
             <li>
                 <form id="dateForm" action="bangkehoadon" method="post" onsubmit="handleFormSubmit(event)">
-                    <!-- Các phần còn lại, giữ nguyên -->
-                    <div class="container form">
-                        <div class="locBC">
-
-                            <div>
-                                <a>Từ Ngày</a><br /><br />
-                                <!-- Cập nhật kiểu đầu vào thành "date" -->
-                                <input class="tu_ngay" placeholder="Từ Ngày" id="tu_ngay" name="From_date" type="date" value="@Request.QueryString["From_date"]" /><br /><br />
-                                <a>Đến Ngày</a><br /><br />
-                                <!-- Cập nhật kiểu đầu vào thành "date" -->
-                                <input class="den_ngay" id="den_ngay" placeholder=" Đến Ngày" name="To_date" type="date" value="@Request.QueryString["To_date"]" /><br /><br />
-                            </div>
-                            <div>
-                                <!-- Thêm nút "Chạy Báo Cáo" -->
-                                <button class="submit" type="submit" onclick="runReport()"> Chạy Báo Cáo </button>
-                            </div>
-                        </div>
+                    <div id="locBC">
+                        <span id="spanText" class="text-loading">[usp_BaoCaoDoanhThuCN_SAP]</span>
+                        <a>Từ Ngày</a><br /><br />
+                        <input class="tu_ngay" placeholder="Từ Ngày" id="tu_ngay" name="From_date" type="date" format="YYYY-MM-DD" value="@Request.QueryString["From_date"]" />
+                        <script>$("#tu_ngay").datetimepicker({ timepicker: false, format: 'Y-m-d' });</script><br /><br />
+                        <a>Đến Ngày</a><br /><br />
+                        <input class="den_ngay" id="den_ngay" placeholder=" Đến Ngày" name="To_date" type="DATE" format="YYYY-MM-DD" value="@Request.QueryString["To_date"]" /><br /><br />
+                        <script>$("#den_ngay").datetimepicker({ timepicker: false, format: 'Y-m-d' });</script>
                     </div>
+
+                    <div class="checkContainer">
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="myCheckbox" value="option1" checked>
+                            <span class="checkmark"></span>
+                            Ngày Chứng Từ
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="myCheckbox" value="option1" checked>
+                            <span class="checkmark"></span>
+                            Số Chứng Từ
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="myCheckbox" value="option1" checked>
+                            <span class="checkmark"></span>
+                            Mã Đối Tượng
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="myCheckbox" value="option1" checked>
+                            <span class="checkmark"></span>
+                            Tên Đối Tượng
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="myCheckbox" value="option1" checked>
+                            <span class="checkmark"></span>
+                            Mã Vật Tư
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="myCheckbox" value="option1" checked>
+                            <span class="checkmark"></span>
+                            Tên Vật Tư
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="myCheckbox" value="option1" checked>
+                            <span class="checkmark"></span>
+                            Mã KM
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="myCheckbox" value="option1" checked>
+                            <span class="checkmark"></span>
+                            Discount
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="myCheckbox" value="option1" checked>
+                            <span class="checkmark"></span>
+                            Loại Vật Tư
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="myCheckbox" value="option1" checked>
+                            <span class="checkmark"></span>
+                            Số Lượng
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="myCheckbox" value="option1" checked>
+                            <span class="checkmark"></span>
+                            Tiền(-VAT)
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="myCheckbox" value="option1" checked>
+                            <span class="checkmark"></span>
+                            Tiền(+VAT)
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="myCheckbox" value="option1" checked>
+                            <span class="checkmark"></span>
+                            Tình Trạng
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="myCheckbox" value="option1" checked>
+                            <span class="checkmark"></span>
+                            Mã DVCS
+                        </label>
+                    </div>
+
+                    <div>
+                        <button class="submit" type="submit" onclick="runReport()"> Chạy Báo Cáo </button>
+                    </div>
+
                 </form>
             </li>
         </ul>
@@ -409,7 +540,7 @@
                                     <td>@row2["ma_dt"]</td>
                                     <td>@row2["ten_dt"]</td>
                                     <td>@row2["ma_vt"]</td>
-                                    <td>@row2["ten_vt"]</td>        
+                                    <td>@row2["ten_vt"]</td>
                                     <td>@row2["Ma_Km"]</td>
                                     <td>@row2["Discount"]</td>
                                     <td>@row2["Loai_Vt"]</td>
@@ -440,6 +571,17 @@
     <script src="~/assets/js/custom.js"></script>
     <script>
         function runReport() {
+            const uncheckedCheckboxIndexes = [];
+            const checkboxes = document.querySelectorAll('input[name="myCheckbox"]');
+
+            checkboxes.forEach((checkbox, index) => {
+                if (!checkbox.checked) {
+                    uncheckedCheckboxIndexes.push(index);
+                }
+            });
+
+            // Lưu trạng thái vào Local Storage
+            localStorage.setItem('uncheckedCheckboxIndexes', JSON.stringify(uncheckedCheckboxIndexes));
             // Hiển thị thẻ span có id là "spanText"
             const spanElement = document.getElementById("spanText");
             spanElement.style.display = "block";
@@ -494,10 +636,71 @@
         window.addEventListener("load", () => {
             // Hide the loader after the page is loaded
             hideLoader();
+            applyCheckboxAndColumnState();
         });
 
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const checkboxes = document.querySelectorAll('input[name="myCheckbox"]');
+            const table = document.getElementById('example');
 
+            checkboxes.forEach((checkbox, index) => {
+                checkbox.addEventListener('change', function () {
+                    const columnIndex = index;
+                    const rows = table.querySelectorAll('tr');
+
+                    rows.forEach(row => {
+                        const cells = row.querySelectorAll('td, th');
+                        cells[columnIndex].style.display = this.checked ? '' : 'none';
+                    });
+                });
+            });
+        });
+    </script>
+    <script>
+        function applyCheckboxAndColumnState() {
+            const checkboxes = document.querySelectorAll('input[name="myCheckbox"]');
+            const table = document.getElementById('example');
+
+            checkboxes.forEach((checkbox, index) => {
+                const columnIndex = index;
+                const rows = table.querySelectorAll('tr');
+
+                if (!checkbox.checked) {
+                    rows.forEach(row => {
+                        const cells = row.querySelectorAll('td, th');
+                        cells[columnIndex].style.display = 'none';
+                    });
+                } else {
+                    rows.forEach(row => {
+                        const cells = row.querySelectorAll('td, th');
+                        cells[columnIndex].style.display = '';
+                    });
+                }
+            });
+        }
+        // Hàm lấy trạng thái checkbox từ Local Storage và ẩn cột
+        function applyUncheckedCheckboxState() {
+            const uncheckedCheckboxIndexes = JSON.parse(localStorage.getItem('uncheckedCheckboxIndexes'));
+            if (uncheckedCheckboxIndexes) {
+
+                const checkboxes = document.querySelectorAll('input[name="myCheckbox"]');
+
+                uncheckedCheckboxIndexes.forEach(index => {
+                    checkboxes[index].checked = false;
+                });
+            }
+        }
+
+        // Áp dụng trạng thái checkbox đã bỏ chọn từ Local Storage khi trang được tải
+        document.addEventListener('DOMContentLoaded', function () {
+            // Áp dụng trạng thái của các checkbox đã bỏ chọn
+            applyUncheckedCheckboxState();
+        });
+
+
+    </script>
 
 
 </body>

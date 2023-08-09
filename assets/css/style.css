@@ -16,22 +16,22 @@ html {
     scroll-behavior: smooth;
 }
 
-html ::-webkit-scrollbar {
-    width: 10px;
-    background-color: #111d2c;
-    cursor: pointer;
-}
+    html ::-webkit-scrollbar {
+        width: 10px;
+        background-color: #111d2c;
+        cursor: pointer;
+    }
 
-html ::-webkit-scrollbar-thumb {
-    background: linear-gradient(160deg, #3c76ba, #1e428b);
-    width: 10px;
-    border-radius: 5px;
-}
+    html ::-webkit-scrollbar-thumb {
+        background: linear-gradient(160deg, #3c76ba, #1e428b);
+        width: 10px;
+        border-radius: 5px;
+    }
 
-html ::-webkit-scrollbar-thumb:hover {
-    background: #379dc3;
-    cursor: pointer;
-}
+        html ::-webkit-scrollbar-thumb:hover {
+            background: #379dc3;
+            cursor: pointer;
+        }
 
 body {
     background: #eee;
@@ -65,29 +65,29 @@ label,
     padding: 0;
 }
 
-h1::selection,
-h2::selection,
-h3::selection,
-h4::selection,
-h5::selection,
-h6::selection,
-p::selection,
-a::selection,
-ol::selection,
-ul::selection,
-li::selection,
-img::selection,
-span::selection,
-input::selection,
-form::selection,
-label::selection,
-.btn::selection,
-.navbar::selection,
-.navbar-brand::selection {
-    color: #fff;
-    background: #187fcc;
-    text-shadow: 1px 1px 1px #333;
-}
+    h1::selection,
+    h2::selection,
+    h3::selection,
+    h4::selection,
+    h5::selection,
+    h6::selection,
+    p::selection,
+    a::selection,
+    ol::selection,
+    ul::selection,
+    li::selection,
+    img::selection,
+    span::selection,
+    input::selection,
+    form::selection,
+    label::selection,
+    .btn::selection,
+    .navbar::selection,
+    .navbar-brand::selection {
+        color: #fff;
+        background: #187fcc;
+        text-shadow: 1px 1px 1px #333;
+    }
 
 ol,
 ul,
@@ -172,12 +172,12 @@ p {
     text-align: center;
 }
 
-.totop:hover {
-    line-height: 40px;
-    color: #fff;
-    background: #194274;
-    text-shadow: 0 0 5px #000;
-}
+    .totop:hover {
+        line-height: 40px;
+        color: #fff;
+        background: #194274;
+        text-shadow: 0 0 5px #000;
+    }
 
 /* ==== Scoll  = End ===== */
 
@@ -195,21 +195,23 @@ p {
     z-index: 9999;
 }
 
-.header_part h4 {
-    color: #fff;
-    padding: 10px;
-}
+    .header_part h4 {
+        color: #fff;
+        padding: 10px;
+    }
 
-.header_part img {
-    float: left;
-    height: 60px;
-    border-radius: 50%;
-}
+    .header_part img {
+        float: left;
+        height: 60px;
+        border-radius: 50%;
+    }
 
 /* ==== Header  = End ===== */
 
 
-
+.barchart1 {
+    height: 50px;
+}
 
 
 
@@ -220,60 +222,78 @@ p {
     padding: 15px;
     box-shadow: 1px 3px 5px #aaa;
     border-radius: 5px;
-   }
-
-.data_table .btn{
-    padding: 5px 10px;
-    margin: 10px 3px 10px 0;
 }
 
-
-/* ==== Data table  = End  ===== */
-@media (max-width:1920px){
-    .data_table {
-        margin-left: 150px;
+    .data_table .btn {
+        padding: 5px 10px;
+        margin: 10px 3px 10px 0;
     }
+
+@media (min-width: 1441px) {
+    .data_table {
+        margin-left: 120px;
+    }
+}
+
+@media (min-width: 1921px) {
+    .data_table {
+        margin-left: 0;
+    }
+}
+/* ==== Data table  = End  ===== */
+@media (max-width:1920px) {
+    .data_table {
+        margin-left: 0;
+    }
+
     .box-chart {
         width: 100%;
     }
-    .button-nt{
-        margin-left:200px;
+
+    .button-nt {
+        margin-left: 200px;
     }
-    button.submit {
-        width: 150px;
-    }
-    @media (max-width: 1200px) {
+    /*    button.submit {
+        width: 200px;
+    }*/
+    @media (max-width: 1760px) {
         .data_table {
-            margin-left: 150px;
+            margin-left: 0px;
         }
 
-        .button-nt {
-            margin-left: 150px;
+        .row-container {
+            height: 350px;
+            width: 1700px;
         }
 
-        button.submit {
-            width: 150px;
-        }
-
-        @media (max-width: 900px) {
+        @media(max-width:1660px) {
             .data_table {
-                margin-left: 150px;
+                margin-left: 100px;
             }
 
-            .button-nt {
-                margin-left: 200px;
+            .row-container {
+                height: 350px;
+                width: 1700px;
+            }
+        }
+
+        @media (max-width: 1440px) {
+            .data_table {
+                margin-left: 120px;
             }
 
-            button.submit {
-                width: 150px;
+            .row-container {
+                height: 350px;
+                width: 1700px;
             }
-            @media (max-width: 760px){
-                .data_table{
-                    margin-left:50px;
-                }
-            }
-            @media (max-width: 600px) {
+
+            @media (max-width: 1200px) {
+                .row
                 .data_table {
+                    margin-left: 170px;
+                }
+
+                .button-nt {
                     margin-left: 150px;
                 }
 
@@ -281,41 +301,94 @@ p {
                     width: 150px;
                 }
 
-                @media (max-width: 414px) {
+                .row-container {
+                    height: 350px;
+                    width: 1700px;
+                }
+
+                @media (max-width: 992px) {
                     .data_table {
-                        margin-left: 150px;
+                        margin-left: 70px;
                     }
 
-                    h4 {
-                        font-size: 20px;
+                    .row-container {
+                        height: 280px;
+                        width: 1600px;
                     }
 
-                    h5 {
-                        font-size: 15px;
-                    }
+                    @media (max-width: 900px) {
+                        .data_table {
+                            margin-left: 150px;
+                        }
+
+                        .button-nt {
+                            margin-left: 200px;
+                        }
+
+                        button.submit {
+                            width: 150px;
+                        }
+
+                        .row-container {
+                            height: 280px;
+                            width: 1600px;
+                        }
+
+                        @media (max-width: 760px) {
+                            .data_table {
+                                margin-left: 150px;
+                            }
+
+                            .row-container {
+                                height: 260px;
+                                width: 1400px;
+                            }
+
+                            @media (max-width: 600px) {
+                                .data_table {
+                                    margin-left: 170px;
+                                }
+
+                                .row-container {
+                                    height: 250px;
+                                    width: 1200px;
+                                }
+
+                                button.submit {
+                                    width: 150px;
+                                }
+
+                                @media (max-width: 414px) {
+                                    .data_table {
+                                        margin-left: 170px;
+                                    }
+
+                                    .row-container {
+                                        height: 250px;
+                                        width: 1000px;
+                                    }
+                                    /*.row-container canvas{
+                                    height:100%;
+                                    width:100%;
+                                }*/
+                                    h4 {
+                                        font-size: 20px;
+                                    }
+
+                                    h5 {
+                                        font-size: 15px;
+                                    }
 
 
-                    button.submit {
-                        width: 150px;
+                                    button.submit {
+                                        width: 150px;
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
