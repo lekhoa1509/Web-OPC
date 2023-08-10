@@ -7,8 +7,7 @@ namespace web4.Models
 {
     public class MauInChungTu
     {
-        public System.Guid Stt { get; set; }
-        public System.Guid Stt1 { get; set; }
+       
         public string So_Ct { get; set; }
         public string So_lo { get; set; }
         public string Ma_vt { get; set; }
@@ -17,5 +16,7 @@ namespace web4.Models
         public string Ngay_Ct { get; set; }
         public string Ma_Kho_Nhap { get; set; }
         public decimal So_luong { get; set; }
+        public string From_date { get; set; }
+        public string To_date { get; set; }
     }
 }

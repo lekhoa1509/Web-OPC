@@ -1,6 +1,7 @@
 ﻿
-
-@{ ViewBag.Title = "Mẫu In Chứng Từ"; }
+@{
+    ViewBag.Title = "Bao Cao Tien Ve TDV";
+}
 @using System.Data;
 <!DOCTYPE html>
 <html lang="en">
@@ -409,45 +410,14 @@
                                 <th>Số Ct</th>
                                 <th>Ngày Nhập</th>
                                 <th>Kho Nhập/Xuất</th>
-                                <th>In</th>
-
-
-
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (DataRow row2 in Model.Tables[0].Rows)
-                            {
-                <tr class="table1-data" data-soct="@row2["So_Ct"]" data-ngay="@row2["ngay"]" data-thang="@row2["thang"]" data-nam="@row2["Nam"]">
-                    <td><span class="material-symbols-outlined expandable-icon">arrow_drop_down</span></td>
-                    <td>@row2["So_Ct"]</td>
-                    <td>@row2["ngay_ct"]</td>
-                    <td>@row2["Kho_Nhap_Xuat"]</td>
-                    <td onclick="showLoader()"><span class="material-symbols-outlined print-icon" >print</span></td>
-                    <td style="display:none"></td>
-                    <td style="display:none"></td>
-                    <td style="display:none"></td>
-
-                </tr>
-}
-
-
-                            @foreach (DataRow row3 in Model.Tables[1].Rows)
-                            {
-                <tr class="table2-data" data-soct="@row3["So_Ct"]" style="display: none;">
-
-                    <td></td>
-                    <td>@row3["So_Ct"]</td>
-                    <td>@row3["Ma_vt"]</td>
-                    <td>@row3["Ten_vt"]</td>
-                    <td>@row3["Dvt"]</td>
-                    <td>@row3["So_Luong_Nhap"]</td>
-                    <td>@row3["So_lo"]</td>
-                    <td></td>
-
-                </tr>
-}
-
+                         
                         </tbody>
 
 
@@ -488,8 +458,6 @@
             // Chuyển hướng tới URL mới với các giá trị ngày đã chọn làm các tham số truy vấn
             window.location.href = actionUrl;
         }
-
-
         function showLoader() {
             const loader = document.querySelector(".loader");
             loader.classList.remove("loader-hidden");
@@ -530,27 +498,31 @@
 
     <!-- Trong thẻ script -->
     <script>
-
         document.addEventListener('DOMContentLoaded', function () {
-            const table1Rows = document.querySelectorAll('.table1-data');
-            const table2Rows = document.querySelectorAll('.table2-data');
+            console.log('DOMContentLoaded event triggered');
 
-            table1Rows.forEach(table1Row => {
-                const dataSoct = table1Row.getAttribute('data-soct');
-                const relatedTable2Rows = document.querySelectorAll(`.table2-data[data-soct="${dataSoct}"]`);
+            const expandableIcons = document.querySelectorAll('.table1-data .expandable-icon');
 
-                relatedTable2Rows.forEach(table2Row => {
-                    table1Row.parentElement.insertBefore(table2Row, table1Row.nextElementSibling);
-                });
+            expandableIcons.forEach(icon => {
+                icon.addEventListener('click', function () {
+                    const parentRow = icon.closest('.table1-data'); // Tìm phần tử cha <tr>
+                    const soCt = parentRow.getAttribute('data-soct');
+                    const rowsInTable2 = document.querySelectorAll(`.table2-data[data-soct="${soCt}"]`);
 
-                table1Row.addEventListener('click', function () {
-                    relatedTable2Rows.forEach(row => {
-                        row.style.display = row.style.display === 'none' ? 'table-row' : 'none';
+                    rowsInTable2.forEach(row => {
+                        if (row.style.display === 'none' || row.style.display === '') {
+                            row.style.display = 'table-row';
+                            icon.classList.remove('collapsed');
+                            icon.classList.add('expanded');
+                        } else {
+                            row.style.display = 'none';
+                            icon.classList.remove('expanded');
+                            icon.classList.add('collapsed');
+                        }
                     });
                 });
             });
         });
-
 
         document.addEventListener('DOMContentLoaded', function () {
             const actionIcons = document.querySelectorAll('.print-icon');
