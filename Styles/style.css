@@ -14,13 +14,14 @@
       color: #585858;
   }
 
-  * {
-      box-sizing: border-box;
-      font-family: /*--
+* {
+    box-sizing: border-box;
+   /*--
     Author: W3layouts
     Author URL: http://w3layouts.com
 --*/
-  /* reset code */
+    /* reset code */
+}
   html {
       scroll-behavior: smooth;
   }
@@ -469,8 +470,8 @@
       to {
           transform: translateY(-2000px);
       }
-  };
   }
+  
 
   /*  wrapper */
   .wrapper {

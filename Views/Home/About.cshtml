@@ -18,13 +18,13 @@
         <div class="logo-details">
             <img src="~/Images/opc.png">
             @*<i class='bx bxl-c-plus-plus'></i>*@
-            <span class="logo_name"><h4 style="font-family:Century">OPC</h4></span>
+            <span class="logo_name">OPC</span>
         </div>
         <ul class="nav-links">
             <li>
                 <a href="#" class="active">
                     <i class='bx bx-grid-alt'></i>
-                    <span class="links_name">Dashboard</span>
+                    <span class="links_name">Trang chủ</span>
                 </a>
             </li>
 
@@ -69,7 +69,7 @@
         <nav>
             <div class="sidebar-button">
                 <i class='bx bx-menu sidebarBtn'></i>
-                <span class="dashboard">Dashboard</span>
+                <span class="dashboard">Trang chủ</span>
             </div>
             <div class="search-box">
                 <input type="text" placeholder="Search...">
@@ -113,19 +113,51 @@
                     </div>
 
                 </div>
-                <div class="box">
-                    <div class="right-side">
-                        <div class="box-topic" style="font-size:medium;font-weight:600;color:green">Doanh Thu Thực Hiện ETC</div>
-                        <div class="number">Chưa Cập Nhật</div>
-                        <div class="indicator">
 
-                        </div>
-                    </div>
-
+                <div class="box" style="overflow:auto;width:400px;height:150px">
+                    <table id="product" style="width:500px;height:160px; border-collapse: collapse;overflow:scroll">
+                        <!-- Đặt kích thước rộng hơn nội dung để tạo thanh cuộn ngang -->
+                        <tr>
+                            <th colspan="4">Top 10 sản phẩm bán chạy</th>
+                        </tr>
+                        <tr class="title" style="background-color:black;color:white">
+                            <td style="padding-right:10px">STT</td>
+                            <td>Mã Sản Phẩm</td>
+                            <td>Tên Sản Phẩm</td>
+                            <td>Giá</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>100001</td>
+                            <td>Product 1</td>
+                            <td>120000</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>100002</td>
+                            <td>Product 2</td>
+                            <td>150000</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>100003</td>
+                            <td>Product 3</td>
+                            <td>180000</td>
+                        </tr>
+                        <!-- Thêm nhiều dòng dữ liệu khác ở đây -->
+                    </table>
                 </div>
+
+
+
+
+
+
+
+            </div>
             </div>
 
-        </div>
+      
     </section>
 
     <script>

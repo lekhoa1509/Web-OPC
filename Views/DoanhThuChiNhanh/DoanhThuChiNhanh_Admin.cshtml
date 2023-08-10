@@ -76,10 +76,15 @@
 
 
         canvas {
-            width: 200px;
-            height: 100px;
+            width: 75%;
+            height: 25vh;
             text-align: center;
         }
+
+            canvas#barchart {
+                width: 50%;
+                height: 25%;
+            }
 
         .tu_ngay {
             height: 35px;
@@ -303,6 +308,7 @@
 
         .data_table {
             width: max-content;
+            
         }
 
         .bieu_do {
@@ -359,10 +365,7 @@
             justify-content: space-between; /* Cách các thẻ con cách đều nhau */
             /*   align-items: flex-start;*/
             margin-left: 500px;
-            width: 100%;
-           
             /*     max-width: 100%;*/
-    
             /*  flex-direction: row;*/
             /* Chiếm toàn bộ chiều rộng của màn hình */
         }
@@ -379,7 +382,6 @@
             display: none; /* Hide the span element initially */
         }
     </style>
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -409,6 +411,7 @@
 
 
 
+
 </head>
 <!-- =============== Design & Develop By = MJ MARAZ   ====================== -->
 
@@ -420,11 +423,11 @@
         <div class="logo-details">
 
         </div>
-        <ul class="nav-links" style="justify-content: center; min-width:200px;  max-width: 800px; width:100%;">
+        <ul class="nav-links" style="justify-content: center;display:flex">
             <li>
                 <form id="dateForm" action="DoanhThuChiNhanh_Admin" method="post" onsubmit="handleFormSubmit(event)">
                     <div id="locBC">
-                        <span id="spanText" class="text-loading">[usp_BaoCaoBanHangTDV_SAP]</span>
+                        <span id="spanText" class="text-loading">[usp_BaoCaoDoanhThuCN_SAP]</span>
                         <a>Từ Ngày</a><br /><br />
                         <input class="tu_ngay" placeholder="Từ Ngày" id="tu_ngay" name="From_date" type="date" format="YYYY-MM-DD" value="@Request.QueryString["From_date"]" />
                         <script>$("#tu_ngay").datetimepicker({ timepicker: false, format: 'Y-m-d' });</script><br /><br />
@@ -445,20 +448,20 @@
         <a href="/Home/About">
             <img src="~/assets/images/logo.png" alt="" class="img-fluid">
         </a>
-        <h4>Báo Cáo Doanh Thu Chi Nhánh Admin</h4>
+        <h4>Báo Cáo Doanh Thu Chi Nhánh</h4>
         <h5 style="color: white">Từ @Request.QueryString["From_date"] đến @Request.QueryString["To_date"]</h5>
     </header>
-    <!-- =======  Data-Table  = Start  ========================== -->
+     @*=======  Data-Table  = Start  ==========================*@ 
+    <div class="full-row">
+            <div class="row-container">
+                <canvas id="barchart" style="max-width:100%;width:100%;height:100%;max-height:100%"></canvas>
+            </div>
+        </div>
 
-    <div class="row-container">
 
-        <canvas id="barchart"style="height:50px"></canvas>
-    </div>
     <div class="container">
 
         <div class="row">
-
-            @*<div id="chartContainer1" class="box-chart"></div>*@
             <div class="col-12">
                 <div class="data_table">
                     <table id="example" class="table table-striped table-bordered">
@@ -537,12 +540,12 @@
     <script src="~/assets/js/vfs_fonts.js"></script>
     <script src="~/assets/js/custom.js"></script>
     <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    @*<script src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-            crossorigin="anonymous"></script>
+            crossorigin="anonymous"></script>*@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
 
-   
+
     <script>
         function runReport() {
             // Hiển thị thẻ span có id là "spanText"
@@ -550,7 +553,7 @@
             spanElement.style.display = "block";
         }
     </script>
-   
+
     <script>
         function handleFormSubmit(event) {
             event.preventDefault();
@@ -596,18 +599,19 @@
         var Sui = [];
     @foreach (DataRow row2 in Model.Tables[0].Rows)
 {
-    @: OPC.push(@row2["Tyle_OPC"]);
-       @: Con.push(@row2["Tyle_Con"]);
-          @: Tyle25.push(@row2["Tyle_25"]);
-             @: Phien.push(@row2["Tyle_Phien"]);
-                @: Sui.push(@row2["Tyle_Sui"]);
+  @: OPC.push({ y: @row2["Tyle_OPC"], indexLabel: "@row2["Tyle_OPC"]%" });
+    @: Con.push({ y: @row2["Tyle_Con"], indexLabel: "@row2["Tyle_Con"]%" });
+    @: Tyle25.push({ y: @row2["Tyle_25"], indexLabel: "@row2["Tyle_25"]%" });
+    @: Phien.push({ y: @row2["Tyle_Phien"], indexLabel: "@row2["Tyle_Phien"]%" });
+    @: Sui.push({ y: @row2["Tyle_Sui"], indexLabel: "@row2["Tyle_Sui"]%" });
+
 }
     var Con = {
         label: 'Tỷ lệ Cồn',
         data: Con,
         backgroundColor: 'rgb(255, 99, 132)',
         borderWidth: 0,
-        lineTension: 0,
+
     };
 
         var Tyle25 = {
@@ -644,6 +648,7 @@
     var chartOptions = {
         scales: {
             xAxes: [{
+                barThickness: 30,
                 barPercentage: 1,//Percent (0-1) of the available width each bar should
                 categoryPercentage: 0.6,//Percent (0-1) of the available width each category
 
@@ -656,6 +661,7 @@
                 }
             }],
         }
+
     };
 
     var barChart = new Chart(barCanvas, {
