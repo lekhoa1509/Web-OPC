@@ -1,4 +1,4 @@
-﻿
+﻿﻿
 
 @{ ViewBag.Title = "Mẫu In Chứng Từ"; }
 @using System.Data;
@@ -326,10 +326,11 @@
         .material-symbols-outlined {
             cursor: pointer;
         }
-       
+
         .hidden-row {
             display: none;
         }
+
         #myInput::placeholder {
             text-align: center;
         }
@@ -409,7 +410,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="container">
-                   
+
                     <span>Search: <input type="Text" name="" id="myInput" placeholder="Số Chứng Từ" onkeyup="searchFun()"></span>
                     <div class="search"></div>
                 </div>
@@ -431,34 +432,36 @@
                         <tbody>
                             @foreach (DataRow row2 in Model.Tables[0].Rows)
                             {
-                <tr class="table1-data" data-soct="@row2["So_Ct"]" data-ngay="@row2["ngay"]" data-thang="@row2["thang"]" data-nam="@row2["Nam"]">
-                    <td><span class="material-symbols-outlined expandable-icon">arrow_drop_down</span></td>
-                    <td>@row2["So_Ct"]</td>
-                    <td>@row2["ngay_ct"]</td>
-                    <td>@row2["Kho_Nhap_Xuat"]</td>
-                    <td onclick="showLoader()"><span class="material-symbols-outlined print-icon">print</span></td>
-                    <td style="display:none"></td>
-                    <td style="display:none"></td>
-                    <td style="display:none"></td>
+                                <tr class="table1-data" data-soct="@row2["So_Ct"]" data-ngay="@row2["ngay"]" data-thang="@row2["thang"]" data-nam="@row2["Nam"]">
+                                    <td><span class="material-symbols-outlined expandable-icon">arrow_drop_down</span></td>
+                                    <td>@row2["So_Ct"]</td>
+                                    <td>@row2["ngay_ct"]</td>
+                                    <td>@row2["Kho_Nhap_Xuat"]</td>
+                                    <td onclick="showLoader()"><span class="material-symbols-outlined print-icon">print</span></td>
+                                    <td style="display:none"></td>
+                                    <td style="display:none"></td>
+                                    <td style="display:none"></td>
 
 
-                </tr>}
+                                </tr>
+}
 
 
                             @foreach (DataRow row3 in Model.Tables[1].Rows)
                             {
-                <tr class="table2-data hidden-row" data-soct="@row3["So_Ct"]">
+                                <tr class="table2-data hidden-row" data-soct="@row3["So_Ct"]">
 
-                    <td></td>
-                    <td>@row3["So_Ct"]</td>
-                    <td>@row3["Ma_vt"]</td>
-                    <td>@row3["Ten_vt"]</td>
-                    <td>@row3["Dvt"]</td>
-                    <td>@row3["So_Luong_Nhap"]</td>
-                    <td>@row3["So_lo"]</td>
+                                    <td></td>
+                                    <td>@row3["So_Ct"]</td>
+                                    <td>@row3["Ma_vt"]</td>
+                                    <td>@row3["Ten_vt"]</td>
+                                    <td>@row3["Dvt"]</td>
+                                    <td>@row3["So_Luong_Nhap"]</td>
+                                    <td>@row3["So_lo"]</td>
 
 
-                </tr>}
+                                </tr>
+}
 
                         </tbody>
 
