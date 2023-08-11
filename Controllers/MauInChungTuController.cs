@@ -5,99 +5,98 @@ using System.Web;
 using web4.Models;
 using System.Web.Mvc;
 using System.Net;
+using System.Data.SqlClient;
+using System.Data;
+using Microsoft.AspNetCore.Mvc;
 
 namespace web4.Controllers
 {
     public class MauInChungTuController : Controller
     {
-        SAP_OPCEntities db = new SAP_OPCEntities();
-        // GET: MauInChungTu
-        public ActionResult Index()
+
+        SqlConnection con = new SqlConnection();
+        SqlCommand sqlc = new SqlCommand();
+        SqlDataReader dt;
+        // GET: BaoCaoTienVeCN
+       
+        public void connectSQL()
         {
-
-            List<tbl_MauInPhieuNhapXuong> OrderAndCustomerList = db.tbl_MauInPhieuNhapXuong.OrderByDescending(s => s.So_Ct).ToList();
-            return View(OrderAndCustomerList);
-
+            con.ConnectionString = "Data source= " + "118.69.109.109" + ";database=" + "SAP_OPC" + ";uid=sa;password=Hai@thong";
         }
 
-        [HttpPost]
-        public ActionResult Index(MauInChungTu model)
+        // GET: DanhMuc
+
+
+       
+        public ActionResult Index(MauInChungTu MauIn)
         {
-            if (model.So_Ct != "")
+            DataSet ds = new DataSet();
+            connectSQL();
+           
+            //string query = "exec usp_Vth_BC_BHCNTK_CN @_ngay_Ct1 = '" + Acc.From_date + "',@_Ngay_Ct2 ='"+ Acc.To_date+"',@_Ma_Dvcs='"+ Acc.Ma_DvCs_1+"'";
+            string Pname = "[usp_MauInChungTu_SAP]";
+            Response.Cookies["From_date"].Value = MauIn.From_date.ToString();
+            Response.Cookies["To_Date"].Value = MauIn.To_date.ToString();
+
+            using (SqlCommand cmd = new SqlCommand(Pname, con))
             {
-                tbl_MauInPhieuNhapDetail or = db.tbl_MauInPhieuNhapDetail.SingleOrDefault(x => x.So_Ct == model.So_Ct);
+                cmd.CommandTimeout = 950;
 
-                or.So_Ct = model.So_Ct;
-                or.Ma_Vt = model.Ma_vt;
-                or.so_lo = model.So_lo;
-                or.Ten_Vt = model.Ten_Vt;
-                or.Dvt = model.Dvt;
-                or.so_luong = model.So_luong;
-                db.SaveChanges();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+                
+                using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                {
+                    cmd.Parameters.AddWithValue("@_Tu_Ngay", MauIn.From_date);
+                    cmd.Parameters.AddWithValue("@_Den_Ngay", MauIn.To_date);
+                    sda.Fill(ds);
+
+                }
             }
-
-            return View(model);
+            return View(ds);
         }
-
-
-
-
-
-
-      
-
-      
-
-
-   
-
-
-
-      
-
-
-
-        // GET: Order/Edit/5
-        public ActionResult Edit(Guid? id)
+       
+        public ActionResult MauInNLCB(MauInChungTu MauIn)
         {
-            if (id == null)
+            DataSet ds = new DataSet();
+            connectSQL();
+
+            MauIn.So_Ct = Request.Cookies["SoCt"].Value;
+            
+            //string query = "exec usp_Vth_BC_BHCNTK_CN @_ngay_Ct1 = '" + Acc.From_date + "',@_Ngay_Ct2 ='"+ Acc.To_date+"',@_Ma_Dvcs='"+ Acc.Ma_DvCs_1+"'";
+            string Pname = "[usp_MauInChungTuDetail_SAP]";
+
+
+
+            using (SqlCommand cmd = new SqlCommand(Pname, con))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                cmd.CommandTimeout = 950;
+                
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                MauIn.From_date = Request.Cookies["From_date"].Value;
+                MauIn.To_date = Request.Cookies["To_Date"].Value;
+                con.Open();
+
+                using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                {
+
+
+                    cmd.Parameters.AddWithValue("@_Tu_Ngay", MauIn.From_date);
+                    cmd.Parameters.AddWithValue("@_Den_Ngay", MauIn.To_date);
+                    cmd.Parameters.AddWithValue("@_So_Ct", MauIn.So_Ct);
+                    
+
+                    sda.Fill(ds);
+
+                }
             }
-            tbl_MauInPhieuNhapDetail order = db.tbl_MauInPhieuNhapDetail.Find(id);
-            if (order == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.CustomerId = new SelectList(db.tbl_MauInPhieuNhapXuong, "So_ct", "Ngay_Ct", order.So_Ct);
-            return View(order);
+            return View(ds);
         }
-
-        // POST: Order/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-      
-      
-
-
-
-        // GET: Customer/Edit/5
-        public ActionResult EditCustomer(Guid? id)
+        public ActionResult MauInNLCB_Fill()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbl_MauInPhieuNhapXuong customer = db.tbl_MauInPhieuNhapXuong.Find(id);
-            if (customer == null)
-            {
-                return HttpNotFound();
-            }
-            return View(customer);
+            return View();      
         }
-
-        // POST: Customer/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
     }
 }
