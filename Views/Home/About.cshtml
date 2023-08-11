@@ -1,273 +1,189 @@
-﻿@{
-    ViewBag.Title = "OPC Bao Cao | OPCPHARMA";
+﻿@using System.Data;
+@{
+    ViewBag.Title = "About";
 }
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+
 <head>
     <meta charset="UTF-8">
     <title> OPC Bao Cao | OPCPHARMA </title>
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <link href="~/Styles/main.css" rel='stylesheet' type='text/css' media="all">
-    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">*@
+    <link rel="stylesheet" href="~/Styles/main.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <style>
-        a {
-            text-decoration: none;
-        }
-
-        .collapsed {
-            display: none;
-        }
-
-        .contentList {
-            display: none;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-
-    <div class="sidebar close">
+    <div class="sidebar">
         <div class="logo-details">
-            <img src="~/Images/opc.png" style="height:50px;width:50px;margin-left:10px">
-            <span class="logo_name" style="color: #da261f; font-family: 'Agency FB'; font-size: 40px;padding-left:10px">OPC</span>
+            <img src="~/Images/opc.png">
+            @*<i class='bx bxl-c-plus-plus'></i>*@
+            <span class="logo_name">OPC</span>
         </div>
         <ul class="nav-links">
-            <li  id="active">
-                <a href="/Home/About">
+            <li>
+                <a href="#" class="active">
                     <i class='bx bx-grid-alt'></i>
-                    <span class="link_name">Trang chủ</span>
+                    <span class="links_name">Trang chủ</span>
                 </a>
-                <ul class="sub-menu blank">
-                    <li><a class="link_name" href="#">Trang chủ</a></li>
-                </ul>
             </li>
-            <li>
-                <div class="iocn-link">
-                    <a href="/DanhMuc/DanhMuc">
-                        <i class='bx bx-collection'></i>
-                        <span class="link_name">Danh mục</span>
-                    </a>
-                    <ul class="sub-menu blank">
-                        <li><a class="link_name" href="/DanhMuc/DanhMuc">Danh mục</a></li>
-                    </ul>
-                    @*<i class='bx bxs-chevron-down arrow'></i>*@
-                </div>
-                <!--<ul class="sub-menu">
-                                    <li><a class="link_name" href="#">Danh mục</a></li>
-                                    <li>
-                                        @if (string.Equals(ViewBag.UserName, "admin", StringComparison.OrdinalIgnoreCase) ||
-                string.Equals(ViewBag.UserName, "opcmar001", StringComparison.OrdinalIgnoreCase))
-                                        {
-
-
-                                            <a href="/DanhMuc/ViewDanhMucKH_Fill" onclick="runReport()"> Khách hàng</a>
-                                        }
-                                        else if (string.Equals(ViewBag.UserName, "OPCHCM001", StringComparison.OrdinalIgnoreCase))
-                                        {
-
-
-                                            <a href="/DanhMuc/ViewDanhMucKH_FillCN" onclick="runReport()"> Khách hàng</a>
-                                        }
-                                        else
-                                        {
-                                            <a href="/DanhMuc/ViewDanhMucKH" onclick="runReport()"> Khách hàng</a>
-                                        }
-
-                                    </li>-->
-                @*<li><a href="#">JavaScript</a></li>
-                    <li><a href="#">PHP & MySQL</a></li>*@
-                <!--</ul>-->
-            </li>
-            <li>
-                <div class="iocn-link">
-                    <a href="/Home/MauIn">
-                        <i class='bx bxs-printer'></i>
-                        <span class="link_name">Mẫu In</span>
-                    </a>
-
-                </div>
-                <ul class="sub-menu">
-                    <li><a class="link_name" href="/Home/MauIn">Mẫu In</a></li>
-                    <li><a href="/MauInChungTu/MauInNLCB_Fill">Chứng Từ Phiếu Nhập</a></li>
-                    @*<li><a href="#">Login Form</a></li>
-                        <li><a href="#">Card Design</a></li>*@
-                </ul>
-            </li>
-
-            <li class="report-li">
-                <div class="iocn-link">
-                    <a href="/Home/MainBaoCao">
-                        <i class='bx bx-plug'></i>
-                        <span class="link_name">Báo cáo</span>
-                    </a>
-                    @*<i class='bx bxs-chevron-down arrow'></i>*@
-                </div>
-                <ul class="sub-menu">
-                    <li><a class="link_name" href="/Home/MainBaoCao">Báo Cáo</a></li>
-                    <li>
-                        <a href="#">Báo Cáo Quản Trị</a>
-                        <ul>
-                            @if (string.Equals(ViewBag.UserName, "admin", StringComparison.OrdinalIgnoreCase))
-                            {
-
-
-                                <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Admin_Fill">Doanh Thu Chi Nhánh</a></li>
-                            }
-                            else
-                            {
-                                <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Fill">Doanh Thu Chi Nhánh</a></li>
-                            }
-
-                            <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanhTinhLuong_Fill">Doanh Thu Chi Nhánh Tính Lương</a></li>
-
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="#">Báo Cáo Nghiệp Vụ</a>
-                        <ul>
-                            <li><a href="/bangkehoadon/bangkehoadon_Fill">Bảng Kê Chứng Từ SO</a></li>
-                            <li><a href="/BaoCaobanHangCN/BaoCaoBanHangCN_Fill">Báo Cáo Bán Hàng CN</a></li>
-                            <li><a href="/BaoCaoBanHangTDV/BaoCaoBanHangTDV_Fill">Báo Cáo Bán Hàng TDV</a></li>
-                            <li><a href="/BaoCaoTienVeCN/BaoCaoTienVeCN_Fill">Báo Cáo Tiền Về CN</a></li>
-                            <li><a href="/BaoCaoTienVeCN/BaoCaoTienVeTDV_Fill">Báo Cáo Tiền Về TDV</a></li>
-                            <li><a href="/BaoCaoDoanhThuGamHangTheoDoiTuong/BaoCaoDoanhThuGamHangTheoDoiTuong_Fill">Doanh Thu Gam Theo Đối Tượng</a></li>
-                        </ul>
-                    </li>
-
-
-                    <!-- Thêm các mục con khác của submenu "Báo cáo nghiệp vụ" nếu cần -->
-                </ul>
-            </li>
-
-
 
             <li>
-                <a href="/Home/DoiMatKhau">
-                    <i class='bx bx-cog'></i>
-                    <span class="link_name">Đổi mật khẩu</span>
+                <a href="/DanhMuc/DanhMuc">
+                    <i class='bx bx-box'></i>
+                    <span class="links_name">Danh Mục</span>
                 </a>
-                <ul class="sub-menu blank">
-                    <li><a class="link_name" href="/home/DoiMatKhau">Đổi mật khẩu</a></li>
-                </ul>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class='bx bxs-printer'></i>
+                    <span class="links_name">Mẫu In</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="/Home/MainBaoCao">
+                    <i class='bx bx-menu'></i>
+                    <span class="links_name">Báo Cáo</span>
+                </a>
             </li>
 
 
-            <li onclick="logout()">
-                <div class="profile-details" style="justify-content:space-between;cursor:pointer">
-                    <div></div>
-                    <div style="" class="profile_name">Đăng xuất</div>
 
-                    <i class='bx bx-log-out'></i>
-                </div>
+            <li onclick="logout()" class="log_out">
+                <a href="#">
+                    <i onclick="logout()" class='bx bx-log-out'></i>
+                    <span onclick="logout()" class="links_name">Log out</span>
+                </a>
+            </li>
+            <li onclick="ChangPassword()" class="changePassword">
+                <a href="#">
+                    <i onclick="ChangPassword()" class='bx bx-log-out'></i>
+                    <span onclick="ChangPassword()" class="links_name">Đổi Mật Khẩu</span>
+                </a>
             </li>
         </ul>
     </div>
     <section class="home-section">
         <nav>
-            <div class="home-content">
-                <i class='bx bx-menu'></i>
-                <span class="text">Trang chủ</span>
+            <div class="sidebar-button">
+                <i class='bx bx-menu sidebarBtn'></i>
+                <span class="dashboard">Trang chủ</span>
             </div>
             <div class="search-box">
                 <input type="text" placeholder="Search...">
                 <i class='bx bx-search'></i>
             </div>
+            <div>
+
+            </div>
         </nav>
 
-        
+        <div class="home-content">
+            <div class="overview-boxes">
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic" style="font-size:medium;font-weight:600;color:red">Doanh Thu khoán theo OTC</div>
+                        <div class="number" style="text-align:center;">Chưa Cập Nhật </div>
+                        <div class="indicator">
+                            @*@)<i class='bx bx-up-arrow-alt'></i>*@
+                            @*<span class="text">Up from yesterday</span>*@
+                        </div>
+                    </div>
+
+                </div>
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic" style="font-size:medium;font-weight:600;color:green">Doanh Thu Thực Hiện OTC</div>
+                        <div class="number">Chưa Cập Nhật</div>
+                        <div class="indicator">
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic" style="font-size:medium;font-weight:600;color:red">Doanh Thu Khoán Theo ETC</div>
+                        <div class="number">Chưa Cập Nhật</div>
+                        <div class="indicator">
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="box" style="overflow:auto;width:400px;height:150px">
+                    <table id="product" style="width:500px;height:160px; border-collapse: collapse;overflow:scroll">
+                        <!-- Đặt kích thước rộng hơn nội dung để tạo thanh cuộn ngang -->
+                        <tr>
+                            <th colspan="4">Top 10 sản phẩm bán chạy</th>
+                        </tr>
+                        <tr class="title" style="background-color:black;color:white">
+                            <td style="padding-right:10px">STT</td>
+                            <td>Mã Sản Phẩm</td>
+                            <td>Tên Sản Phẩm</td>
+                            <td>Giá</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>100001</td>
+                            <td>Product 1</td>
+                            <td>120000</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>100002</td>
+                            <td>Product 2</td>
+                            <td>150000</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>100003</td>
+                            <td>Product 3</td>
+                            <td>180000</td>
+                        </tr>
+                        <!-- Thêm nhiều dòng dữ liệu khác ở đây -->
+                    </table>
+                </div>
+
+
+
+
+
+
+
+            </div>
+            </div>
+
+      
     </section>
+
     <script>
-        function logout() {
-            window.location.href = "/home/login"
-        }
-        document.getElementById("TOP1").innerHTML = Response.innerHTML.g;
-
-        $("#leftside-navigation .sub-menu > a").click(function (e) {
-            $("#leftside-navigation ul ul").slideUp(), $(this).next().is(":visible") || $(this).next().slideDown(),
-                e.stopPropagation()
-        })
-        function ChangPassword() {
-            window.location.href = "/home/DoiMatKhau"
-        }
-    </script>
-    <script>
-        document.querySelectorAll(".iocn-link").forEach(link => {
-            link.addEventListener("click", () => {
-                // Tìm submenu của liên kết hiện tại
-                const subMenu = link.querySelector(".sub-menu");
-
-                // Toggle class "showSubMenu" để hiển thị hoặc ẩn submenu
-                subMenu.classList.toggle("showSubMenu");
-            });
-        });
-    </script>
-    <script>
-        let reportLi = document.querySelector(".report-li");
-        reportLi.addEventListener("click", (e) => {
-            console.log("Clicked on report-li");
-            let subMenu = e.currentTarget.querySelector(".sub-menu");
-            subMenu.classList.toggle("showSubMenu");
-        });
-
-        let arrow = document.querySelectorAll(".arrow");
-        for (var i = 0; i < arrow.length; i++) {
-            arrow[i].addEventListener("click", (e) => {
-                let arrowParent = e.target.parentElement.parentElement; // selecting main parent of arrow
-                arrowParent.classList.toggle("showMenu");
-            });
-        }
-
-        let sidebar = document.querySelector(".sidebar");
-        let sidebarBtn = document.querySelector(".bx-menu");
-        console.log(sidebarBtn);
-        sidebarBtn.addEventListener("click", () => {
-            sidebar.classList.toggle("close");
-        });
-    </script>
-    <script>
-
-        //function showLoader() {
-        //    const loader = document.querySelector(".loader");
-        //    loader.classList.remove("loader-hidden");
-        //}
-
-        //// Function to hide the loader
-        //function hideLoader() {
-        //    const loader = document.querySelector(".loader");
-        //    loader.classList.add("loader-hidden");
-        //}
-
-
-
-        window.addEventListener("load", () => {
-            // Hide the loader after the page is loaded
-            hideLoader();
-        });
-    </script>
-    @*<script>
-            function runReport() {
-                // Hiển thị thẻ span có id là "spanText"
-                showLoader();
-                const spanElement = document.getElementById("spanText");
-                spanElement.style.display = "block";
-            }
-        </script>*@
-    <script>
-        window.onload = function () {
-            var username = localStorage.getItem("username");
-            if (username) {
-                var nameInput = document.getElementById("Name");
-                if (nameInput) {
-                    nameInput.value = username;
-                }
-                localStorage.removeItem("username");
+            let sidebar = document.querySelector(".sidebar");
+            let sidebarBtn = document.querySelector(".sidebarBtn");
+            sidebarBtn.onclick = function () {
+                sidebar.classList.toggle("active");
+                if (sidebar.classList.contains("active")) {
+                    sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+                } else
+                    sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
             }
 
-        };
+            function logout() {
+                window.location.href = "/home/login"
+            }
+            document.getElementById("TOP1").innerHTML = Response.innerHTML.g;
+
+            $("#leftside-navigation .sub-menu > a").click(function (e) {
+                $("#leftside-navigation ul ul").slideUp(), $(this).next().is(":visible") || $(this).next().slideDown(),
+                    e.stopPropagation()
+            })
+            function ChangPassword() {
+                window.location.href = "/home/DoiMatKhau"
+            }
     </script>
 
 </body>
-</html>
+

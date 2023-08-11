@@ -352,69 +352,6 @@
             padding: 5px 10px;
             display: none;  
         }
-        .custom-checkbox {
-            margin-top: 10px;
-            display: inline-block;
-            position: relative;
-            padding-left: 30px;
-            margin-right: 15px;
-            cursor: pointer;
-        }
-
-            .custom-checkbox input {
-                position: absolute;
-                opacity: 0;
-                cursor: pointer;
-            }
-
-        .checkmark {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 25px;
-            width: 25px;
-            border: 2px solid black;
-            background-color: #ffffff;
-        }
-
-        .custom-checkbox:hover input ~ .checkmark {
-            background-color: #ccc;
-        }
-
-        .custom-checkbox input:checked ~ .checkmark {
-            background-color: #2196F3;
-        }
-
-        .checkmark:after {
-            content: "";
-            position: absolute;
-            display: none;
-        }
-
-        .custom-checkbox input:checked ~ .checkmark:after {
-            display: block;
-        }
-
-        .custom-checkbox .checkmark:after {
-            left: 9px;
-            top: 5px;
-            width: 5px;
-            height: 10px;
-            border: solid white;
-            border-width: 0 3px 3px 0;
-            transform: rotate(45deg);
-        }
-
-        .checkContainer {
-            height: 300px;
-            overflow: auto;
-            scrollbar-width: none;
-        }
-
-            .checkContainer::-webkit-scrollbar {
-                width: 0.2em;
-                background-color: transparent;
-            }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -446,7 +383,7 @@
 <body>
     <div class="loader" style="z-index:1"></div>
 
-    <div class="sidebar" style="margin-left:10px">
+    <div class="sidebar">
         <div class="logo-details">
 
         </div>
@@ -462,103 +399,7 @@
                         <input class="den_ngay" id="den_ngay" placeholder=" Đến Ngày" name="To_date" type="DATE" format="YYYY-MM-DD" value="@Request.QueryString["To_date"]" /><br /><br />
                         <script>$("#den_ngay").datetimepicker({ timepicker: false, format: 'Y-m-d' });</script>
                     </div>
-                    <div class="checkContainer">
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Tên Đơn Vị
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Doanh Thu OPC
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Khoán OPC
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Tỷ lệ OPC
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Doanh Thu Cồn
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Khoán Cồn
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Tỷ lệ Cồn
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Doanh Thu Sủi
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Khoán Sủi
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Tỷ lệ Sủi
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Doanh Thu Phiến
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Khoán Phiến
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Tỷ lệ Phiến
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Doanh Thu 25
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Khoán 25
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Tỷ lệ 25
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Doanh Thu Combo
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Doanh Thu khác
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Tổng Thực Hiện
-                        </label>
-                    </div>
+
                     <div>
                         <button class="submit" type="submit" onclick="runReport()"> Chạy Báo Cáo </button>
                     </div>
@@ -652,17 +493,6 @@
     </script>
     <script>
         function runReport() {
-            const uncheckedCheckboxIndexes = [];
-            const checkboxes = document.querySelectorAll('input[name="myCheckbox"]');
-
-            checkboxes.forEach((checkbox, index) => {
-                if (!checkbox.checked) {
-                    uncheckedCheckboxIndexes.push(index);
-                }
-            });
-
-            // Lưu trạng thái vào Local Storage
-            localStorage.setItem('uncheckedCheckboxIndexes', JSON.stringify(uncheckedCheckboxIndexes));
             // Hiển thị thẻ span có id là "spanText"
             const spanElement = document.getElementById("spanText");
             spanElement.style.display = "block";
@@ -679,50 +509,8 @@
         window.location.href = '@Url.Action("DoanhThuChiNhanh_Admin", "DoanhThuChiNhanhController")';
     }
     </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const checkboxes = document.querySelectorAll('input[name="myCheckbox"]');
-            const table = document.getElementById('example');
 
-            checkboxes.forEach((checkbox, index) => {
-                checkbox.addEventListener('change', function () {
-                    const columnIndex = index;
-                    const rows = table.querySelectorAll('tr');
 
-                    rows.forEach(row => {
-                        const cells = row.querySelectorAll('td, th');
-                        cells[columnIndex].style.display = this.checked ? '' : 'none';
-                    });
-                });
-            });
-        });
-    </script>
-    <script>
-        // Hàm lưu trạng thái checkbox vào Local Storage
-        function saveCheckboxState() {
-            const checkboxes = document.querySelectorAll('input[name="myCheckbox"]');
-            const checkboxState = {};
-
-            checkboxes.forEach((checkbox, index) => {
-                checkboxState[index] = checkbox.checked;
-            });
-
-            localStorage.setItem('checkboxState', JSON.stringify(checkboxState));
-        }
-
-        // Lưu trạng thái khi người dùng bỏ chọn checkbox
-        // Lắng nghe sự kiện thay đổi của các checkbox
-        document.addEventListener('DOMContentLoaded', function () {
-            const checkboxes = document.querySelectorAll('input[name="myCheckbox"]');
-
-            checkboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', function () {
-                    localStorage.setItem(checkbox.value, checkbox.checked);
-                });
-            });
-        });
-
-    </script>
 
     <script>
 

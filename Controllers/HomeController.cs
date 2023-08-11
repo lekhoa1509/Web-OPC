@@ -28,7 +28,10 @@ namespace web4.Controllers
         {
             return View();
         }
-     
+        public ActionResult About()
+        {
+            return View();
+        }
         public void connectSQL()
         {
             con.ConnectionString = "Data source=" + "118.69.109.109" + ";database=" + "SAP_OPC" + ";uid=sa;password=Hai@thong";
@@ -43,7 +46,6 @@ namespace web4.Controllers
         {
             connectSQL();
             con.Open();
-            string username = "";
             sqlc.Connection = con;
             sqlc.CommandText = "select * from view_user where Tendangnhap ='" + Acc.Name + "'And matkhau='" + Acc.Password + "'and ma_DvCs='" + Acc.Ma_DvCs + "'";
             dt = sqlc.ExecuteReader();
@@ -51,33 +53,22 @@ namespace web4.Controllers
             {
                 Response.Cookies["UserName"].Value = Acc.Name.ToString();
                 Response.Cookies["MA_DVCS"].Value = Acc.Ma_DvCs.ToString();
-
+                
                 con.Close();
-                 username = Request.Cookies["UserName"].Value;
-                ViewBag.Username = username;
                 return View("About");
             }
             else
             {
+
                 ViewBag.Message = "Sai Mật Khẩu";
                 return View("Login");
             }
-
             con.Close();
-             username = Request.Cookies["UserName"].Value;
-            ViewBag.Username = username;
-            return View("About");
-        }
-        public ActionResult Verify()
-        {
-            var username = Request.Cookies["UserName"].Value;
-            ViewBag.Username = username;
-
             return View("About");
         }
 
 
-
+      
         //Báo cáo công nợ quản trị lấy  ra 5 bảng;
         public ActionResult BCCN_main()
         {
@@ -240,41 +231,10 @@ namespace web4.Controllers
 
             return View();
         }
-        public ActionResult MauIn()
-        {
-            return View();
-        }
-        public ActionResult About()
-        {
-            var username = Request.Cookies["UserName"].Value;
-            ViewBag.Username = username;
-
-            return View();
-        }
         public ActionResult MauInNLCB()
         {
             return View();
         }
-        public ActionResult Top10SPBanChay()
-        {
-            DataSet ds = new DataSet();
-            connectSQL();
-            string Pname = "[usp_Top10DoanhThu_SAP]";
-            using (SqlCommand cmd = new SqlCommand(Pname, con))
-            {
-                cmd.CommandTimeout = 950;
-
-                cmd.Connection = con;
-                cmd.CommandType = CommandType.StoredProcedure;
-              
-                using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
-                {
-                    sda.Fill(ds);
-
-                }
-            }
-            return View();
-        }    
 
     }
 }
