@@ -1,4 +1,4 @@
-﻿@{
+﻿﻿@{
     ViewBag.Title = "Phiếu Nhập Nguyên Liệu Chế biến";
 
 }
@@ -12,6 +12,34 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
+        body, h1, h3, h4, td {
+            font-family: Arial, sans-serif;
+        }
+
+        h4 {
+        }
+
+        table {
+            font-size: 12px;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: center;
+            border-bottom: 1px solid black;
+            font-size: 12px; /* Set font size to 12px */
+        }
+
+            th:last-child, td:last-child {
+                border-right: 1px solid black;
+            }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
         page {
             zoom: 125%;
             size: A4;
@@ -67,6 +95,7 @@
             justify-content: center;
             flex-grow: 1;
         }
+
         .text-loading {
             position: fixed;
             bottom: 10px;
@@ -79,74 +108,73 @@
             display: none; /* Hide the span element initially */
         }
     </style>
-   
+
     <link rel="stylesheet" href="~/Styles/loader.css">
 </head>
 <body>
     <div class="loader" style="z-index:1"></div>
     <span id="spanText" class="text-loading">[usp_MauInChungTuDetail_SAP]</span>
     <div>
-    <form>
+        <form>
 
-        <div>
-            <h3 style="margin-left:-70%; font-size:11px;">CÔNG TY CỔ PHẦN DƯỢC PHẨM OPC</h3>
-        </div>
-        <br />
-        <br />
-        <div>
-            <h3 style="font-size:25px">PHIẾU NHẬP NGUYÊN LIỆU CHẾ BIẾN</h3>
-            <br />
-            <h1 style="font-size:12px">Ngày&nbsp;&nbsp;@Request.Cookies["ngay"].Value tháng &nbsp;&nbsp;@Request.Cookies["thang"].Value năm&nbsp;&nbsp; @Request.Cookies["nam"].Value  &nbsp;&nbsp; &nbsp;&nbsp;</h1>
-            <h1 style="margin-left:80%; font-size:12px;"> Số PNK:  @Request.Cookies["SoCt"].Value</h1>
-        </div>
-        <br />
-        <br />
-        <div>
-            <h4 style="margin-left:-70%">Đơn vị giao: &nbsp; Xưởng Sản xuất</h4>
-            <h4 style="margin-left:-71%">Nhập tại kho:&nbsp; Kho Chế Biến</h4>
-        </div>
-        <div>
-            <table border="1">
-                <tr>
-                    <th>Mã NL</th>
-                    <th>Tên Nguyên Liệu</th>
-                    <th>Số Lô - Hạn Dùng</th>
-
-                    <th>Đvt</th>
-                    <th>Số Lượng</th>
-                    <th>Ghi Chú</th>
-                </tr>
-                <tbody>
-
-
-                    @foreach (DataRow row3 in Model.Tables[0].Rows)
-                    {
-                        <tr>
-
-                            <td>@row3["Ma_vt"]</td>
-                            <td class="left-aligned">@row3["Ten_vt"]</td>
-                            <td>@row3["So_lo"]</td>
-
-                            <td>@row3["Dvt"]</td>
-                            <td>@row3["So_Luong_Nhap"]</td>
-                            <th></th>
-                        </tr>
-                    }
-                </tbody>
-
-            </table>
-            <br />
-            <div class="header">
-                <h4>&nbsp;&nbsp;&nbsp;&nbsp;P. KHCU</h4>
-                <h4 class="center">Thủ Kho</h4>
-                <h4>Xưởng sản xuất&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+            <div>
+                <h3 style="margin-left:-70%; font-size:11px;">CÔNG TY CỔ PHẦN DƯỢC PHẨM OPC</h3>
             </div>
-        </div>
-    </form>
-     </div>
+            <br />
+            <br />
+            <div>
+                <h3 style="font-size:25px">PHIẾU NHẬP NGUYÊN LIỆU CHẾ BIẾN</h3>
+                <br />
+                <h1 style="font-size:12px">Ngày&nbsp;&nbsp;@Request.Cookies["ngay"].Value tháng &nbsp;&nbsp;@Request.Cookies["thang"].Value năm&nbsp;&nbsp; @Request.Cookies["nam"].Value  &nbsp;&nbsp; &nbsp;&nbsp;</h1>
+                <h1 style="margin-left:80%; font-size:12px;"> Số PNK:  @Request.Cookies["SoCt"].Value</h1>
+            </div>
+
+            <div>
+                <h4 style="margin-left:-65%;  font-size: 12px;">Đơn vị giao: &nbsp; Xưởng Sản xuất</h4>
+                <h4 style="margin-left:-66%; font-size: 12px;">Nhập tại kho:&nbsp; Kho Chế Biến</h4>
+            </div>
+            <div>
+                <table border="1">
+                    <tr>
+                        <th>Mã NL</th>
+                        <th>Tên Nguyên Liệu</th>
+                        <th>Số Lô - Hạn Dùng</th>
+
+                        <th>Đvt</th>
+                        <th>Số Lượng</th>
+                        <th>Ghi Chú</th>
+                    </tr>
+                    <tbody>
+
+
+                        @foreach (DataRow row3 in Model.Tables[0].Rows)
+                        {
+                            <tr>
+
+                                <td>@row3["Ma_vt"]</td>
+                                <td class="left-aligned">@row3["Ten_vt"]</td>
+                                <td>@row3["So_lo"]</td>
+
+                                <td>@row3["Dvt"]</td>
+                                <td>@row3["So_Luong_Nhap"]</td>
+                                <th></th>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+                <br />
+                <div class="header">
+                    <h4>&nbsp;&nbsp;&nbsp;&nbsp;P. KHCU</h4>
+                    <h4 class="center">Thủ Kho</h4>
+                    <h4>Xưởng sản xuất&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+                </div>
+            </div>
+        </form>
+    </div>
     <script>
 
- 
+
 
         function showLoader() {
             const loader = document.querySelector(".loader");
