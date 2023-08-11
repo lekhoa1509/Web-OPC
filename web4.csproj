@@ -976,6 +976,8 @@
     <Content Include="Views\MauInChungTu\Index.cshtml" />
     <Content Include="Views\DoanhThuChiNhanh\DoanhThuChiNhanh_Admin_Fill.cshtml" />
     <Content Include="Views\DoanhThuChiNhanh\DoanhThuChiNhanh_Admin.cshtml" />
+    <Content Include="Views\MauInChungTu\PhieuXacNhanTT.cshtml" />
+    <Content Include="Views\Home\MauIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

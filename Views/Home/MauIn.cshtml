@@ -8,6 +8,7 @@
     <title> OPC Bao Cao | OPCPHARMA </title>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link href="~/Styles/main.css" rel='stylesheet' type='text/css' media="all">
+
     @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">*@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -34,16 +35,16 @@
             <span class="logo_name" style="color: #da261f; font-family: 'Agency FB'; font-size: 40px;padding-left:10px">OPC</span>
         </div>
         <ul class="nav-links">
-            <li  id="active">
+            <li>
                 <a href="/Home/About">
                     <i class='bx bx-grid-alt'></i>
                     <span class="link_name">Trang chủ</span>
                 </a>
                 <ul class="sub-menu blank">
-                    <li><a class="link_name" href="#">Trang chủ</a></li>
+                    <li><a class="link_name" href="/Home/About">Trang chủ</a></li>
                 </ul>
             </li>
-            <li>
+            <li >
                 <div class="iocn-link">
                     <a href="/DanhMuc/DanhMuc">
                         <i class='bx bx-collection'></i>
@@ -80,16 +81,16 @@
                     <li><a href="#">PHP & MySQL</a></li>*@
                 <!--</ul>-->
             </li>
-            <li>
+            <li id="active">
                 <div class="iocn-link">
-                    <a href="/Home/MauIn">
+                    <a href="#">
                         <i class='bx bxs-printer'></i>
                         <span class="link_name">Mẫu In</span>
                     </a>
 
                 </div>
                 <ul class="sub-menu">
-                    <li><a class="link_name" href="/Home/MauIn">Mẫu In</a></li>
+                    <li><a class="link_name" href="#">Mẫu In</a></li>
                     <li><a href="/MauInChungTu/MauInNLCB_Fill">Chứng Từ Phiếu Nhập</a></li>
                     @*<li><a href="#">Login Form</a></li>
                         <li><a href="#">Card Design</a></li>*@
@@ -169,7 +170,7 @@
         <nav>
             <div class="home-content">
                 <i class='bx bx-menu'></i>
-                <span class="text">Trang chủ</span>
+                <span class="text">Mẫu In</span>
             </div>
             <div class="search-box">
                 <input type="text" placeholder="Search...">
@@ -177,7 +178,20 @@
             </div>
         </nav>
 
-        
+        <div class="home-content-1" style="padding-top:100px">
+
+
+            <div class="box-container-1">
+                <div class="box-row-1">
+                    <h3>Mẫu In Chứng Từ Phiếu Nhập</h3>
+
+
+                </div>
+                <div class="box-row-2">
+                    <a class="button" href="/MauInChungTu/MauInNLCB_Fill" onclick="runReport()"><span>Xem</span></a>
+                </div>
+            </div>
+        </div>  
     </section>
     <script>
         function logout() {

@@ -792,11 +792,8 @@
 ];
             // Add an event listener to the "Xem Biểu Đồ" button
             document.getElementById("viewChartBtn").addEventListener("click", function () {
-
                 createChart(chartData);
-
                 document.getElementById("box-chart").style.display = "flex";
-
             });
 
             // Function to create the chart
@@ -872,7 +869,7 @@
             const actionUrl = `${form.action}?From_date=${fromDate}&To_date=${toDate}`;
             window.location.href = actionUrl;
         });
-
+      
         window.addEventListener("load", () => {
             hideLoader();
             applyCheckboxAndColumnState();
