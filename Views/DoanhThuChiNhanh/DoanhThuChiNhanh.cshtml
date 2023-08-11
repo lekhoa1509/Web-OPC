@@ -1,8 +1,5 @@
-﻿@{
-    ViewBag.Title = "Bao Cao Doanh Thu CN";
-    Layout = null;
-
-}
+﻿@{ ViewBag.Title = "Bao Cao Doanh Thu CN";
+                Layout = null; }
 @using System.Data;
 <!DOCTYPE html>
 <html lang="en">
@@ -364,6 +361,7 @@
             padding: 5px 10px;
             display: none; /* Hide the span element initially */
         }
+
         .custom-checkbox {
             margin-top: 10px;
             display: inline-block;
@@ -416,10 +414,12 @@
             border-width: 0 3px 3px 0;
             transform: rotate(45deg);
         }
+
         .checkContainer {
             height: 300px;
             overflow: auto;
         }
+
             .checkContainer::-webkit-scrollbar {
                 width: 0.2em;
                 background-color: transparent;
@@ -626,36 +626,35 @@
                         <tbody>
                             @foreach (DataRow row2 in Model.Tables[0].Rows)
                             {
-                                <tr>
-                                    <td>@row2["ten_DvCs"]</td>
+                <tr>
+                    <td>@row2["ten_DvCs"]</td>
 
-                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OPC"]))</td>
-                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Khoan_OPC"]))</td>
-                                    <td class="">@row2["Tyle_OPC"]%</td>
+                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OPC"]))</td>
+                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Khoan_OPC"]))</td>
+                    <td class="">@row2["Tyle_OPC"]%</td>
 
 
-                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Con"]))</td>
-                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Khoan_con"]))</td>
-                                    <td class="">@row2["Tyle_Con"]%</td>
+                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Con"]))</td>
+                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Khoan_con"]))</td>
+                    <td class="">@row2["Tyle_Con"]%</td>
 
-                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Sui"]))</td>
-                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Khoan_Sui"]))</td>
-                                    <td class="">@row2["Tyle_Sui"]%</td>
+                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Sui"]))</td>
+                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Khoan_Sui"]))</td>
+                    <td class="">@row2["Tyle_Sui"]%</td>
 
-                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Phien"]))</td>
-                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Khoan_phien"]))</td>
-                                    <td class="">@row2["Tyle_Phien"]%</td>
+                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Phien"]))</td>
+                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Khoan_phien"]))</td>
+                    <td class="">@row2["Tyle_Phien"]%</td>
 
-                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_25"]))</td>
-                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Khoan_25"]))</td>
-                                    <td class="">@row2["Tyle_25"]%</td>
+                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_25"]))</td>
+                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Khoan_25"]))</td>
+                    <td class="">@row2["Tyle_25"]%</td>
 
-                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ComBo"]))</td>
-                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Khac"]))</td>
-                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Thuc_Hien"]))</td>
+                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ComBo"]))</td>
+                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Khac"]))</td>
+                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Thuc_Hien"]))</td>
 
-                                </tr>
-                            }
+                </tr>}
 
 
                         </tbody>
@@ -675,25 +674,23 @@
     <script src="~/assets/js/vfs_fonts.js"></script>
     <script src="~/assets/js/custom.js"></script>
     <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
-    @{
-        int opc = 0;
-        int con = 0;
-        int phien = 0;
-        int tyle25 = 0;
-        int sui = 0;
-        string tenDvCs = "";
-        var subtitles = new List<string>();
-        foreach (DataRow row2 in Model.Tables[0].Rows)
-        {
-            opc = Convert.ToInt32(row2["Tyle_OPC"]);
-            con = Convert.ToInt32(row2["Tyle_Con"]);
-            phien = Convert.ToInt32(row2["Tyle_Phien"]);
-            tyle25 = Convert.ToInt32(row2["Tyle_25"]);
-            sui = Convert.ToInt32(row2["Tyle_Sui"]);
-            tenDvCs = row2["ten_DvCs"].ToString();
-            subtitles.Add(tenDvCs);
-        }
-    }
+    @{ int opc = 0;
+                    int con = 0;
+                    int phien = 0;
+                    int tyle25 = 0;
+                    int sui = 0;
+                    string tenDvCs = "";
+                    var subtitles = new List<string>();
+                    foreach (DataRow row2 in Model.Tables[0].Rows)
+                    {
+                        opc = Convert.ToInt32(row2["Tyle_OPC"]);
+                        con = Convert.ToInt32(row2["Tyle_Con"]);
+                        phien = Convert.ToInt32(row2["Tyle_Phien"]);
+                        tyle25 = Convert.ToInt32(row2["Tyle_25"]);
+                        sui = Convert.ToInt32(row2["Tyle_Sui"]);
+                        tenDvCs = row2["ten_DvCs"].ToString();
+                        subtitles.Add(tenDvCs);
+                    } }
 
     <script>
         function runReport() {
@@ -792,11 +789,8 @@
 ];
             // Add an event listener to the "Xem Biểu Đồ" button
             document.getElementById("viewChartBtn").addEventListener("click", function () {
-
                 createChart(chartData);
-
                 document.getElementById("box-chart").style.display = "flex";
-
             });
 
             // Function to create the chart

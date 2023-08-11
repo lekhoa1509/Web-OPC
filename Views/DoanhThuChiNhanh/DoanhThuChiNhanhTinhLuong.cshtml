@@ -1,6 +1,4 @@
-﻿@{
-    ViewBag.Title = "Bao Cao Doanh Thu CN Tinh Luong";
-}
+﻿@{ ViewBag.Title = "Bao Cao Doanh Thu CN Tinh Luong"; }
 @using System.Data;
 <!DOCTYPE html>
 <html lang="en">
@@ -124,6 +122,7 @@
             align-items: center;
             transition: all 1s ease-in-out;
         }
+
             .submit:hover {
                 background-color: darkcyan;
                 color: #ffffff;
@@ -160,6 +159,7 @@
             background-size: 1% 100%;
             background-repeat: no-repeat;
         }
+
         #data {
             width: 100%;
             height: 150px;
@@ -280,10 +280,12 @@
             width: 200px;
             transition: all 0.5s ease;
         }
+
         h5 {
             text-align: center;
             font-size: 15px;
         }
+
         .myInput {
             text-align: center;
             height: auto;
@@ -298,6 +300,7 @@
         .data_table {
             width: max-content;
         }
+
         .text-loading {
             position: fixed;
             bottom: 10px;
@@ -309,6 +312,7 @@
             padding: 5px 10px;
             display: none; /* Hide the span element initially */
         }
+
         .custom-checkbox {
             margin-top: 10px;
             display: inline-block;
@@ -435,20 +439,20 @@
                             Doanh Thu SP Chủ Lực OTC
                         </label>
                         @*<label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Doanh Thu SP Chủ Lực ETC
-                        </label>*@
+                                <input type="checkbox" name="myCheckbox" value="option1" checked>
+                                <span class="checkmark"></span>
+                                Doanh Thu SP Chủ Lực ETC
+                            </label>*@
                         <label class="custom-checkbox">
                             <input type="checkbox" name="myCheckbox" value="option1" checked>
                             <span class="checkmark"></span>
                             Doanh Thu SP Phát Triển OTC
                         </label>
                         @*<label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Doanh Thu SP Phát Triển ETC
-                        </label>*@
+                                <input type="checkbox" name="myCheckbox" value="option1" checked>
+                                <span class="checkmark"></span>
+                                Doanh Thu SP Phát Triển ETC
+                            </label>*@
                         <label class="custom-checkbox">
                             <input type="checkbox" name="myCheckbox" value="option1" checked>
                             <span class="checkmark"></span>
@@ -565,29 +569,28 @@
                         <tbody>
                             @foreach (DataRow row2 in Model.Tables[0].Rows)
                             {
-                                <tr>
-                                    <td>@row2["ten_DvCs"]</td>
+                <tr>
+                    <td>@row2["ten_DvCs"]</td>
 
-                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPCL_OTC_OPC"]))</td>
-                                    @*<td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPCL_ETC_OPC"]))</td>*@
-                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPPT_OTC_OPC"]))</td>
-                                    @* <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPPT_ETC_OPC"]))</td>*@
-                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OTC_OPC"]))</td>
-                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ETC_OPC"]))</td>
-                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OTC_Con"]))</td>
-                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ETC_Con"]))</td>
-                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OTC_Sui"]))</td>
-                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ETC_Sui"]))</td>
-                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OTC_Phien"]))</td>
-                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ETC_Phien"]))</td>
-                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OTC_TW25"]))</td>
-                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ETC_TW25"]))</td>
-                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ComBo"]))</td>
-                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Khac"]))</td>
-                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Thuc_Hien"]))</td>
+                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPCL_OTC_OPC"]))</td>
+                    @*<td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPCL_ETC_OPC"]))</td>*@
+                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPPT_OTC_OPC"]))</td>
+                    @* <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPPT_ETC_OPC"]))</td>*@
+                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OTC_OPC"]))</td>
+                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ETC_OPC"]))</td>
+                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OTC_Con"]))</td>
+                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ETC_Con"]))</td>
+                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OTC_Sui"]))</td>
+                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ETC_Sui"]))</td>
+                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OTC_Phien"]))</td>
+                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ETC_Phien"]))</td>
+                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OTC_TW25"]))</td>
+                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ETC_TW25"]))</td>
+                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ComBo"]))</td>
+                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Khac"]))</td>
+                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Thuc_Hien"]))</td>
 
-                                </tr>
-                            }
+                </tr>}
 
 
                         </tbody>

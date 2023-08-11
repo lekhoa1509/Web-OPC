@@ -295,10 +295,12 @@
         .data_table {
             width: max-content;
         }
+
         h5 {
-            text-align: center; 
+            text-align: center;
             font-size: 15px;
         }
+
         .text-loading {
             position: fixed;
             bottom: 10px;
@@ -310,6 +312,7 @@
             padding: 5px 10px;
             display: none; /* Hide the span element initially */
         }
+
         .custom-checkbox {
             margin-top: 10px;
             display: inline-block;
@@ -534,23 +537,22 @@
                         <tbody>
                             @foreach (DataRow row2 in Model.Tables[0].Rows)
                             {
-                                <tr>
-                                    <td>@row2["Ngay_Ct"]</td>
-                                    <td>@row2["so_ct"]</td>
-                                    <td>@row2["ma_dt"]</td>
-                                    <td>@row2["ten_dt"]</td>
-                                    <td>@row2["ma_vt"]</td>
-                                    <td>@row2["ten_vt"]</td>
-                                    <td>@row2["Ma_Km"]</td>
-                                    <td>@row2["Discount"]</td>
-                                    <td>@row2["Loai_Vt"]</td>
-                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["so_luong"]))</td>
-                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tien"]))</td>
-                                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_tien"]))</td>
-                                    <td>@row2["Tinh_trang"]</td>
-                                    <td>@row2["Ma_Dvcs1"]</td>
-                                </tr>
-                            }
+                <tr>
+                    <td>@row2["Ngay_Ct"]</td>
+                    <td>@row2["so_ct"]</td>
+                    <td>@row2["ma_dt"]</td>
+                    <td>@row2["ten_dt"]</td>
+                    <td>@row2["ma_vt"]</td>
+                    <td>@row2["ten_vt"]</td>
+                    <td>@row2["Ma_Km"]</td>
+                    <td>@row2["Discount"]</td>
+                    <td>@row2["Loai_Vt"]</td>
+                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["so_luong"]))</td>
+                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tien"]))</td>
+                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_tien"]))</td>
+                    <td>@row2["Tinh_trang"]</td>
+                    <td>@row2["Ma_Dvcs1"]</td>
+                </tr>}
 
 
                         </tbody>

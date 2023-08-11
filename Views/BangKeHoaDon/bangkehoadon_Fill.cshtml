@@ -1,6 +1,4 @@
-﻿@{
-    ViewBag.Title = "Bao Cao Doanh Thu CN";
-}
+﻿@{ ViewBag.Title = "Bao Cao Doanh Thu CN"; }
 @using System.Data;
 <!DOCTYPE html>
 <html lang="en">
@@ -255,28 +253,30 @@
             height: 150px;
             overflow-y: scroll;
         }
+
         .data_table {
             width: max-content;
         }
-            .options-container label {
-                display: block;
-                cursor: pointer;
-                padding: 5px;
-                margin-top: 5px;
-                user-select: none;
+
+        .options-container label {
+            display: block;
+            cursor: pointer;
+            padding: 5px;
+            margin-top: 5px;
+            user-select: none;
+        }
+
+            .options-container label:hover {
+                background: rgb(255, 255, 255);
             }
 
-                .options-container label:hover {
-                    background: rgb(255, 255, 255);
-                }
+        .options-container::-webkit-scrollbar {
+            width: 8px;
+        }
 
-            .options-container::-webkit-scrollbar {
-                width: 8px;
-            }
-
-            .options-container::-webkit-scrollbar-thumb {
-                background-color: white;
-            }
+        .options-container::-webkit-scrollbar-thumb {
+            background-color: white;
+        }
 
 
         .sidebar {
@@ -298,6 +298,7 @@
         .container {
             text-align: center;
         }
+
         .text-loading {
             position: fixed;
             bottom: 10px;
@@ -309,6 +310,7 @@
             padding: 5px 10px;
             display: none; /* Hide the span element initially */
         }
+
         .custom-checkbox {
             margin-top: 10px;
             display: inline-block;
@@ -430,7 +432,7 @@
                         <label class="custom-checkbox">
                             <input type="checkbox" name="myCheckbox" value="option1" checked>
                             <span class="checkmark"></span>
-                           Ngày Chứng Từ
+                            Ngày Chứng Từ
                         </label>
                         <label class="custom-checkbox">
                             <input type="checkbox" name="myCheckbox" value="option1" checked>

@@ -1,6 +1,4 @@
-﻿@{
-    ViewBag.Title = "Bao Cao Doanh Thu CN";
-}
+﻿@{ ViewBag.Title = "Bao Cao Doanh Thu CN"; }
 @using System.Data;
 <!DOCTYPE html>
 <html lang="en">
@@ -13,13 +11,15 @@
         a:hover {
             background-color: lightskyblue;
         }
-     *{
-         font-family:"Times New Roman";
-     }
+
+        * {
+            font-family: "Times New Roman";
+        }
+
         a {
             text-decoration: none;
         }
-            
+
         .container table {
             justify-content: center;
             align-items: center;
@@ -108,14 +108,13 @@
         div#chart {
             text-align: center;
             display: flex;
-   /*         justify-content:;*/
+            /*         justify-content:;*/
             width: 50%;
             height: 300px;
         }
 
         .submit {
             height: 50px;
-       
             background-color: silver;
             border: none;
             color: cadetblue;
@@ -302,6 +301,7 @@
         .data_table {
             width: max-content;
         }
+
         .bieu_do {
             padding: 10px;
             margin: 10%;
@@ -322,25 +322,28 @@
             -webkit-transition: all .4s ease-in-out;
             transition: all .4s ease-in-out;
         }
+
             .bieu_do:hover {
                 background-position: 100% 0;
                 moz-transition: all .4s ease-in-out;
                 -o-transition: all .4s ease-in-out;
                 -webkit-transition: all .4s ease-in-out;
-                transition: all .4s ease-in-out;    
+                transition: all .4s ease-in-out;
             }
-            .bieu_do:focus{
-                outline:none;
+
+            .bieu_do:focus {
+                outline: none;
             }
+
         .bieu_do {
             background-image: linear-gradient(to right, #0ba360, #3cba92, #30dd8a, #2bb673);
             box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
-       
         }
+
         .chart {
             margin: 20px 0px 0px 0px;
-           
         }
+
         .text-loading {
             position: fixed;
             bottom: 10px;
@@ -348,10 +351,11 @@
             font-size: 13px;
             color: black;
             z-index: 1;
-            background-color: rgba(255, 255, 255, 0.9);  Background color for the span 
-            padding: 5px 10px;
-            display: none; 
+            background-color: rgba(255, 255, 255, 0.9);
+            Background color for the span padding: 5px 10px;
+            display: none;
         }
+
         .custom-checkbox {
             margin-top: 10px;
             display: inline-block;
@@ -404,11 +408,13 @@
             border-width: 0 3px 3px 0;
             transform: rotate(45deg);
         }
+
         .checkContainer {
             height: 300px;
             overflow: auto;
             scrollbar-width: none;
         }
+
             .checkContainer::-webkit-scrollbar {
                 width: 0.2em;
                 background-color: transparent;
@@ -669,24 +675,24 @@
             spanElement.style.display = "block";
         }
     </script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const checkboxes = document.querySelectorAll('input[name="myCheckbox"]');
-                const table = document.getElementById('example');
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const checkboxes = document.querySelectorAll('input[name="myCheckbox"]');
+            const table = document.getElementById('example');
 
-                checkboxes.forEach((checkbox, index) => {
-                    checkbox.addEventListener('change', function () {
-                        const columnIndex = index;
-                        const rows = table.querySelectorAll('tr');
+            checkboxes.forEach((checkbox, index) => {
+                checkbox.addEventListener('change', function () {
+                    const columnIndex = index;
+                    const rows = table.querySelectorAll('tr');
 
-                        rows.forEach(row => {
-                            const cells = row.querySelectorAll('td, th');
-                            cells[columnIndex].style.display = this.checked ? '' : 'none';
-                        });
+                    rows.forEach(row => {
+                        const cells = row.querySelectorAll('td, th');
+                        cells[columnIndex].style.display = this.checked ? '' : 'none';
                     });
                 });
             });
-        </script>
+        });
+    </script>
     <script>
 
         function handleFormSubmit(event) {
