@@ -231,8 +231,11 @@ namespace web4.Controllers
 
             return View();
         }
-        public ActionResult MauInNLCB()
+
+        public ActionResult MauIn()
         {
+           
+
             return View();
         }
 
