@@ -1,4 +1,7 @@
-﻿@{ ViewBag.Title = "OPC Bao Cao | OPCPHARMA"; }
+﻿@{ ViewBag.Title = "OPC Bao Cao | OPCPHARMA";
+@model System.Data.DataSet
+}
+@using System.Data;
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -89,6 +92,7 @@
                 <ul class="sub-menu">
                     <li><a class="link_name" href="/Home/MauIn">Mẫu In</a></li>
                     <li><a href="/MauInChungTu/MauInNLCB_Fill">Chứng Từ Phiếu Nhập</a></li>
+                    <li><a href="/MauInChungTu/PhieuNhapXNTT">Phiếu Xác Nhận Thanh Toán</a></li>
                     @*<li><a href="#">Login Form</a></li>
                         <li><a href="#">Card Design</a></li>*@
                 </ul>
@@ -176,37 +180,28 @@
         <div class="home-content1">
             <div class="overview-boxes">
                 <div class="box" style="overflow:auto;width:400px;height:200px">
-                    <table id="product" style="width:500px;height:200px; border-collapse: collapse;overflow:scroll">
-
-                        <tr class="title">
-                            <th colspan="4" class="top10">Top 10 sản phẩm bán chạy</th>
-                        </tr>
-                        <tr class="title" style="background-color:black;color:white">
-                            <td style="padding-right:10px">STT</td>
-                            <td>Mã Vật Tư</td>
-                            <td>Tên Vật Tư</td>
-                            <td>Doanh Thu</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>100001</td>
-                            <td>Product 1</td>
-                            <td>120000</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>100002</td>
-                            <td>Product 2</td>
-                            <td>150000</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>100003</td>
-                            <td>Product 3</td>
-                            <td>180000</td>
-                        </tr>
-
-                    </table>
+                    @if (Model.Tables.Count > 0 && Model.Tables[0].Rows.Count > 0)
+                    {
+                        <table>
+                            <tr>
+                                <th>Mã Vật Tư</th>
+                                <th>Tên Vật Tư</th>
+                                <th>Doanh Thu</th>
+                            </tr>
+                            @foreach (DataRow row3 in Model.Tables[0].Rows)
+                            {
+                                <tr>
+                                    <td>@row3["Ma_Vt"]</td>
+                                    <td>@row3["Ten_Vt"]</td>
+                                    <td>@row3["Doanh_Thu"]</td>
+                                </tr>
+                            }
+                        </table>
+                    }
+                    else
+                    {
+                        <p>No data available.</p>
+                    }
                 </div>
                 @*<div class="box" style="overflow:auto;width:400px;height:200px">
                         <table id="product" style="width:500px;height:200px; border-collapse: collapse;overflow:scroll">
@@ -242,40 +237,40 @@
                         </table>
                     </div>*@
                 @*<div class="box" style="overflow:auto;width:400px;height:200px">
-                        <table id="product" style="width:500px;height:200px; border-collapse: collapse;overflow:scroll">
+                                <table id="product" style="width:500px;height:200px; border-collapse: collapse;overflow:scroll">
 
-                            <tr class="title">
-                                <th colspan="4" class="top10">Top 10 sản phẩm bán chạy</th>
-                            </tr>
-                            <tr class="title" style="background-color:black;color:white">
-                                <td style="padding-right:10px">STT</td>
-                                <td>Mã Vật Tư</td>
-                                <td>Tên Vật Tư</td>
-                                <td>Doanh Thu</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>100001</td>
-                                <td>Product 1</td>
-                                <td>120000</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>100002</td>
-                                <td>Product 2</td>
-                                <td>150000</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>100003</td>
-                                <td>Product 3</td>
-                                <td>180000</td>
-                            </tr>
+                                    <tr class="title">
+                                        <th colspan="4" class="top10">Top 10 sản phẩm bán chạy</th>
+                                    </tr>
+                                    <tr class="title" style="background-color:black;color:white">
+                                        <td style="padding-right:10px">STT</td>
+                                        <td>Mã Vật Tư</td>
+                                        <td>Tên Vật Tư</td>
+                                        <td>Doanh Thu</td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>100001</td>
+                                        <td>Product 1</td>
+                                        <td>120000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>100002</td>
+                                        <td>Product 2</td>
+                                        <td>150000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>100003</td>
+                                        <td>Product 3</td>
+                                        <td>180000</td>
+                                    </tr>
 
-                        </table>
+                                </table>
+                            </div>
                     </div>*@
             </div>
-        </div>
     </section>
     <script>
         function logout() {

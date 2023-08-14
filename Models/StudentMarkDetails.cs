@@ -5,16 +5,11 @@ using System.Threading.Tasks;
 
 namespace StudentManagement.Models
 {
-    public class StudentMarkDetails
+    public class Top10DoanhThuItem
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public int Physics { get; set; }
-        public int Chemistry { get; set; }
-        public int Biology { get; set; }
-        public int Mathematics { get; set; }
-
-
+        public string MaVatTu { get; set; }
+        public string TenVatTu { get; set; }
+        public string DoanhThu { get; set; }
     }
 
 }

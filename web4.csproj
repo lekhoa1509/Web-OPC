@@ -234,6 +234,7 @@
     <Compile Include="Controllers\DoanhThuChiNhanhController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MauInChungTuController.cs" />
+    <Compile Include="Controllers\Top10VatTuController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -940,9 +941,11 @@
     <Content Include="Views\DoanhThuChiNhanh\DoanhThuChiNhanh_Admin.cshtml" />
     <Content Include="Views\Home\MauIn.cshtml" />
     <Content Include="Views\MauInChungTu\MauInNLCB_Fill.cshtml" />
+    <Content Include="Views\MauInChungTu\PhieuNhapXNTT.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Top10VatTu\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

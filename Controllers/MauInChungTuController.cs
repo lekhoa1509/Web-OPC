@@ -98,5 +98,9 @@ namespace web4.Controllers
         {
             return View();      
         }
+        public ActionResult PhieuNhapXNTT()
+        {
+            return View();
+        }
     }
 }

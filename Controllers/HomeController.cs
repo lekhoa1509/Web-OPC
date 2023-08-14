@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Dynamic;
+using StudentManagement.Models;
 using web4.Models;
 using System.Data.Odbc;
 using System.Configuration;
@@ -233,12 +234,25 @@ namespace web4.Controllers
 
             return View(ds);
         }
-        public ActionResult MainBaoCao()
+        public ActionResult MainBaoCao(Top10DoanhThuItem Top10)
         {
-            var username = Request.Cookies["UserName"].Value;
-            ViewBag.Username = username;
+            DataSet ds = new DataSet();
+            connectSQL();
+            string Pname = "[usp_Top10DoanhThu_SAP]";
 
-            return View();
+            using (SqlCommand cmd = new SqlCommand(Pname, con))
+            {
+                cmd.CommandTimeout = 950;
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                {
+                    sda.Fill(ds);
+                }
+            }
+
+            return View(ds);
         }
 
         public ActionResult MauIn()
@@ -254,5 +268,7 @@ namespace web4.Controllers
 
             return View();
         }
+       
+
     }
 }
