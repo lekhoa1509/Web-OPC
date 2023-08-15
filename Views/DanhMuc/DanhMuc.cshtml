@@ -23,11 +23,22 @@
         .contentList {
             display: none;
         }
-
+        .text-loading {
+            position: fixed;
+            bottom: 10px;
+            color: black;
+            left: 10px;
+            font-size: 13px;
+            z-index: 1001;
+            background-color: rgba(255, 255, 255, 0.9); /* Background color for the span */
+            padding: 5px 10px;
+            display: none;
+        }
     </style>
 </head>
 <body>
-    <div class="loader" style="z-index:1"></div>
+    <div class="loader" style="z-index:1000"></div>
+    <span id="spanText" class="text-loading">[usp_LookupKH_SAP]</span>
     <div class="sidebar close">
         <div class="logo-details">
             <img src="~/Images/opc.png" style="height:50px;width:50px;margin-left:10px">
@@ -114,12 +125,10 @@
                             {
 
 
-                                <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Admin_Fill">1.1.Doanh Thu Chi Nhánh</a></li>
-                            }
+                <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Admin_Fill">1.1.Doanh Thu Chi Nhánh</a></li> }
                             else
                             {
-                                <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Fill">1.1.Doanh Thu Chi Nhánh</a></li>
-                            }
+                <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Fill">1.1.Doanh Thu Chi Nhánh</a></li>}
 
                             <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanhTinhLuong_Fill">1.2.Doanh Thu Chi Nhánh Tính Lương</a></li>
 
@@ -183,38 +192,38 @@
             @if (string.Equals(ViewBag.UserName, "admin", StringComparison.OrdinalIgnoreCase) ||
              string.Equals(ViewBag.UserName, "opcmar001", StringComparison.OrdinalIgnoreCase))
             {
-                <div class="box-container">
-                    <div class="box-row-1">
-                        <h3>Danh Mục Khách Hàng</h3>
+<div class="box-container">
+    <div class="box-row-1">
+        <h3>Danh Mục Khách Hàng</h3>
 
 
-                    </div>
-                    <div class="box-row-2">
-                        <a class="button" href="/DanhMuc/ViewDanhMucKH_Fill" onclick="runReport()"><span>Xem</span></a>
-                    </div>
-                </div> }
-            else if (string.Equals(ViewBag.UserName, "OPCHCM001", StringComparison.OrdinalIgnoreCase))
-            {
-                <div class="box-container">
-                    <div class="box-row-1">
-                        <h3>Danh Mục Khách Hàng</h3>
+    </div>
+    <div class="box-row-2">
+        <a class="button" href="/DanhMuc/ViewDanhMucKH_Fill" onclick="runReport()"><span>Xem</span></a>
+    </div>
+</div> }
+else if (string.Equals(ViewBag.UserName, "OPCHCM001", StringComparison.OrdinalIgnoreCase))
+{
+<div class="box-container">
+    <div class="box-row-1">
+        <h3>Danh Mục Khách Hàng</h3>
 
 
-                    </div>
-                    <div class="box-row-2">
-                        <a class="button" href="/DanhMuc/ViewDanhMucKH_FillCN" onclick="runReport()"><span>Xem</span></a>
-                    </div>
-                </div> }
-            else
-            {
-                <div class="box-container">
-                    <div class="box-row-1">
-                        <h3>Danh Mục Khách Hàng</h3>
-                    </div>
-                    <div class="box-row-2">
-                        <a class="button" href="/DanhMuc/ViewDanhMucKH" onclick="runReport()"><span>Xem</span></a>
-                    </div>
-                </div>}
+    </div>
+    <div class="box-row-2">
+        <a class="button" href="/DanhMuc/ViewDanhMucKH_FillCN" onclick="runReport()"><span>Xem</span></a>
+    </div>
+</div> }
+else
+{
+<div class="box-container">
+    <div class="box-row-1">
+        <h3>Danh Mục Khách Hàng</h3>
+    </div>
+    <div class="box-row-2">
+        <a class="button" href="/DanhMuc/ViewDanhMucKH" onclick="runReport()"><span>Xem</span></a>
+    </div>
+</div>}
         </div>
     </section>
     <script>
@@ -289,14 +298,14 @@
             hideLoader();
         });
     </script>
-    @*<script>
-            function runReport() {
-                // Hiển thị thẻ span có id là "spanText"
-                showLoader();
-                const spanElement = document.getElementById("spanText");
-                spanElement.style.display = "block";
-            }
-        </script>*@
+    <script>
+        function runReport() {
+            // Hiển thị thẻ span có id là "spanText"
+            showLoader();
+            const spanElement = document.getElementById("spanText");
+            spanElement.style.display = "block";
+        }
+    </script>
     <script>
         window.onload = function () {
             var username = localStorage.getItem("username");

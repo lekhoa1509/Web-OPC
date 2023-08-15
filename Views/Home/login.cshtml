@@ -10,10 +10,10 @@
     <script src="https://kit.fontawesome.com/a81368914c.js"></script>
     @*<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>*@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/Styles/loader.css">
     <link rel="stylesheet" type="text/css" href="~/Styles/login.css">
     <style>
         .container {
-           
             width: 100vw;
             height: 100vh;
             display: flex;
@@ -24,7 +24,7 @@
     </style>
 </head>
 <body>
-
+    <div class="loader" style="z-index:1"></div>
     <img class="wave" src="~/Images/image_background.jpg" style="width:100%">
     <div class="container">
 
@@ -71,7 +71,7 @@
                 </div>
                 <a href="#">Forgot Password?</a>
                 <input type="submit" class="btn" value="Login" onclick="saveName()">
-               <div style="text-align:center"> <h4 id="wrong_pass" style="color:red"></h4></div>
+                <div style="text-align:center"> <h4 id="wrong_pass" style="color:red"></h4></div>
             </form>
         </div>
     </div>
@@ -96,6 +96,7 @@
         var nameInput = document.getElementById("Name");
         var nameValue = nameInput.value;
         localStorage.setItem("username", nameValue);
+        showLoader();
         return true; // Cho phép form submit
     }
     function displayAlert(message) {
@@ -107,7 +108,21 @@
         });
         return false;
     }
+    function showLoader() {
+        const loader = document.querySelector(".loader");
+        loader.classList.remove("loader-hidden");
+    }
 
+    // Function to hide the loader
+    function hideLoader() {
+        const loader = document.querySelector(".loader");
+        loader.classList.add("loader-hidden");
+    }
+    window.addEventListener("load", () => {
+        // Hide the loader after the page is loaded
+        hideLoader();
+       
+    });
 </script>
 
 

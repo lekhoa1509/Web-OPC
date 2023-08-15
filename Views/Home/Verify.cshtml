@@ -117,10 +117,12 @@
                             {
 
 
-                <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Admin_Fill">1.1.Doanh Thu Chi Nhánh</a></li> }
-                            else
-                            {
-                <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Fill">1.1.Doanh Thu Chi Nhánh</a></li>}
+                <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Admin_Fill">1.1.Doanh Thu Chi Nhánh</a></li>
+ }
+            else
+            {
+<li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Fill">1.1.Doanh Thu Chi Nhánh</a></li>
+}
 
                             <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanhTinhLuong_Fill">1.2.Doanh Thu Chi Nhánh Tính Lương</a></li>
 
@@ -203,14 +205,16 @@
                     <td>@row4["Ma_Vt"]</td>
                     <td>@row4["Ten_Vt"]</td>
                     <td>@String.Format("{0:n0}", Convert.ToDecimal(row4["Doanh_Thu"]))</td>
-                </tr> stt++;
-                                }
-                            }
-                            else
-                            {
-                <tr>
-                    <td colspan="4">No data available.</td>
-                </tr>}
+                </tr>
+ stt++;
+            }
+        }
+        else
+        {
+<tr>
+    <td colspan="4">No data available.</td>
+</tr>
+}
                         </tbody>
 
                     </table>
@@ -297,8 +301,7 @@
         })
         function ChangPassword() {
             window.location.href = "/home/DoiMatKhau"
-        }
-    </script>
+        }</script>
 
     <script>
         //icon chuc nang sidebar
@@ -325,11 +328,9 @@
         console.log(sidebarBtn);
         sidebarBtn.addEventListener("click", () => {
             sidebar.classList.toggle("close");
-        });
-    </script>
+        });</script>
 
     <script>
-
         //function showLoader() {
         //    const loader = document.querySelector(".loader");
         //    loader.classList.remove("loader-hidden");
@@ -346,8 +347,7 @@
         window.addEventListener("load", () => {
             // Hide the loader after the page is loaded
             hideLoader();
-        });
-    </script>
+        });</script>
     @*<script>
             function runReport() {
                 // Hiển thị thẻ span có id là "spanText"
@@ -367,8 +367,7 @@
                 localStorage.removeItem("username");
             }
 
-        };
-    </script>
+        };</script>
     <script>
         function showLoader() {
             const loader = document.querySelector(".loader");
@@ -382,9 +381,45 @@
         window.addEventListener("load", () => {
             hideLoader();
             applyCheckboxAndColumnState();
-        });
+        });</script>
+    <script>
+        // Sử dụng biến đếm để kiểm tra số lần reload
+        var reloadCount = 0;
+        // Số lần reload tối đa
+        var maxReloads = 2;
+        // Khoảng thời gian giữa các lần reload (mili giây)
+        var reloadIntervalTime = [1000, 10000]; // Lần đầu: 1 giây, Lần tiếp theo: 10 giây
+
+        // Hàm kiểm tra và thực hiện reload
+        function checkAndReload() {
+            // Kiểm tra số lần reload, nếu chưa đạt số lần tối đa
+            if (reloadCount < maxReloads) {
+                // Tăng biến đếm mỗi lần kiểm tra
+                reloadCount++;
+
+                // Gọi hàm reload
+                window.location.reload();
+
+                // Xóa hàm setInterval sau khi thực hiện reload lần đầu
+                clearInterval(reloadInterval);
+
+                // Gọi hàm kiểm tra lại sau khoảng thời gian tương ứng
+                reloadInterval = setInterval(checkAndReload, reloadIntervalTime[reloadCount]);
+            }
+        }
+
+        // Gọi hàm kiểm tra sau mỗi khoảng thời gian ban đầu (1 giây)
+        var reloadInterval = setInterval(checkAndReload, reloadIntervalTime[0]);
     </script>
-    
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>

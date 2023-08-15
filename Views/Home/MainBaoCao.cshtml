@@ -52,7 +52,7 @@
                     </a>
                     <ul class="sub-menu blank">
                         <li><a class="link_name" href="/DanhMuc/DanhMuc">Danh mục</a></li>
-                    </ul>
+                    </ul>   
                     @*<i class='bx bxs-chevron-down arrow'></i>*@
                 </div>
                 <!--<ul class="sub-menu">
@@ -166,7 +166,7 @@
         </ul>
     </div>
     <section class="home-section">
-        <nav>
+        <nav>   
             <div class="home-content">
                 <i class='bx bx-menu'></i>
                 <span class="text">Báo Cáo</span>
@@ -177,113 +177,7 @@
             </div>
         </nav>
 
-        <div class="home-content1">
-            <div class="overview-boxes">
-                <div class="box" style="overflow:auto;width:400px;height:200px">
-                    <table id="product" style="width:500px;height:200px; border-collapse: collapse;overflow:scroll">
-
-                        <tr class="title">
-                            <th colspan="4" class="top10"style="font-size:18px;padding:5px">Top 10 sản phẩm bán chạy</th>
-                        </tr>
-                        <tr class="title" style="background-color:black;color:white;width:30px;padding:5px">
-                            <td style="padding-right:10px">STT</td>
-                            <td>Mã Vật Tư</td>
-                            <td>Tên Vật Tư</td>
-                            <td>Doanh Thu</td>
-                        </tr>
-                        <tbody>
-                            @if (Model.Tables.Count > 0 && Model.Tables[0].Rows.Count > 0)
-                            {
-                                int stt = 1; // Khởi tạo biến đếm
-                                foreach (DataRow row3 in Model.Tables[0].Rows)
-                                {
-                                    <tr style="background-color: @(stt % 2 == 0 ? "#f2f2f2" : "white")">
-                                        <td style="padding:10px">@stt</td> <!-- Hiển thị số thứ tự tăng dần -->
-                                        <td>@row3["Ma_Vt"]</td>
-                                        <td>@row3["Ten_Vt"]</td>
-                                        <td>@String.Format("{0:n0}", Convert.ToDecimal(row3["Doanh_Thu"]))</td>
-                                    </tr>
-                                    stt++; // Tăng giá trị biến đếm
-                                }
-                            }
-                            else
-                            {
-                                <tr>
-                                    <td colspan="4">No data available.</td>
-                                </tr>
-                            }
-                        </tbody>
-
-                    </table>
-                </div>
-                @*<div class="box" style="overflow:auto;width:400px;height:200px">
-                        <table id="product" style="width:500px;height:200px; border-collapse: collapse;overflow:scroll">
-
-                            <tr class="title">
-                                <th colspan="4" class="top10">Top 10 sản phẩm bán chạy</th>
-                            </tr>
-                            <tr class="title" style="background-color:black;color:white">
-                                <td style="padding-right:10px">STT</td>
-                                <td>Mã Vật Tư</td>
-                                <td>Tên Vật Tư</td>
-                                <td>Doanh Thu</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>100001</td>
-                                <td>Product 1</td>
-                                <td>120000</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>100002</td>
-                                <td>Product 2</td>
-                                <td>150000</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>100003</td>
-                                <td>Product 3</td>
-                                <td>180000</td>
-                            </tr>
-
-                        </table>
-                    </div>*@
-                @*<div class="box" style="overflow:auto;width:400px;height:200px">
-                                <table id="product" style="width:500px;height:200px; border-collapse: collapse;overflow:scroll">
-
-                                    <tr class="title">
-                                        <th colspan="4" class="top10">Top 10 sản phẩm bán chạy</th>
-                                    </tr>
-                                    <tr class="title" style="background-color:black;color:white">
-                                        <td style="padding-right:10px">STT</td>
-                                        <td>Mã Vật Tư</td>
-                                        <td>Tên Vật Tư</td>
-                                        <td>Doanh Thu</td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>100001</td>
-                                        <td>Product 1</td>
-                                        <td>120000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>100002</td>
-                                        <td>Product 2</td>
-                                        <td>150000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>100003</td>
-                                        <td>Product 3</td>
-                                        <td>180000</td>
-                                    </tr>
-
-                                </table>
-                            </div>
-                    </div>*@
-            </div>
+       
     </section>
     <script>
         function logout() {
