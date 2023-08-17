@@ -431,7 +431,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0/js/bootstrap-select.min.js"></script>
-    <script type="text/javascript" src="Scripts/table2excel.js"></script>
+    @*<script type="text/javascript" src="Scripts/table2excel.js"></script>*@
 
 
     <meta charset="utf-8">
@@ -629,58 +629,61 @@
                                 <tr>
                                     <td>@row2["ten_DvCs"]</td>
 
-                                    <td class="num"style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OPC"]))</td>
-                                    <td class="num"style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Khoan_OPC"]))</td>
-                                    <td class=""style="text-align:right">@row2["Tyle_OPC"]%</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OPC"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Khoan_OPC"]))</td>
+                                    <td class="" style="text-align:right">@row2["Tyle_OPC"]%</td>
 
 
-                                    <td class="num"style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Con"]))</td>
-                                    <td class="num"style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Khoan_con"]))</td>
-                                    <td class=""style="text-align:right">@row2["Tyle_Con"]%</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Con"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Khoan_con"]))</td>
+                                    <td class="" style="text-align:right">@row2["Tyle_Con"]%</td>
 
-                                    <td class="num"style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Sui"]))</td>
-                                    <td class="num"style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Khoan_Sui"]))</td>
-                                    <td class=""style="text-align:right">@row2["Tyle_Sui"]%</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Sui"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Khoan_Sui"]))</td>
+                                    <td class="" style="text-align:right">@row2["Tyle_Sui"]%</td>
 
-                                    <td class="num"style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Phien"]))</td>
-                                    <td class="num"style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Khoan_phien"]))</td>
-                                    <td class=""style="text-align:right">@row2["Tyle_Phien"]%</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Phien"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Khoan_phien"]))</td>
+                                    <td class="" style="text-align:right">@row2["Tyle_Phien"]%</td>
 
-                                    <td class="num"style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_25"]))</td>
-                                    <td class="num"style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Khoan_25"]))</td>
-                                    <td class=""style="text-align:right">@row2["Tyle_25"]%</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_25"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Khoan_25"]))</td>
+                                    <td class="" style="text-align:right">@row2["Tyle_25"]%</td>
 
-                                    <td class="num"style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ComBo"]))</td>
-                                    <td class="num"style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Khac"]))</td>
-                                    <td class="num"style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Thuc_Hien"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ComBo"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Khac"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Thuc_Hien"]))</td>
 
                                 </tr>
                             }
-                            <!--<tr id="total-row">
-                                <td><strong>Tổng cộng</strong></td>
-                                <td class="num total-opc"></td>
-                                <td></td>
-                                <td></td>
-                                <td class="num total-con"></td>
-                                <td></td>
-                                <td></td>
-                                <td class="num total-sui"></td>
-                                <td></td>
-                                <td></td>
-                                <td class="num total-phien"></td>
-                                <td></td>
-                                <td></td>
-                                <td class="num total-25"></td>
-                                <td></td>
-                                <td></td>
-                                <td class="num total-combo"></td>
-                                <td></td>
-                                <td></td>-->
-                                <!-- Thêm các cột tổng cộng cho các loại doanh thu khác -->
-                                <!-- ... -->
-                            <!--</tr>-->
+
+                         
 
                         </tbody>
+                        <tfoot>
+                            <tr id="total-row" style="background-color: burlywood">
+                                <td><strong>Tổng cộng</strong></td>
+                                <td class="total-doanhthu-opc" style="text-align:right"></td>
+                                <td class="total-khoan-opc" style="text-align:right"></td>
+                                <td class="total-tyle-opc" style="text-align:right"></td>
+                                <td class="total-doanhthu-con" style="text-align:right"></td>
+                                <td class="total-khoan-con" style="text-align:right"></td>
+                                <td class="total-tyle-con" style="text-align:right"></td>
+                                <td class="total-doanhthu-sui" style="text-align:right"></td>
+                                <td class="total-khoan-sui" style="text-align:right"></td>
+                                <td class="total-tyle-sui" style="text-align:right"></td>
+                                <td class="total-doanhthu-phien" style="text-align:right"></td>
+                                <td class="total-khoan-phien" style="text-align:right"></td>
+                                <td class="total-tyle-phien" style="text-align:right"></td>
+                                <td class="total-doanhthu-25" style="text-align:right"></td>
+                                <td class="total-khoan-25" style="text-align:right"></td>
+                                <td class="total-tyle-25" style="text-align:right"></td>
+                                <td class="total-combo" style="text-align:right"></td>
+                                <td style="text-align:right"></td>
+                                <td style="text-align:right"></td>
+
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -693,7 +696,7 @@
     <script src="~/assets/js/bootstrap.bundle.min.js"></script>
     <script src="~/assets/js/jquery-3.6.0.min.js"></script>
     <script src="~/assets/js/datatables.min.js"></script>
-    <script src="~/assets/js/pdfmake.min.js"></script>
+    @*<script src="~/assets/js/pdfmake.min.js"></script>*@
     <script src="~/assets/js/vfs_fonts.js"></script>
     <script src="~/assets/js/custom.js"></script>
     <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
@@ -961,52 +964,138 @@
             calculateTotal();
 
             function calculateTotal() {
-                var totalOpc = 0;
-                var totalCon = 0;
-                var totalSui = 0;
-                var totalPhien = 0;
-                var total25 = 0;
-                var totalCombo = 0;
-                // Khai báo và tính tổng cho các cột khác
+                var totalColumns = {};
 
-                // Lặp qua từng hàng trong tbody để tính tổng
-                $('#example tbody tr').each(function () {
-                    totalOpc += parseFloat($(this).find('.num:eq(0)').text().replace(/,/g, ''));
-                    totalCon += parseFloat($(this).find('.num:eq(4)').text().replace(/,/g, ''));
-                    totalSui += parseFloat($(this).find('.num:eq(7)').text().replace(/,/g, ''));
-                    totalPhien += parseFloat($(this).find('.num:eq(10)').text().replace(/,/g, ''));
-                    total25 += parseFloat($(this).find('.num:eq(13)').text().replace(/,/g, ''));
-                    totalCombo += parseFloat($(this).find('.num:eq(16)').text().replace(/,/g, ''));
+                $('#example tbody tr:not(#total-row)').each(function () {
+                    var cells = $(this).find('td');
 
-                    // Thêm các cột tổng cộng khác vào đây
-                    // ...
+                    cells.each(function (index) {
+                        if (index === 0 || index === cells.length - 1) {
+                            return; // Bỏ qua cột đầu tiên (tên đơn vị) và cột cuối cùng (Tổng Thực Hiện)
+                        }
+
+                        var columnValue = parseFloat($(this).text().replace(/,/g, ''));
+                        var isRatioColumn = index % 3 === 0; // Kiểm tra nếu đây là cột tỷ lệ
+
+                        if (!isNaN(columnValue)) {
+                            if (!totalColumns[index]) {
+                                totalColumns[index] = {
+                                    sum: 0,
+                                    count: 0,
+                                    isRatio: isRatioColumn,
+                                };
+                            }
+                            totalColumns[index].sum += columnValue;
+                            totalColumns[index].count++;
+                        }
+                    });
                 });
 
-                // Hiển thị tổng trong hàng tổng cộng
-                $('#total-row .total-opc').text(formatNumber(totalOpc));
-                $('#total-row .total-con').text(formatNumber(totalCon));
-                $('#total-row .total-sui').text(formatNumber(totalSui));
-                $('#total-row .total-phien').text(formatNumber(totalPhien));
-                $('#total-row .total-25').text(formatNumber(total25));
-                $('#total-row .total-combo').text(formatNumber(totalCombo));
+                // Tính tỷ lệ và hiển thị tổng trong hàng tổng cộng
+                $.each(totalColumns, function (index, value) {
+                    var totalCell = $('#total-row td').eq(index);
+                    if (!value.isRatio) {
+                        totalCell.text(formatCurrency(value.sum));
+                    } else {
+                        totalCell.text(''); // Đặt giá trị rỗng cho cột tỷ lệ
+                    }
+                });
+            }
 
-                // Hiển thị các cột tổng cộng khác vào đây
-                // ...
+            function formatCurrency(number) {
+                return number.toLocaleString('en-US', { style: 'currency', currency: 'VND' }).replace('₫', '');
+            }
+        });
+
+
+    </script>
+    <script>
+        //tinh sum cot tong thuc hien
+        $(document).ready(function () {
+            calculateTotal();
+
+            function calculateTotal() {
+                var totalThucHien = 0;
+
+                $('#example tbody tr:not(#total-row)').each(function () {
+                    var tongThucHien = parseFloat($(this).find('td').last().text().replace(/,/g, ''));
+                    if (!isNaN(tongThucHien)) {
+                        totalThucHien += tongThucHien;
+                    }
+                });
+
+                var totalCell = $('#total-row td').last();
+                totalCell.text(formatNumber(totalThucHien));
             }
 
             function formatNumber(number) {
-                return number.toLocaleString('en-US');
+                return number.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
             }
         });
+
     </script>
+    <script>//tinh ty le
+        $(document).ready(function () {
+            calculateRatios();
 
+            function calculateRatios() {
+                var totalColumns = {};
 
+                // Lấy giá trị cột tổng doanh thu và cột tổng khoản
+                var sumDoanhThuOpc = parseFloat($('#total-row td.total-doanhthu-opc').text().replace(/,/g, ''));
+                var sumKhoanOpc = parseFloat($('#total-row td.total-khoan-opc').text().replace(/,/g, ''));
+                var sumDoanhThuCon = parseFloat($('#total-row td.total-doanhthu-con').text().replace(/,/g, ''));
+                var sumKhoanCon = parseFloat($('#total-row td.total-khoan-con').text().replace(/,/g, ''));
+                var sumDoanhThuSui = parseFloat($('#total-row td.total-doanhthu-sui').text().replace(/,/g, ''));
+                var sumKhoanSui = parseFloat($('#total-row td.total-khoan-sui').text().replace(/,/g, ''));
+                var sumDoanhThuPhien = parseFloat($('#total-row td.total-doanhthu-phien').text().replace(/,/g, ''));
+                var sumKhoanPhien = parseFloat($('#total-row td.total-khoan-phien').text().replace(/,/g, ''));
+                var sumDoanhThu25 = parseFloat($('#total-row td.total-doanhthu-25').text().replace(/,/g, ''));
+                var sumKhoan25 = parseFloat($('#total-row td.total-khoan-25').text().replace(/,/g, ''));
 
+                // Tính tỷ lệ theo từng loại
+                var ratioOpc = sumKhoanOpc !== 0 ? sumDoanhThuOpc / sumKhoanOpc : 0;
+                var ratioCon = sumKhoanCon !== 0 ? sumDoanhThuCon / sumKhoanCon : 0;
+                var ratioSui = sumKhoanSui !== 0 ? sumDoanhThuSui / sumKhoanSui : 0;
+                var ratioPhien = sumKhoanPhien !== 0 ? sumDoanhThuPhien / sumKhoanPhien : 0;
+                var ratio25 = sumKhoan25 !== 0 ? sumDoanhThu25 / sumKhoan25 : 0;
 
+                // Gán kết quả lên các ô tương ứng trong cột tỷ lệ
+                $('#total-row td.total-tyle-opc').text(formatRatio(ratioOpc));
+                $('#total-row td.total-tyle-con').text(formatRatio(ratioCon));
+                $('#total-row td.total-tyle-sui').text(formatRatio(ratioSui));
+                $('#total-row td.total-tyle-phien').text(formatRatio(ratioPhien));
+                $('#total-row td.total-tyle-25').text(formatRatio(ratio25));
+            }
 
+            function formatRatio(ratio) {
+                return (ratio * 100).toFixed(2) + "%";
+            }
+        });
 
+    </script>
+    <script>
+        $(document).ready(function () {
+            var table = $('#example').DataTable({
+                "pageLength": 10, // Số hàng trên mỗi trang
+                // Cấu hình khác cho DataTables
+            });
 
+            // Sự kiện khi DataTables vẽ lại bảng
+            table.on('draw.dt', function () {
+                // Kiểm tra xem hàng tổng cộng có nằm trên trang hiện tại hay không
+                var totalRow = $('#total-row');
+                var totalRowVisible = totalRow.is(':visible');
 
+                // Nếu hàng tổng cộng không nằm trên trang hiện tại, chuyển nó lên trang đầu
+                if (!totalRowVisible) {
+                    var tableBody = table.table().body();
+                    tableBody.prepend(totalRow);
+                }
+            });
+        });
+
+    </script>
 
 
 

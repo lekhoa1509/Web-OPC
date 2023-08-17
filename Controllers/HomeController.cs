@@ -57,7 +57,7 @@ namespace web4.Controllers
                 con.Close();
                 username = Request.Cookies["UserName"].Value;
                 ViewBag.Username = username;
-                return About(Top10); ;
+                return About(Top10); 
             }
             else
             {
@@ -96,18 +96,13 @@ namespace web4.Controllers
                     sda.Fill(ds);
                 }
             }
-         
 
+            var username = Request.Cookies["UserName"].Value;
+            ViewBag.Username = username;
             return View(ds);
         }
        
-        public ActionResult Verify()
-        {
-            var username = Request.Cookies["UserName"].Value;
-            ViewBag.Username = username;
-
-            return View("About");
-        }
+    
 
 
         //Báo cáo công nợ quản trị lấy  ra 5 bảng;
@@ -266,39 +261,12 @@ namespace web4.Controllers
             return View(ds);    
         }
         
-        public ActionResult MainBaoCao(Top10DoanhThuItem Top10)
+        public ActionResult MainBaoCao()
         {
-            DataSet ds = new DataSet();
-            connectSQL();
-           Top10.Ma_DvCs = Request.Cookies["MA_DVCS"].Value;
+            var username = Request.Cookies["UserName"].Value;
+            ViewBag.Username = username;
 
-
-            DateTime firstDayOfMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-
-
-            DateTime currentDate = DateTime.Now;
-
-            string Pname = "[usp_Top10DoanhThu_SAP]";
-
-
-            using (SqlCommand cmd = new SqlCommand(Pname, con))
-            {
-                cmd.CommandTimeout = 950;
-                cmd.Connection = con;
-                cmd.CommandType = CommandType.StoredProcedure;
-                Top10.From_date = firstDayOfMonth.ToString();
-                Top10.To_date = currentDate.ToString();
-
-                using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
-                {
-                    cmd.Parameters.AddWithValue("@_Tu_Ngay", Top10.From_date);
-                    cmd.Parameters.AddWithValue("@_Den_Ngay", Top10.To_date);
-                    cmd.Parameters.AddWithValue("@_ma_dvcs", Top10.Ma_DvCs);
-                    sda.Fill(ds);
-                }
-            }
-
-            return View(ds);
+            return View();
         }
 
         public ActionResult MauIn()

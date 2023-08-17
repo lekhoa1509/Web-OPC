@@ -569,31 +569,52 @@
                         <tbody>
                             @foreach (DataRow row2 in Model.Tables[0].Rows)
                             {
-                <tr>
-                    <td>@row2["ten_DvCs"]</td>
+                                <tr>
+                                    <td>@row2["ten_DvCs"]</td>
 
-                    <td class="num"style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPCL_OTC_OPC"]))</td>
-                    @*<td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPCL_ETC_OPC"]))</td>*@
-                    <td class="num"style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPPT_OTC_OPC"]))</td>
-                    @* <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPPT_ETC_OPC"]))</td>*@
-                    <td class="num"style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OTC_OPC"]))</td>
-                    <td class="num"style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ETC_OPC"]))</td>
-                    <td class="num"style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OTC_Con"]))</td>
-                    <td class="num"style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ETC_Con"]))</td>
-                    <td class="num"style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OTC_Sui"]))</td>
-                    <td class="num"style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ETC_Sui"]))</td>
-                    <td class="num"style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OTC_Phien"]))</td>
-                    <td class="num"style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ETC_Phien"]))</td>
-                    <td class="num"style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OTC_TW25"]))</td>
-                    <td class="num"style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ETC_TW25"]))</td>
-                    <td class="num"style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ComBo"]))</td>
-                    <td class="num"style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Khac"]))</td>
-                    <td class="num"style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Thuc_Hien"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPCL_OTC_OPC"]))</td>
+                                    @*<td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPCL_ETC_OPC"]))</td>*@
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPPT_OTC_OPC"]))</td>
+                                    @* <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPPT_ETC_OPC"]))</td>*@
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OTC_OPC"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ETC_OPC"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OTC_Con"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ETC_Con"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OTC_Sui"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ETC_Sui"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OTC_Phien"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ETC_Phien"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OTC_TW25"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ETC_TW25"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ComBo"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Khac"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Thuc_Hien"]))</td>
 
-                </tr>}
-
+                                </tr>
+                            }
+                     
 
                         </tbody>
+                        <tfoot>
+                            <tr id="total-row" style="background-color: burlywood">
+                                <td><strong>Tổng cộng</strong></td>
+                                <td class="total-dtcl-otc" style="text-align:right"></td>
+                                <td class="total-dtpt-otc" style="text-align:right"></td>
+                                <td class="total-dtotc-opc" style="text-align:right"></td>
+                                <td class="total-dtetc-opc" style="text-align:right"></td>
+                                <td class="total-dtotc-con" style="text-align:right"></td>
+                                <td class="total-dtetc-con" style="text-align:right"></td>
+                                <td class="total-dtotc-sui" style="text-align:right"></td>
+                                <td class="total-dtetc-sui" style="text-align:right"></td>
+                                <td class="total-dtotc-phien" style="text-align:right"></td>
+                                <td class="total-dtetc-phien" style="text-align:right"></td>
+                                <td class="total-dtotc-25" style="text-align:right"></td>
+                                <td class="total-dtetc-25" style="text-align:right"></td>
+                                <td class="total-dtcombo" style="text-align:right"></td>
+                                <td class="total-dtkhac" style="text-align:right"></td>
+                                <td class="total-tongthuchien" style="text-align:right"></td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -741,7 +762,110 @@
         });
 
     </script>
+    <script>
+        $(document).ready(function () {
+            calculateTotal();
 
+            function calculateTotal() {
+                var totalColumns = {};
+
+                $('#example tbody tr:not(#total-row)').each(function () {
+                    var cells = $(this).find('td');
+
+                    cells.each(function (index) {
+                        if (index === 0) {
+                            return; // Bỏ qua cột đầu tiên với tên đơn vị
+                        }
+
+                        var columnValue = parseFloat($(this).text().replace(/,/g, ''));
+
+                        if (!isNaN(columnValue)) {
+                            if (!totalColumns[index]) {
+                                totalColumns[index] = 0;
+                            }
+                            totalColumns[index] += columnValue;
+                        }
+                    });
+                });
+
+                // Hiển thị tổng trong hàng tổng cộng
+                $.each(totalColumns, function (index, value) {
+                    $('#total-row td').eq(index).text(formatNumber(value));
+                });
+            }
+
+            function formatNumber(number) {
+                return number.toLocaleString('en-US');
+            }
+        });
+
+    </script>
+    <script>
+        //tinh sum cot tong thuc hien
+        $(document).ready(function () {
+            calculateTotal();
+
+            function calculateTotal() {
+                var totalThucHien = 0;
+
+                $('#example tbody tr:not(#total-row)').each(function () {
+                    var tongThucHien = parseFloat($(this).find('td').last().text().replace(/,/g, ''));
+                    if (!isNaN(tongThucHien)) {
+                        totalThucHien += tongThucHien;
+                    }
+                });
+
+                var totalCell = $('#total-row td').last();
+                totalCell.text(formatNumber(totalThucHien));
+            }
+
+            function formatNumber(number) {
+                return number.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+            }
+        });
+
+    </script>
+    <script>
+        //tinh ty le
+        $(document).ready(function () {
+            calculateRatios();
+
+            function calculateRatios() {
+                var totalColumns = {};
+
+                // Lấy giá trị cột tổng doanh thu và cột tổng khoản
+                var sumDoanhThuOpc = parseFloat($('#total-row td.total-doanhthu-opc').text().replace(/,/g, ''));
+                var sumKhoanOpc = parseFloat($('#total-row td.total-khoan-opc').text().replace(/,/g, ''));
+                var sumDoanhThuCon = parseFloat($('#total-row td.total-doanhthu-con').text().replace(/,/g, ''));
+                var sumKhoanCon = parseFloat($('#total-row td.total-khoan-con').text().replace(/,/g, ''));
+                var sumDoanhThuSui = parseFloat($('#total-row td.total-doanhthu-sui').text().replace(/,/g, ''));
+                var sumKhoanSui = parseFloat($('#total-row td.total-khoan-sui').text().replace(/,/g, ''));
+                var sumDoanhThuPhien = parseFloat($('#total-row td.total-doanhthu-phien').text().replace(/,/g, ''));
+                var sumKhoanPhien = parseFloat($('#total-row td.total-khoan-phien').text().replace(/,/g, ''));
+                var sumDoanhThu25 = parseFloat($('#total-row td.total-doanhthu-25').text().replace(/,/g, ''));
+                var sumKhoan25 = parseFloat($('#total-row td.total-khoan-25').text().replace(/,/g, ''));
+
+                // Tính tỷ lệ theo từng loại
+                var ratioOpc = sumKhoanOpc !== 0 ? sumDoanhThuOpc / sumKhoanOpc : 0;
+                var ratioCon = sumKhoanCon !== 0 ? sumDoanhThuCon / sumKhoanCon : 0;
+                var ratioSui = sumKhoanSui !== 0 ? sumDoanhThuSui / sumKhoanSui : 0;
+                var ratioPhien = sumKhoanPhien !== 0 ? sumDoanhThuPhien / sumKhoanPhien : 0;
+                var ratio25 = sumKhoan25 !== 0 ? sumDoanhThu25 / sumKhoan25 : 0;
+
+                // Gán kết quả lên các ô tương ứng trong cột tỷ lệ
+                $('#total-row td.total-tyle-opc').text(formatRatio(ratioOpc));
+                $('#total-row td.total-tyle-con').text(formatRatio(ratioCon));
+                $('#total-row td.total-tyle-sui').text(formatRatio(ratioSui));
+                $('#total-row td.total-tyle-phien').text(formatRatio(ratioPhien));
+                $('#total-row td.total-tyle-25').text(formatRatio(ratio25));
+            }
+
+            function formatRatio(ratio) {
+                return (ratio * 100).toFixed(2) + "%";
+            }
+        });
+
+    </script>
 
 
 </body>

@@ -121,7 +121,7 @@
  }
             else
             {
-<li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Fill">1.1.Doanh Thu Chi Nhánh</a></li>
+                <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Fill">1.1.Doanh Thu Chi Nhánh</a></li>
 }
 
                             <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanhTinhLuong_Fill">1.2.Doanh Thu Chi Nhánh Tính Lương</a></li>
@@ -388,7 +388,7 @@
         // Số lần reload tối đa
         var maxReloads = 2;
         // Khoảng thời gian giữa các lần reload (mili giây)
-        var reloadIntervalTime = [1000, 10000]; // Lần đầu: 1 giây, Lần tiếp theo: 10 giây
+        var reloadIntervalTime = [10000, 10000]; // Lần đầu: 1 giây, Lần tiếp theo: 10 giây
 
         // Hàm kiểm tra và thực hiện reload
         function checkAndReload() {
@@ -411,15 +411,5 @@
         // Gọi hàm kiểm tra sau mỗi khoảng thời gian ban đầu (1 giây)
         var reloadInterval = setInterval(checkAndReload, reloadIntervalTime[0]);
     </script>
-
-
-
-
-
-
-
-
-
-
 </body>
 </html>
