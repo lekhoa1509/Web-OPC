@@ -18,5 +18,8 @@ namespace web4.Models
         public decimal So_luong { get; set; }
         public string From_date { get; set; }
         public string To_date { get; set; }
+        public string Ma_Dt { get; set; }
+        public string Ten_Dt { get; set; }
+        public string SelectedMaDt { get; set; }
     }
 }

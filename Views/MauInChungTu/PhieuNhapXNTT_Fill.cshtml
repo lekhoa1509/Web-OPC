@@ -14,7 +14,6 @@
         }
 
         page {
-
             margin: 0;
         }
 
@@ -36,6 +35,7 @@
         .flex-container {
             text-align: left;
         }
+
         a:hover {
             background-color: lightskyblue;
         }
@@ -368,34 +368,67 @@
         .data-form {
             flex: 1; /* Take up remaining space */
         }
+
         .print-button {
             margin-top: 10px;
         }
-        @@media print{
-                 #locBC{
-                           display:none;
-                       }
+
+        @@media print {
+            #locBC {
+                display: none;
+            }
+
             #data-form {
-              
                 justify-content: center;
                 /*  align-items: center;*/
                 min-height: 100vh;
                 margin: 0; /* Canh giữa nội dung trong data-form */
             }
+
             h5 {
                 text-align: center;
                 font-size: 15px;
             }
+
             #data-form .print-button {
-               display:none;
+                display: none;
             }
-             }
+        }
     </style>
 </head>
 <body>
 
 
     <div class="forms-container">
+        <ul class="nav-links" style="display: flex; justify-content: center;">
+            <li>
+                <form class="locBC-form" id="dateForm" action="PhieuNhapXNTT" method="post" onsubmit="handleFormSubmit(event)">
+                    <div id="locBC">
+
+                        <a>Từ Ngày</a><br /><br />
+                        <input class="tu_ngay" placeholder="Từ Ngày" id="tu_ngay" name="From_date" type="date" format="YYYY-MM-DD" value="@Request.QueryString["From_date"]" />
+                        <script>$("#tu_ngay").datetimepicker({ timepicker: false, format: 'Y-m-d' });</script><br /><br />
+                        <a>Đến Ngày</a><br /><br />
+                        <input class="den_ngay" id="den_ngay" placeholder=" Đến Ngày" name="To_date" type="DATE" format="YYYY-MM-DD" value="@Request.QueryString["To_date"]" /><br /><br />
+                        <script>$("#den_ngay").datetimepicker({ timepicker: false, format: 'Y-m-d' });</script>
+                        <input type="text" id="dropdownInput" list="dropdownList" placeholder="Tìm kiếm danh mục">
+                        <datalist id="dropdownList">
+                            @foreach (var item in ViewBag.DataItems)
+                            {
+                <option value="@item.Ma_Dt">@item.Ten_Dt</option>}
+                        </datalist>
+                        <input type="hidden" name="DropdownOption" id="selectedOption">
+
+
+                        <div>
+                            <button class="submit" type="submit" onclick="runReport()"> Chạy Báo Cáo </button>
+                        </div>
+                    </div>
+                </form>
+            </li>
+        </ul>
+
+
         <form class="data-form" id="data-form">
             <div>
                 <h3 style="margin-left:-500px; font-size:13px;">CÔNG TY CỔ PHẦN DƯỢC PHẨM OPC</h3>

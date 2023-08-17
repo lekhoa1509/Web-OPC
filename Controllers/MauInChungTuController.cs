@@ -98,9 +98,82 @@ namespace web4.Controllers
         {
             return View();      
         }
-        public ActionResult PhieuNhapXNTT()
+
+        public List<MauInChungTu> LoadDmDt(string Ma_dvcs)
         {
+            List<MauInChungTu> dataItems = new List<MauInChungTu>();
+
+            using (SqlConnection connection = new SqlConnection(con.ConnectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("[usp_DmDtTdv_SAP]", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@_ma_cbnv",Ma_dvcs); // Thêm tham số ma_dvcs
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            MauInChungTu dataItem = new MauInChungTu
+                            {
+                                Ma_Dt = reader["ma_dt"].ToString(),
+                                Ten_Dt = reader["ten_dt"].ToString()
+                            };
+                            dataItems.Add(dataItem);
+                        }
+                    }
+                }
+            }
+
+            return dataItems;
+        }
+
+        public ActionResult PhieuNhapXNTT_Fill()
+        {
+            List<MauInChungTu> dmDlist = LoadDmDt("");
+
+            ViewBag.DataItems = dmDlist;
             return View();
+        }
+
+        public ActionResult PhieuNhapXNTT(MauInChungTu MauIn)                                                                                                                                                                                                                                                                                                                                                                                               
+        {
+            string ma_dvcs = Request.Cookies["Ma_dvcs"].Value;
+            DataSet ds = new DataSet();
+            connectSQL();
+
+            //MauIn.So_Ct = Request.Cookies["SoCt"].Value;
+
+            //string query = "exec usp_Vth_BC_BHCNTK_CN @_ngay_Ct1 = '" + Acc.From_date + "',@_Ngay_Ct2 ='"+ Acc.To_date+"',@_Ma_Dvcs='"+ Acc.Ma_DvCs_1+"'";
+            string Pname = "[usp_XacNhanCKTT_SAP]";
+
+            using (SqlCommand cmd = new SqlCommand(Pname, con))
+            {
+                cmd.CommandTimeout = 950;
+
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                //MauIn.From_date = Request.Cookies["From_date"].Value;
+                //MauIn.To_date = Request.Cookies["To_Date"].Value;
+                con.Open();
+
+                using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                {
+
+
+                    cmd.Parameters.AddWithValue("@_Tu_Ngay", MauIn.From_date);
+                    cmd.Parameters.AddWithValue("@_Den_Ngay", MauIn.To_date);
+                    cmd.Parameters.AddWithValue("@_Ma_dt", MauIn.Ma_Dt);
+
+
+                    sda.Fill(ds);
+
+                }
+            }
+            return View(ds);
         }
     }
 }
