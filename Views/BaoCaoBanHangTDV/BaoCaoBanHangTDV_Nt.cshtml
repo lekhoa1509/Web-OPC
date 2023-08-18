@@ -450,68 +450,108 @@
 
                         <tbody>
 
+
+                            @foreach (DataRow row2 in Model.Tables[0].Rows)
+                            {
+
+                                <tr>
+                                    <!--doanh thu OTC-->
+                                    <td style="text-align:right">@row2["ma_TDV"]</td>
+                                    <td>@row2["Ten_TDV"]</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPCL_NPP"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPPT_NPP"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OPC_NPP"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_HD_NPP"]))</td>
+
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPCL_OPC_OTC"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPPT_OPC_OTC"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OPC_OTC"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Con_OTC"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Sui_OTC"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_TW25_OTC"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Phien_OTC"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ComBo_OTC"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Thuc_Hien_OTC"]))</td>
+                                    <!--doanh thu ETC-->
+                                    @*<td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPCL_OPC_ETC"]))</td>*@
+                                    @*<td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPPT_OPC_ETC"]))</td>*@
+                                    <td class="num" style="text-align:right">0</td>
+                                    <td class="num" style="text-align:right">0</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OPC_ETC"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Con_ETC"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Sui_ETC"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_TW25_ETC"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Phien_ETC"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Thuc_Hien_ETC"]))</td>
+                                    <!--Khoán  OTC-->
+                                    <td class="num" style="text-align:right">0</td>
+                                    <td class="num" style="text-align:right">0</td>
+                                    <td class="num" style="text-align:right">0</td>
+                                    <td class="num" style="text-align:right">0</td>
+                                    <td class="num" style="text-align:right">0</td>
+                                    <td class="num" style="text-align:right">0</td>
+
+                                    <!--Khoán  ETC-->
+                                    <td class="num" style="text-align:right">0</td>
+                                    <td class="num" style="text-align:right">0</td>
+                                    <td class="num" style="text-align:right">0</td>
+                                    <td class="num" style="text-align:right">0</td>
+                                    <td class="num" style="text-align:right">0</td>
+                                    <td class="num" style="text-align:right">0</td>
+
+                                    <!--Doanh Thu Khác-->
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Khac"]))</td>
+                                    <!--Tổng Thực Hiện-->
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Thuc_Hien"]))</td>
+
+                                </tr>
+                            }
+
+                        </tbody>
+                        <tfoot>
+                            <tr id="total-row" style="background-color: burlywood">
+                                <td class="num" colspan="2"><strong>Tổng cộng:</strong></td>
+                                <td class="num" style="text-align:right"><span id="spcl-otc-npp"></span></td>
+                                <td class="num" style="text-align:right"><span id="sppt-otc-npp"></span></td>
+                                <td class="num" style="text-align:right"><span id="opc-conlai-npp"></span></td>
+                                <td class="num" style="text-align:right"><span id="hd-npp"></span></td>
+                                <td class="num" style="text-align:right"><span id="spcl-otc-otc"></span></td>
+                                <td class="num" style="text-align:right"><span id="sppt-otc-otc"></span></td>
+                                <td class="num" style="text-align:right"><span id="opc-conlai-otc"></span></td>
+                                <td class="num" style="text-align:right"><span id="con-otc-otc"></span></td>
+                                <td class="num" style="text-align:right"><span id="sui-otc"></span></td>
+                                <td class="num" style="text-align:right"><span id="tw25-otc-otc"></span></td>
+                                <td class="num" style="text-align:right"><span id="phien-otc-otc"></span></td>
+                                <td class="num" style="text-align:right"><span id="combo-otc-otc"></span></td>
+                                <td class="num" style="text-align:right"><span id="tongthuchien-otc"></span></td>
+                                <td class="num" style="text-align:right"><span id="spcl-etc-etc"></span></td>
+                                <td class="num" style="text-align:right"><span id="sppt-etc-etc"></span></td>
+                                <td class="num" style="text-align:right"><span id="opc-conlai-etc"></span></td>
+                                <td class="num" style="text-align:right"><span id="con-etc-etc"></span></td>
+                                <td class="num" style="text-align:right"><span id="sui-etc"></span></td>
+                                <td class="num" style="text-align:right"><span id="tw25-etc"></span></td>
+                                <td class="num" style="text-align:right"><span id="phien-etc-etc"></span></td>
+                                <td class="num" style="text-align:right"><span id="tongthuchien-etc"></span></td>
+                                <td class="num" style="text-align:right"><span id="khoan-opc-otc"></span></td>
+                                <td class="num" style="text-align:right"><span id="khoan-sui-otc"></span></td>
+                                <td class="num" style="text-align:right"><span id="khoan-con-otc"></span></td>
+                                <td class="num" style="text-align:right"><span id="khoan-25-otc"></span></td>
+                                <td class="num" style="text-align:right"><span id="khoan-phien-otc"></span></td>
+                                <td class="num" style="text-align:right"><span id="tongkhoan-otc"></span></td>
+                                <td class="num" style="text-align:right"><span id="khoan-opc-etc"></span></td>
+                                <td class="num" style="text-align:right"><span id="khoan-sui-etc"></span></td>
+                                <td class="num" style="text-align:right"><span id="khoan-con-etc"></span></td>
+                                <td class="num" style="text-align:right"><span id="khoan-25-etc"></span></td>
+                                <td class="num" style="text-align:right"><span id="khoan-phien-etc"></span></td>
+                                <td class="num" style="text-align:right"><span id="tongkhoan-etc"></span></td>
+                                <td class="num" style="text-align:right"><span id="doanhthukhac"></span></td>
+                                <td class="num" style="text-align:right"><span id="tongdoanhthu"></span></td>
+                            </tr>
+                        </tfoot>
+                    </table>
                 </div>
-                @foreach (DataRow row2 in Model.Tables[0].Rows)
-                {
-
-                    <tr>
-                        <!--doanh thu OTC-->
-                        <td>@row2["ma_TDV"]</td>
-                        <td>@row2["Ten_TDV"]</td>
-                        <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPCL_NPP"]))</td>
-                        <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPPT_NPP"]))</td>
-                        <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OPC_NPP"]))</td>
-                        <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_HD_NPP"]))</td>
-
-                        <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPCL_OPC_OTC"]))</td>
-                        <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPPT_OPC_OTC"]))</td>
-                        <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OPC_OTC"]))</td>
-                        <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Con_OTC"]))</td>
-                        <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Sui_OTC"]))</td>
-                        <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_TW25_OTC"]))</td>
-                        <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Phien_OTC"]))</td>
-                        <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ComBo_OTC"]))</td>
-                        <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Thuc_Hien_OTC"]))</td>
-                        <!--doanh thu ETC-->
-                        @*<td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPCL_OPC_ETC"]))</td>*@
-                        @*<td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_SPPT_OPC_ETC"]))</td>*@
-                        <td class="num">0</td>
-                        <td class="num">0</td>
-                        <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OPC_ETC"]))</td>
-                        <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Con_ETC"]))</td>
-                        <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Sui_ETC"]))</td>
-                        <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_TW25_ETC"]))</td>
-                        <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Phien_ETC"]))</td>
-                        <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Thuc_Hien_ETC"]))</td>
-                        <!--Khoán  OTC-->
-                        <td class="num">0</td>
-                        <td class="num">0</td>
-                        <td class="num">0</td>
-                        <td class="num">0</td>
-                        <td class="num">0</td>
-                        <td class="num">0</td>
-
-                        <!--Khoán  ETC-->
-                        <td class="num">0</td>
-                        <td class="num">0</td>
-                        <td class="num">0</td>
-                        <td class="num">0</td>
-                        <td class="num">0</td>
-                        <td class="num">0</td>
-
-                        <!--Doanh Thu Khác-->
-                        <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Khac"]))</td>
-                        <!--Tổng Thực Hiện-->
-                        <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Thuc_Hien"]))</td>
-
-                    </tr>
-                }
-
-                </tbody>
-                </table>
             </div>
         </div>
-    </div>
     </div>
     <!-- =======  Data-Table  = End  ===================== -->
     <!-- ============ Java Script Files  ================== -->
@@ -581,6 +621,43 @@
             hideLoader();
         });
     </script>
+    <script>
+   <script>
+    $(document).ready(function () {
+        calculateTotal();
+
+        function calculateTotal() {
+            var totalColumns = new Array(37).fill(0); // Khởi tạo mảng chứa tổng của 34 cột
+
+            // Duyệt qua từng dòng trong bảng
+            $('#example tbody tr').each(function () {
+                var cells = $(this).find('td');
+
+                cells.each(function (index) {
+                    if (index >= 2) { // Bắt đầu từ cột thứ 3 (index 2)
+                        var columnValue = parseFloat($(this).text().replace(/,/g, ''));
+
+                        if (!isNaN(columnValue)) {
+                            totalColumns[index] += columnValue;
+                        }
+                    }
+                });
+            });
+
+            // Hiển thị giá trị tổng từng cột lên view
+            for (var i = 2; i < totalColumns.length; i++) {
+                $('#total-row td:eq(' + (i - 1) + ')').text(formatNumber(totalColumns[i]));
+            }
+        }
+
+        function formatNumber(number) {
+            return number.toLocaleString('en-US');
+        }
+    });
+    </script>
+
+    </script>
+
 </body>
 
 </html>

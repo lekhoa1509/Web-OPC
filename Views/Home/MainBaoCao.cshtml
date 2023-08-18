@@ -52,7 +52,7 @@
                     </a>
                     <ul class="sub-menu blank">
                         <li><a class="link_name" href="/DanhMuc/DanhMuc">Danh mục</a></li>
-                    </ul>
+                    </ul>   
                     @*<i class='bx bxs-chevron-down arrow'></i>*@
                 </div>
                 <!--<ul class="sub-menu">
@@ -91,8 +91,8 @@
                 </div>
                 <ul class="sub-menu">
                     <li><a class="link_name" href="/Home/MauIn">Mẫu In</a></li>
-                    <li><a href="/MauInChungTu/MauInNLCB_Fill">Chứng Từ Phiếu Nhập</a></li>
-                    <li><a href="/MauInChungTu/PhieuNhapXNTT">Phiếu Xác Nhận Thanh Toán</a></li>
+                    <li><a href="/MauInChungTu/MauInNLCB_Fill">1.Chứng Từ Phiếu Nhập</a></li>
+                    <li><a href="/MauInChungTu/PhieuNhapXNTT">2.Phiếu Xác Nhận Thanh Toán</a></li>
                     @*<li><a href="#">Login Form</a></li>
                         <li><a href="#">Card Design</a></li>*@
                 </ul>
@@ -109,31 +109,31 @@
                 <ul class="sub-menu">
                     <li><a class="link_name" href="/Home/MainBaoCao">Báo Cáo</a></li>
                     <li>
-                        <a href="#">Báo Cáo Quản Trị</a>
+                        <a href="#">1.Báo Cáo Quản Trị</a>
                         <ul>
                             @if (string.Equals(ViewBag.UserName, "admin", StringComparison.OrdinalIgnoreCase))
                             {
 
 
-                <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Admin_Fill">Doanh Thu Chi Nhánh</a></li> }
+                <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Admin_Fill">1.1Doanh Thu Chi Nhánh</a></li> }
                             else
                             {
-                <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Fill">Doanh Thu Chi Nhánh</a></li>}
+                <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Fill">1.1.Doanh Thu Chi Nhánh</a></li>}
 
-                            <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanhTinhLuong_Fill">Doanh Thu Chi Nhánh Tính Lương</a></li>
+                            <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanhTinhLuong_Fill">1.2.Doanh Thu Chi Nhánh Tính Lương</a></li>
 
                         </ul>
                     </li>
 
                     <li>
-                        <a href="#">Báo Cáo Nghiệp Vụ</a>
+                        <a href="#">2.Báo Cáo Nghiệp Vụ</a>
                         <ul>
-                            <li><a href="/bangkehoadon/bangkehoadon_Fill">Bảng Kê Chứng Từ SO</a></li>
-                            <li><a href="/BaoCaobanHangCN/BaoCaoBanHangCN_Fill">Báo Cáo Bán Hàng CN</a></li>
-                            <li><a href="/BaoCaoBanHangTDV/BaoCaoBanHangTDV_Fill">Báo Cáo Bán Hàng TDV</a></li>
-                            <li><a href="/BaoCaoTienVeCN/BaoCaoTienVeCN_Fill">Báo Cáo Tiền Về CN</a></li>
-                            <li><a href="/BaoCaoTienVeCN/BaoCaoTienVeTDV_Fill">Báo Cáo Tiền Về TDV</a></li>
-                            <li><a href="/BaoCaoDoanhThuGamHangTheoDoiTuong/BaoCaoDoanhThuGamHangTheoDoiTuong_Fill">Doanh Thu Gam Theo Đối Tượng</a></li>
+                            <li><a href="/bangkehoadon/bangkehoadon_Fill">2.1.Bảng Kê Chứng Từ SO</a></li>
+                            <li><a href="/BaoCaobanHangCN/BaoCaoBanHangCN_Fill">2.2.Báo Cáo Bán Hàng CN</a></li>
+                            <li><a href="/BaoCaoBanHangTDV/BaoCaoBanHangTDV_Fill">2.3.Báo Cáo Bán Hàng TDV</a></li>
+                            <li><a href="/BaoCaoTienVeCN/BaoCaoTienVeCN_Fill">2.4.Báo Cáo Tiền Về CN</a></li>
+                            <li><a href="/BaoCaoTienVeCN/BaoCaoTienVeTDV_Fill">2.5.Báo Cáo Tiền Về TDV</a></li>
+                            <li><a href="/BaoCaoDoanhThuGamHangTheoDoiTuong/BaoCaoDoanhThuGamHangTheoDoiTuong_Fill">2.6.Doanh Thu Gam Theo Đối Tượng</a></li>
                         </ul>
                     </li>
 
@@ -166,7 +166,7 @@
         </ul>
     </div>
     <section class="home-section">
-        <nav>
+        <nav>   
             <div class="home-content">
                 <i class='bx bx-menu'></i>
                 <span class="text">Báo Cáo</span>
@@ -177,100 +177,7 @@
             </div>
         </nav>
 
-        <div class="home-content1">
-            <div class="overview-boxes">
-                <div class="box" style="overflow:auto;width:400px;height:200px">
-                    @if (Model.Tables.Count > 0 && Model.Tables[0].Rows.Count > 0)
-                    {
-                        <table>
-                            <tr>
-                                <th>Mã Vật Tư</th>
-                                <th>Tên Vật Tư</th>
-                                <th>Doanh Thu</th>
-                            </tr>
-                            @foreach (DataRow row3 in Model.Tables[0].Rows)
-                            {
-                                <tr>
-                                    <td>@row3["Ma_Vt"]</td>
-                                    <td>@row3["Ten_Vt"]</td>
-                                    <td>@row3["Doanh_Thu"]</td>
-                                </tr>
-                            }
-                        </table>
-                    }
-                    else
-                    {
-                        <p>No data available.</p>
-                    }
-                </div>
-                @*<div class="box" style="overflow:auto;width:400px;height:200px">
-                        <table id="product" style="width:500px;height:200px; border-collapse: collapse;overflow:scroll">
-
-                            <tr class="title">
-                                <th colspan="4" class="top10">Top 10 sản phẩm bán chạy</th>
-                            </tr>
-                            <tr class="title" style="background-color:black;color:white">
-                                <td style="padding-right:10px">STT</td>
-                                <td>Mã Vật Tư</td>
-                                <td>Tên Vật Tư</td>
-                                <td>Doanh Thu</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>100001</td>
-                                <td>Product 1</td>
-                                <td>120000</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>100002</td>
-                                <td>Product 2</td>
-                                <td>150000</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>100003</td>
-                                <td>Product 3</td>
-                                <td>180000</td>
-                            </tr>
-
-                        </table>
-                    </div>*@
-                @*<div class="box" style="overflow:auto;width:400px;height:200px">
-                                <table id="product" style="width:500px;height:200px; border-collapse: collapse;overflow:scroll">
-
-                                    <tr class="title">
-                                        <th colspan="4" class="top10">Top 10 sản phẩm bán chạy</th>
-                                    </tr>
-                                    <tr class="title" style="background-color:black;color:white">
-                                        <td style="padding-right:10px">STT</td>
-                                        <td>Mã Vật Tư</td>
-                                        <td>Tên Vật Tư</td>
-                                        <td>Doanh Thu</td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>100001</td>
-                                        <td>Product 1</td>
-                                        <td>120000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>100002</td>
-                                        <td>Product 2</td>
-                                        <td>150000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>100003</td>
-                                        <td>Product 3</td>
-                                        <td>180000</td>
-                                    </tr>
-
-                                </table>
-                            </div>
-                    </div>*@
-            </div>
+       
     </section>
     <script>
         function logout() {

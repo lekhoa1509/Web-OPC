@@ -14,6 +14,7 @@ using System.Configuration;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
+using DevExpress.DataProcessing.InMemoryDataProcessor;
 
 namespace web4.Controllers
 {
@@ -40,7 +41,7 @@ namespace web4.Controllers
         }
         [HttpPost]
 
-        public ActionResult Verify(Account Acc)
+        public ActionResult Verify(Account Acc, Top10DoanhThuItem Top10)
         {
             connectSQL();
             con.Open();
@@ -56,27 +57,52 @@ namespace web4.Controllers
                 con.Close();
                 username = Request.Cookies["UserName"].Value;
                 ViewBag.Username = username;
-                return View("About");
+                return About(Top10); 
             }
             else
             {
                 ViewBag.Message = "Sai Mật Khẩu";
                 return View("Login");
             }
-
-            con.Close();
-            username = Request.Cookies["UserName"].Value;
-            ViewBag.Username = username;
-            return View("About");
         }
-
-        public ActionResult Verify()
+        public ActionResult About(Top10DoanhThuItem Top10)
         {
+            DataSet ds = new DataSet();
+            connectSQL();
+            Top10.Ma_DvCs = Request.Cookies["MA_DVCS"].Value;
+
+
+            DateTime firstDayOfMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+
+
+            DateTime currentDate = DateTime.Now;
+
+            string Pname = "[usp_Top10DoanhThu_SAP]";
+
+
+            using (SqlCommand cmd = new SqlCommand(Pname, con))
+            {
+                cmd.CommandTimeout = 950;
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+                Top10.From_date = firstDayOfMonth.ToString();
+                Top10.To_date = currentDate.ToString();
+
+                using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                {
+                    cmd.Parameters.AddWithValue("@_Tu_Ngay", Top10.From_date);
+                    cmd.Parameters.AddWithValue("@_Den_Ngay", Top10.To_date);
+                    cmd.Parameters.AddWithValue("@_ma_dvcs", Top10.Ma_DvCs);
+                    sda.Fill(ds);
+                }
+            }
+
             var username = Request.Cookies["UserName"].Value;
             ViewBag.Username = username;
-
-            return View("About");
+            return View(ds);
         }
+       
+    
 
 
         //Báo cáo công nợ quản trị lấy  ra 5 bảng;
@@ -218,7 +244,7 @@ namespace web4.Controllers
             string Pname = "[usp_Vth_BC_DTSP_ALL]";
 
             using (SqlCommand cmd = new SqlCommand(Pname, con))
-            {
+            {   
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.StoredProcedure;
                 using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
@@ -232,27 +258,15 @@ namespace web4.Controllers
 
             }
 
-            return View(ds);
+            return View(ds);    
         }
-        public ActionResult MainBaoCao(Top10DoanhThuItem Top10)
+        
+        public ActionResult MainBaoCao()
         {
-            DataSet ds = new DataSet();
-            connectSQL();
-            string Pname = "[usp_Top10DoanhThu_SAP]";
+            var username = Request.Cookies["UserName"].Value;
+            ViewBag.Username = username;
 
-            using (SqlCommand cmd = new SqlCommand(Pname, con))
-            {
-                cmd.CommandTimeout = 950;
-                cmd.Connection = con;
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
-                {
-                    sda.Fill(ds);
-                }
-            }
-
-            return View(ds);
+            return View();
         }
 
         public ActionResult MauIn()
@@ -261,13 +275,13 @@ namespace web4.Controllers
 
             return View();
         }
-        public ActionResult About()
-        {
-            var username = Request.Cookies["UserName"].Value;
-            ViewBag.Username = username;
+        //public ActionResult About()
+        //{
+        //    var username = Request.Cookies["UserName"].Value;
+        //    ViewBag.Username = username;
 
-            return View();
-        }
+        //    return View();
+        //}
        
 
     }

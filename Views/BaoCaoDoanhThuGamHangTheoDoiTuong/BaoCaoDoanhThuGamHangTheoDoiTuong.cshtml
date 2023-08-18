@@ -1,4 +1,4 @@
-﻿
+﻿ 
 @{ ViewBag.Title = "Bao Cao Doanh Thu Gam Hang Theo Doi Tuong"; }
 @using System.Data;
 <!DOCTYPE html>
@@ -385,7 +385,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0/js/bootstrap-select.min.js"></script>
-    <script type="text/javascript" src="Scripts/table2excel.js"></script>
+    @*<script type="text/javascript" src="Scripts/table2excel.js"></script>*@
 
 
     <meta charset="utf-8">
@@ -554,32 +554,46 @@
 
                                 <th>Doanh Thu Khác</th>
                                 <th>Tổng Thực Hiện</th>
+                                <th>Tổng OPC Cồn Sủi</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (DataRow row2 in Model.Tables[0].Rows)
                             {
-                <tr>
+                                <tr>
 
-                    <td>@row2["ma_DvCs1"]</td>
-                    <td>@row2["ten_DvCs"]</td>
-                    <td>@row2["Ma_dt"]</td>
-                    <td>@row2["Ten_dt"]</td>
-                    <td>@row2["Ma_TDV"]</td>
-                    <td>@row2["Ten_TDV"]</td>
-                    <td>@row2["Dia_Chi"]</td>
-                    <td>@row2["Nhom_KH"]</td>
-                    <td>@row2["Loai_KH"]</td>
-                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OPC"]))</td>
-                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Con"]))</td>
-                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Sui"]))</td>
-                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_TW25"]))</td>
-                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Phien"]))</td>
+                                    <td>@row2["ma_DvCs1"]</td>
+                                    <td>@row2["ten_DvCs"]</td>
+                                    <td>@row2["Ma_dt"]</td>
+                                    <td>@row2["Ten_dt"]</td>
+                                    <td>@row2["Ma_TDV"]</td>
+                                    <td>@row2["Ten_TDV"]</td>
+                                    <td>@row2["Dia_Chi"]</td>
+                                    <td>@row2["Nhom_KH"]</td>
+                                    <td>@row2["Loai_KH"]</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OPC"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Con"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Sui"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_TW25"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Phien"]))</td>
 
-                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Khac"]))</td>
-                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Thuc_Hien"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Khac"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Thuc_Hien"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_OPC_Con_Sui"]))</td>
 
-                </tr>}
+                                </tr>   
+                            }
+                            <tr id="total-row" style="background-color: burlywood">
+                                <td class="num" colspan="9"><strong>Tổng cộng</strong></td>
+                                <td class="num" style="text-align:right"><span id="doanh-thu-opc-total"></span></td>
+                                <td class="num" style="text-align:right"><span id="doanh-thu-con-total"></span></td>
+                                <td class="num" style="text-align:right"><span id="doanh-thu-sui-total"></span></td>
+                                <td class="num" style="text-align:right"><span id="doanh-thu-tw25-total"></span></td>
+                                <td class="num" style="text-align:right"><span id="doanh-thu-phien-total"></span></td>
+                                <td class="num" style="text-align:right"><span id="doanh-thu-khac-total"></span></td>
+                                <td class="num" style="text-align:right"><span id="tong-thuc-hien-total"></span></td>
+                                <td class="num" style="text-align:right"><span id="tong-opc-con-sui-total"></span></td>
+                            </tr>
 
 
                         </tbody>
@@ -729,6 +743,57 @@
 
 
     </script>
+
+    <script>
+        $(document).ready(function () {
+            calculateTotal();
+
+            function calculateTotal() {
+                var totalColumns = new Array(8).fill(0); // Khởi tạo mảng chứa tổng của 8 cột
+
+                $('#example tbody tr:not(#total-row)').each(function () {
+                    var cells = $(this).find('td');
+
+                    cells.each(function (index) {
+                        if (index >= cells.length - 8) { // Tính tổng cho 8 cột cuối cùng
+                            var columnValue = parseFloat($(this).text().replace(/,/g, ''));
+
+                            if (!isNaN(columnValue)) {
+                                totalColumns[index - (cells.length - 8)] += columnValue;
+                            }
+                        }
+                    });
+                });
+
+                // Gán giá trị tổng từng cột vào các biến riêng
+                var doanhThuOPCTotal = totalColumns[0];
+                var doanhThuConTotal = totalColumns[1];
+                var doanhThuSuiTotal = totalColumns[2];
+                var doanhThuTW25Total = totalColumns[3];
+                var doanhThuPhienTotal = totalColumns[4];
+                var doanhThuKhacTotal = totalColumns[5];
+                var tongThucHienTotal = totalColumns[6];
+                var tongOPCConSuiTotal = totalColumns[7];
+
+                // Hiển thị giá trị tổng từng cột lên view
+                $('#doanh-thu-opc-total').text(formatNumber(doanhThuOPCTotal));
+                $('#doanh-thu-con-total').text(formatNumber(doanhThuConTotal));
+                $('#doanh-thu-sui-total').text(formatNumber(doanhThuSuiTotal));
+                $('#doanh-thu-tw25-total').text(formatNumber(doanhThuTW25Total));
+                $('#doanh-thu-phien-total').text(formatNumber(doanhThuPhienTotal));
+                $('#doanh-thu-khac-total').text(formatNumber(doanhThuKhacTotal));
+                $('#tong-thuc-hien-total').text(formatNumber(tongThucHienTotal));
+                $('#tong-opc-con-sui-total').text(formatNumber(tongOPCConSuiTotal));
+            }
+
+            function formatNumber(number) {
+                return number.toLocaleString('en-US');
+            }
+        });
+    </script>
+
+
+  
 
 </body>
 

@@ -6,7 +6,7 @@
     <title> OPC Bao Cao | OPCPHARMA </title>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link href="~/Styles/main.css" rel='stylesheet' type='text/css' media="all">
-
+    <link rel="stylesheet" href="~/Styles/loader.css">
     @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">*@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -23,10 +23,22 @@
         .contentList {
             display: none;
         }
+        .text-loading {
+            position: fixed;
+            bottom: 10px;
+            color: black;
+            left: 10px;
+            font-size: 13px;
+            z-index: 1001;
+            background-color: rgba(255, 255, 255, 0.9); /* Background color for the span */
+            padding: 5px 10px;
+            display: none;
+        }
     </style>
 </head>
 <body>
-
+    <div class="loader" style="z-index:1000"></div>
+    <span id="spanText" class="text-loading">[usp_LookupKH_SAP]</span>
     <div class="sidebar close">
         <div class="logo-details">
             <img src="~/Images/opc.png" style="height:50px;width:50px;margin-left:10px">
@@ -89,16 +101,16 @@
                 </div>
                 <ul class="sub-menu">
                     <li><a class="link_name" href="/Home/MauIn">Mẫu In</a></li>
-                    <li><a href="/MauInChungTu/MauInNLCB_Fill">Chứng Từ Phiếu Nhập</a></li>
-                    <li><a href="/MauInChungTu/PhieuNhapXNTT">Phiếu Xác Nhận Thanh Toán</a></li>
+                    <li><a href="/MauInChungTu/MauInNLCB_Fill">1.Chứng Từ Phiếu Nhập</a></li>
+                    <li><a href="/MauInChungTu/PhieuNhapXNTT">2.Phiếu Xác Nhận Thanh Toán</a></li>
                     @*<li><a href="#">Login Form</a></li>
-        <li><a href="#">Card Design</a></li>*@
+                        <li><a href="#">Card Design</a></li>*@
                 </ul>
             </li>
 
             <li class="report-li">
                 <div class="iocn-link">
-                    <a href="/Home/MainBaoCao">
+                    <a href="/Home/MainBaoCao" onclick="showLoader()">
                         <i class='bx bx-plug'></i>
                         <span class="link_name">Báo cáo</span>
                     </a>
@@ -107,31 +119,31 @@
                 <ul class="sub-menu">
                     <li><a class="link_name" href="/Home/MainBaoCao">Báo Cáo</a></li>
                     <li>
-                        <a href="#">Báo Cáo Quản Trị</a>
+                        <a href="#">1.Báo Cáo Quản Trị</a>
                         <ul>
                             @if (string.Equals(ViewBag.UserName, "admin", StringComparison.OrdinalIgnoreCase))
                             {
 
 
-                <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Admin_Fill">Doanh Thu Chi Nhánh</a></li> }
+                <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Admin_Fill">1.1.Doanh Thu Chi Nhánh</a></li> }
                             else
                             {
-                <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Fill">Doanh Thu Chi Nhánh</a></li>}
+                <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Fill">1.1.Doanh Thu Chi Nhánh</a></li>}
 
-                            <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanhTinhLuong_Fill">Doanh Thu Chi Nhánh Tính Lương</a></li>
+                            <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanhTinhLuong_Fill">1.2.Doanh Thu Chi Nhánh Tính Lương</a></li>
 
                         </ul>
                     </li>
 
                     <li>
-                        <a href="#">Báo Cáo Nghiệp Vụ</a>
+                        <a href="#">2.Báo Cáo Nghiệp Vụ</a>
                         <ul>
-                            <li><a href="/bangkehoadon/bangkehoadon_Fill">Bảng Kê Chứng Từ SO</a></li>
-                            <li><a href="/BaoCaobanHangCN/BaoCaoBanHangCN_Fill">Báo Cáo Bán Hàng CN</a></li>
-                            <li><a href="/BaoCaoBanHangTDV/BaoCaoBanHangTDV_Fill">Báo Cáo Bán Hàng TDV</a></li>
-                            <li><a href="/BaoCaoTienVeCN/BaoCaoTienVeCN_Fill">Báo Cáo Tiền Về CN</a></li>
-                            <li><a href="/BaoCaoTienVeCN/BaoCaoTienVeTDV_Fill">Báo Cáo Tiền Về TDV</a></li>
-                            <li><a href="/BaoCaoDoanhThuGamHangTheoDoiTuong/BaoCaoDoanhThuGamHangTheoDoiTuong_Fill">Doanh Thu Gam Theo Đối Tượng</a></li>
+                            <li><a href="/bangkehoadon/bangkehoadon_Fill">2.1.Bảng Kê Chứng Từ SO</a></li>
+                            <li><a href="/BaoCaobanHangCN/BaoCaoBanHangCN_Fill">2.2.Báo Cáo Bán Hàng CN</a></li>
+                            <li><a href="/BaoCaoBanHangTDV/BaoCaoBanHangTDV_Fill">2.3.Báo Cáo Bán Hàng TDV</a></li>
+                            <li><a href="/BaoCaoTienVeCN/BaoCaoTienVeCN_Fill">2.4.Báo Cáo Tiền Về CN</a></li>
+                            <li><a href="/BaoCaoTienVeCN/BaoCaoTienVeTDV_Fill">2.5.Báo Cáo Tiền Về TDV</a></li>
+                            <li><a href="/BaoCaoDoanhThuGamHangTheoDoiTuong/BaoCaoDoanhThuGamHangTheoDoiTuong_Fill">2.6.Doanh Thu Gam Theo Đối Tượng</a></li>
                         </ul>
                     </li>
 
@@ -190,8 +202,8 @@
         <a class="button" href="/DanhMuc/ViewDanhMucKH_Fill" onclick="runReport()"><span>Xem</span></a>
     </div>
 </div> }
-            else if (string.Equals(ViewBag.UserName, "OPCHCM001", StringComparison.OrdinalIgnoreCase))
-            {
+else if (string.Equals(ViewBag.UserName, "OPCHCM001", StringComparison.OrdinalIgnoreCase))
+{
 <div class="box-container">
     <div class="box-row-1">
         <h3>Danh Mục Khách Hàng</h3>
@@ -202,8 +214,8 @@
         <a class="button" href="/DanhMuc/ViewDanhMucKH_FillCN" onclick="runReport()"><span>Xem</span></a>
     </div>
 </div> }
-            else
-            {
+else
+{
 <div class="box-container">
     <div class="box-row-1">
         <h3>Danh Mục Khách Hàng</h3>
@@ -211,7 +223,7 @@
     <div class="box-row-2">
         <a class="button" href="/DanhMuc/ViewDanhMucKH" onclick="runReport()"><span>Xem</span></a>
     </div>
-</div>            }
+</div>}
         </div>
     </section>
     <script>
@@ -240,6 +252,7 @@
         });
     </script>
     <script>
+        //icon chuc nang sidebar
         let reportLi = document.querySelector(".report-li");
         reportLi.addEventListener("click", (e) => {
             console.log("Clicked on report-li");
@@ -256,6 +269,9 @@
         }
 
         let sidebar = document.querySelector(".sidebar");
+        // Sửa lớp CSS từ "close" thành "showSidebar"
+        sidebar.classList.remove("close");
+        sidebar.classList.add("showSidebar");
         let sidebarBtn = document.querySelector(".bx-menu");
         console.log(sidebarBtn);
         sidebarBtn.addEventListener("click", () => {
@@ -282,14 +298,14 @@
             hideLoader();
         });
     </script>
-    @*<script>
-            function runReport() {
-                // Hiển thị thẻ span có id là "spanText"
-                showLoader();
-                const spanElement = document.getElementById("spanText");
-                spanElement.style.display = "block";
-            }
-        </script>*@
+    <script>
+        function runReport() {
+            // Hiển thị thẻ span có id là "spanText"
+            showLoader();
+            const spanElement = document.getElementById("spanText");
+            spanElement.style.display = "block";
+        }
+    </script>
     <script>
         window.onload = function () {
             var username = localStorage.getItem("username");
@@ -303,6 +319,20 @@
 
         };
     </script>
-
+    <script>
+        function showLoader() {
+            const loader = document.querySelector(".loader");
+            loader.classList.remove("loader-hidden");
+        }
+        function hideLoader() {
+            const loader = document.querySelector(".loader");
+            loader.classList.add("loader-hidden");
+            createChart(chartData);
+        }
+        window.addEventListener("load", () => {
+            hideLoader();
+            applyCheckboxAndColumnState();
+        });
+    </script>
 </body>
 </html>

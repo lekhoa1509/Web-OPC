@@ -538,18 +538,18 @@
                             @foreach (DataRow row2 in Model.Tables[0].Rows)
                             {
                 <tr>
-                    <td>@row2["Ngay_Ct"]</td>
-                    <td>@row2["so_ct"]</td>
-                    <td>@row2["ma_dt"]</td>
+                    <td style="text-align:right">@row2["Ngay_Ct"]</td>
+                    <td style="text-align:right">@row2["so_ct"]</td>
+                    <td style="text-align:right">@row2["ma_dt"]</td>
                     <td>@row2["ten_dt"]</td>
-                    <td>@row2["ma_vt"]</td>
+                    <td style="text-align:right">@row2["ma_vt"]</td>
                     <td>@row2["ten_vt"]</td>
-                    <td>@row2["Ma_Km"]</td>
-                    <td>@row2["Discount"]</td>
+                    <td style="text-align:right">@row2["Ma_Km"]</td>
+                    <td style="text-align:right">@row2["Discount"]</td>
                     <td>@row2["Loai_Vt"]</td>
-                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["so_luong"]))</td>
-                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tien"]))</td>
-                    <td class="num">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_tien"]))</td>
+                    <td class="num"style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["so_luong"]))</td>
+                    <td class="num"style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tien"]))</td>
+                    <td class="num"style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_tien"]))</td>
                     <td>@row2["Tinh_trang"]</td>
                     <td>@row2["Ma_Dvcs1"]</td>
                 </tr>}
