@@ -94,5 +94,14 @@ namespace web4.Properties {
                 return ((string)(this["Nam"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Ten_Dt {
+            get {
+                return ((string)(this["Ten_Dt"]));
+            }
+        }
     }
 }

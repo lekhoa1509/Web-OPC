@@ -415,13 +415,14 @@
                         <datalist id="dropdownList">
                             @foreach (var item in ViewBag.DataItems)
                             {
-                <option value="@item.Ma_Dt">@item.Ten_Dt</option>}
+                <option value="@item.Ma_Dt" data-ten="@item.Ten_Dt">@item.Ten_Dt</option>
+}
                         </datalist>
-                        <input type="hidden" name="DropdownOption" id="selectedOption">
+                        <input type="hidden" name="Ma_Dt" id="selectedOption">
 
 
                         <div>
-                            <button class="submit" type="submit" onclick="runReport()"> Chạy Báo Cáo </button>
+                            <button class="submit" type="submit" id="runReportButton" onclick="runReport()"> Chạy Báo Cáo </button>
                         </div>
                     </div>
                 </form>
@@ -512,7 +513,7 @@
                     <h5 style="font-style:italic;text-align:left;margin-left:40px">(Ký, ghi họ tên)</h5>
                 </div>
             </div>
-            <button class="print-button" onclick="printDataForm()" id="print">In Data</button>
+        
         </form>
     </div>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
@@ -525,15 +526,34 @@
             for (var i = 0; i < options.length; i++) {
                 if (options[i].getAttribute("value") === inputValue) {
                     document.getElementById("selectedOption").value = inputValue;
+
                     break;
                 }
             }
         });
 
-        const printBtn = document.getElementById('print');
-        printBtn.addEventListener('click', function () {
-            print();
-        })
+     
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var runReportButton = document.getElementById("runReportButton");
+
+            if (runReportButton) {
+                runReportButton.addEventListener("click", function () {
+                    var dropdownInput = document.getElementById("dropdownInput");
+                    var selectedOption = document.querySelector("#dropdownList option[value='" + dropdownInput.value + "']");
+
+                    if (selectedOption) {
+                        var tenDt = selectedOption.text.toString();
+                        document.cookie = `Ten_Dt=${encodeURIComponent(tenDt)}; expires=Thu, 01 Jan 2099 00:00:00 UTC; path=/;`;
+                    }
+                });
+            }
+        });
+
+
+    </script>
+
+
     </script>
 
 </body>

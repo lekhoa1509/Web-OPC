@@ -37,6 +37,7 @@ namespace web4.Controllers
             string Pname = "[usp_MauInChungTu_SAP]";
             Response.Cookies["From_date"].Value = MauIn.From_date.ToString();
             Response.Cookies["To_Date"].Value = MauIn.To_date.ToString();
+            MauIn.UserName = Request.Cookies["UserName"].Value;
 
             using (SqlCommand cmd = new SqlCommand(Pname, con))
             {
@@ -49,6 +50,7 @@ namespace web4.Controllers
                 {
                     cmd.Parameters.AddWithValue("@_Tu_Ngay", MauIn.From_date);
                     cmd.Parameters.AddWithValue("@_Den_Ngay", MauIn.To_date);
+                    cmd.Parameters.AddWithValue("@_username", MauIn.UserName);
                     sda.Fill(ds);
 
                 }
@@ -77,6 +79,7 @@ namespace web4.Controllers
 
                 MauIn.From_date = Request.Cookies["From_date"].Value;
                 MauIn.To_date = Request.Cookies["To_Date"].Value;
+                MauIn.UserName = Request.Cookies["UserName"].Value;
                 con.Open();
 
                 using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
@@ -86,7 +89,8 @@ namespace web4.Controllers
                     cmd.Parameters.AddWithValue("@_Tu_Ngay", MauIn.From_date);
                     cmd.Parameters.AddWithValue("@_Den_Ngay", MauIn.To_date);
                     cmd.Parameters.AddWithValue("@_So_Ct", MauIn.So_Ct);
-                    
+                    cmd.Parameters.AddWithValue("@_username", MauIn.So_Ct);
+
 
                     sda.Fill(ds);
 
@@ -101,16 +105,16 @@ namespace web4.Controllers
 
         public List<MauInChungTu> LoadDmDt(string Ma_dvcs)
         {
+            connectSQL();
             List<MauInChungTu> dataItems = new List<MauInChungTu>();
-
             using (SqlConnection connection = new SqlConnection(con.ConnectionString))
             {
                 connection.Open();
 
-                using (SqlCommand command = new SqlCommand("[usp_DmDtTdv_SAP]", connection))
+                using (SqlCommand command = new SqlCommand("[usp_DmDtTdv_SAP_MauIn]", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@_ma_cbnv",Ma_dvcs); // Thêm tham số ma_dvcs
+                    command.Parameters.AddWithValue("@_Ma_CbNv", 101417); // Thêm tham số ma_dvcs
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
