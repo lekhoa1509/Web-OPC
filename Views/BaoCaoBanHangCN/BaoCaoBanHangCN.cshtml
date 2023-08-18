@@ -489,39 +489,43 @@
 
                                 </tr>
                             }
-                        <tr id="total-row" style="background-color: burlywood">
-                            <td><strong>Tổng cộng:</strong></td>
-                            <td style="text-align:right"></td>
-                            <td style="text-align:right"></td>
-                            <td style="text-align:right"></td>
-                            <td style="text-align:right"></td>
-                            <td style="text-align:right"></td>
-                            <td style="text-align:right"></td>
-                            <td style="text-align:right"></td>
-                            <td style="text-align:right"></td>
-                            <td style="text-align:right"></td>
-                            <td style="text-align:right"></td>
-                            <td style="text-align:right"></td>
-                            <td style="text-align:right"></td>
-                            <td style="text-align:right"></td>
-                            <td style="text-align:right"></td>
-                            <td style="text-align:right"></td>
-                            <td style="text-align:right"></td>
-                            <td style="text-align:right"></td>
-                            <td style="text-align:right"></td>
-                            <td style="text-align:right"></td>
-                            <td style="text-align:right"></td>
-                            <td style="text-align:right"></td>
-                            <td style="text-align:right"></td>
-                            <td style="text-align:right"></td>
-                            <td style="text-align:right"></td>
-                            <td style="text-align:right"></td>
-                            <td style="text-align:right"></td>
-                            <td style="text-align:right"></td>
-                            <td style="text-align:right"></td>
-                            <td style="text-align:right"></td>
-                        </tr>
+                           
                         </tbody>
+                        <tfoot>
+                            <tr id="total-row" style="background-color: burlywood">
+                                <td class="num"><strong>Tổng cộng:</strong></td>
+
+                                <td class="num" style="text-align:right"><span id="doanhthu-opc-otc"></span></td>
+                                <td class="num" style="text-align:right"><span id="doanhthu-sui-otc"></span></td>
+                                <td class="num" style="text-align:right"><span id="doanhthu-con-otc"></span></td>
+                                <td class="num" style="text-align:right"><span id="doanhthu-25-otc"></span></td>
+                                <td class="num" style="text-align:right"><span id="doanhthu-phien-otc"></span></td>
+                                <td class="num" style="text-align:right"><span id="doanhthu-combo"></span></td>
+                                <td class="num" style="text-align:right"><span id="tongthuchien"></span></td>
+                                <td class="num" style="text-align:right"><span id="doanhthu-opc-etc"></span></td>
+                                <td class="num" style="text-align:right"><span id="doanhthu-sui-etc"></span></td>
+                                <td class="num" style="text-align:right"><span id="doanhthu-con-etc"></span></td>
+                                <td class="num" style="text-align:right"><span id="doanhthu-25-etc"></span></td>
+                                <td class="num" style="text-align:right"><span id="doanhthu-phien-etc"></span></td>
+                                <td class="num" style="text-align:right"><span id="doanhthu-combo-etc"></span></td>
+                                <td class="num" style="text-align:right"><span id="tongthuchien-etc"></span></td>
+                                <td class="num" style="text-align:right"><span id="khoan-opc-otc"></span></td>
+                                <td class="num" style="text-align:right"><span id="khoan-sui-otc"></span></td>
+                                <td class="num" style="text-align:right"><span id="khoan-con-otc"></span></td>
+                                <td class="num" style="text-align:right"><span id="khoan-25-otc"></span></td>
+                                <td class="num" style="text-align:right"><span id="khoan-phien-otc"></span></td>
+                                <td class="num" style="text-align:right"><span id="tongkhoan-otc"></span></td>
+                                <td class="num" style="text-align:right"><span id="khoan-opc-etc"></span></td>
+                                <td class="num" style="text-align:right"><span id="khoan-sui-etc"></span></td>
+                                <td class="num" style="text-align:right"><span id="khoan-con-etc"></span></td>
+                                <td class="num" style="text-align:right"><span id="khoan-25-etc"></span></td>
+                                <td class="num" style="text-align:right"><span id="khoan-phien-etc"></span></td>
+                                <td class="num" style="text-align:right"><span id="tongkhoan-etc"></span></td>
+                                <td class="num" style="text-align:right"><span id="doanhthu-noibo"></span></td>
+                                <td class="num" style="text-align:right"><span id="doanhthukhac"></span></td>
+                                <td class="num" style="text-align:right"><span id="tongdoanhthu"></span></td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -595,6 +599,48 @@
             hideLoader();
         });
     </script>
+    <script>
+    $(document).ready(function () {
+        // Gọi hàm tính tổng cho trang hiện tại khi trang được nạp hoặc vẽ lại
+        calculateTotal();
+
+        function calculateTotal() {
+            var totalColumns = new Array(31).fill(0); // Khởi tạo mảng chứa tổng của 31 cột
+
+            $('#example tbody tr:not(#total-row)').each(function () {
+                var cells = $(this).find('td');
+
+                cells.each(function (index) {
+                    if (index > 0) { // Bỏ qua cột đầu tiên (Tên Đơn Vị)
+                        var columnValue = parseFloat($(this).text().replace(/,/g, ''));
+
+                        if (!isNaN(columnValue)) {
+                            totalColumns[index] += columnValue;
+                        }
+                    }
+                });
+            });
+
+            // Hiển thị giá trị tổng từng cột lên view
+            for (var i = 1; i < totalColumns.length; i++) {
+                $('#total-row td:eq(' + (i) + ')').text(formatNumber(totalColumns[i]));
+            }
+        }
+
+        function formatNumber(number) {
+            return number.toLocaleString('en-US');
+        }
+
+        // Khởi tạo DataTables
+        var table = $('#example').DataTable();
+
+        // Gọi hàm tính tổng cho trang hiện tại khi trang được vẽ lại
+        table.on('draw.dt', function () {
+            calculateTotal();
+        });
+    });
+    </script>
+
 
 
 

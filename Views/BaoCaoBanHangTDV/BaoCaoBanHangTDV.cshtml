@@ -496,6 +496,9 @@
 
                                 </tr>
                             }
+
+                        </tbody>
+                        <tfoot>
                             <tr id="total-row" style="background-color: burlywood">
                                 <td class="num" colspan="2"><strong>Tổng cộng:</strong></td>
 
@@ -523,8 +526,7 @@
                                 <td class="num" style="text-align:right"><span id="doanhthukhac"></span></td>
                                 <td class="num" style="text-align:right"><span id="tongdoanhthu"></span></td>
                             </tr>
-                        </tbody>
-
+                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -610,23 +612,24 @@
     </script>
     <script>
         $(document).ready(function () {
-            calculateTotal();
+            var dataTable = $('#example').DataTable();
 
             function calculateTotal() {
-                var totalColumns = new Array(25).fill(0); // Khởi tạo mảng chứa tổng của 34 cột
+                var totalColumns = new Array(25).fill(0);
 
-                $('#example tbody tr:not(#total-row)').each(function () {
-                    var cells = $(this).find('td');
-
-                    cells.each(function (index) {
-                        var columnValue = parseFloat($(this).text().replace(/,/g, ''));
-
+                dataTable.rows({ search: 'applied' }).every(function () {
+                    var rowData = this.data();
+                    rowData.forEach(function (cellValue, columnIndex) {
+                        var columnValue = parseFloat(cellValue.toString().replace(/,/g, ''));
                         if (!isNaN(columnValue)) {
-                            totalColumns[index] += columnValue;
+                            totalColumns[columnIndex] += columnValue;
                         }
                     });
                 });
 
+                updateTotalValues(totalColumns);
+            }
+            function updateTotalValues(totalColumns) {
                 // Gán giá trị tổng từng cột vào các biến riêng
                 var spclOtcOtcTotal = totalColumns[2];
                 var spptOtcOtcTotal = totalColumns[3];
@@ -676,7 +679,23 @@
                 $('#tongkhoan-otc').text(formatNumber(tongKhoanOtcTotal));
                 $('#doanhthukhac').text(formatNumber(doanhThuKhacTotal));
                 $('#tongdoanhthu').text(formatNumber(tongDoanhThuTotal));
+                var grandTotal = totalColumns.reduce(function (total, value) {
+                    return total + value;
+                }, 0);
+
+                $('#grand-total').text(formatNumber(grandTotal));
             }
+
+            calculateTotal();
+
+            $('input').on('input', function () {
+                calculateTotal();
+            });
+
+            // Sự kiện lắng nghe khi giá trị ô input trong bảng thay đổi
+            $('#example tbody').on('input', 'input', function () {
+                calculateTotal();
+            });
 
             function formatNumber(number) {
                 return number.toLocaleString('en-US');

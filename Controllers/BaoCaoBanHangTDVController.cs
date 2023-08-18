@@ -84,7 +84,7 @@ namespace web4.Controllers
                     cmd.Parameters.AddWithValue("@_Tu_Ngay", Acc.From_date);
                     cmd.Parameters.AddWithValue("@_Den_Ngay", Acc.To_date);
                     cmd.Parameters.AddWithValue("@_ma_dvcs", Acc.Ma_DvCs_1);
-                    sda.Fill(ds);
+                        sda.Fill(ds);
 
                 }
             }
