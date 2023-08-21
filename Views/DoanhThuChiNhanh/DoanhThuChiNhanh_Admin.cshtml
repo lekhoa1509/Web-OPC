@@ -582,8 +582,19 @@
                         <label class="custom-checkbox">
                             <input type="checkbox" name="myCheckbox" value="option1" checked>
                             <span class="checkmark"></span>
+                            Tổng Khoán
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="myCheckbox" value="option1" checked>
+                            <span class="checkmark"></span>
+                            Tỷ lệ Khoán
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="myCheckbox" value="option1" checked>
+                            <span class="checkmark"></span>
                             Doanh Thu Combo
                         </label>
+
                         <label class="custom-checkbox">
                             <input type="checkbox" name="myCheckbox" value="option1" checked>
                             <span class="checkmark"></span>
@@ -642,7 +653,10 @@
                                 <th>Doanh Thu 25</th>
                                 <th>Khoán 25</th>
                                 <th>Tỷ Lệ 25</th>
+                                <th>Tổng Khoán</th>
+                                <th>Tỷ Lệ Khoán</th>
                                 <th>Doanh Thu Combo</th>
+
                                 <th>Doanh Thu Khác</th>
                                 <th>Tổng Thực Hiện</th>
                             </tr>
@@ -674,13 +688,15 @@
                                     <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Khoan_25"]))</td>
                                     <td class="" style="text-align:right">@row2["Tyle_25"]%</td>
 
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Khoan"]))</td>
+                                    <td class="num" style="text-align:right">@row2["Ty_Le"]%</td>
                                     <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ComBo"]))</td>
                                     <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Khac"]))</td>
                                     <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Thuc_Hien"]))</td>
 
                                 </tr>
                             }
-                          
+
 
                         </tbody>
                         <tfoot>
@@ -701,9 +717,11 @@
                                 <td class="total-doanhthu-25" style="text-align:right"></td>
                                 <td class="total-khoan-25" style="text-align:right"></td>
                                 <td class="total-tyle-25" style="text-align:right"></td>
+                                <td class="total-tongKhoan" style="text-align:right"></td>
+                                <td class="total-tyle" style="text-align:right"></td>
                                 <td class="total-combo" style="text-align:right"></td>
                                 <td style="text-align:right"></td>
-                                <td style="text-align:right"></td>
+                                <td class="total-thuchien" style="text-align:right"></td>
 
                             </tr>
                         </tfoot>
@@ -1003,7 +1021,50 @@
 
     </script>
     <script>
-    //tinh ty le
+        $(document).ready(function () {
+            calculateComboTotal();
+
+            function calculateComboTotal() {
+                var totalCombo = 0;
+
+                $('#example tbody tr:not(#total-row)').each(function () {
+                    var comboValue = parseFloat($(this).find('td.total-doanhthu-combo').text().replace(/,/g, ''));
+                    if (!isNaN(comboValue)) {
+                        totalCombo += comboValue;
+                    }
+                });
+
+                var totalCell = $('#total-row td.total-combo');
+                totalCell.text(formatNumber(totalCombo));
+            }
+
+            function formatNumber(number) {
+                return number.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+            }
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            calculateKhoanRatio();
+
+            function calculateKhoanRatio() {
+                var totalKhoan = parseFloat($('#total-row td.total-tongKhoan').text().replace(/,/g, ''));
+                var totalThucHien = parseFloat($('#total-row td.total-thuchien').last().text().replace(/,/g, ''));
+
+                var ratioKhoan = totalKhoan !== 0 ? totalThucHien / totalKhoan : 0;
+
+                var ratioCell = $('#total-row td.total-tyle');
+                ratioCell.text(formatRatio(ratioKhoan));
+            }
+
+            function formatRatio(ratio) {
+                return (ratio * 100).toFixed(2) + "%";
+            }
+        });
+    </script>
+
+    <script>
+        //tinh ty le
         $(document).ready(function () {
             calculateRatios();
 
@@ -1021,25 +1082,28 @@
                 var sumKhoanPhien = parseFloat($('#total-row td.total-khoan-phien').text().replace(/,/g, ''));
                 var sumDoanhThu25 = parseFloat($('#total-row td.total-doanhthu-25').text().replace(/,/g, ''));
                 var sumKhoan25 = parseFloat($('#total-row td.total-khoan-25').text().replace(/,/g, ''));
-
+                var sumThucHien = parseFloat($('#total-row td.total-thuchien').text().replace(/,/g, ''));
+                var sumTongkhoan = parseFloat($('#total-row td.total-tongKhoan').text().replace(/,/g, ''));
                 // Tính tỷ lệ theo từng loại
                 var ratioOpc = sumKhoanOpc !== 0 ? sumDoanhThuOpc / sumKhoanOpc : 0;
                 var ratioCon = sumKhoanCon !== 0 ? sumDoanhThuCon / sumKhoanCon : 0;
                 var ratioSui = sumKhoanSui !== 0 ? sumDoanhThuSui / sumKhoanSui : 0;
                 var ratioPhien = sumKhoanPhien !== 0 ? sumDoanhThuPhien / sumKhoanPhien : 0;
                 var ratio25 = sumKhoan25 !== 0 ? sumDoanhThu25 / sumKhoan25 : 0;
-
+                /*   var ratioKhoan = sumThucHien !== 0 ? sumThucHien / sumTongKhoan : 0;*/
                 // Gán kết quả lên các ô tương ứng trong cột tỷ lệ
                 $('#total-row td.total-tyle-opc').text(formatRatio(ratioOpc));
                 $('#total-row td.total-tyle-con').text(formatRatio(ratioCon));
                 $('#total-row td.total-tyle-sui').text(formatRatio(ratioSui));
                 $('#total-row td.total-tyle-phien').text(formatRatio(ratioPhien));
                 $('#total-row td.total-tyle-25').text(formatRatio(ratio25));
+                /*   $('#total-row td.total-tyle').text(formatRatio(ratioKhoan));*/
             }
 
             function formatRatio(ratio) {
                 return (ratio * 100).toFixed(2) + "%";
             }
+
         });
 
     </script>
