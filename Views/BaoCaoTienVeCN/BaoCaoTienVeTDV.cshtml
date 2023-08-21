@@ -397,13 +397,19 @@
                                     <td>@row2["Ma_TDV"]</td>
                                     <td>@row2["Ten_TDV"]</td>
 
-                                    <td class="num"style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tien_Thu"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tien_Thu"]))</td>
 
                                 </tr>
                             }
 
 
                         </tbody>
+                        <tfoot>
+                            <tr id="total-row" style="background-color: burlywood">
+                                <td class="num" colspan="2">Tổng cộng:</td>
+                                <td class="num" style="text-align:right"><span id="sum"></span></td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -478,7 +484,57 @@
         });
 
     </script>
+    <script>
+        $(document).ready(function () {
+            var dataTable = $('#example').DataTable();
 
+            function calculateTotal() {
+                var totalColumns = new Array(3).fill(0);
+
+                dataTable.rows({ search: 'applied' }).every(function () {
+                    var rowData = this.data();
+                    rowData.forEach(function (cellValue, columnIndex) {
+                        var columnValue = parseFloat(cellValue.toString().replace(/,/g, ''));
+                        if (!isNaN(columnValue)) {
+                            totalColumns[columnIndex] += columnValue;
+                        }
+                    });
+                });
+
+                updateTotalValues(totalColumns);
+            }
+            function updateTotalValues(totalColumns) {
+                // Gán giá trị tổng từng cột vào các biến riêng
+                var sum = totalColumns[2];
+              
+
+                // Hiển thị giá trị tổng từng cột lên view
+
+                $('#sum').text(formatNumber(sum));
+                
+                var grandTotal = totalColumns.reduce(function (total, value) {
+                    return total + value;
+                }, 0);
+
+                $('#grand-total').text(formatNumber(grandTotal));
+            }
+
+            calculateTotal();
+
+            $('input').on('input', function () {
+                calculateTotal();
+            });
+
+            // Sự kiện lắng nghe khi giá trị ô input trong bảng thay đổi
+            $('#example tbody').on('input', 'input', function () {
+                calculateTotal();
+            });
+
+            function formatNumber(number) {
+                return number.toLocaleString('en-US');
+            }
+        });
+    </script>
 
 
 </body>

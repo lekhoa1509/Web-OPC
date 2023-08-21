@@ -397,13 +397,19 @@
                                     <td>@row2["Ma_dvcs"]</td>
                                     <td>@row2["ten_DvCs"]</td>
 
-                                    <td class="num"style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tien_Thu"]))</td>
+                                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tien_Thu"]))</td>
 
                                 </tr>
                             }
 
 
                         </tbody>
+                        <tfoot>
+                            <tr id="total-row" style="background-color: burlywood">
+                                <td class="num" colspan="2">Tổng cộng:</td>
+                                <td class="num" style="text-align:right"><span id="sum"></span></td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -478,7 +484,40 @@
         });
 
     </script>
+    <script>
+    $(document).ready(function () {
+            calculateTotal();
 
+            function calculateTotal() {
+                var totalColumns = new Array(2).fill(0); // Khởi tạo mảng chứa tổng của 8 cột
+
+                $('#example tbody tr:not(#total-row)').each(function () {
+                    var cells = $(this).find('td');
+
+                    cells.each(function (index) {
+                        if (index >= cells.length - 2) { // Tính tổng cho 8 cột cuối cùng
+                            var columnValue = parseFloat($(this).text().replace(/,/g, ''));
+
+                            if (!isNaN(columnValue)) {
+                                totalColumns[index - (cells.length - 2)] += columnValue;
+                            }
+                        }
+                    });
+                });
+
+                // Gán giá trị tổng từng cột vào các biến riêng
+                var sum = totalColumns[1];
+
+
+                // Hiển thị giá trị tổng từng cột lên view
+                $('#sum').text(formatNumber(sum));
+
+            }
+
+            function formatNumber(number) {
+                return number.toLocaleString('en-US');
+            }
+        });</script>
 
 
 </body>

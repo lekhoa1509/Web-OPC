@@ -581,8 +581,14 @@
                                     <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Thuc_Hien"]))</td>
                                     <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_OPC_Con_Sui"]))</td>
 
-                                </tr>   
+                                </tr>
+
                             }
+
+
+
+                        </tbody>
+                        <tfoot>
                             <tr id="total-row" style="background-color: burlywood">
                                 <td class="num" colspan="9"><strong>Tổng cộng</strong></td>
                                 <td class="num" style="text-align:right"><span id="doanh-thu-opc-total"></span></td>
@@ -594,9 +600,7 @@
                                 <td class="num" style="text-align:right"><span id="tong-thuc-hien-total"></span></td>
                                 <td class="num" style="text-align:right"><span id="tong-opc-con-sui-total"></span></td>
                             </tr>
-
-
-                        </tbody>
+                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -746,45 +750,63 @@
 
     <script>
         $(document).ready(function () {
-            calculateTotal();
+            var dataTable = $('#example').DataTable();
 
             function calculateTotal() {
-                var totalColumns = new Array(8).fill(0); // Khởi tạo mảng chứa tổng của 8 cột
+                var totalColumns = new Array(17).fill(0);
 
-                $('#example tbody tr:not(#total-row)').each(function () {
-                    var cells = $(this).find('td');
-
-                    cells.each(function (index) {
-                        if (index >= cells.length - 8) { // Tính tổng cho 8 cột cuối cùng
-                            var columnValue = parseFloat($(this).text().replace(/,/g, ''));
-
-                            if (!isNaN(columnValue)) {
-                                totalColumns[index - (cells.length - 8)] += columnValue;
-                            }
+                dataTable.rows({ search: 'applied' }).every(function () {
+                    var rowData = this.data();
+                    rowData.forEach(function (cellValue, columnIndex) {
+                        var columnValue = parseFloat(cellValue.toString().replace(/,/g, ''));
+                        if (!isNaN(columnValue)) {
+                            totalColumns[columnIndex] += columnValue;
                         }
                     });
                 });
 
+                updateTotalValues(totalColumns);
+            }
+            function updateTotalValues(totalColumns) {
                 // Gán giá trị tổng từng cột vào các biến riêng
-                var doanhThuOPCTotal = totalColumns[0];
-                var doanhThuConTotal = totalColumns[1];
-                var doanhThuSuiTotal = totalColumns[2];
-                var doanhThuTW25Total = totalColumns[3];
-                var doanhThuPhienTotal = totalColumns[4];
-                var doanhThuKhacTotal = totalColumns[5];
-                var tongThucHienTotal = totalColumns[6];
-                var tongOPCConSuiTotal = totalColumns[7];
+                var doanhthuopc = totalColumns[9];
+                var doanhthucon = totalColumns[10];
+                var doanhthuSui = totalColumns[11];
+                var doanhthu25 = totalColumns[12];
+                var doanhthuPhien = totalColumns[13];
+                var doanhthukhac = totalColumns[14];
+                var tongthuchien = totalColumns[15];
+                var tongopcConSui = totalColumns[16];
+              
 
                 // Hiển thị giá trị tổng từng cột lên view
-                $('#doanh-thu-opc-total').text(formatNumber(doanhThuOPCTotal));
-                $('#doanh-thu-con-total').text(formatNumber(doanhThuConTotal));
-                $('#doanh-thu-sui-total').text(formatNumber(doanhThuSuiTotal));
-                $('#doanh-thu-tw25-total').text(formatNumber(doanhThuTW25Total));
-                $('#doanh-thu-phien-total').text(formatNumber(doanhThuPhienTotal));
-                $('#doanh-thu-khac-total').text(formatNumber(doanhThuKhacTotal));
-                $('#tong-thuc-hien-total').text(formatNumber(tongThucHienTotal));
-                $('#tong-opc-con-sui-total').text(formatNumber(tongOPCConSuiTotal));
+
+                $('#doanh-thu-opc-total').text(formatNumber(doanhthuopc));
+                $('#doanh-thu-con-total').text(formatNumber(doanhthucon));
+                $('#doanh-thu-sui-total').text(formatNumber(doanhthuSui));
+                $('#doanh-thu-tw25-total').text(formatNumber(doanhthu25));
+                $('#doanh-thu-phien-total').text(formatNumber(doanhthuPhien));
+                $('#doanh-thu-khac-total').text(formatNumber(doanhthukhac));
+                $('#tong-opc-con-sui-total').text(formatNumber(tongopcConSui));
+                $('#tong-thuc-hien-total').text(formatNumber(tongthuchien));
+               
+                var grandTotal = totalColumns.reduce(function (total, value) {
+                    return total + value;
+                }, 0);
+
+                $('#grand-total').text(formatNumber(grandTotal));
             }
+
+            calculateTotal();
+
+            $('input').on('input', function () {
+                calculateTotal();
+            });
+
+            // Sự kiện lắng nghe khi giá trị ô input trong bảng thay đổi
+            $('#example tbody').on('input', 'input', function () {
+                calculateTotal();
+            });
 
             function formatNumber(number) {
                 return number.toLocaleString('en-US');
@@ -793,7 +815,7 @@
     </script>
 
 
-  
+
 
 </body>
 

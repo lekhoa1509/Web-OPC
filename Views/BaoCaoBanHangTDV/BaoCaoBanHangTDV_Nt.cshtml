@@ -622,40 +622,124 @@
         });
     </script>
     <script>
-   <script>
-    $(document).ready(function () {
-        calculateTotal();
+        $(document).ready(function () {
+            var dataTable = $('#example').DataTable();
 
-        function calculateTotal() {
-            var totalColumns = new Array(37).fill(0); // Khởi tạo mảng chứa tổng của 34 cột
+            function calculateTotal() {
+                var totalColumns = new Array(37).fill(0);
 
-            // Duyệt qua từng dòng trong bảng
-            $('#example tbody tr').each(function () {
-                var cells = $(this).find('td');
-
-                cells.each(function (index) {
-                    if (index >= 2) { // Bắt đầu từ cột thứ 3 (index 2)
-                        var columnValue = parseFloat($(this).text().replace(/,/g, ''));
-
+                dataTable.rows({ search: 'applied' }).every(function () {
+                    var rowData = this.data();
+                    rowData.forEach(function (cellValue, columnIndex) {
+                        var columnValue = parseFloat(cellValue.toString().replace(/,/g, ''));
                         if (!isNaN(columnValue)) {
-                            totalColumns[index] += columnValue;
+                            totalColumns[columnIndex] += columnValue;
                         }
-                    }
+                    });
                 });
+
+                updateTotalValues(totalColumns);
+            }
+            function updateTotalValues(totalColumns) {
+                // Gán giá trị tổng từng cột vào các biến riêng
+                var spclOtcnppTotal = totalColumns[2];
+                var spptOtcnppTotal = totalColumns[3];
+                var opcConLainppTotal = totalColumns[4];
+                var hdnNppTotal = totalColumns[5];
+                var spclOtcOtcTotal = totalColumns[6];
+                var spptOtcOtcTotal = totalColumns[7];
+                var opcConLaiOtcTotal = totalColumns[8];
+                var conOtcOtcTotal = totalColumns[9];
+                var suiOtcTotal = totalColumns[10];
+                var tw25OtcOtcTotal = totalColumns[11];
+                var phienOtcOtcTotal = totalColumns[12];
+                var comboOtcOtcTotal = totalColumns[13];
+                var tongThucHienOtcTotal = totalColumns[14];
+                var opcConLaiEtcTotal = totalColumns[15];
+                var conEtcEtcTotal = totalColumns[16];
+                var suiEtcTotal = totalColumns[17];
+                var tw25EtcTotal = totalColumns[18];
+                var phienEtcEtcTotal = totalColumns[19];
+                var tongThucHienEtcTotal = totalColumns[20];
+                var spclEtcEtcTotal = totalColumns[21];
+                var spptEtcEtcTotal = totalColumns[22];
+                var khoanOpcOtcTotal = totalColumns[23];
+                var khoanSuiOtcTotal = totalColumns[24];
+                var khoanConOtcTotal = totalColumns[25];
+                var khoan25OtcTotal = totalColumns[26];
+                var khoanPhienOtcTotal = totalColumns[27];
+                var tongKhoanOtcTotal = totalColumns[28];
+                var khoanopcEtcTotal = totalColumns[29];
+                var khoanSuiEtcTotal = totalColumns[30];
+                var khoanConEtcTotal = totalColumns[31];
+                var khoan25EtcTotal = totalColumns[32];
+                var khoanPhienEtcTotal = totalColumns[33];
+                var tongkhoanEtcTotal = totalColumns[34];
+
+                var doanhThuKhacTotal = totalColumns[35];
+                var tongDoanhThuTotal = totalColumns[36];
+
+                // Hiển thị giá trị tổng từng cột lên view
+
+                $('#spcl-otc-npp').text(formatNumber(spclOtcnppTotal));
+                $('#sppt-otc-npp').text(formatNumber(spptOtcnppTotal));
+                $('#opc-conlai-npp').text(formatNumber(opcConLainppTotal));
+                $('#hd-npp').text(formatNumber(hdnNppTotal));
+                $('#khoan-opc-etc').text(formatNumber(khoanopcEtcTotal));
+                $('#khoan-sui-etc').text(formatNumber(khoanSuiEtcTotal));
+                $('#khoan-con-etc').text(formatNumber(khoanConEtcTotal));
+                $('#khoan-25-etc').text(formatNumber(khoan25EtcTotal));
+                $('#khoan-phien-etc').text(formatNumber(khoanPhienEtcTotal));
+                $('#tongkhoan-etc').text(formatNumber(tongkhoanEtcTotal));
+                $('#spcl-etc-etc').text(formatNumber(spclEtcEtcTotal));
+                $('#sppt-etc-etc').text(formatNumber(spptEtcEtcTotal));
+
+
+                $('#spcl-otc-otc').text(formatNumber(spclOtcOtcTotal));
+                $('#sppt-otc-otc').text(formatNumber(spptOtcOtcTotal));
+                $('#opc-conlai-otc').text(formatNumber(opcConLaiOtcTotal));
+                $('#con-otc-otc').text(formatNumber(conOtcOtcTotal));
+                $('#sui-otc').text(formatNumber(suiOtcTotal));
+                $('#tw25-otc-otc').text(formatNumber(tw25OtcOtcTotal));
+                $('#phien-otc-otc').text(formatNumber(phienOtcOtcTotal));
+                $('#combo-otc-otc').text(formatNumber(comboOtcOtcTotal));
+                $('#tongthuchien-otc').text(formatNumber(tongThucHienOtcTotal));
+                $('#opc-conlai-etc').text(formatNumber(opcConLaiEtcTotal));
+                $('#con-etc-etc').text(formatNumber(conEtcEtcTotal));
+                $('#sui-etc').text(formatNumber(suiEtcTotal));
+                $('#tw25-etc').text(formatNumber(tw25EtcTotal));
+                $('#phien-etc-etc').text(formatNumber(phienEtcEtcTotal));
+                $('#tongthuchien-etc').text(formatNumber(tongThucHienEtcTotal));
+                $('#khoan-opc-otc').text(formatNumber(khoanOpcOtcTotal));
+                $('#khoan-sui-otc').text(formatNumber(khoanSuiOtcTotal));
+                $('#khoan-con-otc').text(formatNumber(khoanConOtcTotal));
+                $('#khoan-25-otc').text(formatNumber(khoan25OtcTotal));
+                $('#khoan-phien-otc').text(formatNumber(khoanPhienOtcTotal));
+                $('#tongkhoan-otc').text(formatNumber(tongKhoanOtcTotal));
+                $('#doanhthukhac').text(formatNumber(doanhThuKhacTotal));
+                $('#tongdoanhthu').text(formatNumber(tongDoanhThuTotal));
+                var grandTotal = totalColumns.reduce(function (total, value) {
+                    return total + value;
+                }, 0);
+
+                $('#grand-total').text(formatNumber(grandTotal));
+            }
+
+            calculateTotal();
+
+            $('input').on('input', function () {
+                calculateTotal();
             });
 
-            // Hiển thị giá trị tổng từng cột lên view
-            for (var i = 2; i < totalColumns.length; i++) {
-                $('#total-row td:eq(' + (i - 1) + ')').text(formatNumber(totalColumns[i]));
+            // Sự kiện lắng nghe khi giá trị ô input trong bảng thay đổi
+            $('#example tbody').on('input', 'input', function () {
+                calculateTotal();
+            });
+
+            function formatNumber(number) {
+                return number.toLocaleString('en-US');
             }
-        }
-
-        function formatNumber(number) {
-            return number.toLocaleString('en-US');
-        }
-    });
-    </script>
-
+        });
     </script>
 
 </body>
