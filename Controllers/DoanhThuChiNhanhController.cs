@@ -43,7 +43,7 @@ namespace web4.Controllers
                 Acc.Ma_DvCs_1 = Request.Cookies["MA_DVCS"].Value;
                 using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
                 {
-
+                        
                     cmd.Parameters.AddWithValue("@_Tu_Ngay", Acc.From_date);
                     cmd.Parameters.AddWithValue("@_Den_Ngay", Acc.To_date);
                     cmd.Parameters.AddWithValue("@_ma_dvcs", Acc.Ma_DvCs_1);

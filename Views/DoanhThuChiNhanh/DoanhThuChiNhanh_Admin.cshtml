@@ -6,7 +6,6 @@
 <html lang="en">
 
 <head>
-
     <style>
         a {
             text-decoration: none;
@@ -358,17 +357,11 @@
         }
 
         .full-row {
-            margin-left: 500px;
+            margin-left: 250px;
+           width:100%;
         }
 
-        .row-container {
-            /*   display: flex;*/
-            justify-content: space-between; /* Cách các thẻ con cách đều nhau */
-            /*   align-items: flex-start;*/
-            /*     max-width: 100%;*/
-            /*  flex-direction: row;*/
-            /* Chiếm toàn bộ chiều rộng của màn hình */
-        }
+    
 
         .text-loading {
             position: fixed;
@@ -444,6 +437,23 @@
                 width: 0.2em;
                 background-color: transparent;
             }
+        .container-pie {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 3   00px;
+            width: 100%;
+            margin-left: 400px;
+            padding:0px ;
+       
+        }
+
+        .pie-chart {
+        
+            width: 40%;
+            height: 40%;
+          
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -451,8 +461,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0/js/bootstrap-select.min.js"></script>
     <script type="text/javascript" src="Scripts/table2excel.js"></script>
-
-
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>OPC </title>
@@ -469,7 +477,7 @@
     <link rel="stylesheet" href="~/assets/css/datatables.min.css">
     <link rel="stylesheet" href="~/assets/css/style.css">
     <link rel="stylesheet" href="~/Styles/loader.css">
-
+        
 
 
 
@@ -623,11 +631,17 @@
         <h5 style="color: white">Từ @Request.QueryString["From_date"] đến @Request.QueryString["To_date"]</h5>
     </header>
     @*=======  Data-Table  = Start  ==========================*@
-    <div class="full-row">
+    <div class="full-row" style="display:flex;max-width:100%;width:100%">
         <div class="row-container">
-            <canvas id="barchart" style="max-width:100%;width:100%;height:100%;max-height:100%"></canvas>
+            <canvas id="barchart"style="width:100%;height:100%"></canvas>
+        </div>
+        <div class="row-container1"style="margin-left:40px">
+            <div id="chartContainer"style="height: 100%;width:80%; background-color: transparent;"></div>
         </div>
     </div>
+
+
+
 
 
     <div class="container">
@@ -733,6 +747,7 @@
             </div>
         </div>
     </div>
+
     <!-- =======  Data-Table  = End  ===================== -->
     <!-- ============ Java Script Files  ================== -->
 
@@ -744,13 +759,15 @@
     <script src="~/assets/js/vfs_fonts.js"></script>
     <script src="~/assets/js/custom.js"></script>
     <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+
     @*<script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
         crossorigin="anonymous"></script>*@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
 
 
-    <script>function runReport() {
+    <script>
+        function runReport() {
             const uncheckedCheckboxIndexes = [];
             const checkboxes = document.querySelectorAll('input[name="myCheckbox"]');
 
@@ -765,8 +782,10 @@
             // Hiển thị thẻ span có id là "spanText"
             const spanElement = document.getElementById("spanText");
             spanElement.style.display = "block";
-        }</script>
-    <script>document.addEventListener('DOMContentLoaded', function () {
+        }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
             const checkboxes = document.querySelectorAll('input[name="myCheckbox"]');
             const table = document.getElementById('example');
 
@@ -781,8 +800,10 @@
                     });
                 });
             });
-        });</script>
-    <script>function applyCheckboxAndColumnState() {
+        });
+    </script>
+    <script>
+        function applyCheckboxAndColumnState() {
             const checkboxes = document.querySelectorAll('input[name="myCheckbox"]');
             const table = document.getElementById('example');
 
@@ -820,8 +841,10 @@
         document.addEventListener('DOMContentLoaded', function () {
             // Áp dụng trạng thái của các checkbox đã bỏ chọn
             applyUncheckedCheckboxState();
-        });</script>
-    <script>function handleFormSubmit(event) {
+        });
+    </script>
+    <script>
+        function handleFormSubmit(event) {
             event.preventDefault();
             const fromDate = document.getElementById('tu_ngay').value;
             const toDate = document.getElementById('den_ngay').value;
@@ -877,7 +900,6 @@
         data: Con,
         backgroundColor: 'rgb(255, 99, 132)',
         borderWidth: 0,
-
     };
 
         var Tyle25 = {
@@ -907,16 +929,16 @@
     };
 
     var datasetvalues = {
-        labels: ["XNK-KDQT-  TH", "Cần Thơ", "Đà Nẵng", "Hà Nội", "Miền Đông", "Nghệ An","Nha Trang", "Tiền Giang", "Hồ Chí Minh", "Vũng Tàu"],//x-axis label values
+        labels: ["XNK-KDQT-TH", "Cần Thơ", "Đà Nẵng", "Hà Nội", "Miền Đông", "Nghệ An","Nha Trang", "Tiền Giang", "Hồ Chí Minh", "Vũng Tàu"],//x-axis label values
         datasets: [OPC, Con, Sui, Phien, Tyle25]//y-axis
     };
 
     var chartOptions = {
         scales: {
             xAxes: [{
-                barThickness: 30,
-                barPercentage: 1,//Percent (0-1) of the available width each bar should
-                categoryPercentage: 0.6,//Percent (0-1) of the available width each category
+                barThickness: 10,
+                barPercentage: 0.2,//Percent (0-1) of the available width each bar should
+                categoryPercentage: 0.3,//Percent (0-1) of the available width each category
 
             }],
             yAxes: [{
@@ -983,8 +1005,7 @@
                 return number.toLocaleString('en-US', { style: 'currency', currency: 'VND' }).replace('₫', '');
             }
         });</script>
-    <script>
-    $(document).ready(function () {
+    <script>$(document).ready(function () {
         calculateThucHienTotal();
 
         function calculateThucHienTotal() {
@@ -1005,11 +1026,9 @@
         function formatNumber(number) {
             return number.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
         }
-    });
-    </script>
+    });</script>
 
-    <script>
-    $(document).ready(function () {
+    <script>$(document).ready(function () {
             calculateComboTotal();
 
             function calculateComboTotal() {
@@ -1089,6 +1108,55 @@
             }
 
         });</script>
+
+        <script>
+            window.onload = function () {
+                var chartData = [];
+
+                var rows = document.querySelectorAll("#example tbody tr");
+                var totalThuchien = 0;
+
+                // Duyệt qua các hàng trừ hàng cuối cùng để tính tổng thực hiện
+                for (var i = 0; i < rows.length - 1; i++) {
+                    var thuchienValue = parseFloat(rows[i].cells[18].textContent.replace(/\,/g, ""));
+                    totalThuchien += thuchienValue;
+                }
+
+                rows.forEach(function (row) {
+                    var label = row.cells[0].textContent.trim();
+                    var khoanValue = parseFloat(row.cells[19].textContent.replace(/\,/g, ""));
+
+                    var thuchienValue = totalThuchien; // Sử dụng giá trị tổng thực hiện
+                    var tyLe = ((khoanValue / thuchienValue) * 100).toFixed(2); // Làm tròn tỷ lệ
+
+                    chartData.push({ label: label, y: parseFloat(tyLe) });
+                });
+
+                var chart = new CanvasJS.Chart("chartContainer", {
+                    theme: "light1",
+                   /* exportEnabled: true,*/
+                    animationEnabled: true,
+                    title: {
+                        text: "TY TRONG DONG GOP DOANH THU"
+                    },
+                    subtitles: [{
+                        text: "10 CN"
+                    }],
+                    data: [{
+                        type: "pie",
+                        startAngle: 180,
+                        toolTipContent: "<b>{label}</b>: {y}%",
+                        showInLegend: "true",
+                        legendText: "{label}",
+                        indexLabel: "{label} - {y}%",
+                        dataPoints: chartData
+                    }]
+                });
+                chart.render();
+            }
+
+
+        </script>
 </body>
 
 </html> 

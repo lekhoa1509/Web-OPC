@@ -58,29 +58,29 @@
                 </div>
 
                 <!--<ul class="sub-menu">
-                                    <li><a class="link_name" href="#">Danh mục</a></li>
-                                    <li>
-                                        @if (string.Equals(ViewBag.UserName, "admin", StringComparison.OrdinalIgnoreCase) ||
-                string.Equals(ViewBag.UserName, "opcmar001", StringComparison.OrdinalIgnoreCase))
-                                        {
+                            <li><a class="link_name" href="#">Danh mục</a></li>
+                            <li>
+                                @if (string.Equals(ViewBag.UserName, "admin", StringComparison.OrdinalIgnoreCase) ||
+        string.Equals(ViewBag.UserName, "opcmar001", StringComparison.OrdinalIgnoreCase))
+                                {
 
 
-                                            <a href="/DanhMuc/ViewDanhMucKH_Fill" onclick="runReport()"> Khách hàng</a>
-                                        }
-                                        else if (string.Equals(ViewBag.UserName, "OPCHCM001", StringComparison.OrdinalIgnoreCase))
-                                        {
+                                    <a href="/DanhMuc/ViewDanhMucKH_Fill" onclick="runReport()"> Khách hàng</a>
+                                }
+                                else if (string.Equals(ViewBag.UserName, "OPCHCM001", StringComparison.OrdinalIgnoreCase))
+                                {
 
 
-                                            <a href="/DanhMuc/ViewDanhMucKH_FillCN" onclick="runReport()"> Khách hàng</a>
-                                        }
-                                        else
-                                        {
-                                            <a href="/DanhMuc/ViewDanhMucKH" onclick="runReport()"> Khách hàng</a>
-                                        }
+                                    <a href="/DanhMuc/ViewDanhMucKH_FillCN" onclick="runReport()"> Khách hàng</a>
+                                }
+                                else
+                                {
+                                    <a href="/DanhMuc/ViewDanhMucKH" onclick="runReport()"> Khách hàng</a>
+                                }
 
-                                    </li>-->
+                            </li>-->
                 @*<li><a href="#">JavaScript</a></li>
-                    <li><a href="#">PHP & MySQL</a></li>*@
+            <li><a href="#">PHP & MySQL</a></li>*@
                 <!--</ul>-->
             </li>
             <li>
@@ -96,7 +96,7 @@
                     <li><a href="/MauInChungTu/MauInNLCB_Fill">1.Chứng Từ Phiếu Nhập</a></li>
                     <li><a href="/MauInChungTu/PhieuNhapXNTT">2.Phiếu Xác Nhận Thanh Toán</a></li>
                     @*<li><a href="#">Login Form</a></li>
-                        <li><a href="#">Card Design</a></li>*@
+                <li><a href="#">Card Design</a></li>*@
                 </ul>
             </li>
 
@@ -117,10 +117,12 @@
                             {
 
 
-                <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Admin_Fill">1.1.Doanh Thu Chi Nhánh</a></li> }
+                                <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Admin_Fill">1.1.Doanh Thu Chi Nhánh</a></li>
+ }
                             else
                             {
-                <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Fill">1.1.Doanh Thu Chi Nhánh</a></li>}
+                                <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Fill">1.1.Doanh Thu Chi Nhánh</a></li>
+}
 
                             <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanhTinhLuong_Fill">1.2.Doanh Thu Chi Nhánh Tính Lương</a></li>
 
@@ -156,6 +158,16 @@
                 </ul>
             </li>
 
+
+            <li>
+                <a href="/Chart/Chart">
+                    <i class='bx bx-cog'></i>
+                    <span class="link_name">Demo</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="/home/DoiMatKhau">Demo</a></li>
+                </ul>
+            </li>
 
             <li onclick="logout()">
                 <div class="profile-details" style="justify-content:space-between;cursor:pointer">

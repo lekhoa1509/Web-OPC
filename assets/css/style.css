@@ -237,7 +237,12 @@ p {
 
 @media (min-width: 1921px) {
     .data_table {
-        margin-left: 0;
+        margin-left: -100px;
+    }
+
+    .row-container {
+        height: 30%;
+        width: 50%;
     }
 }
 /* ==== Data table  = End  ===== */
@@ -245,7 +250,16 @@ p {
     .data_table {
         margin-left: 0;
     }
-
+    #chartContainer{
+        height:300px;   
+    }
+    .full-row {
+        height: 300px;
+    }
+    .row-container {
+        height: 100%;   
+        width: 50%;
+    }
     .box-chart {
         width: 100%;
     }
@@ -255,74 +269,67 @@ p {
     }
     /*    button.submit {
         width: 200px;
-    }*/
-    @media (max-width: 1760px) {
-        .data_table {
-            margin-left: 0px;
+    }*/@media (max-width: 1783px){
+        .full-row {
+            height: 200px;
         }
 
         .row-container {
-            height: 350px;
-            width: 1700px;
+            height: 100%;
+            width: 60%;
         }
-
-        @media(max-width:1660px) {
+        @media (max-width: 1760px) {
             .data_table {
-                margin-left: 100px;
+                margin-left: 0px;
+            }
+
+            .full-row {
+                height: 300px;
             }
 
             .row-container {
-                height: 350px;
-                width: 1700px;
-            }
-        }
-
-        @media (max-width: 1440px) {
-            .data_table {
-                margin-left: 120px;
+                height: 100%;
+                width: 60%;
             }
 
-            .row-container {
-                height: 350px;
-                width: 1700px;
-            }
-
-            @media (max-width: 1200px) {
-                .row
+            @media(max-width:1660px) {
                 .data_table {
-                    margin-left: 170px;
+                    margin-left: 100px;
                 }
-
-                .button-nt {
-                    margin-left: 150px;
+                .full-row{
+                    height:300px;
                 }
+                .row-container {
+                    height: 100%;
+                    width: 70%;
+                }
+            }
 
-                button.submit {
-                    width: 150px;
+            @media (max-width: 1440px) {
+                .data_table {
+                    margin-left: 120px;
                 }
 
                 .row-container {
-                    height: 350px;
-                    width: 1700px;
+                    height: 180px;
+                    width: 70%;
                 }
-
-                @media (max-width: 992px) {
-                    .data_table {
-                        margin-left: 70px;
+                @media (max-width:1320px){
+                    .full-row{
+                        height:200px;
                     }
-
                     .row-container {
-                        height: 280px;
-                        width: 1600px;
+                        height: 100%;
+                        width: 70%;
                     }
-
-                    @media (max-width: 900px) {
+                    @media (max-width: 1200px) {
+                        .row
                         .data_table {
-                            margin-left: 150px;
+                            margin-left: 170px;
                         }
 
                         .button-nt {
-                            margin-left: 200px;
+                            margin-left: 150px;
                         }
 
                         button.submit {
@@ -330,65 +337,91 @@ p {
                         }
 
                         .row-container {
-                            height: 280px;
-                            width: 1600px;
+                            height: 200px;
+                            width: 80%;
                         }
 
-                        @media (max-width: 760px) {
+                        @media (max-width: 992px) {
                             .data_table {
-                                margin-left: 150px;
+                                margin-left: 70px;
                             }
 
-                            .row-container {
-                                height: 260px;
-                                width: 1400px;
-                            }
 
-                            @media (max-width: 600px) {
+                            @media (max-width: 900px) {
                                 .data_table {
-                                    margin-left: 170px;
+                                    margin-left: 150px;
                                 }
 
-                                .row-container {
-                                    height: 250px;
-                                    width: 1200px;
+                                .button-nt {
+                                    margin-left: 200px;
                                 }
 
                                 button.submit {
                                     width: 150px;
                                 }
 
-                                @media (max-width: 414px) {
+                                .row-container {
+                                    height: 400px;
+                                    width: 900px;
+                                }
+
+                                @media (max-width: 760px) {
                                     .data_table {
-                                        margin-left: 170px;
+                                        margin-left: 150px;
                                     }
 
-                                    .row-container {
-                                        height: 250px;
-                                        width: 1000px;
-                                    }
-                                    /*.row-container canvas{
+
+                                    @media (max-width: 600px) {
+                                        .data_table {
+                                            margin-left: 170px;
+                                        }
+
+                                        .row-container {
+                                            height: 400px;
+                                            width: 900px;
+                                        }
+
+                                        button.submit {
+                                            width: 150px;
+                                        }
+
+                                        @media (max-width: 414px) {
+                                            .data_table {
+                                                margin-left: 170px;
+                                            }
+                                            /*   #barchart{
+                                        height:400px;
+                                    }*/
+                                            .row-container {
+                                                height: 400px;
+                                                width: 900px;
+                                            }
+                                            /*.row-container canvas{
                                     height:100%;
                                     width:100%;
                                 }*/
-                                    h4 {
-                                        font-size: 20px;
-                                    }
+                                            h4 {
+                                                font-size: 20px;
+                                            }
 
-                                    h5 {
-                                        font-size: 15px;
-                                    }
+                                            h5 {
+                                                font-size: 15px;
+                                            }
 
 
-                                    button.submit {
-                                        width: 150px;
+                                            button.submit {
+                                                width: 150px;
+                                            }
+                                        }
                                     }
                                 }
                             }
                         }
                     }
                 }
+               
             }
         }
-    }
+       }
+    
 }

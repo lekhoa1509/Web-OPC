@@ -10,18 +10,34 @@ namespace ASPNET_MVC_ChartsDemo.Controllers
         // GET: Home    
         public ActionResult Chart()
         {
-            List<Chart> dataPoints = new List<Chart>();
+            List<Chart> dataPoint = new List<Chart>();
 
-            dataPoints.Add(new Chart("Tỷ lệ OPC", 10));
-            dataPoints.Add(new Chart("Tỷ lệ Cồn", 30));
-            dataPoints.Add(new Chart("Tỷ lệ Sủi", 80));
-            dataPoints.Add(new Chart("Tỷ lệ Phiến", 39));
-            dataPoints.Add(new Chart("Tỷ lệ 25", 30));
-          
+            dataPoint.Add(new Chart("Samsung", 25));
+            dataPoint.Add(new Chart("Micromax", 13));
+            dataPoint.Add(new Chart("Lenovo", 8));
+            dataPoint.Add(new Chart("Intex", 7));
+            dataPoint.Add(new Chart("Reliance", (int)6.8));
+            dataPoint.Add(new Chart("Others", (int)40.2));
 
-            ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
+
+            ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoint);
 
             return View();
+        }
+        public ActionResult DoanhThuChiNhanh_Admin()
+        {
+            List<Chart> dataPoint = new List<Chart>();
+                
+            dataPoint.Add(new Chart("Samsung", 25));
+            dataPoint.Add(new Chart("Micromax", 13));
+            dataPoint.Add(new Chart("Lenovo", 8));
+            dataPoint.Add(new Chart("Intex", 7));
+            dataPoint.Add(new Chart("Reliance", (int)6.8));
+            dataPoint.Add(new Chart("Others",(int) 40.2));
+
+            ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoint);
+
+            return View("DoanhThuChiNhanh_Admin");
         }
     }
 }
