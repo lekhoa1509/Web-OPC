@@ -1114,47 +1114,50 @@
                 var chartData = [];
 
                 var rows = document.querySelectorAll("#example tbody tr");
-                var totalThuchien = 0;
-
-                // Duyệt qua các hàng trừ hàng cuối cùng để tính tổng thực hiện
-                for (var i = 0; i < rows.length - 1; i++) {
-                    var thuchienValue = parseFloat(rows[i].cells[18].textContent.replace(/\,/g, ""));
-                    totalThuchien += thuchienValue;
+                var totalKhoan = 0;
+                var totalThucHien = 0;
+               
+                // Duyệt qua các hàng trừ hàng cuối cùng để tính tổng tổng khoán và tổng thực hiện
+                for (var i = 0; i < rows.length; i++) {
+                    var khoan = parseFloat(rows[i].cells[19].textContent.replace(/\,/g, ""));
+                    totalKhoan += khoan;
+                 
+                    var thucHien = parseFloat(rows[i].cells[18].textContent.replace(/\,/g, ""));
+                    totalThucHien += thucHien;
                 }
-
+                console.log("Tổng giá trị cột Tổng Khoán: " + totalKhoan);
                 rows.forEach(function (row) {
                     var label = row.cells[0].textContent.trim();
-                    var khoanValue = parseFloat(row.cells[19].textContent.replace(/\,/g, ""));
+                    var thucHien = parseFloat(row.cells[18].textContent.replace(/\,/g, ""));
 
-                    var thuchienValue = totalThuchien; // Sử dụng giá trị tổng thực hiện
-                    var tyLe = ((khoanValue / thuchienValue) * 100).toFixed(2); // Làm tròn tỷ lệ
+                    var tyLe = ((thucHien / totalKhoan) * 100).toFixed(2); // Làm tròn tỷ lệ
 
                     chartData.push({ label: label, y: parseFloat(tyLe) });
                 });
 
                 var chart = new CanvasJS.Chart("chartContainer", {
                     theme: "light1",
-                   /* exportEnabled: true,*/
+                    /* exportEnabled: true,*/
                     animationEnabled: true,
                     title: {
-                        text: "TY TRONG DONG GOP DOANH THU"
+                        text: "TỶ TRỌNG ĐÓNG GÓP DOANH THU",
+                        fontFamily: "Times New Roman",
                     },
-                    subtitles: [{
-                        text: "10 CN"
-                    }],
+                    chart: {
+                        backgroundColor: "transparent" // Đặt nền biểu đồ thành trong suốt
+                    },
                     data: [{
                         type: "pie",
                         startAngle: 180,
                         toolTipContent: "<b>{label}</b>: {y}%",
-                        showInLegend: "true",
-                        legendText: "{label}",
+                        //showInLegend: "true",
+                        //legendText: "{label}",
                         indexLabel: "{label} - {y}%",
                         dataPoints: chartData
                     }]
                 });
                 chart.render();
             }
-
 
         </script>
 </body>
