@@ -465,12 +465,13 @@
                                 </td>
 
                                 <td style="padding:35px">
-                                    
+
                                     @formattedNgayCt1
                                 </td>
 
-                                <td style="padding:30px">@row3["Tong_Tien"]</td>
-                                <td style="padding:30px">@row3["CKTT"]</td>
+                                <td class="num" style="text-align:right;padding:30px;">@String.Format("{0:n0}", Convert.ToDecimal(row3["Tong_Tien"]))</td>
+                                <td class="num" style="text-align: right; padding: 30px;">@String.Format("{0:n0}", Convert.ToDecimal(row3["CKTT"]))</td>
+                               
                                 <td style="padding:30px"></td>
 
 
