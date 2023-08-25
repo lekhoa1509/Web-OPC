@@ -1,4 +1,4 @@
-﻿﻿
+﻿
 @{ ViewBag.Title = "Phiếu Xác Nhận Thanh Toán";
     string ten_dt = Request.Cookies["ten_dt"] != null ? HttpUtility.UrlDecode(Request.Cookies["ten_dt"].Value) : "";
 
@@ -31,7 +31,7 @@
         }
 
         form {
-            text-align: center;
+            /*                text-align: center;*/
             padding: 20px;
             border: 0px solid #ccc;
             border: none;
@@ -409,101 +409,76 @@
         <form class="data-form" id="data-form">
             <div>
                 <h3 style="margin-left:-500px; font-size:13px;">CÔNG TY CỔ PHẦN DƯỢC PHẨM OPC</h3>
-                <h3 style="font-weight:bold;color:black; font-size:13px;margin-left:-500px">CHI NHÁNH ĐÀ NẴNG</h3>
+
             </div>
 
             <br />
-
+            <br />
             <div>
-                <h3 style="font-size: 25px; color: black; font-weight: bold">XÁC NHẬN THANH TOÁN</h3>
+                <h3 style="font-size: 25px; color: black; font-weight: bold">PHIẾU XUẤT KHO CỬA HÀNG QUẬN 10</h3>
                 <br />
             </div>
-            <div style="text-align:left;margin-left:30px">
-                <h5>-Căn cứ Luật thương mại số 36/2005/QH11 ngày 14/06/2005;</h5>
-                <h5>-Căn cứ vào hợp đồng số: ...../thỏa thuận của đôi bên.</h5>
+            <div style="margin-left: 400px">
+                <h5>Số:00002849</h5>
             </div>
-            <br />
-            <div class="flex-container">
-                <h5 style="display: inline-block;color:black;font-weight:bold">Khách hàng: <span style="font-size: 15px;">@ten_dt</span></h5>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <h5 style="display: inline-block; color: black; font-weight: bold"></h5>
+            <div style="text-align:center">
+                <h5>Ngày 05 tháng 07 năm 2023</h5>
+
             </div>
-            <div style="text-align: left; color: black; font-weight: bold">
-                <h5>Địa Chỉ: 1017 Hồng Bàng, phường 12, Quận 6, Tp.HCM </h5>
-            </div>
-            <br />
-            <div style="text-align:left;color:black;font-weight:bold">
-                <h5>Điều kiện thanh toán: </h5>
+            <div style="margin-left:-250px;text-align:left">
+                <h5>Đơn vị xuất hàng: Kho thành phẩm Cửa hàng Quận 10</h5>
+                <h5 style="margin-left:-5px">Địa chỉ: 134/1 Tô Hiến Thành, P15, Quận 10, TP.HCM</h5>
+                <h5 style="margin-left: 40px">Đơn vị nhận hàng: CÔNG TY TNHH DƯỢC PHẨM MAIKA</h5>
+                <h5 style="margin-left: -120px">Diễn giải: Xuất hàng giao cho khách</h5>
             </div>
 
-            <div style="text-align:left">
-                <h5 style="font-size: 13px">Khi thanh toán ngay, Quý khách hàng được chiết khấu 2% trên giá trị thanh toán của những hóa đơn cụ thể như sau: </h5>
-            </div><br />
-            <div>
-                <table border="1" border-collapse="collapse">
+
+            <div style="margin-top:10px">
+                <table border="1" border-collapse="collapse" style="width:600px">
                     <tr style="font-size:10px;font-weight:bold;color:black">
-                        <th style="padding:10px">SỐ</th>
-                        <th>NGÀY HĐ</th>
-                        <th>NGÀY THU</th>
-                        <th>TIỀN HĐ</th>
-                        <th>CKTT</th>
-                        <th>TIỀN THANH TOÁN</th>
+                        <th style="padding:10px">STT</th>
+                        <th>TÊN SẢN PHẨM -QUY CÁCH</th>
+                        <th>DVT</th>
+                        <th>SỐ LƯỢNG</th>
+
                     </tr>
                     <tbody>
-                        @foreach (DataRow row3 in Model.Tables[0].Rows)
-                        {
-                            <tr data-soct="@row3["So_Ct"]">
-                                <td style="padding:30px">@row3["So_Ct"]</td>
-                                <td style="padding:35px">
-                                    @{
-                                        string ngayCt1 = row3["Ngay_Ct1"].ToString();
-                                        DateTime parsedNgayCt1 = DateTime.Parse(ngayCt1);
-                                        string formattedNgayCt1 = parsedNgayCt1.ToString("dd-MM-yyyy");
-                                    }
-                                    @formattedNgayCt1
-                                </td>
-
-                                <td style="padding:35px">
-
-                                    @formattedNgayCt1
-                                </td>
-
-                                <td style="padding:30px">@row3["Tong_Tien"]</td>
-                                <td style="padding:30px">@row3["CKTT"]</td>
-                                <td style="padding:30px"></td>
-
-
-                            </tr>
-                            <tr style="color:black;font-weight:bold">
-                                <td>&nbsp;&nbsp;</td>
-                                <td colspan="2">Tổng cộng: </td>
-
-                                <td>&nbsp;&nbsp;</td>
-                                <td>&nbsp;&nbsp;</td>
-                                <td>&nbsp;&nbsp;</td>
-                            </tr>
-                        }
+                        <tr>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td colspan="3" style="font-weight:bold;color:black">Tổng cộng</td>
+                        </tr>
+                    </tfoot>
 
                 </table>
                 <br />
-                <div style="text-align:left">
-                    <h5 style="word-wrap: break-word;font-size:15px">Khách hàng đã thanh toán số tiền;...................., nhận chiết khấu thanh toán số tiền:..................., nhận code <br />khuyến mãi số tiền:......... </h5>
-                </div><br />
+               
                 <div style="text-align:right">
-                    <h4>Đà Nẵng, ngày&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tháng&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;năm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+                    <h4>Ngày&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tháng&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;năm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>
                 </div>
                 @*<h4 style="margin-left:auto">P. KHCU &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thủ kho&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Xưởng sản xuất</h4>*@
-                <div style="display:inline-block">
-                    <h4 style="display:inline-block">Khách Hàng</h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <h4 style="display:inline-block">Nhân viên thu tiền </h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <h4 style="display:inline-block">Người lập bảng</h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </div><br />
-                <div>
-                    <h5 style="font-style:italic;text-align:left;margin-left:40px">(Ký, ghi họ tên)</h5>
-                </div>
+            <div style="display:inline-block">
+                <h4 style="display:inline-block;margin-left:80px">Bên nhận</h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                <h4 style="display:inline-block;margin-left:100px">Người lập phiếu</h4>
+            </div><br />
+                  <div style="display:flex">
+                      <h5 style="font-style:italic;text-align:left;margin-left:80px">(Ký, họ tên)</h5>
+                      <h5 style="font-style:italic;text-align:left;margin-left:320px">(Ký, họ tên)</h5>
+                  </div>
             </div>
-            <button class="print-button" onclick="printDataForm()" id="print">In Data</button>
+
         </form>
     </div>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>

@@ -437,21 +437,6 @@
                 width: 0.2em;
                 background-color: transparent;
             }
-
-        .container-pie {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 3 00px;
-            width: 100%;
-            margin-left: 400px;
-            padding: 0px;
-        }
-
-        .pie-chart {
-            width: 40%;
-            height: 40%;
-        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -494,9 +479,9 @@
         </div>
         <ul class="nav-links" style="justify-content: center;display:flex">
             <li>
-                <form id="dateForm" action="DoanhThuChiNhanh_Admin" method="post" onsubmit="handleFormSubmit(event)">
+                <form id="dateForm" action="DoanhThuChiNhanhKGam" method="post" onsubmit="handleFormSubmit(event)">
                     <div id="locBC">
-                        <span id="spanText" class="text-loading">[usp_BaoCaoDoanhThuCN_SAP]</span>
+                        <span id="spanText" class="text-loading">[usp_KetQuaKinhDoanhCN_SAP]</span>
                         <a>Từ Ngày</a><br /><br />
                         <input class="tu_ngay" placeholder="Từ Ngày" id="tu_ngay" name="From_date" type="date" format="YYYY-MM-DD" value="@Request.QueryString["From_date"]" />
                         <script>$("#tu_ngay").datetimepicker({ timepicker: false, format: 'Y-m-d' });</script><br /><br />
@@ -513,104 +498,22 @@
                         <label class="custom-checkbox">
                             <input type="checkbox" name="myCheckbox" value="option1" checked>
                             <span class="checkmark"></span>
-                            Doanh Thu OPC
+                            Doanh Thu
                         </label>
                         <label class="custom-checkbox">
                             <input type="checkbox" name="myCheckbox" value="option1" checked>
                             <span class="checkmark"></span>
-                            Khoán OPC
+                            Khoán
                         </label>
                         <label class="custom-checkbox">
                             <input type="checkbox" name="myCheckbox" value="option1" checked>
                             <span class="checkmark"></span>
-                            Tỷ lệ OPC
+                            Tỷ lệ
                         </label>
                         <label class="custom-checkbox">
                             <input type="checkbox" name="myCheckbox" value="option1" checked>
                             <span class="checkmark"></span>
-                            Doanh Thu Cồn
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Khoán Cồn
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Tỷ lệ Cồn
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Doanh Thu Sủi
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Khoán Sủi
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Tỷ lệ Sủi
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Doanh Thu Phiến
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Khoán Phiến
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Tỷ lệ Phiến
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Doanh Thu 25
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Khoán 25
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Tỷ lệ 25
-                        </label>
-
-                        @*<label class="custom-checkbox">
-                                <input type="checkbox" name="myCheckbox" value="option1" checked>
-                                <span class="checkmark"></span>
-                                Doanh Thu Combo
-                            </label>*@
-
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Doanh Thu khác
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Tổng Thực Hiện
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Tổng Khoán
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Tỷ lệ Khoán
+                            Lũy Kế
                         </label>
                     </div>
                     <div>
@@ -629,14 +532,7 @@
         <h5 style="color: white">Từ @Request.QueryString["From_date"] đến @Request.QueryString["To_date"]</h5>
     </header>
     @*=======  Data-Table  = Start  ==========================*@
-    <div class="full-row" style="display:flex;max-width:100%;width:100%">
-        <div class="row-container">
-            <canvas id="barchart" style="width:100%;height:100%"></canvas>
-        </div>
-        <div class="row-container1" style="margin-left:40px">
-            <div id="chartContainer" style="height: 100%;width:80%; background-color: transparent;"></div>
-        </div>
-    </div>
+
 
 
 
@@ -650,61 +546,19 @@
                     <table id="example" class="table table-striped table-bordered">
                         <thead class="table-dark">
                             <tr>
-                                <th>Tên Đơn Vị</th>
-                                <th>Doanh Thu OPC</th>
-                                <th>Khoán OPC</th>
-                                <th>Tỷ Lệ OPC</th>
-                                <th>Doanh Thu Cồn</th>
-                                <th>Khoán Cồn</th>
-                                <th>Tỷ Lệ Cồn</th>
-                                <th>Doanh Thu Sủi</th>
-                                <th>Khoán Sủi</th>
-                                <th>Tỷ Lệ Sủi</th>
-                                <th>Doanh Thu Phiến</th>
-                                <th>Khoán Phiến</th>
-                                <th>Tỷ Lệ Phiến</th>
-                                <th>Doanh Thu 25</th>
-                                <th>Khoán 25</th>
-                                <th>Tỷ Lệ 25</th>
-
-                                @*<th>Doanh Thu Combo</th>*@
-
-                                <th>Doanh Thu Khác</th>
-                                <th>Tổng Thực Hiện</th>
-                                <th>Tổng Khoán</th>
-                                <th>Tỷ Lệ Khoán</th>
+                                <th style="width:300px">Tên Đơn Vị</th>
+                                <th style="width:300px">Doanh Thu</th>
+                                <th style="width:300px">Khoán</th>
+                                <th style="width:300px">Tỷ lệ</th>
+                                <th style="width:300px">Lũy Kế</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (DataRow row2 in Model.Tables[0].Rows)
                             {
                             <tr>
-                                <td>@row2["ten_DvCs"]</td>
+                                <td>@row2["Ten_DvCs"]</td>
 
-                                <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OPC"]))</td>
-                                <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Khoan_OPC"]))</td>
-                                <td class="" style="text-align:right">@row2["Tyle_OPC"]%</td>
-
-
-                                <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Con"]))</td>
-                                <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Khoan_con"]))</td>
-                                <td class="" style="text-align:right">@row2["Tyle_Con"]%</td>
-
-                                <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Sui"]))</td>
-                                <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Khoan_Sui"]))</td>
-                                <td class="" style="text-align:right">@row2["Tyle_Sui"]%</td>
-
-                                <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Phien"]))</td>
-                                <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Khoan_phien"]))</td>
-                                <td class="" style="text-align:right">@row2["Tyle_Phien"]%</td>
-
-                                <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_25"]))</td>
-                                <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Khoan_25"]))</td>
-                                <td class="" style="text-align:right">@row2["Tyle_25"]%</td>
-
-
-                                @*<td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ComBo"]))</td>*@
-                                <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Khac"]))</td>
                                 <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Thuc_Hien"]))</td>
                                 <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Khoan"]))</td>
                                 <td class="total-tyle" style="text-align:right">
@@ -722,34 +576,22 @@
                                     </script>
                                 </td>
 
-                            </tr>}
+                                <td class="num" style="text-align:right">0</td>
 
 
-                        </tbody>
+                            </tr>
+}
+
+
+                        </tbody>    
                         <tfoot>
                             <tr id="total-row" style="background-color: burlywood">
                                 <td><strong>Tổng cộng</strong></td>
                                 <td class="total-doanhthu-opc" style="text-align:right"></td>
                                 <td class="total-khoan-opc" style="text-align:right"></td>
                                 <td class="total-tyle-opc" style="text-align:right"></td>
-                                <td class="total-doanhthu-con" style="text-align:right"></td>
-                                <td class="total-khoan-con" style="text-align:right"></td>
-                                <td class="total-tyle-con" style="text-align:right"></td>
-                                <td class="total-doanhthu-sui" style="text-align:right"></td>
-                                <td class="total-khoan-sui" style="text-align:right"></td>
-                                <td class="total-tyle-sui" style="text-align:right"></td>
-                                <td class="total-doanhthu-phien" style="text-align:right"></td>
-                                <td class="total-khoan-phien" style="text-align:right"></td>
-                                <td class="total-tyle-phien" style="text-align:right"></td>
-                                <td class="total-doanhthu-25" style="text-align:right"></td>
-                                <td class="total-khoan-25" style="text-align:right"></td>
-                                <td class="total-tyle-25" style="text-align:right"></td>
-
-                                @*<td class="total-combo" style="text-align:right"></td>*@
-                                <td style="text-align:right"></td>
-                                <td class="total-thuchien" style="text-align:right"></td>
-                                <td class="total-tongKhoan" style="text-align:right"></td>
-                                <td class="total-tyle" style="text-align:right"></td>
+                                <td class="total-luyke" style="text-align:right"></td>
+                               
                             </tr>
                         </tfoot>
                     </table>
@@ -776,8 +618,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
 
 
-    <script>
-        function runReport() {
+    <script>function runReport() {
             const uncheckedCheckboxIndexes = [];
             const checkboxes = document.querySelectorAll('input[name="myCheckbox"]');
 
@@ -792,10 +633,8 @@
             // Hiển thị thẻ span có id là "spanText"
             const spanElement = document.getElementById("spanText");
             spanElement.style.display = "block";
-        }
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        }</script>
+    <script>document.addEventListener('DOMContentLoaded', function () {
             const checkboxes = document.querySelectorAll('input[name="myCheckbox"]');
             const table = document.getElementById('example');
 
@@ -810,10 +649,8 @@
                     });
                 });
             });
-        });
-    </script>
-    <script>
-        function applyCheckboxAndColumnState() {
+        });</script>
+    <script>function applyCheckboxAndColumnState() {
             const checkboxes = document.querySelectorAll('input[name="myCheckbox"]');
             const table = document.getElementById('example');
 
@@ -851,10 +688,8 @@
         document.addEventListener('DOMContentLoaded', function () {
             // Áp dụng trạng thái của các checkbox đã bỏ chọn
             applyUncheckedCheckboxState();
-        });
-    </script>
-    <script>
-        function handleFormSubmit(event) {
+        });</script>
+    <script>function handleFormSubmit(event) {
             event.preventDefault();
             const fromDate = document.getElementById('tu_ngay').value;
             const toDate = document.getElementById('den_ngay').value;
@@ -947,8 +782,8 @@
         scales: {
             xAxes: [{
                 barThickness: 10,
-                barPercentage: 0.1,//Percent (0-1) of the available width each bar should
-                categoryPercentage: 0.1,//Percent (0-1) of the available width each category
+                barPercentage: 0.2,//Percent (0-1) of the available width each bar should
+                categoryPercentage: 0.3,//Percent (0-1) of the available width each category
 
             }],
             yAxes: [{
@@ -969,8 +804,7 @@
     });
 
     </script>
-    <script>
-        $(document).ready(function () {
+    <script>$(document).ready(function () {
             calculateTotal();
 
             function calculateTotal() {
@@ -1016,8 +850,7 @@
                 return number.toLocaleString('en-US', { style: 'currency', currency: 'VND' }).replace('₫', '');
             }
         });</script>
-    <script>
-        $(document).ready(function () {
+    <script>$(document).ready(function () {
             calculateThucHienTotal();
 
             function calculateThucHienTotal() {
@@ -1039,8 +872,7 @@
                 return number.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
             }
         });</script>
-    <script>
-        $(document).ready(function () {
+    <script>$(document).ready(function () {
             calculateThucHienTotal();
 
             function calculateThucHienTotal() {
@@ -1087,8 +919,7 @@
 
 
 
-    <script>
-        $(document).ready(function () {
+    <script>$(document).ready(function () {
             calculateKhoanRatio();
 
             function calculateKhoanRatio() {
@@ -1104,11 +935,9 @@
             function formatRatio(ratio) {
                 return (ratio * 100).toFixed(2) + "%";
             }
-        });
-    </script>
+        });</script>
 
-    <script>
-        //tinh ty le
+    <script>//tinh ty le
         $(document).ready(function () {
             calculateRatios();
 
@@ -1154,8 +983,7 @@
 
         });</script>
 
-    <script>
-        window.onload = function () {
+    <script>window.onload = function () {
             var chartData = [];
 
             var rows = document.querySelectorAll("#example tbody tr");
@@ -1202,9 +1030,7 @@
                 }]
             });
             chart.render();
-        }
-
-    </script>
+        }</script>
 </body>
 
 </html> 

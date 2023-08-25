@@ -179,5 +179,10 @@ namespace web4.Controllers
             }
             return View(ds);
         }
+        public ActionResult PhieuXuatKho_Fill(MauInChungTu MauIn)
+        {
+            return View();
+        }
+        
     }
 }

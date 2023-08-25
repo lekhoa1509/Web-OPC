@@ -94,9 +94,10 @@
                 <ul class="sub-menu">
                     <li><a class="link_name" href="/Home/MauIn">Mẫu In</a></li>
                     <li><a href="/MauInChungTu/MauInNLCB_Fill">1.Chứng Từ Phiếu Nhập</a></li>
-                    <li><a href="/MauInChungTu/PhieuNhapXNTT">2.Phiếu Xác Nhận Thanh Toán</a></li>
+                    <li><a href="/MauInChungTu/PhieuNhapXNTT_Fill">2.Phiếu Xác Nhận Thanh Toán</a></li>
+                    <li><a href="/MauInChungTu/PhieuXuatKho_Fill">3.Phiếu Xuất Kho</a></li>
                     @*<li><a href="#">Login Form</a></li>
-                <li><a href="#">Card Design</a></li>*@
+        <li><a href="#">Card Design</a></li>*@
                 </ul>
             </li>
 
@@ -113,18 +114,19 @@
                     <li>
                         <a href="#">1.Báo Cáo Quản Trị</a>
                         <ul>
+                            <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanhKGam_Fill">1.1.Doanh Thu Chi Nhánh</a></li>
                             @if (string.Equals(ViewBag.UserName, "admin", StringComparison.OrdinalIgnoreCase))
                             {
 
 
-                                <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Admin_Fill">1.1.Doanh Thu Chi Nhánh</a></li>
- }
+                                <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Admin_Fill">1.2.Doanh Thu Chi Nhánh Theo Gam</a></li>
+                            }
                             else
                             {
-                                <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Fill">1.1.Doanh Thu Chi Nhánh</a></li>
-}
+                                <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Fill">1.2.Doanh Thu Chi Nhánh Theo Gam</a></li>
+                            }
 
-                            <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanhTinhLuong_Fill">1.2.Doanh Thu Chi Nhánh Tính Lương</a></li>
+                            <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanhTinhLuong_Fill">1.3.Doanh Thu Chi Nhánh Tính Lương</a></li>
 
                         </ul>
                     </li>
@@ -159,15 +161,7 @@
             </li>
 
 
-            <li>
-                <a href="/Chart/Chart">
-                    <i class='bx bx-cog'></i>
-                    <span class="link_name">Demo</span>
-                </a>
-                <ul class="sub-menu blank">
-                    <li><a class="link_name" href="/home/DoiMatKhau">Demo</a></li>
-                </ul>
-            </li>
+         
 
             <li onclick="logout()">
                 <div class="profile-details" style="justify-content:space-between;cursor:pointer">

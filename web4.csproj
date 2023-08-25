@@ -943,6 +943,9 @@
     <Content Include="Views\MauInChungTu\MauInNLCB_Fill.cshtml" />
     <Content Include="Views\MauInChungTu\PhieuNhapXNTT.cshtml" />
     <Content Include="Views\MauInChungTu\PhieuNhapXNTT_Fill.cshtml" />
+    <Content Include="Views\DoanhThuChiNhanh\DoanhThuChiNhanhKGam_Fill.cshtml" />
+    <Content Include="Views\DoanhThuChiNhanh\DoanhThuChiNhanhKGam.cshtml" />
+    <Content Include="Views\MauInChungTu\PhieuXuatKho_Fill.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
