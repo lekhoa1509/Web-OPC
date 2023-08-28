@@ -357,7 +357,7 @@
         }
 
         .full-row {
-            margin-left: 250px;
+            margin-left: 200px;
             width: 100%;
         }
 
@@ -437,6 +437,9 @@
                 width: 0.2em;
                 background-color: transparent;
             }
+            .row-container3{
+                width:1000px;
+            }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -505,11 +508,13 @@
                             <span class="checkmark"></span>
                             Khoán
                         </label>
+                        <br />
                         <label class="custom-checkbox">
                             <input type="checkbox" name="myCheckbox" value="option1" checked>
                             <span class="checkmark"></span>
                             Tỷ lệ
                         </label>
+                        <br />
                         <label class="custom-checkbox">
                             <input type="checkbox" name="myCheckbox" value="option1" checked>
                             <span class="checkmark"></span>
@@ -533,6 +538,18 @@
     </header>
     @*=======  Data-Table  = Start  ==========================*@
 
+    <div class="full-row" style="display: flex; max-width: 100%; width: 100%;">
+        <div class="row-container3">
+            <canvas id="lineChart" style="width:100%;height:100%"></canvas>
+
+        </div>
+        <div class="row-container1" style="margin-left: 50px;">
+
+            <div id="chartContainer" style="height: 100%; width: 80%; background-color: transparent;"></div>
+        </div>
+    </div>
+
+
 
 
 
@@ -542,27 +559,27 @@
 
         <div class="row">
             <div class="col-12">
-                <div class="data_table">
+                <div class="data_table" style="justify-content:center">
                     <table id="example" class="table table-striped table-bordered">
                         <thead class="table-dark">
                             <tr>
                                 <th style="width:300px">Tên Đơn Vị</th>
-                                <th style="width:300px">Doanh Thu</th>
-                                <th style="width:300px">Khoán</th>
-                                <th style="width:300px">Tỷ lệ</th>
-                                <th style="width:300px">Lũy Kế</th>
+                                <th style="width:120px">Doanh Thu</th>
+                                <th style="width:120px">Khoán</th>
+                                <th style="width:120px">Tỷ lệ</th>
+                                <th style="width:120px">Lũy Kế</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (DataRow row2 in Model.Tables[0].Rows)
                             {
-                            <tr>
-                                <td>@row2["Ten_DvCs"]</td>
+                <tr>
+                    <td>@row2["Ten_DvCs"]</td>
 
-                                <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Thuc_Hien"]))</td>
-                                <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Khoan"]))</td>
-                                <td class="total-tyle" style="text-align:right">
-                                    <script>
+                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Thuc_Hien"]))</td>
+                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Khoan"]))</td>
+                    <td class="total-tyle" style="text-align:right">
+                        <script>
         var tyLeValue = parseFloat('@row2["Ty_Le"]');
         var formattedTyLe = formatPercentage(tyLeValue);
         document.write(formattedTyLe);
@@ -573,17 +590,16 @@
             parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ","); // Thêm dấu phẩy ngăn cách
             return parts.join('.') + '%';
         }
-                                    </script>
-                                </td>
+                        </script>
+                    </td>
 
-                                <td class="num" style="text-align:right">0</td>
-
-
-                            </tr>
-}
+                    <td class="num" style="text-align:right">0</td>
 
 
-                        </tbody>    
+                </tr>}
+
+
+                        </tbody>
                         <tfoot>
                             <tr id="total-row" style="background-color: burlywood">
                                 <td><strong>Tổng cộng</strong></td>
@@ -591,17 +607,14 @@
                                 <td class="total-khoan-opc" style="text-align:right"></td>
                                 <td class="total-tyle-opc" style="text-align:right"></td>
                                 <td class="total-luyke" style="text-align:right"></td>
-                               
+
                             </tr>
                         </tfoot>
                     </table>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- =======  Data-Table  = End  ===================== -->
-    <!-- ============ Java Script Files  ================== -->
+    </div> <!-- =======  Data-Table  = End  ===================== --> <!-- ============ Java Script Files  ================== -->
 
 
     <script src="~/assets/js/bootstrap.bundle.min.js"></script>
@@ -610,15 +623,14 @@
     <script src="~/assets/js/pdfmake.min.js"></script>
     <script src="~/assets/js/vfs_fonts.js"></script>
     <script src="~/assets/js/custom.js"></script>
-    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
-
-    @*<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script> @*<script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
         crossorigin="anonymous"></script>*@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
 
 
-    <script>function runReport() {
+    <script>
+        function runReport() {
             const uncheckedCheckboxIndexes = [];
             const checkboxes = document.querySelectorAll('input[name="myCheckbox"]');
 
@@ -634,7 +646,8 @@
             const spanElement = document.getElementById("spanText");
             spanElement.style.display = "block";
         }</script>
-    <script>document.addEventListener('DOMContentLoaded', function () {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
             const checkboxes = document.querySelectorAll('input[name="myCheckbox"]');
             const table = document.getElementById('example');
 
@@ -650,7 +663,8 @@
                 });
             });
         });</script>
-    <script>function applyCheckboxAndColumnState() {
+    <script>
+        function applyCheckboxAndColumnState() {
             const checkboxes = document.querySelectorAll('input[name="myCheckbox"]');
             const table = document.getElementById('example');
 
@@ -689,7 +703,8 @@
             // Áp dụng trạng thái của các checkbox đã bỏ chọn
             applyUncheckedCheckboxState();
         });</script>
-    <script>function handleFormSubmit(event) {
+    <script>
+        function handleFormSubmit(event) {
             event.preventDefault();
             const fromDate = document.getElementById('tu_ngay').value;
             const toDate = document.getElementById('den_ngay').value;
@@ -804,7 +819,8 @@
     });
 
     </script>
-    <script>$(document).ready(function () {
+    <script>
+        $(document).ready(function () {
             calculateTotal();
 
             function calculateTotal() {
@@ -850,7 +866,8 @@
                 return number.toLocaleString('en-US', { style: 'currency', currency: 'VND' }).replace('₫', '');
             }
         });</script>
-    <script>$(document).ready(function () {
+    <script>
+        $(document).ready(function () {
             calculateThucHienTotal();
 
             function calculateThucHienTotal() {
@@ -872,7 +889,8 @@
                 return number.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
             }
         });</script>
-    <script>$(document).ready(function () {
+    <script>
+        $(document).ready(function () {
             calculateThucHienTotal();
 
             function calculateThucHienTotal() {
@@ -893,9 +911,7 @@
             function formatNumber(number) {
                 return number.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
             }
-        });</script>
-
-    @*<script>$(document).ready(function () {
+        });</script> @*<script>$(document).ready(function () {
             calculateComboTotal();
 
             function calculateComboTotal() {
@@ -919,118 +935,231 @@
 
 
 
-    <script>$(document).ready(function () {
-            calculateKhoanRatio();
+        <script>
+            $(document).ready(function () {
+                calculateKhoanRatio();
 
-            function calculateKhoanRatio() {
-                var totalThucHien = parseFloat($('#total-row td.total-thuchien').text().replace(/,/g, ''));
-                var totalKhoan = parseFloat($('#total-row td.total-tongKhoan').text().replace(/,/g, ''));
+                function calculateKhoanRatio() {
+                    var totalThucHien = parseFloat($('#total-row td.total-thuchien').text().replace(/,/g, ''));
+                    var totalKhoan = parseFloat($('#total-row td.total-tongKhoan').text().replace(/,/g, ''));
 
-                var ratioKhoan = totalKhoan !== 0 ? totalThucHien / totalKhoan : 0;
+                    var ratioKhoan = totalKhoan !== 0 ? totalThucHien / totalKhoan : 0;
 
-                var ratioCell = $('#total-row td.total-tyle');
-                ratioCell.text(formatRatio(ratioKhoan));
+                    var ratioCell = $('#total-row td.total-tyle');
+                    ratioCell.text(formatRatio(ratioKhoan));
+                }
+
+                function formatRatio(ratio) {
+                    return (ratio * 100).toFixed(2) + "%";
+                }
+            });</script>
+
+        <script>
+            //tinh ty le
+            $(document).ready(function () {
+                calculateRatios();
+
+                function calculateRatios() {
+                    var totalColumns = {};
+
+                    // Lấy giá trị cột tổng doanh thu và cột tổng khoản
+                    var sumDoanhThuOpc = parseFloat($('#total-row td.total-doanhthu-opc').text().replace(/,/g, ''));
+                    var sumKhoanOpc = parseFloat($('#total-row td.total-khoan-opc').text().replace(/,/g, ''));
+                    var sumDoanhThuCon = parseFloat($('#total-row td.total-doanhthu-con').text().replace(/,/g, ''));
+                    var sumKhoanCon = parseFloat($('#total-row td.total-khoan-con').text().replace(/,/g, ''));
+                    var sumDoanhThuSui = parseFloat($('#total-row td.total-doanhthu-sui').text().replace(/,/g, ''));
+                    var sumKhoanSui = parseFloat($('#total-row td.total-khoan-sui').text().replace(/,/g, ''));
+                    var sumDoanhThuPhien = parseFloat($('#total-row td.total-doanhthu-phien').text().replace(/,/g, ''));
+                    var sumKhoanPhien = parseFloat($('#total-row td.total-khoan-phien').text().replace(/,/g, ''));
+                    var sumDoanhThu25 = parseFloat($('#total-row td.total-doanhthu-25').text().replace(/,/g, ''));
+                    var sumKhoan25 = parseFloat($('#total-row td.total-khoan-25').text().replace(/,/g, ''));
+                    var sumThucHien = parseFloat($('#total-row td.total-thuchien').text().replace(/,/g, ''));
+                    var sumTongkhoan = parseFloat($('#total-row td.total-tongKhoan').text().replace(/,/g, ''));
+                    // Tính tỷ lệ theo từng loại
+                    var ratioOpc = sumKhoanOpc !== 0 ? sumDoanhThuOpc / sumKhoanOpc : 0;
+                    var ratioCon = sumKhoanCon !== 0 ? sumDoanhThuCon / sumKhoanCon : 0;
+                    var ratioSui = sumKhoanSui !== 0 ? sumDoanhThuSui / sumKhoanSui : 0;
+                    var ratioPhien = sumKhoanPhien !== 0 ? sumDoanhThuPhien / sumKhoanPhien : 0;
+                    var ratio25 = sumKhoan25 !== 0 ? sumDoanhThu25 / sumKhoan25 : 0;
+
+                    // Gán kết quả lên các ô tương ứng trong cột tỷ lệ
+                    $('#total-row td.total-tyle-opc').text(formatRatio(ratioOpc));
+                    $('#total-row td.total-tyle-con').text(formatRatio(ratioCon));
+                    $('#total-row td.total-tyle-sui').text(formatRatio(ratioSui));
+                    $('#total-row td.total-tyle-phien').text(formatRatio(ratioPhien));
+                    $('#total-row td.total-tyle-25').text(formatRatio(ratio25));
+                    $('#total-row td.total-thuchien').text(formatNumber(sumThucHien));
+                    /*       $('#total-row td.total-tongKhoan').text(formatNumber(sumTongkhoan));*/
+                    /*   $('#total-row td.total-tyle').text(formatRatio(ratioKhoan));*/
+                }
+                function formatNumber(number) {
+                    return number.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+                }
+                function formatRatio(ratio) {
+                    return (ratio * 100).toFixed(2) + "%";
+                }
+
+            });</script>
+
+
+        <script>
+            window.onload = function () {
+                var chartData = [];
+
+                var rows = document.querySelectorAll("#example tbody tr");
+                var totalKhoan = 0;
+                var totalThucHien = 0;
+
+                // Duyệt qua các hàng trừ hàng cuối cùng để tính tổng tổng khoán và tổng thực hiện
+                for (var i = 0; i < rows.length; i++) {
+                    var khoan = parseFloat(rows[i].cells[2].textContent.replace(/\,/g, ""));
+                    totalKhoan += khoan;
+
+                    var thucHien = parseFloat(rows[i].cells[1].textContent.replace(/\,/g, ""));
+                    totalThucHien += thucHien;
+                }
+
+                // Tính tỷ lệ cho các phần đã thực hiện
+                rows.forEach(function (row) {
+                    var label = row.cells[0].textContent.trim();
+                    var thucHien = parseFloat(row.cells[1].textContent.replace(/\,/g, ""));
+
+                    var tyLe = ((thucHien / totalKhoan) * 100).toFixed(2); // Làm tròn tỷ lệ
+
+                    chartData.push({ label: label, y: parseFloat(tyLe) });
+                });
+
+                // Tính tỷ lệ cho phần "Còn lại"
+                var remainingRatio = 100 - chartData.reduce((total, data) => total + parseFloat(data.y), 0);
+
+                // Thêm dữ liệu cho phần "Còn lại" vào biểu đồ
+                chartData.push({ label: "Còn Lại", y: parseFloat(remainingRatio.toFixed(2)) });
+
+                var chart = new CanvasJS.Chart("chartContainer", {
+                    theme: "light1",
+                    animationEnabled: true,
+                    title: {
+                        text: "TỶ TRỌNG ĐÓNG GÓP DOANH THU",
+                        fontFamily: "Times New Roman",
+                    },
+                    chart: {
+                        backgroundColor: "transparent"
+                    },
+                    data: [{
+                        type: "pie",
+                        startAngle: 180,
+                        toolTipContent: "<b>{label}</b>: {y}%",
+                        indexLabel: "{label} - {y}%",
+                        dataPoints: chartData
+                    }]
+                });
+                chart.render();
             }
 
-            function formatRatio(ratio) {
-                return (ratio * 100).toFixed(2) + "%";
-            }
-        });</script>
-
-    <script>//tinh ty le
-        $(document).ready(function () {
-            calculateRatios();
-
-            function calculateRatios() {
-                var totalColumns = {};
-
-                // Lấy giá trị cột tổng doanh thu và cột tổng khoản
-                var sumDoanhThuOpc = parseFloat($('#total-row td.total-doanhthu-opc').text().replace(/,/g, ''));
-                var sumKhoanOpc = parseFloat($('#total-row td.total-khoan-opc').text().replace(/,/g, ''));
-                var sumDoanhThuCon = parseFloat($('#total-row td.total-doanhthu-con').text().replace(/,/g, ''));
-                var sumKhoanCon = parseFloat($('#total-row td.total-khoan-con').text().replace(/,/g, ''));
-                var sumDoanhThuSui = parseFloat($('#total-row td.total-doanhthu-sui').text().replace(/,/g, ''));
-                var sumKhoanSui = parseFloat($('#total-row td.total-khoan-sui').text().replace(/,/g, ''));
-                var sumDoanhThuPhien = parseFloat($('#total-row td.total-doanhthu-phien').text().replace(/,/g, ''));
-                var sumKhoanPhien = parseFloat($('#total-row td.total-khoan-phien').text().replace(/,/g, ''));
-                var sumDoanhThu25 = parseFloat($('#total-row td.total-doanhthu-25').text().replace(/,/g, ''));
-                var sumKhoan25 = parseFloat($('#total-row td.total-khoan-25').text().replace(/,/g, ''));
-                var sumThucHien = parseFloat($('#total-row td.total-thuchien').text().replace(/,/g, ''));
-                var sumTongkhoan = parseFloat($('#total-row td.total-tongKhoan').text().replace(/,/g, ''));
-                // Tính tỷ lệ theo từng loại
-                var ratioOpc = sumKhoanOpc !== 0 ? sumDoanhThuOpc / sumKhoanOpc : 0;
-                var ratioCon = sumKhoanCon !== 0 ? sumDoanhThuCon / sumKhoanCon : 0;
-                var ratioSui = sumKhoanSui !== 0 ? sumDoanhThuSui / sumKhoanSui : 0;
-                var ratioPhien = sumKhoanPhien !== 0 ? sumDoanhThuPhien / sumKhoanPhien : 0;
-                var ratio25 = sumKhoan25 !== 0 ? sumDoanhThu25 / sumKhoan25 : 0;
-
-                // Gán kết quả lên các ô tương ứng trong cột tỷ lệ
-                $('#total-row td.total-tyle-opc').text(formatRatio(ratioOpc));
-                $('#total-row td.total-tyle-con').text(formatRatio(ratioCon));
-                $('#total-row td.total-tyle-sui').text(formatRatio(ratioSui));
-                $('#total-row td.total-tyle-phien').text(formatRatio(ratioPhien));
-                $('#total-row td.total-tyle-25').text(formatRatio(ratio25));
-                $('#total-row td.total-thuchien').text(formatNumber(sumThucHien));
-                /*       $('#total-row td.total-tongKhoan').text(formatNumber(sumTongkhoan));*/
-                /*   $('#total-row td.total-tyle').text(formatRatio(ratioKhoan));*/
-            }
-            function formatNumber(number) {
-                return number.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
-            }
-            function formatRatio(ratio) {
-                return (ratio * 100).toFixed(2) + "%";
-            }
-
-        });</script>
-
-    <script>window.onload = function () {
-            var chartData = [];
-
-            var rows = document.querySelectorAll("#example tbody tr");
-            var totalKhoan = 0;
-            var totalThucHien = 0;
-
-            // Duyệt qua các hàng trừ hàng cuối cùng để tính tổng tổng khoán và tổng thực hiện
-            for (var i = 0; i < rows.length; i++) {
-                var khoan = parseFloat(rows[i].cells[18].textContent.replace(/\,/g, ""));
-                totalKhoan += khoan;
-
-                var thucHien = parseFloat(rows[i].cells[17].textContent.replace(/\,/g, ""));
-                totalThucHien += thucHien;
-            }
-            console.log("Tổng giá trị cột Tổng Khoán: " + totalKhoan);
-            rows.forEach(function (row) {
+        </script>
+        <script>
+            // Dữ liệu cho biểu đồ
+            var data = {
+                labels: [], // Mảng chứa tên đơn vị
+                datasets: [
+                    {
+                        label: "Doanh Thu",
+                        data: [], // Mảng chứa giá trị doanh thu
+                        borderColor: "rgb(75, 192, 192)",
+                        pointRadius: 5,
+                        pointHoverRadius: 4,
+                        fill: false
+                    }
+                ]
+            };
+          
+            // Lấy dữ liệu từ các hàng trong bảng và đưa vào mảng
+            // Lấy dữ liệu từ các hàng trong bảng và đưa vào mảng labels
+            // Lấy dữ liệu từ các hàng trong bảng và đưa vào mảng labels
+        
+            var tableRows = document.querySelectorAll("#example tbody tr");
+            // ...
+            tableRows.forEach(function (row) {
                 var label = row.cells[0].textContent.trim();
-                var thucHien = parseFloat(row.cells[17].textContent.replace(/\,/g, ""));
+                var abbreviatedLabel = label.startsWith("Chi nhánh") ? label.substring(10) : "XNK-KDQT_TH";
+                data.labels.push(abbreviatedLabel);
 
-                var tyLe = ((thucHien / totalKhoan) * 100).toFixed(2); // Làm tròn tỷ lệ
+                // Lấy giá trị doanh thu từ cột thứ 2, làm tròn số và định dạng thành chuỗi có dấu phẩy
+                var doanhThuStr = row.cells[1].textContent.replace(/,/g, "");
+                var doanhThu = parseInt(doanhThuStr, 10);
+                console.log("Giá trị doanh thu:", doanhThu);
 
-                chartData.push({ label: label, y: parseFloat(tyLe) });
+                data.datasets[0].data.push(doanhThu); // Sử dụng toFixed() để làm tròn số và định dạng thành chuỗi
+                console.log("Mảng giá trị doanh thu:", data.datasets[0].data);
+            });
+// ...
+
+          
+
+
+
+
+            // Cấu hình cho biểu đồ
+            var options = {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: "Tên Đơn Vị",
+                            font: {
+                                size: 8 // Chỉnh kích thước font cho title của trục x
+                            }
+                        },
+                        ticks: {
+                            callback: function (value, index, values) {
+                                return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
+                            },
+                            font: {
+                                size: 8 // Chỉnh kích thước font cho các nhãn trục x
+                            }
+                        },
+                  
+                    },
+                    y: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: "Doanh Thu"
+                        },
+                        ticks: {
+                            callback: function (value, index, values) {
+                                return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
+                            },
+                            font: {
+                                size: 8 // Chỉnh kích thước font cho các nhãn trục x
+                            }
+                        },
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: "Biểu đồ Doanh Thu theo Tên Đơn Vị",
+                        font: {
+                            size: 18
+                        }
+                    }
+                }
+            };
+
+            // Tạo biểu đồ Line Chart
+            var ctx = document.getElementById("lineChart").getContext("2d");
+            var lineChart = new Chart(ctx, {
+                type: "line",
+                data: data,
+                options: options
             });
 
-            var chart = new CanvasJS.Chart("chartContainer", {
-                theme: "light1",
-                /* exportEnabled: true,*/
-                animationEnabled: true,
-                title: {
-                    text: "TỶ TRỌNG ĐÓNG GÓP DOANH THU",
-                    fontFamily: "Times New Roman",
-                },
-                chart: {
-                    backgroundColor: "transparent" // Đặt nền biểu đồ thành trong suốt
-                },
-                data: [{
-                    type: "pie",
-                    startAngle: 180,
-                    toolTipContent: "<b>{label}</b>: {y}%",
-                    //showInLegend: "true",
-                    //legendText: "{label}",
-                    indexLabel: "{label} - {y}%",
-                    dataPoints: chartData
-                }]
-            });
-            chart.render();
-        }</script>
-</body>
+        </script>
+
+    </body>
 
 </html> 

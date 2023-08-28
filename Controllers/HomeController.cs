@@ -57,7 +57,7 @@ namespace web4.Controllers
                 con.Close();
                 username = Request.Cookies["UserName"].Value;
                 ViewBag.Username = username;
-                return About(Top10); 
+                return About(); 
             }
             else
             {
@@ -65,7 +65,7 @@ namespace web4.Controllers
                 return View("Login");
             }
         }
-        public ActionResult About(Top10DoanhThuItem Top10)
+        public ActionResult About()
         {
             //DataSet ds = new DataSet();
             //connectSQL();
@@ -96,9 +96,9 @@ namespace web4.Controllers
             //        sda.Fill(ds);
             //    }
             //}
+            var username = Request.Cookies["UserName"].Value;
+            ViewBag.Username = username;
 
-            //var username = Request.Cookies["UserName"].Value;
-            //ViewBag.Username = username;
             return View();
         }
        
@@ -271,7 +271,8 @@ namespace web4.Controllers
 
         public ActionResult MauIn()
         {
-           
+            var username = Request.Cookies["UserName"].Value;
+            ViewBag.Username = username;
 
             return View();
         }

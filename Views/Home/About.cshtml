@@ -114,7 +114,16 @@
                     <li>
                         <a href="#">1.Báo Cáo Quản Trị</a>
                         <ul>
-                            <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanhKGam_Fill">1.1.Doanh Thu Chi Nhánh</a></li>
+                            @if (string.Equals(ViewBag.UserName, "admin", StringComparison.OrdinalIgnoreCase))
+                            {
+
+
+                                <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanhKGam_Fill">1.1.Doanh Thu Chi Nhánh</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanhKGam_CN_Fill">1.1.Doanh Thu Chi Nhánh</a></li>
+}
                             @if (string.Equals(ViewBag.UserName, "admin", StringComparison.OrdinalIgnoreCase))
                             {
 

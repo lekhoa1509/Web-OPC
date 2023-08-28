@@ -437,21 +437,6 @@
                 width: 0.2em;
                 background-color: transparent;
             }
-
-        .container-pie {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 3 00px;
-            width: 100%;
-            margin-left: 400px;
-            padding: 0px;
-        }
-
-        .pie-chart {
-            width: 40%;
-            height: 40%;
-        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -494,9 +479,9 @@
         </div>
         <ul class="nav-links" style="justify-content: center;display:flex">
             <li>
-                <form id="dateForm" action="DoanhThuChiNhanh_Admin" method="post" onsubmit="handleFormSubmit(event)">
+                <form id="dateForm" action="DoanhThuChiNhanhKGam" method="post" onsubmit="handleFormSubmit(event)">
                     <div id="locBC">
-                        <span id="spanText" class="text-loading">[usp_BaoCaoDoanhThuCN_SAP]</span>
+                        <span id="spanText" class="text-loading">[usp_KetQuaKinhDoanhCN_SAP]</span>
                         <a>Từ Ngày</a><br /><br />
                         <input class="tu_ngay" placeholder="Từ Ngày" id="tu_ngay" name="From_date" type="date" format="YYYY-MM-DD" value="@Request.QueryString["From_date"]" />
                         <script>$("#tu_ngay").datetimepicker({ timepicker: false, format: 'Y-m-d' });</script><br /><br />
@@ -513,104 +498,24 @@
                         <label class="custom-checkbox">
                             <input type="checkbox" name="myCheckbox" value="option1" checked>
                             <span class="checkmark"></span>
-                            Doanh Thu OPC
+                            Doanh Thu
                         </label>
                         <label class="custom-checkbox">
                             <input type="checkbox" name="myCheckbox" value="option1" checked>
                             <span class="checkmark"></span>
-                            Khoán OPC
+                            Khoán
                         </label>
+                        <br />
                         <label class="custom-checkbox">
                             <input type="checkbox" name="myCheckbox" value="option1" checked>
                             <span class="checkmark"></span>
-                            Tỷ lệ OPC
+                            Tỷ lệ
                         </label>
+                        <br />
                         <label class="custom-checkbox">
                             <input type="checkbox" name="myCheckbox" value="option1" checked>
                             <span class="checkmark"></span>
-                            Doanh Thu Cồn
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Khoán Cồn
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Tỷ lệ Cồn
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Doanh Thu Sủi
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Khoán Sủi
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Tỷ lệ Sủi
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Doanh Thu Phiến
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Khoán Phiến
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Tỷ lệ Phiến
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Doanh Thu 25
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Khoán 25
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Tỷ lệ 25
-                        </label>
-
-                        @*<label class="custom-checkbox">
-                                <input type="checkbox" name="myCheckbox" value="option1" checked>
-                                <span class="checkmark"></span>
-                                Doanh Thu Combo
-                            </label>*@
-
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Doanh Thu khác
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Tổng Thực Hiện
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Tổng Khoán
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="myCheckbox" value="option1" checked>
-                            <span class="checkmark"></span>
-                            Tỷ lệ Khoán
+                            Lũy Kế
                         </label>
                     </div>
                     <div>
@@ -629,14 +534,15 @@
         <h5 style="color: white">Từ @Request.QueryString["From_date"] đến @Request.QueryString["To_date"]</h5>
     </header>
     @*=======  Data-Table  = Start  ==========================*@
-    <div class="full-row" style="display:flex;max-width:100%;width:100%">
-        <div class="row-container">
-            <canvas id="barchart" style="width:100%;height:100%"></canvas>
+
+    @*<div class="full-row" style="display: flex; max-width: 100%; width: 100%;">
+        <div class="row-container1" style="margin-left: 150px;">
+
+            <div id="chartContainer" style="height: 100%; width: 80%; background-color: transparent;"></div>
         </div>
-        <div class="row-container1" style="margin-left:40px">
-            <div id="chartContainer" style="height: 100%;width:80%; background-color: transparent;"></div>
-        </div>
-    </div>
+    </div>*@
+
+
 
 
 
@@ -646,65 +552,23 @@
 
         <div class="row">
             <div class="col-12">
-                <div class="data_table">
+                <div class="data_table" style="justify-content:center">
                     <table id="example" class="table table-striped table-bordered">
                         <thead class="table-dark">
                             <tr>
-                                <th>Tên Đơn Vị</th>
-                                <th>Doanh Thu OPC</th>
-                                <th>Khoán OPC</th>
-                                <th>Tỷ Lệ OPC</th>
-                                <th>Doanh Thu Cồn</th>
-                                <th>Khoán Cồn</th>
-                                <th>Tỷ Lệ Cồn</th>
-                                <th>Doanh Thu Sủi</th>
-                                <th>Khoán Sủi</th>
-                                <th>Tỷ Lệ Sủi</th>
-                                <th>Doanh Thu Phiến</th>
-                                <th>Khoán Phiến</th>
-                                <th>Tỷ Lệ Phiến</th>
-                                <th>Doanh Thu 25</th>
-                                <th>Khoán 25</th>
-                                <th>Tỷ Lệ 25</th>
-
-                                @*<th>Doanh Thu Combo</th>*@
-
-                                <th>Doanh Thu Khác</th>
-                                <th>Tổng Thực Hiện</th>
-                                <th>Tổng Khoán</th>
-                                <th>Tỷ Lệ Khoán</th>
+                                <th style="width:300px">Tên Đơn Vị</th>
+                                <th style="width:120px">Doanh Thu</th>
+                                <th style="width:120px">Khoán</th>
+                                <th style="width:120px">Tỷ lệ</th>
+                                <th style="width:120px">Lũy Kế</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (DataRow row2 in Model.Tables[0].Rows)
                             {
                 <tr>
-                    <td>@row2["ten_DvCs"]</td>
+                    <td>@row2["Ten_DvCs"]</td>
 
-                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_OPC"]))</td>
-                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Khoan_OPC"]))</td>
-                    <td class="" style="text-align:right">@row2["Tyle_OPC"]%</td>
-
-
-                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Con"]))</td>
-                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Khoan_con"]))</td>
-                    <td class="" style="text-align:right">@row2["Tyle_Con"]%</td>
-
-                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Sui"]))</td>
-                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Khoan_Sui"]))</td>
-                    <td class="" style="text-align:right">@row2["Tyle_Sui"]%</td>
-
-                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Phien"]))</td>
-                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Khoan_phien"]))</td>
-                    <td class="" style="text-align:right">@row2["Tyle_Phien"]%</td>
-
-                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_25"]))</td>
-                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Khoan_25"]))</td>
-                    <td class="" style="text-align:right">@row2["Tyle_25"]%</td>
-
-
-                    @*<td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_ComBo"]))</td>*@
-                    <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Doanh_Thu_Khac"]))</td>
                     <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Thuc_Hien"]))</td>
                     <td class="num" style="text-align:right">@String.Format("{0:n0}", Convert.ToDecimal(row2["Tong_Khoan"]))</td>
                     <td class="total-tyle" style="text-align:right">
@@ -722,8 +586,10 @@
                         </script>
                     </td>
 
-                </tr>
-}
+                    <td class="num" style="text-align:right">0</td>
+
+
+                </tr>}
 
 
                         </tbody>
@@ -733,34 +599,15 @@
                                 <td class="total-doanhthu-opc" style="text-align:right"></td>
                                 <td class="total-khoan-opc" style="text-align:right"></td>
                                 <td class="total-tyle-opc" style="text-align:right"></td>
-                                <td class="total-doanhthu-con" style="text-align:right"></td>
-                                <td class="total-khoan-con" style="text-align:right"></td>
-                                <td class="total-tyle-con" style="text-align:right"></td>
-                                <td class="total-doanhthu-sui" style="text-align:right"></td>
-                                <td class="total-khoan-sui" style="text-align:right"></td>
-                                <td class="total-tyle-sui" style="text-align:right"></td>
-                                <td class="total-doanhthu-phien" style="text-align:right"></td>
-                                <td class="total-khoan-phien" style="text-align:right"></td>
-                                <td class="total-tyle-phien" style="text-align:right"></td>
-                                <td class="total-doanhthu-25" style="text-align:right"></td>
-                                <td class="total-khoan-25" style="text-align:right"></td>
-                                <td class="total-tyle-25" style="text-align:right"></td>
+                                <td class="total-luyke" style="text-align:right"></td>
 
-                                @*<td class="total-combo" style="text-align:right"></td>*@
-                                <td style="text-align:right"></td>
-                                <td class="total-thuchien" style="text-align:right"></td>
-                                <td class="total-tongKhoan" style="text-align:right"></td>
-                                <td class="total-tyle" style="text-align:right"></td>
                             </tr>
                         </tfoot>
                     </table>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- =======  Data-Table  = End  ===================== -->
-    <!-- ============ Java Script Files  ================== -->
+    </div> <!-- =======  Data-Table  = End  ===================== --> <!-- ============ Java Script Files  ================== -->
 
 
     <script src="~/assets/js/bootstrap.bundle.min.js"></script>
@@ -769,16 +616,13 @@
     <script src="~/assets/js/pdfmake.min.js"></script>
     <script src="~/assets/js/vfs_fonts.js"></script>
     <script src="~/assets/js/custom.js"></script>
-    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
-
-    @*<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script> @*<script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
         crossorigin="anonymous"></script>*@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
 
 
-    <script>
-        function runReport() {
+    <script>function runReport() {
             const uncheckedCheckboxIndexes = [];
             const checkboxes = document.querySelectorAll('input[name="myCheckbox"]');
 
@@ -793,10 +637,8 @@
             // Hiển thị thẻ span có id là "spanText"
             const spanElement = document.getElementById("spanText");
             spanElement.style.display = "block";
-        }
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        }</script>
+    <script>document.addEventListener('DOMContentLoaded', function () {
             const checkboxes = document.querySelectorAll('input[name="myCheckbox"]');
             const table = document.getElementById('example');
 
@@ -811,10 +653,8 @@
                     });
                 });
             });
-        });
-    </script>
-    <script>
-        function applyCheckboxAndColumnState() {
+        });</script>
+    <script>function applyCheckboxAndColumnState() {
             const checkboxes = document.querySelectorAll('input[name="myCheckbox"]');
             const table = document.getElementById('example');
 
@@ -852,10 +692,8 @@
         document.addEventListener('DOMContentLoaded', function () {
             // Áp dụng trạng thái của các checkbox đã bỏ chọn
             applyUncheckedCheckboxState();
-        });
-    </script>
-    <script>
-        function handleFormSubmit(event) {
+        });</script>
+    <script>function handleFormSubmit(event) {
             event.preventDefault();
             const fromDate = document.getElementById('tu_ngay').value;
             const toDate = document.getElementById('den_ngay').value;
@@ -948,8 +786,8 @@
         scales: {
             xAxes: [{
                 barThickness: 10,
-                barPercentage: 0.1,//Percent (0-1) of the available width each bar should
-                categoryPercentage: 0.1,//Percent (0-1) of the available width each category
+                barPercentage: 0.2,//Percent (0-1) of the available width each bar should
+                categoryPercentage: 0.3,//Percent (0-1) of the available width each category
 
             }],
             yAxes: [{
@@ -970,8 +808,7 @@
     });
 
     </script>
-    <script>
-        $(document).ready(function () {
+    <script>$(document).ready(function () {
             calculateTotal();
 
             function calculateTotal() {
@@ -1017,8 +854,7 @@
                 return number.toLocaleString('en-US', { style: 'currency', currency: 'VND' }).replace('₫', '');
             }
         });</script>
-    <script>
-        $(document).ready(function () {
+    <script>$(document).ready(function () {
             calculateThucHienTotal();
 
             function calculateThucHienTotal() {
@@ -1040,8 +876,7 @@
                 return number.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
             }
         });</script>
-    <script>
-        $(document).ready(function () {
+    <script>$(document).ready(function () {
             calculateThucHienTotal();
 
             function calculateThucHienTotal() {
@@ -1062,9 +897,7 @@
             function formatNumber(number) {
                 return number.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
             }
-        });</script>
-
-    @*<script>$(document).ready(function () {
+        });</script> @*<script>$(document).ready(function () {
             calculateComboTotal();
 
             function calculateComboTotal() {
@@ -1088,128 +921,124 @@
 
 
 
-    <script>
-        $(document).ready(function () {
-            calculateKhoanRatio();
+        <script>$(document).ready(function () {
+                calculateKhoanRatio();
 
-            function calculateKhoanRatio() {
-                var totalThucHien = parseFloat($('#total-row td.total-thuchien').text().replace(/,/g, ''));
-                var totalKhoan = parseFloat($('#total-row td.total-tongKhoan').text().replace(/,/g, ''));
+                function calculateKhoanRatio() {
+                    var totalThucHien = parseFloat($('#total-row td.total-thuchien').text().replace(/,/g, ''));
+                    var totalKhoan = parseFloat($('#total-row td.total-tongKhoan').text().replace(/,/g, ''));
 
-                var ratioKhoan = totalKhoan !== 0 ? totalThucHien / totalKhoan : 0;
+                    var ratioKhoan = totalKhoan !== 0 ? totalThucHien / totalKhoan : 0;
 
-                var ratioCell = $('#total-row td.total-tyle');
-                ratioCell.text(formatRatio(ratioKhoan));
-            }
+                    var ratioCell = $('#total-row td.total-tyle');
+                    ratioCell.text(formatRatio(ratioKhoan));
+                }
 
-            function formatRatio(ratio) {
-                return (ratio * 100).toFixed(2) + "%";
-            }
-        });
-    </script>
+                function formatRatio(ratio) {
+                    return (ratio * 100).toFixed(2) + "%";
+                }
+            });</script>
 
-    <script>
-        //tinh ty le
-        $(document).ready(function () {
-            calculateRatios();
+        <script>//tinh ty le
+            $(document).ready(function () {
+                calculateRatios();
 
-            function calculateRatios() {
-                var totalColumns = {};
+                function calculateRatios() {
+                    var totalColumns = {};
 
-                // Lấy giá trị cột tổng doanh thu và cột tổng khoản
-                var sumDoanhThuOpc = parseFloat($('#total-row td.total-doanhthu-opc').text().replace(/,/g, ''));
-                var sumKhoanOpc = parseFloat($('#total-row td.total-khoan-opc').text().replace(/,/g, ''));
-                var sumDoanhThuCon = parseFloat($('#total-row td.total-doanhthu-con').text().replace(/,/g, ''));
-                var sumKhoanCon = parseFloat($('#total-row td.total-khoan-con').text().replace(/,/g, ''));
-                var sumDoanhThuSui = parseFloat($('#total-row td.total-doanhthu-sui').text().replace(/,/g, ''));
-                var sumKhoanSui = parseFloat($('#total-row td.total-khoan-sui').text().replace(/,/g, ''));
-                var sumDoanhThuPhien = parseFloat($('#total-row td.total-doanhthu-phien').text().replace(/,/g, ''));
-                var sumKhoanPhien = parseFloat($('#total-row td.total-khoan-phien').text().replace(/,/g, ''));
-                var sumDoanhThu25 = parseFloat($('#total-row td.total-doanhthu-25').text().replace(/,/g, ''));
-                var sumKhoan25 = parseFloat($('#total-row td.total-khoan-25').text().replace(/,/g, ''));
-                var sumThucHien = parseFloat($('#total-row td.total-thuchien').text().replace(/,/g, ''));
-                var sumTongkhoan = parseFloat($('#total-row td.total-tongKhoan').text().replace(/,/g, ''));
-                // Tính tỷ lệ theo từng loại
-                var ratioOpc = sumKhoanOpc !== 0 ? sumDoanhThuOpc / sumKhoanOpc : 0;
-                var ratioCon = sumKhoanCon !== 0 ? sumDoanhThuCon / sumKhoanCon : 0;
-                var ratioSui = sumKhoanSui !== 0 ? sumDoanhThuSui / sumKhoanSui : 0;
-                var ratioPhien = sumKhoanPhien !== 0 ? sumDoanhThuPhien / sumKhoanPhien : 0;
-                var ratio25 = sumKhoan25 !== 0 ? sumDoanhThu25 / sumKhoan25 : 0;
+                    // Lấy giá trị cột tổng doanh thu và cột tổng khoản
+                    var sumDoanhThuOpc = parseFloat($('#total-row td.total-doanhthu-opc').text().replace(/,/g, ''));
+                    var sumKhoanOpc = parseFloat($('#total-row td.total-khoan-opc').text().replace(/,/g, ''));
+                    var sumDoanhThuCon = parseFloat($('#total-row td.total-doanhthu-con').text().replace(/,/g, ''));
+                    var sumKhoanCon = parseFloat($('#total-row td.total-khoan-con').text().replace(/,/g, ''));
+                    var sumDoanhThuSui = parseFloat($('#total-row td.total-doanhthu-sui').text().replace(/,/g, ''));
+                    var sumKhoanSui = parseFloat($('#total-row td.total-khoan-sui').text().replace(/,/g, ''));
+                    var sumDoanhThuPhien = parseFloat($('#total-row td.total-doanhthu-phien').text().replace(/,/g, ''));
+                    var sumKhoanPhien = parseFloat($('#total-row td.total-khoan-phien').text().replace(/,/g, ''));
+                    var sumDoanhThu25 = parseFloat($('#total-row td.total-doanhthu-25').text().replace(/,/g, ''));
+                    var sumKhoan25 = parseFloat($('#total-row td.total-khoan-25').text().replace(/,/g, ''));
+                    var sumThucHien = parseFloat($('#total-row td.total-thuchien').text().replace(/,/g, ''));
+                    var sumTongkhoan = parseFloat($('#total-row td.total-tongKhoan').text().replace(/,/g, ''));
+                    // Tính tỷ lệ theo từng loại
+                    var ratioOpc = sumKhoanOpc !== 0 ? sumDoanhThuOpc / sumKhoanOpc : 0;
+                    var ratioCon = sumKhoanCon !== 0 ? sumDoanhThuCon / sumKhoanCon : 0;
+                    var ratioSui = sumKhoanSui !== 0 ? sumDoanhThuSui / sumKhoanSui : 0;
+                    var ratioPhien = sumKhoanPhien !== 0 ? sumDoanhThuPhien / sumKhoanPhien : 0;
+                    var ratio25 = sumKhoan25 !== 0 ? sumDoanhThu25 / sumKhoan25 : 0;
 
-                // Gán kết quả lên các ô tương ứng trong cột tỷ lệ
-                $('#total-row td.total-tyle-opc').text(formatRatio(ratioOpc));
-                $('#total-row td.total-tyle-con').text(formatRatio(ratioCon));
-                $('#total-row td.total-tyle-sui').text(formatRatio(ratioSui));
-                $('#total-row td.total-tyle-phien').text(formatRatio(ratioPhien));
-                $('#total-row td.total-tyle-25').text(formatRatio(ratio25));
-                $('#total-row td.total-thuchien').text(formatNumber(sumThucHien));
-                /*       $('#total-row td.total-tongKhoan').text(formatNumber(sumTongkhoan));*/
-                /*   $('#total-row td.total-tyle').text(formatRatio(ratioKhoan));*/
-            }
-            function formatNumber(number) {
-                return number.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
-            }
-            function formatRatio(ratio) {
-                return (ratio * 100).toFixed(2) + "%";
-            }
+                    // Gán kết quả lên các ô tương ứng trong cột tỷ lệ
+                    $('#total-row td.total-tyle-opc').text(formatRatio(ratioOpc));
+                    $('#total-row td.total-tyle-con').text(formatRatio(ratioCon));
+                    $('#total-row td.total-tyle-sui').text(formatRatio(ratioSui));
+                    $('#total-row td.total-tyle-phien').text(formatRatio(ratioPhien));
+                    $('#total-row td.total-tyle-25').text(formatRatio(ratio25));
+                    $('#total-row td.total-thuchien').text(formatNumber(sumThucHien));
+                    /*       $('#total-row td.total-tongKhoan').text(formatNumber(sumTongkhoan));*/
+                    /*   $('#total-row td.total-tyle').text(formatRatio(ratioKhoan));*/
+                }
+                function formatNumber(number) {
+                    return number.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+                }
+                function formatRatio(ratio) {
+                    return (ratio * 100).toFixed(2) + "%";
+                }
 
-        });</script>
+            });</script>
 
-    <script>
-        window.onload = function () {
-            var chartData = [];
 
-            var rows = document.querySelectorAll("#example tbody tr");
-            var totalKhoan = 0;
-            var totalThucHien = 0;
+        <script>window.onload = function () {
+                var chartData = [];
 
-            // Duyệt qua các hàng trừ hàng cuối cùng để tính tổng tổng khoán và tổng thực hiện
-            for (var i = 0; i < rows.length; i++) {
-                var khoan = parseFloat(rows[i].cells[18].textContent.replace(/\,/g, ""));
-                totalKhoan += khoan;
+                var rows = document.querySelectorAll("#example tbody tr");
+                var totalKhoan = 0;
+                var totalThucHien = 0;
 
-                var thucHien = parseFloat(rows[i].cells[17].textContent.replace(/\,/g, ""));
-                totalThucHien += thucHien;
-            }
+                // Duyệt qua các hàng trừ hàng cuối cùng để tính tổng tổng khoán và tổng thực hiện
+                for (var i = 0; i < rows.length; i++) {
+                    var khoan = parseFloat(rows[i].cells[2].textContent.replace(/\,/g, ""));
+                    totalKhoan += khoan;
 
-            // Tính tỷ lệ cho các phần đã thực hiện
-            rows.forEach(function (row) {
-                var label = row.cells[0].textContent.trim();
-                var thucHien = parseFloat(row.cells[17].textContent.replace(/\,/g, ""));
+                    var thucHien = parseFloat(rows[i].cells[1].textContent.replace(/\,/g, ""));
+                    totalThucHien += thucHien;
+                }
 
-                var tyLe = ((thucHien / totalKhoan) * 100).toFixed(2); // Làm tròn tỷ lệ
+                // Tính tỷ lệ cho các phần đã thực hiện
+                rows.forEach(function (row) {
+                    var label = row.cells[0].textContent.trim();
+                    var thucHien = parseFloat(row.cells[1].textContent.replace(/\,/g, ""));
 
-                chartData.push({ label: label, y: parseFloat(tyLe) });
-            });
+                    var tyLe = ((thucHien / totalKhoan) * 100).toFixed(2); // Làm tròn tỷ lệ
 
-            // Tính tỷ lệ cho phần "Còn lại"
-            var remainingRatio = 100 - chartData.reduce((total, data) => total + parseFloat(data.y), 0);
+                    chartData.push({ label: label, y: parseFloat(tyLe) });
+                });
 
-            // Thêm dữ liệu cho phần "Còn lại" vào biểu đồ
-            chartData.push({ label: "Còn Lại", y: parseFloat(remainingRatio.toFixed(2)) });
+                // Tính tỷ lệ cho phần "Còn lại"
+                var remainingRatio = 100 - chartData.reduce((total, data) => total + parseFloat(data.y), 0);
 
-            var chart = new CanvasJS.Chart("chartContainer", {
-                theme: "light1",
-                animationEnabled: true,
-                title: {
-                    text: "TỶ TRỌNG ĐÓNG GÓP DOANH THU",
-                    fontFamily: "Times New Roman",
-                },
-                chart: {
-                    backgroundColor: "transparent"
-                },
-                data: [{
-                    type: "pie",
-                    startAngle: 180,
-                    toolTipContent: "<b>{label}</b>: {y}%",
-                    indexLabel: "{label} - {y}%",
-                    dataPoints: chartData
-                }]
-            });
-            chart.render();
-        }
+                // Thêm dữ liệu cho phần "Còn lại" vào biểu đồ
+                chartData.push({ label: "Còn Lại", y: parseFloat(remainingRatio.toFixed(2)) });
 
-    </script>
-</body>
+                var chart = new CanvasJS.Chart("chartContainer", {
+                    theme: "light1",
+                    animationEnabled: true,
+                    title: {
+                        text: "TỶ TRỌNG ĐÓNG GÓP DOANH THU",
+                        fontFamily: "Times New Roman",
+                    },
+                    chart: {
+                        backgroundColor: "transparent"
+                    },
+                    data: [{
+                        type: "pie",
+                        startAngle: 180,
+                        toolTipContent: "<b>{label}</b>: {y}%",
+                        indexLabel: "{label} - {y}%",
+                        dataPoints: chartData
+                    }]
+                });
+                chart.render();
+            }</script>
+
+    </body>
 
 </html> 
