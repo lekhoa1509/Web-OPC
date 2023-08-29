@@ -419,16 +419,16 @@
                 <br />
             </div>
             <div style="margin-left: 400px">
-                <h5>Số:00002849</h5>
+                <h5>Số:@Request.Cookies["SoCt"].Value</h5>
             </div>
             <div style="text-align:center">
-                <h5>Ngày 05 tháng 07 năm 2023</h5>
+                <h5>Ngày&nbsp;&nbsp;@Request.Cookies["ngay"].Value tháng &nbsp;&nbsp;@Request.Cookies["thang"].Value năm&nbsp;&nbsp; @Request.Cookies["nam"].Value </h5>
 
             </div>
             <div style="margin-left:-250px;text-align:left">
                 <h5>Đơn vị xuất hàng: Kho thành phẩm Cửa hàng Quận 10</h5>
                 <h5 style="margin-left:-5px">Địa chỉ: 134/1 Tô Hiến Thành, P15, Quận 10, TP.HCM</h5>
-                <h5 style="margin-left: 40px">Đơn vị nhận hàng: CÔNG TY TNHH DƯỢC PHẨM MAIKA</h5>
+                <h5 style="margin-left: 40px">Đơn vị nhận hàng:@Request.Cookies["Ten_dt"].Value</h5>
                 <h5 style="margin-left: -120px">Diễn giải: Xuất hàng giao cho khách</h5>
             </div>
 
@@ -443,16 +443,18 @@
 
                     </tr>
                     <tbody>
-                        <tr>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
+
+                        @foreach (DataRow row3 in Model.Tables[1].Rows)
+                        {
+                            <tr class="table2-data hidden-row" data-soct="@row3["So_Ct"]">
+
+                             
+                                <td>@row3["so_Line_Id"]</td>
+                                <td>@row3["Ten_vt"]</td>
+                                <td>@row3["Dvt"]</td>
+                                <td>@row3["so_luong"]</td>
+                            </tr>
+                        }
                     </tbody>
                     <tfoot>
                         <tr>

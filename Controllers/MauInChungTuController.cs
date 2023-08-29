@@ -181,8 +181,72 @@ namespace web4.Controllers
         }
         public ActionResult PhieuXuatKho_Fill(MauInChungTu MauIn)
         {
+            DataSet ds = new DataSet();
+            connectSQL();
+
+            //string query = "exec usp_Vth_BC_BHCNTK_CN @_ngay_Ct1 = '" + Acc.From_date + "',@_Ngay_Ct2 ='"+ Acc.To_date+"',@_Ma_Dvcs='"+ Acc.Ma_DvCs_1+"'";
+            string Pname = "[usp_MauInChungTuSO_Detail_SAP]";
+
+            MauIn.From_date = Request.Cookies["From_date"].Value;
+            MauIn.To_date = Request.Cookies["To_Date"].Value;
+            MauIn.UserName = Request.Cookies["UserName"].Value;
+           
+
+            using (SqlCommand cmd = new SqlCommand(Pname, con))
+            {
+                cmd.CommandTimeout = 950;
+
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                {
+                    cmd.Parameters.AddWithValue("@_Tu_Ngay", MauIn.From_date);
+                    cmd.Parameters.AddWithValue("@_Den_Ngay", MauIn.To_date);
+                    cmd.Parameters.AddWithValue("@_so_Ct", MauIn.So_Ct);
+                    cmd.Parameters.AddWithValue("@_username", MauIn.UserName);
+                    sda.Fill(ds);
+
+                }
+            }
+            return View(ds);
+        }
+
+        public ActionResult PhieuXuatKho_SO(MauInChungTu MauIn)
+        {
             return View();
         }
-        
+
+        public ActionResult PhieuXuatKho_Data(MauInChungTu MauIn)
+        {
+
+            DataSet ds = new DataSet();
+            connectSQL();
+
+            //string query = "exec usp_Vth_BC_BHCNTK_CN @_ngay_Ct1 = '" + Acc.From_date + "',@_Ngay_Ct2 ='"+ Acc.To_date+"',@_Ma_Dvcs='"+ Acc.Ma_DvCs_1+"'";
+            string Pname = "[usp_MauInChungTuSO_SAP]";
+            Response.Cookies["From_date"].Value = MauIn.From_date.ToString();
+            Response.Cookies["To_Date"].Value = MauIn.To_date.ToString();
+            MauIn.UserName = Request.Cookies["UserName"].Value;
+
+            using (SqlCommand cmd = new SqlCommand(Pname, con))
+            {
+                cmd.CommandTimeout = 950;
+
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                {
+                    cmd.Parameters.AddWithValue("@_Tu_Ngay", MauIn.From_date);
+                    cmd.Parameters.AddWithValue("@_Den_Ngay", MauIn.To_date);
+                    cmd.Parameters.AddWithValue("@_username", MauIn.UserName);
+                    sda.Fill(ds);
+
+                }
+            }
+            return View(ds);
+        }
+
     }
 }

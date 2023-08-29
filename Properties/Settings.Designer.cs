@@ -103,5 +103,14 @@ namespace web4.Properties {
                 return ((string)(this["Ten_Dt"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Dia_chi {
+            get {
+                return ((string)(this["Dia_chi"]));
+            }
+        }
     }
 }
