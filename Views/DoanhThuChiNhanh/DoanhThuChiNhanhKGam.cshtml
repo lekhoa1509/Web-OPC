@@ -596,7 +596,8 @@
                     <td class="num" style="text-align:right">0</td>
 
 
-                </tr>}
+                </tr>
+}
 
 
                         </tbody>
@@ -626,7 +627,8 @@
     <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script> @*<script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
         crossorigin="anonymous"></script>*@
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/4.4.0/numeral.min.js"></script>
 
 
     <script>
@@ -1072,16 +1074,16 @@
                     }
                 ]
             };
-          
+
             // Lấy dữ liệu từ các hàng trong bảng và đưa vào mảng
             // Lấy dữ liệu từ các hàng trong bảng và đưa vào mảng labels
             // Lấy dữ liệu từ các hàng trong bảng và đưa vào mảng labels
-        
+
             var tableRows = document.querySelectorAll("#example tbody tr");
             // ...
             tableRows.forEach(function (row) {
                 var label = row.cells[0].textContent.trim();
-                var abbreviatedLabel = label.startsWith("Chi nhánh") ? label.substring(10) : "XNK-KDQT_TH";
+                var abbreviatedLabel = label.startsWith("Chi nhánh") ? label.substring(10) : "XNK-KDQT-TH";
                 data.labels.push(abbreviatedLabel);
 
                 // Lấy giá trị doanh thu từ cột thứ 2, làm tròn số và định dạng thành chuỗi có dấu phẩy
@@ -1092,9 +1094,9 @@
                 data.datasets[0].data.push(doanhThu); // Sử dụng toFixed() để làm tròn số và định dạng thành chuỗi
                 console.log("Mảng giá trị doanh thu:", data.datasets[0].data);
             });
-// ...
+            // ...
 
-          
+
 
 
 
@@ -1102,39 +1104,36 @@
             // Cấu hình cho biểu đồ
             var options = {
                 responsive: true,
+                locale: 'vi-VN',
                 maintainAspectRatio: false,
                 scales: {
                     x: {
-                        display: true,
                         title: {
                             display: true,
-                            text: "Tên Đơn Vị",
-                            font: {
-                                size: 8 // Chỉnh kích thước font cho title của trục x
-                            }
-                        },
-                        ticks: {
-                            callback: function (value, index, values) {
-                                return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
-                            },
-                            font: {
-                                size: 8 // Chỉnh kích thước font cho các nhãn trục x
-                            }
-                        },
-                  
+                           
+                        }
+
                     },
                     y: {
-                        display: true,
+                      
+                        beginAtZero:true,
                         title: {
                             display: true,
-                            text: "Doanh Thu"
+                           
                         },
                         ticks: {
-                            callback: function (value, index, values) {
-                                return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
+                            callback: (value, index, values) => {
+                                return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND',maximumSignificantDigits: 3 }).format(value);
                             },
-                            font: {
-                                size: 8 // Chỉnh kích thước font cho các nhãn trục x
+
+                          
+                        },
+                        tooltips: {
+                            callbacks: {
+                                label: function (tooltipItem, data) {
+                                    var value = Math.floor(tooltipItem.yLabel); // Làm tròn xuống số nguyên gần nhất
+                                    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
+                                }
                             }
                         },
                     }
@@ -1142,9 +1141,17 @@
                 plugins: {
                     title: {
                         display: true,
-                        text: "Biểu đồ Doanh Thu theo Tên Đơn Vị",
+                        text: "BIỂU ĐỒ DOANH THU",
                         font: {
                             size: 18
+                        }
+                    }
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function (tooltipItem, data) {
+                            var value = Math.floor(tooltipItem.yLabel); // Làm tròn xuống số nguyên gần nhất
+                            return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
                         }
                     }
                 }
