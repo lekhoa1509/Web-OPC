@@ -23,6 +23,80 @@
         .contentList {
             display: none;
         }
+        .tabs {
+            display: inline-block;
+            /* bottom: 0;
+            left: 0;
+            right: 0;*/
+            width: 300vh;
+            height: 50px;
+            /* margin: 15px auto;*/
+            border-bottom: 1px solid #DAE0E7;
+            background: #F9F9F9;
+            list-style-type: none;
+            padding: 0px 12px 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .tab {
+            float: left;
+            height: 44px;
+            margin: 0 8px -1px 0;
+            border: 1px solid #DAE0E7;
+            background: #F9F9F9;
+            border-radius: 0px 0px 0 0;
+            overflow: hidden;
+        }
+
+            .tab, .tab a {
+                transition: all .25s;
+            }
+
+                .tab a {
+                    display: inline-block;
+                }
+
+                    .tab a:first-child {
+                        padding: 12px 2px 12px 16px;
+                        white-space: nowrap;
+                    }
+
+                .tab.tabClosed, .tab.tabClosed a:first-child {
+                    margin-right: 0;
+                    border-width: 0;
+                }
+
+                .tab.tabClosed {
+                    width: 0 !important; /* use important because we need to set the width of tabs in javascript in order to be able to animate them to 0 */
+                }
+
+                    .tab.tabClosed a {
+                        opacity: 0;
+                    }
+
+        .closeTab:hover {
+            background: #DAE0E7;
+        }
+
+        .tab-control {
+            z-index: 100;
+            position: fixed;
+        }
+
+            .tab-control ul {
+                position: absolute;
+                bottom: 0px;
+                /* left:300px;*/
+            }
+
+                .tab-control ul li {
+                    text-align: center;
+                }
+
     </style>
 </head>
 <body>
@@ -93,7 +167,7 @@
                     <li><a href="/MauInChungTu/PhieuNhapXNTT_Fill">2.Phiếu Xác Nhận Thanh Toán</a></li>
                     <li><a href="/MauInChungTu/PhieuXuatKho_Fill">3.Phiếu Xuất Kho</a></li>
                     @*<li><a href="#">Login Form</a></li>
-        <li><a href="#">Card Design</a></li>*@
+                        <li><a href="#">Card Design</a></li>*@
                 </ul>
             </li>
 
@@ -119,7 +193,7 @@
                             else
                             {
                                 <li><a href="/DoanhThuChiNhanh/DoanhThuChiNhanhKGam_CN_Fill">1.1.Doanh Thu Chi Nhánh</a></li>
-}
+                            }
                             @if (string.Equals(ViewBag.UserName, "admin", StringComparison.OrdinalIgnoreCase))
                             {
 
@@ -161,12 +235,13 @@
 
 
             <li onclick="logout()">
-                <div class="profile-details" style="justify-content:space-between;cursor:pointer">
-                    <div></div>
-                    <div style="" class="profile_name">Đăng xuất</div>
-
+                <a>
                     <i class='bx bx-log-out'></i>
-                </div>
+                    <span class="link_name">Đăng xuất</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name">Đăng xuất</a></li>
+                </ul>
             </li>
         </ul>
     </div>
@@ -218,6 +293,17 @@
             </div>
         </div>
     </section>
+    <div class="tab-control">
+        <ul class="tabs" style="background-color: #1d1b31; bottom: 0; left: 0; right: 0;">
+            <li class="tab tabSelected"><a href="#">Home</a></li>
+            <li class="tab selected"><a href="#">Some Thing 2</a><a class="closeTab" href="">✕</a></li>
+            @*<li class="tab selected"><a href="#">Some Thing 3</a><a class="closeTab" href="">✕</a></li>
+                <li class="tab selected"><a href="#">Some Thing 4</a><a class="closeTab" href="">✕</a></li>
+                <li class="tab selected"><a href="#">Some Thing 2</a><a class="closeTab" href="">✕</a></li>
+                <li class="tab selected"><a href="#">Some Thing 3</a><a class="closeTab" href="">✕</a></li>
+                <li class="tab selected"><a href="#">Some Thing 4</a><a class="closeTab" href="">✕</a></li>*@
+        </ul>
+    </div>
     <script>
         function logout() {
             window.location.href = "/home/login"

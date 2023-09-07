@@ -276,6 +276,10 @@ namespace web4.Controllers
 
             return View();
         }
+    public ActionResult tabControl()
+        {
+            return View();
+        }
         //public ActionResult About()
         //{
         //    var username = Request.Cookies["UserName"].Value;
