@@ -18,6 +18,7 @@ namespace web4.Models
         public string Ma_dt { get; set; }
         public string Tinh_Trang { get; set; }
         public string Ma_Cbnv { get; set; }
+        public string Dia_Chi { get; set; }
     }
     public class ChangePasswordViewModel
     {
