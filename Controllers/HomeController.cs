@@ -97,7 +97,8 @@ namespace web4.Controllers
             //}
             //var username = Request.Cookies["UserName"].Value;
             //ViewBag.Username = username;
-
+            var username = Request.Cookies["UserName"].Value;
+            ViewBag.Username = username;
             return View();
         }
        

@@ -373,6 +373,7 @@
                 width: 0.2em;
                 background-color: transparent;
             }
+
         .tabs {
             display: inline-block;
             /* bottom: 0;
@@ -446,7 +447,6 @@
                 .tab-control ul li {
                     text-align: center;
                 }
-
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -648,12 +648,7 @@
     <div class="tab-control">
         <ul class="tabs" style="background-color: #1d1b31; bottom: 0; left: 0; right: 0;">
             <li class="tab selected" style="padding-right:10px"><a href="/Home/About">Home</a></li>
-            <li class="tab selected"><a href="#">Some Thing 2</a><a class="closeTab" href="">✕</a></li>
-            <li class="tab selected"><a href="#">Some Thing 3</a><a class="closeTab" href="">✕</a></li>
-                <li class="tab selected"><a href="#">Some Thing 4</a><a class="closeTab" href="">✕</a></li>
-                <li class="tab selected"><a href="#">Some Thing 2</a><a class="closeTab" href="">✕</a></li>
-                <li class="tab selected"><a href="#">Some Thing 3</a><a class="closeTab" href="">✕</a></li>
-                <li class="tab selected"><a href="#">Some Thing 4</a><a class="closeTab" href="">✕</a></li>
+
         </ul>
     </div>
 
@@ -863,9 +858,9 @@
                 }
 
                 newTab.innerHTML = `
-                        <a href="${tabHref}">${tabTitle}</a>
-                        <a class="closeTab" href="">✕</a>
-                    `;
+                            <a href="${tabHref}">${tabTitle}</a>
+                            <a class="closeTab" href="">✕</a>
+                        `;
                 tabControlTabs.appendChild(newTab);
 
                 // Sự kiện khi người dùng nhấp vào nút đóng tab
@@ -896,9 +891,9 @@
                 const newTab = document.createElement("li");
                 newTab.classList.add("tab", "selected");
                 newTab.innerHTML = `
-                            <a href="${tabHref}">${tabTitle}</a>
-                            <a class="closeTab" href="">✕</a>
-                        `;
+                                <a href="${tabHref}">${tabTitle}</a>
+                                <a class="closeTab" href="">✕</a>
+                            `;
                 tabControlTabs.appendChild(newTab);
 
                 // Sự kiện khi người dùng nhấp vào nút đóng tab

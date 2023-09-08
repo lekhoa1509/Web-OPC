@@ -365,14 +365,15 @@
 
         .text-loading {
             position: fixed;
-            bottom: 10px;
-            left: 10px;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             font-size: 13px;
             color: black;
-            z-index: 1;
-            background-color: rgba(255, 255, 255, 0.9); /* Background color for the span */
+            z-index: 2;
+            background-color: rgba(255, 255, 255, 0.9);
             padding: 5px 10px;
-            display: none; /* Hide the span element initially */
+            display: none;
         }
 
         .custom-checkbox {
@@ -442,7 +443,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 3 00px;
+            height: 300px;
             width: 100%;
             margin-left: 400px;
             padding: 0px;
@@ -452,6 +453,7 @@
             width: 40%;
             height: 40%;
         }
+
         .tabs {
             display: inline-block;
             /* bottom: 0;
@@ -561,12 +563,7 @@
         <div class="tab-control">
             <ul class="tabs" style="background-color: #1d1b31">
                 <li class="tab selected"><a href="/Home/About" style="padding-right:5px">Home</a></li>
-                <li class="tab selected"><a href="#">Some Thing 2</a><a class="closeTab" href="">✕</a></li>
-                <li class="tab selected"><a href="#">Some Thing 3</a><a class="closeTab" href="">✕</a></li>
-                    <li class="tab selected"><a href="#">Some Thing 4</a><a class="closeTab" href="">✕</a></li>
-                    <li class="tab selected"><a href="#">Some Thing 2</a><a class="closeTab" href="">✕</a></li>
-                    <li class="tab selected"><a href="#">Some Thing 3</a><a class="closeTab" href="">✕</a></li>
-                    <li class="tab selected"><a href="#">Some Thing 4</a><a class="closeTab" href="">✕</a></li>
+
             </ul>
         </div>
     </div>
@@ -806,8 +803,7 @@
                         </script>
                     </td>
 
-                </tr>
-}
+                </tr>}
 
 
                         </tbody>
@@ -1313,9 +1309,9 @@
                 const newTab = document.createElement("li");
                 newTab.classList.add("tab", "selected");
                 newTab.innerHTML = `
-                                    <a href="${tabHref}">${tabTitle}</a>
-                                    <a class="closeTab" href="">✕</a>
-                                `;
+                                        <a href="${tabHref}">${tabTitle}</a>
+                                        <a class="closeTab" href="">✕</a>
+                                    `;
                 tabControlTabs.appendChild(newTab);
 
                 // Sự kiện khi người dùng nhấp vào nút đóng tab

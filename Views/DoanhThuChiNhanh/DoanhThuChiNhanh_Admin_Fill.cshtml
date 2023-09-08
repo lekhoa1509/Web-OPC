@@ -346,13 +346,14 @@
 
         .text-loading {
             position: fixed;
-            bottom: 10px;
-            left: 10px;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             font-size: 13px;
             color: black;
-            z-index: 1;
+            z-index: 2;
             background-color: rgba(255, 255, 255, 0.9);
-            Background color for the span padding: 5px 10px;
+            padding: 5px 10px;
             display: none;
         }
 
@@ -419,6 +420,7 @@
                 width: 0.2em;
                 background-color: transparent;
             }
+
         .tabs {
             display: inline-block;
             /* bottom: 0;
@@ -510,6 +512,7 @@
             text-align: center;
             line-height: 25px;
         }
+
         .tab.active {
             background-color: red; /* Màu nền tab khi active */
             color: white; /* Màu chữ khi active */
@@ -731,12 +734,6 @@
     <div class="tab-control">
         <ul class="tabs" style="background-color: #1d1b31; bottom: 0; left: 0; right: 0;">
             <li class="tab selected"><a href="/Home/About" style="padding-right:5px">Home</a></li>
-            <li class="tab selected"><a href="#">Some Thing 2</a><a class="closeTab" href="">✕</a></li>
-            <li class="tab selected"><a href="#">Some Thing 3</a><a class="closeTab" href="">✕</a></li>
-                <li class="tab selected"><a href="#">Some Thing 4</a><a class="closeTab" href="">✕</a></li>
-                <li class="tab selected"><a href="#">Some Thing 2</a><a class="closeTab" href="">✕</a></li>
-                <li class="tab selected"><a href="#">Some Thing 3</a><a class="closeTab" href="">✕</a></li>
-                <li class="tab selected"><a href="#">Some Thing 4</a><a class="closeTab" href="">✕</a></li>
         </ul>
     </div>
 
@@ -920,7 +917,7 @@
         });
 
 
-            
+
 
     </script>
     <script>
@@ -954,9 +951,9 @@
                     newTab.classList.add("active");
                 }
                 newTab.innerHTML = `
-                <a href="${tabHref}">${tabTitle}</a>
-                <a class="closeTab" href="">✕</a>
-            `;
+                    <a href="${tabHref}">${tabTitle}</a>
+                    <a class="closeTab" href="">✕</a>
+                `;
                 tabControlTabs.appendChild(newTab);
 
                 // Sự kiện khi người dùng nhấp vào nút đóng tab
@@ -971,7 +968,7 @@
             const tabControlTabs = document.querySelector(".tab-control .tabs");
 
             // Lấy trạng thái hiện tại của view từ Local Storage
-             currentView = localStorage.getItem("currentView");
+            currentView = localStorage.getItem("currentView");
 
             // Lấy mảng tabsArray từ Local Storage
             const tabsArray = JSON.parse(localStorage.getItem("tabsArray")) || [];
@@ -985,9 +982,9 @@
                 const newTab = document.createElement("li");
                 newTab.classList.add("tab", "selected");
                 newTab.innerHTML = `
-                <a href="${tabHref}">${tabTitle}</a>
-                <a class="closeTab" href="">✕</a>
-            `;
+                    <a href="${tabHref}">${tabTitle}</a>
+                    <a class="closeTab" href="">✕</a>
+                `;
                 tabControlTabs.appendChild(newTab);
 
                 // Sự kiện khi người dùng nhấp vào nút đóng tab
@@ -1031,26 +1028,26 @@
             checkAndRedirectToHome();
             window.location.reload();
         }
-    
+
     </script>
 
     @*<script>
-        // Sự kiện khi người dùng nhấp vào tab
-        document.addEventListener("click", function (event) {
-            const clickedTab = event.target.closest(".tab");
-            if (clickedTab) {
-                // Xóa lớp active từ tất cả các tab
-                const tabs = document.querySelectorAll(".tab");
-                tabs.forEach(function (tab) {
-                    tab.classList.remove("active");
-                });
+            // Sự kiện khi người dùng nhấp vào tab
+            document.addEventListener("click", function (event) {
+                const clickedTab = event.target.closest(".tab");
+                if (clickedTab) {
+                    // Xóa lớp active từ tất cả các tab
+                    const tabs = document.querySelectorAll(".tab");
+                    tabs.forEach(function (tab) {
+                        tab.classList.remove("active");
+                    });
 
-                // Thêm lớp active cho tab được nhấp vào
-                clickedTab.classList.add("active");
-            }
-        });
+                    // Thêm lớp active cho tab được nhấp vào
+                    clickedTab.classList.add("active");
+                }
+            });
 
-    </script>*@
+        </script>*@
 
 </body>
 
