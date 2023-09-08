@@ -1,5 +1,5 @@
 ﻿@{ ViewBag.Title = "OPC Bao Cao | OPCPHARMA";
-@model System.Data.DataSet
+    @model System.Data.DataSet
 }
 @using System.Data;
 <!DOCTYPE html>
@@ -29,12 +29,13 @@
         .contentList {
             display: none;
         }
+
         .tabs {
             display: inline-block;
-           /* bottom: 0;
+            /* bottom: 0;
             left: 0;
             right: 0;*/
-              width: 300vh;
+            width: 300vh;
             height: 50px;
             /* margin: 15px auto;*/
             border-bottom: 1px solid #DAE0E7;
@@ -87,22 +88,21 @@
         .closeTab:hover {
             background: #DAE0E7;
         }
+
         .tab-control {
-           
             z-index: 100;
             position: fixed;
         }
-        .tab-control ul{
-          position:absolute;
-          bottom:0px;
-        
-         /* left:300px;*/
-        }
-            .tab-control ul li {
-                text-align: center;
-              
+
+            .tab-control ul {
+                position: absolute;
+                bottom: 0px;
+                /* left:300px;*/
             }
 
+                .tab-control ul li {
+                    text-align: center;
+                }
     </style>
 </head>
 <body>
@@ -135,11 +135,11 @@
                 </div>
 
                 <ul class="sub-menu">
-                            <li><a class="link_name" href="#">Danh mục</a></li>
-                            <li class="liTitle">
-                                @if (string.Equals(ViewBag.UserName, "admin", StringComparison.OrdinalIgnoreCase) ||
-        string.Equals(ViewBag.UserName, "opcmar001", StringComparison.OrdinalIgnoreCase))
-                                {
+                    <li><a class="link_name" href="#">Danh mục</a></li>
+                    <li class="liTitle">
+                        @if (string.Equals(ViewBag.UserName, "admin", StringComparison.OrdinalIgnoreCase) ||
+string.Equals(ViewBag.UserName, "opcmar001", StringComparison.OrdinalIgnoreCase))
+                        {
 
 
                             <a href="/DanhMuc/ViewDanhMucKH_Fill" onclick="runReport()"> Khách hàng</a>
@@ -148,16 +148,16 @@
                         {
 
 
-                                    <a href="/DanhMuc/ViewDanhMucKH_FillCN" onclick="runReport()"> Khách hàng</a>
-                                }
-                                else
-                                {
-                                    <a href="/DanhMuc/ViewDanhMucKH" onclick="runReport()"> Khách hàng</a>
-                                }
+                            <a href="/DanhMuc/ViewDanhMucKH_FillCN" onclick="runReport()"> Khách hàng</a>
+                        }
+                        else
+                        {
+                            <a href="/DanhMuc/ViewDanhMucKHCN" onclick="runReport()"> Khách hàng</a>
+                        }
 
-                            </li>-->
-                
-                <!--</ul>-->
+                    </li>
+
+                </ul>
             </li>
             <li>
                 <div class="iocn-link">
@@ -172,8 +172,9 @@
                     <li class="liTitle"><a href="/MauInChungTu/MauInNLCB_Fill">1.Chứng Từ Phiếu Nhập</a></li>
                     <li class="liTitle"><a href="/MauInChungTu/PhieuNhapXNTT_Fill">2.Phiếu Xác Nhận Thanh Toán</a></li>
                     <li class="liTitle"><a href="/MauInChungTu/PhieuXuatKho_Fill">3.Phiếu Xuất Kho</a></li>
-                    <li class="liTitle"><a href="/MauInChungTu/ThongBaoNoQH_Fill">4.Thông báo nợ quá hạn</a></li>
-                   
+                    <li class="liTitle"><a href="/MauInChungTu/ThongBaoNoQH_Fill">4.Thông Báo Nợ QH</a></li>
+                    @*<li><a href="#">Login Form</a></li>
+                        <li><a href="#">Card Design</a></li>*@
                 </ul>
             </li>
 
@@ -309,14 +310,79 @@
 
                     </table>
                 </div>
-               
+                @*<div class="box" style="overflow:auto;width:400px;height:200px">
+                        <table id="product" style="width:500px;height:200px; border-collapse: collapse;overflow:scroll">
+
+                            <tr class="title">
+                                <th colspan="4" class="top10">Top 10 sản phẩm bán chạy</th>
+                            </tr>
+                            <tr class="title" style="background-color:black;color:white">
+                                <td style="padding-right:10px">STT</td>
+                                <td>Mã Vật Tư</td>
+                                <td>Tên Vật Tư</td>
+                                <td>Doanh Thu</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>100001</td>
+                                <td>Product 1</td>
+                                <td>120000</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>100002</td>
+                                <td>Product 2</td>
+                                <td>150000</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>100003</td>
+                                <td>Product 3</td>
+                                <td>180000</td>
+                            </tr>
+
+                        </table>
+                    </div>*@
+                @*<div class="box" style="overflow:auto;width:400px;height:200px">
+                                <table id="product" style="width:500px;height:200px; border-collapse: collapse;overflow:scroll">
+
+                                    <tr class="title">
+                                        <th colspan="4" class="top10">Top 10 sản phẩm bán chạy</th>
+                                    </tr>
+                                    <tr class="title" style="background-color:black;color:white">
+                                        <td style="padding-right:10px">STT</td>
+                                        <td>Mã Vật Tư</td>
+                                        <td>Tên Vật Tư</td>
+                                        <td>Doanh Thu</td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>100001</td>
+                                        <td>Product 1</td>
+                                        <td>120000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>100002</td>
+                                        <td>Product 2</td>
+                                        <td>150000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>100003</td>
+                                        <td>Product 3</td>
+                                        <td>180000</td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                    </div>*@
             </div>
         </div>
     </section>
     <div class="tab-control">
         <ul class="tabs" style="background-color: #1d1b31; bottom: 0; left: 0; right: 0;">
-            <li class="tab selected" style="padding-right:10px"><a href="/Home/About">Home</a></li>
-       
+            <li class="tab selected" style="padding-right:10px"><a href="#">Home</a></li>
         </ul>
     </div>
     <script>
@@ -448,9 +514,9 @@
                     const newTab = document.createElement("li");
                     newTab.classList.add("tab", "selected");
                     newTab.innerHTML = `
-                <a href="${subMenuLinkHref}">${tabTitle}</a>
-                <a class="closeTab" href="">✕</a>
-            `;
+                                    <a href="${subMenuLinkHref}">${tabTitle}</a>
+                                    <a class="closeTab" href="">✕</a>
+                                `;
                     tabControlTabs.appendChild(newTab);
 
                     // Chuyển view tới thẻ li tương ứng
@@ -469,8 +535,8 @@
                 currentTab.classList.add("tab", "selected");
                 const tabInfo = JSON.parse(localStorage.getItem(currentTabTitleView1));
                 currentTab.innerHTML = `
-            <a href="${tabInfo.href}">${currentTabTitleView1}</a>
-            <a class="closeTab" href="">✕</a>
+                                <a href="${tabInfo.href}">${currentTabTitleView1}</a>
+                                <a class="closeTab" href="">✕</a>
 `;
                 tabControlTabs.appendChild(currentTab);
             }
@@ -538,9 +604,9 @@
                 const newTab = document.createElement("li");
                 newTab.classList.add("tab", "selected");
                 newTab.innerHTML = `
-        <a href="${tabHref}">${tabTitle}</a>
-        <a class="closeTab" href="">✕</a>
-        `;
+                            <a href="${tabHref}">${tabTitle}</a>
+                            <a class="closeTab" href="">✕</a>
+                            `;
                 tabControlTabs.appendChild(newTab);
 
                 // Sự kiện khi người dùng nhấp vào nút đóng tab
@@ -610,9 +676,9 @@
             }
         });
 
-        // ...
+                            // ...
     </script>
-   
+
 
 
 
