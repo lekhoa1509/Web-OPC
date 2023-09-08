@@ -123,7 +123,8 @@ namespace web4.Controllers
                             MauInChungTu dataItem = new MauInChungTu
                             {
                                 Ma_Dt = reader["ma_dt"].ToString(),
-                                Ten_Dt = reader["ten_dt"].ToString()
+                                Ten_Dt = reader["ten_dt"].ToString(),
+                                Dia_Chi = reader["Dia_Chi"].ToString()
                             };
                             dataItems.Add(dataItem);
                         }

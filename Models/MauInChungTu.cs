@@ -22,5 +22,6 @@ namespace web4.Models
         public string Ten_Dt { get; set; }
         public string SelectedMaDt { get; set; }
         public string UserName { get; set; }
+        public string Dia_Chi { get; set; }
     }
 }

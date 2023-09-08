@@ -135,11 +135,11 @@
                 </div>
 
                 <ul class="sub-menu">
-                    <li><a class="link_name" href="#">Danh mục</a></li>
-                    <li class="liTitle">
-                        @if (string.Equals(ViewBag.UserName, "admin", StringComparison.OrdinalIgnoreCase) ||
-string.Equals(ViewBag.UserName, "opcmar001", StringComparison.OrdinalIgnoreCase))
-                        {
+                            <li><a class="link_name" href="#">Danh mục</a></li>
+                            <li class="liTitle">
+                                @if (string.Equals(ViewBag.UserName, "admin", StringComparison.OrdinalIgnoreCase) ||
+        string.Equals(ViewBag.UserName, "opcmar001", StringComparison.OrdinalIgnoreCase))
+                                {
 
 
                             <a href="/DanhMuc/ViewDanhMucKH_Fill" onclick="runReport()"> Khách hàng</a>
@@ -148,16 +148,16 @@ string.Equals(ViewBag.UserName, "opcmar001", StringComparison.OrdinalIgnoreCase)
                         {
 
 
-                            <a href="/DanhMuc/ViewDanhMucKH_FillCN" onclick="runReport()"> Khách hàng</a>
-                        }
-                        else
-                        {
-                            <a href="/DanhMuc/ViewDanhMucKHCN" onclick="runReport()"> Khách hàng</a>
-                        }
+                                    <a href="/DanhMuc/ViewDanhMucKH_FillCN" onclick="runReport()"> Khách hàng</a>
+                                }
+                                else
+                                {
+                                    <a href="/DanhMuc/ViewDanhMucKH" onclick="runReport()"> Khách hàng</a>
+                                }
 
-                    </li>
-
-                </ul>
+                            </li>-->
+                
+                <!--</ul>-->
             </li>
             <li>
                 <div class="iocn-link">
@@ -173,8 +173,7 @@ string.Equals(ViewBag.UserName, "opcmar001", StringComparison.OrdinalIgnoreCase)
                     <li class="liTitle"><a href="/MauInChungTu/PhieuNhapXNTT_Fill">2.Phiếu Xác Nhận Thanh Toán</a></li>
                     <li class="liTitle"><a href="/MauInChungTu/PhieuXuatKho_Fill">3.Phiếu Xuất Kho</a></li>
                     <li class="liTitle"><a href="/MauInChungTu/ThongBaoNoQH_Fill">4.Thông báo nợ quá hạn</a></li>
-                    @*<li><a href="#">Login Form</a></li>
-        <li><a href="#">Card Design</a></li>*@
+                   
                 </ul>
             </li>
 

@@ -1,6 +1,7 @@
 ﻿﻿
 @{ ViewBag.Title = "Phiếu Xác Nhận Thanh Toán";
     string ten_dt = Request.Cookies["ten_dt"] != null ? HttpUtility.UrlDecode(Request.Cookies["ten_dt"].Value) : "";
+    string Dia_Chi = Request.Cookies["Dia_Chi"] != null ? HttpUtility.UrlDecode(Request.Cookies["Dia_Chi"].Value) : "";
 
 
 }
@@ -429,7 +430,7 @@
                 <h5 style="display: inline-block; color: black; font-weight: bold"></h5>
             </div>
             <div style="text-align: left; color: black; font-weight: bold">
-                <h5>Địa Chỉ: 1017 Hồng Bàng, phường 12, Quận 6, Tp.HCM </h5>
+                <h5>@Dia_Chi</h5>
             </div>
             <br />
             <div style="text-align:left;color:black;font-weight:bold">
@@ -455,33 +456,16 @@
                             <tr data-soct="@row3["So_Ct"]">
                                 <td style="padding:30px">@row3["So_Ct"]</td>
                                 <td style="padding:35px">
-                                    @{
-                                        string ngayCt1 = row3["Ngay_Ct1"].ToString();
-                                        DateTime parsedNgayCt1 = DateTime.Parse(ngayCt1);
-                                        string formattedNgayCt1 = parsedNgayCt1.ToString("dd-MM-yyyy");
-                                    }
-                                    @formattedNgayCt1
+                               @row3["Ngay_Ct1"];
+                                     
                                 </td>
-
-                                <td style="padding:35px">
-
-                                    @formattedNgayCt1
-                                </td>
-
                                 <td style="padding:30px">@row3["Tong_Tien"]</td>
                                 <td style="padding:30px">@row3["CKTT"]</td>
                                 <td style="padding:30px"></td>
 
 
                             </tr>
-                            <tr style="color:black;font-weight:bold">
-                                <td>&nbsp;&nbsp;</td>
-                                <td colspan="2">Tổng cộng: </td>
-
-                                <td>&nbsp;&nbsp;</td>
-                                <td>&nbsp;&nbsp;</td>
-                                <td>&nbsp;&nbsp;</td>
-                            </tr>
+                          
                         }
                     </tbody>
 

@@ -41,7 +41,7 @@ namespace web4.Controllers
         }
         [HttpPost]
 
-        public ActionResult Verify(Account Acc, Top10DoanhThuItem Top10)
+        public ActionResult Verify(Account Acc)
         {
             connectSQL();
             con.Open();
@@ -55,9 +55,8 @@ namespace web4.Controllers
                 Response.Cookies["MA_DVCS"].Value = Acc.Ma_DvCs.ToString();
 
                 con.Close();
-                username = Request.Cookies["UserName"].Value;
-                ViewBag.Username = username;
-                return About(); 
+              
+                return View("About"); 
             }
             else
             {
@@ -96,8 +95,8 @@ namespace web4.Controllers
             //        sda.Fill(ds);
             //    }
             //}
-            var username = Request.Cookies["UserName"].Value;
-            ViewBag.Username = username;
+            //var username = Request.Cookies["UserName"].Value;
+            //ViewBag.Username = username;
 
             return View();
         }
