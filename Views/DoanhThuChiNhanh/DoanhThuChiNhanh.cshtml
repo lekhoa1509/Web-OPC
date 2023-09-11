@@ -1219,9 +1219,9 @@
                 const newTab = document.createElement("li");
                 newTab.classList.add("tab", "selected");
                 newTab.innerHTML = `
-                    <a href="${tabHref}">${tabTitle}</a>
-                    <a class="closeTab" href="">✕</a>
-                `;
+                            <a href="${tabHref}">${tabTitle}</a>
+                            <a class="closeTab" href="">✕</a>
+                        `;
                 tabControlTabs.appendChild(newTab);
 
                 // Sự kiện khi người dùng nhấp vào nút đóng tab
@@ -1315,8 +1315,63 @@
         }
 
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const tabControlTabs = document.querySelector(".tab-control .tabs");
 
+            // Lấy đường dẫn hiện tại của view
+            const currentViewHref = window.location.href;
+            console.log("Href là:", window.location.href);
 
+            // Lấy mảng tabsArray từ Local Storage
+            let tabsArray = JSON.parse(localStorage.getItem("tabsArray")) || [];
+
+            // Kiểm tra xem có ít nhất một tab trong mảng tabsArray
+            if (tabsArray.length > 0) {
+                // Lấy tab mới nhất từ mảng tabsArray
+                const newestTab = tabsArray[tabsArray.length - 1];
+
+                // Cập nhật đường dẫn href của tab mới nhất
+                newestTab.href = window.location.href;
+
+                // Cập nhật đường dẫn href của tab trong giao diện
+                const tabElement = tabControlTabs.querySelector(`[data-tab-title="${newestTab.title}"]`);
+                if (tabElement) {
+                    tabElement.querySelector("a").setAttribute("href", window.location.href);
+                }
+
+                // Lưu lại tabsArray đã được cập nhật vào Local Storage
+                localStorage.setItem("tabsArray", JSON.stringify(tabsArray));
+            }
+
+            hideLoader();
+        });
+
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Lấy đường dẫn hiện tại của view
+            const currentViewHref = window.location.href;
+            console.log("Href là:", window.location.href);
+
+            // Lấy mảng tabsArray từ Local Storage
+            let tabsArray = JSON.parse(localStorage.getItem("tabsArray")) || [];
+
+            // Khai báo index của tab cần cập nhật
+            const tabIndexToUpdate = 1; // Thay đổi số này để chọn vị trí index cụ thể
+
+            // Kiểm tra xem tabIndexToUpdate có hợp lệ trong mảng không
+            if (tabIndexToUpdate >= 0 && tabIndexToUpdate < tabsArray.length) {
+                // Cập nhật đường dẫn href của tab tại vị trí index đã chọn
+                tabsArray[tabIndexToUpdate].href = currentViewHref;
+
+                // Lưu lại tabsArray đã được cập nhật vào Local Storage
+                localStorage.setItem("tabsArray", JSON.stringify(tabsArray));
+            }
+
+            hideLoader();
+        });
+    </script>
 </body>
 
 </html> 
