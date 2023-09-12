@@ -1219,9 +1219,9 @@
                 const newTab = document.createElement("li");
                 newTab.classList.add("tab", "selected");
                 newTab.innerHTML = `
-                            <a href="${tabHref}">${tabTitle}</a>
-                            <a class="closeTab" href="">✕</a>
-                        `;
+                                <a href="${tabHref}">${tabTitle}</a>
+                                <a class="closeTab" href="">✕</a>
+                            `;
                 tabControlTabs.appendChild(newTab);
 
                 // Sự kiện khi người dùng nhấp vào nút đóng tab
@@ -1372,6 +1372,32 @@
             hideLoader();
         });
     </script>
+    <script>
+        // Lấy đường dẫn hiện tại của trang web
+        const currentViewHref = window.location.href;
+
+        // Lấy mảng tabsArray từ Local Storage
+        const tabsArray = JSON.parse(localStorage.getItem("tabsArray")) || [];
+
+        let tabIndex = -1; // Khởi tạo vị trí index mặc định là -1
+
+        // Duyệt qua mảng tabsArray để tìm vị trí index của tab có href trùng với đường dẫn hiện tại
+        for (let i = 0; i < tabsArray.length; i++) {
+            if (tabsArray[i].href === currentViewHref) {
+                tabIndex = i;
+                break; // Khi tìm thấy tab thì thoát khỏi vòng lặp
+            }
+        }
+
+        // Kiểm tra vị trí index của tab
+        if (tabIndex !== -1) {
+            console.log("Vị trí index của tab có href trùng với đường dẫn hiện tại là: " + tabIndex);
+        } else {
+            console.log("Không tìm thấy tab có href trùng với đường dẫn hiện tại.");
+        }
+
+    </script>
+
 </body>
 
 </html> 
