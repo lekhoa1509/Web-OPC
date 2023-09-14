@@ -1,6 +1,5 @@
 ﻿@{ ViewBag.Title = "OPC Bao Cao | OPCPHARMA";
-@model System.Data.DataSet
-}
+@model System.Data.DataSet }
 @using System.Data;
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -13,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-   
+
     <style>
         body {
             font-family: 'Helvetica Neue', Helvetica, sans-serif;
@@ -103,7 +102,6 @@
                 .tab-control ul li {
                     text-align: center;
                 }
-
     </style>
 </head>
 <body>
@@ -130,7 +128,7 @@
                         <span class="link_name">Danh mục</span>
                     </a>
                     <ul class="sub-menu blank">
-                        <li  class="liTitle"><a class="link_name" href="/DanhMuc/DanhMuc">Danh mục</a></li>
+                        <li class="liTitle"><a class="link_name" href="/DanhMuc/DanhMuc">Danh mục</a></li>
                     </ul>
                     @*<i class='bx bxs-chevron-down arrow'></i>*@
                 </div>
@@ -172,10 +170,10 @@
                     <li class="liTitle"><a class="link_name" href="/Home/MauIn">Mẫu In</a></li>
                     <li class="liTitle"><a href="/MauInChungTu/MauInNLCB_Fill">1.Chứng Từ Phiếu Nhập</a></li>
                     <li class="liTitle"><a href="/MauInChungTu/PhieuNhapXNTT_Fill">2.Phiếu Xác Nhận Thanh Toán</a></li>
-                    <li class="liTitle"><a href="/MauInChungTu/PhieuXuatKho_Fill">3.Phiếu Xuất Kho</a></li>
+                    <li class="liTitle"><a href="/MauInChungTu/PhieuXuatKho_SO">3.Phiếu Xuất Kho</a></li>
                     <li class="liTitle"><a href="/MauInChungTu/ThongBaoNoQH_Fill">4.Thông Báo Nợ QH</a></li>
                     @*<li><a href="#">Login Form</a></li>
-        <li><a href="#">Card Design</a></li>*@
+                        <li><a href="#">Card Design</a></li>*@
                 </ul>
             </li>
 
@@ -196,22 +194,18 @@
                             {
 
 
-                                <li class="liTitle"><a href="/DoanhThuChiNhanh/DoanhThuChiNhanhKGam_Fill">1.1.Doanh Thu Chi Nhánh</a></li>
-                            }
+                <li class="liTitle"><a href="/DoanhThuChiNhanh/DoanhThuChiNhanhKGam_Fill">1.1.Doanh Thu Chi Nhánh</a></li> }
                             else
                             {
-                                <li class="liTitle"><a href="/DoanhThuChiNhanh/DoanhThuChiNhanhKGam_CN_Fill">1.1.Doanh Thu Chi Nhánh</a></li>
-                            }
+                <li class="liTitle"><a href="/DoanhThuChiNhanh/DoanhThuChiNhanhKGam_CN_Fill">1.1.Doanh Thu Chi Nhánh</a></li>}
                             @if (string.Equals(ViewBag.UserName, "admin", StringComparison.OrdinalIgnoreCase))
                             {
 
 
-                                <li class="liTitle"><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Admin_Fill">1.2.Doanh Thu Chi Nhánh Theo Gam</a></li>
-                            }
+                <li class="liTitle"><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Admin_Fill">1.2.Doanh Thu Chi Nhánh Theo Gam</a></li> }
                             else
                             {
-                                <li class="liTitle"><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Fill">1.2.Doanh Thu Chi Nhánh Theo Gam</a></li>
-                            }
+                <li class="liTitle"><a href="/DoanhThuChiNhanh/DoanhThuChiNhanh_Fill">1.2.Doanh Thu Chi Nhánh Theo Gam</a></li>}
 
                             <li class="liTitle"><a href="/DoanhThuChiNhanh/DoanhThuChiNhanhTinhLuong_Fill">1.2.Doanh Thu Chi Nhánh Tính Lương</a></li>
 
@@ -276,11 +270,10 @@
     <div class="tab-control">
         <ul class="tabs" style="background-color: #1d1b31; bottom: 0; left: 0; right: 0;">
             <li class="tab tabSelected"><a href="#">Home</a></li>
-         
+
         </ul>
     </div>
-    <script>
-        function logout() {
+    <script>function logout() {
             window.location.href = "/home/login"
         }
         document.getElementById("TOP1").innerHTML = Response.innerHTML.g;
@@ -291,10 +284,8 @@
         })
         function ChangPassword() {
             window.location.href = "/home/DoiMatKhau"
-        }
-    </script>
-    <script>
-        let reportLi = document.querySelector(".report-li");
+        }</script>
+    <script>let reportLi = document.querySelector(".report-li");
         reportLi.addEventListener("click", (e) => {
             console.log("Clicked on report-li");
             let subMenu = e.currentTarget.querySelector(".sub-menu");
@@ -314,8 +305,7 @@
         console.log(sidebarBtn);
         sidebarBtn.addEventListener("click", () => {
             sidebar.classList.toggle("close");
-        });
-    </script>
+        });</script>
 
     @*<script>
             function runReport() {
@@ -325,8 +315,7 @@
                 spanElement.style.display = "block";
             }
         </script>*@
-    <script>
-        window.onload = function () {
+    <script>window.onload = function () {
             var username = localStorage.getItem("username");
             if (username) {
                 var nameInput = document.getElementById("Name");
@@ -336,10 +325,8 @@
                 localStorage.removeItem("username");
             }
 
-        };
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        };</script>
+    <script>document.addEventListener("DOMContentLoaded", function () {
             const subMenuLinks = document.querySelectorAll(".liTitle a");
             const tabControlTabs = document.querySelector(".tab-control .tabs");
 
@@ -438,11 +425,8 @@
             });
 
             hideLoader();
-        });
-
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        });</script>
+    <script>document.addEventListener("DOMContentLoaded", function () {
             const tabControlTabs = document.querySelector(".tab-control .tabs");
 
             // Mảng để lưu các tab
@@ -503,11 +487,8 @@
 
             //    window.location.href = lastTab.href;
             //}
-        }
-
-    </script>
-    <script>
-        // Bổ sung một lớp chung cho tất cả các tab của View 1 để dễ dàng quản lý chúng
+        }</script>
+    <script>// Bổ sung một lớp chung cho tất cả các tab của View 1 để dễ dàng quản lý chúng
         const tabsInView1 = document.querySelectorAll(".tab-control.tab-view-1 .tab");
 
         // Xóa lớp active từ tất cả các tab
@@ -529,7 +510,6 @@
             }
         });
 
-                                // ...
-    </script>
+                                // ...</script>
 </body>
 </html>

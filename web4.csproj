@@ -953,6 +953,7 @@
     <Content Include="Views\Home\tabControl.cshtml" />
     <Content Include="Views\Home\Verify.cshtml" />
     <Content Include="Views\MauInChungTu\ThongBaoNoQH_Fill.cshtml" />
+    <Content Include="Views\MauInChungTu\ThongBaoNoQH_In.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
