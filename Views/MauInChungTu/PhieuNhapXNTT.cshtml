@@ -441,7 +441,7 @@
                 <h5 style="font-size: 13px">Khi thanh toán ngay, Quý khách hàng được chiết khấu 2% trên giá trị thanh toán của những hóa đơn cụ thể như sau: </h5>
             </div><br />
             <div>
-                <table border="1" border-collapse="collapse">
+                <table border="1" border-collapse="collapse" id="Data-Table" class="Data-table">
                     <tr style="font-size:10px;font-weight:bold;color:black">
                         <th style="padding:10px">SỐ</th>
                         <th>NGÀY HĐ</th>
@@ -456,8 +456,10 @@
                             <tr data-soct="@row3["So_Ct"]">
                                 <td style="padding:30px">@row3["So_Ct"]</td>
                                 <td style="padding:35px">
-                               @row3["Ngay_Ct1"];
-                                     
+                                    @row3["Ngay_Ct1"];
+                                </td>
+                                <td style="padding:35px">
+                                    @row3["Ngay_Ct1"];
                                 </td>
                                 <td style="padding:30px">@row3["Tong_Tien"]</td>
                                 <td style="padding:30px">@row3["CKTT"]</td>
@@ -465,7 +467,7 @@
 
 
                             </tr>
-                          
+
                         }
                     </tbody>
 
@@ -488,9 +490,13 @@
                 </div>
             </div>
             <button class="print-button" onclick="printDataForm()" id="print">In Data</button>
+            <button class="export-button" onclick="exportToWord()">Xuất ra Word</button>
+
         </form>
     </div>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+
 
     <script>
         document.getElementById("dropdownInput").addEventListener("input", function () {
@@ -505,8 +511,10 @@
             }
         });
 
+       
 
     </script>
+
 
 </body>
 

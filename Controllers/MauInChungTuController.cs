@@ -114,7 +114,7 @@ namespace web4.Controllers
                 using (SqlCommand command = new SqlCommand("[usp_DmDtTdv_SAP_MauIn]", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@_Ma_CbNv", 101417); // Thêm tham số ma_dvcs
+                    command.Parameters.AddWithValue("@_Ma_CbNv", ""); // Thêm tham số ma_dvcs
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
