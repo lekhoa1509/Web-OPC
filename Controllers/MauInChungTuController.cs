@@ -18,7 +18,7 @@ namespace web4.Controllers
         SqlCommand sqlc = new SqlCommand();
         SqlDataReader dt;
         // GET: BaoCaoTienVeCN
-       
+
         public void connectSQL()
         {
             con.ConnectionString = "Data source= " + "118.69.109.109" + ";database=" + "SAP_OPC" + ";uid=sa;password=Hai@thong";
@@ -27,12 +27,12 @@ namespace web4.Controllers
         // GET: DanhMuc
 
 
-       
+
         public ActionResult Index(MauInChungTu MauIn)
         {
             DataSet ds = new DataSet();
             connectSQL();
-           
+
             //string query = "exec usp_Vth_BC_BHCNTK_CN @_ngay_Ct1 = '" + Acc.From_date + "',@_Ngay_Ct2 ='"+ Acc.To_date+"',@_Ma_Dvcs='"+ Acc.Ma_DvCs_1+"'";
             string Pname = "[usp_MauInChungTu_SAP]";
             Response.Cookies["From_date"].Value = MauIn.From_date.ToString();
@@ -45,7 +45,7 @@ namespace web4.Controllers
 
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.StoredProcedure;
-                
+
                 using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
                 {
                     cmd.Parameters.AddWithValue("@_Tu_Ngay", MauIn.From_date);
@@ -57,14 +57,14 @@ namespace web4.Controllers
             }
             return View(ds);
         }
-       
+
         public ActionResult MauInNLCB(MauInChungTu MauIn)
         {
             DataSet ds = new DataSet();
             connectSQL();
 
             MauIn.So_Ct = Request.Cookies["SoCt"].Value;
-            
+
             //string query = "exec usp_Vth_BC_BHCNTK_CN @_ngay_Ct1 = '" + Acc.From_date + "',@_Ngay_Ct2 ='"+ Acc.To_date+"',@_Ma_Dvcs='"+ Acc.Ma_DvCs_1+"'";
             string Pname = "[usp_MauInChungTuDetail_SAP]";
 
@@ -73,7 +73,7 @@ namespace web4.Controllers
             using (SqlCommand cmd = new SqlCommand(Pname, con))
             {
                 cmd.CommandTimeout = 950;
-                
+
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.StoredProcedure;
 
@@ -100,12 +100,14 @@ namespace web4.Controllers
         }
         public ActionResult MauInNLCB_Fill()
         {
-            return View();      
+            return View();
         }
 
         public List<MauInChungTu> LoadDmDt(string Ma_dvcs)
         {
             connectSQL();
+
+            Ma_dvcs = Request.Cookies["ma_dvcs"].Value;
             List<MauInChungTu> dataItems = new List<MauInChungTu>();
             using (SqlConnection connection = new SqlConnection(con.ConnectionString))
             {
@@ -114,7 +116,11 @@ namespace web4.Controllers
                 using (SqlCommand command = new SqlCommand("[usp_DmDtTdv_SAP_MauIn]", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
+<<<<<<< HEAD
                     command.Parameters.AddWithValue("@_Ma_CbNv", ""); // Thêm tham số ma_dvcs
+=======
+                    command.Parameters.AddWithValue("@_Ma_Dvcs", Ma_dvcs + "_01");
+>>>>>>> 9206087e0f465d60dae25c9ab40317a781c74def
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -124,7 +130,8 @@ namespace web4.Controllers
                             {
                                 Ma_Dt = reader["ma_dt"].ToString(),
                                 Ten_Dt = reader["ten_dt"].ToString(),
-                                Dia_Chi = reader["Dia_Chi"].ToString()
+                                Dia_Chi = reader["Dia_Chi"].ToString(),
+                                Dvcs = reader["Dvcs"].ToString()
                             };
                             dataItems.Add(dataItem);
                         }
@@ -143,7 +150,7 @@ namespace web4.Controllers
             return View();
         }
 
-        public ActionResult PhieuNhapXNTT(MauInChungTu MauIn)                                                                                                                                                                                                                                                                                                                                                                                               
+        public ActionResult PhieuNhapXNTT(MauInChungTu MauIn)
         {
             string ma_dvcs = Request.Cookies["Ma_dvcs"].Value;
             DataSet ds = new DataSet();
@@ -191,7 +198,7 @@ namespace web4.Controllers
             MauIn.From_date = Request.Cookies["From_date"].Value;
             MauIn.To_date = Request.Cookies["To_Date"].Value;
             MauIn.UserName = Request.Cookies["UserName"].Value;
-           
+
 
             using (SqlCommand cmd = new SqlCommand(Pname, con))
             {
@@ -248,6 +255,49 @@ namespace web4.Controllers
             }
             return View(ds);
         }
+        public ActionResult ThongBaoNoQH_Fill()
+        {
+            List<MauInChungTu> dmDlist = LoadDmDt("");
 
+            ViewBag.DataItems = dmDlist;
+            return View();
+        }
+        public ActionResult ThongBaoNoQH_In(MauInChungTu MauIn)
+        {
+            string ma_dvcs = Request.Cookies["Ma_dvcs"].Value;
+            DataSet ds = new DataSet();
+            connectSQL();
+
+            //MauIn.So_Ct = Request.Cookies["SoCt"].Value;
+
+            //string query = "exec usp_Vth_BC_BHCNTK_CN @_ngay_Ct1 = '" + Acc.From_date + "',@_Ngay_Ct2 ='"+ Acc.To_date+"',@_Ma_Dvcs='"+ Acc.Ma_DvCs_1+"'";
+            string Pname = "[usp_ThongBaoNoQuaHan_SAP]";
+
+            using (SqlCommand cmd = new SqlCommand(Pname, con))
+            {
+                cmd.CommandTimeout = 950;
+
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                //MauIn.From_date = Request.Cookies["From_date"].Value;
+                //MauIn.To_date = Request.Cookies["To_Date"].Value;
+                con.Open();
+
+                using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                {
+
+
+                    cmd.Parameters.AddWithValue("@_Tu_Ngay", MauIn.From_date);
+                    cmd.Parameters.AddWithValue("@_Den_Ngay", MauIn.To_date);
+                    cmd.Parameters.AddWithValue("@_Ma_dt", MauIn.Ma_Dt);
+
+
+                    sda.Fill(ds);
+
+                }
+            }
+            return View(ds);
+        }
     }
 }
